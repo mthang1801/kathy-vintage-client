@@ -5,6 +5,15 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  siteMetadata: {
+    title: "TN Clothing Shop",
+    description: "Women Clothes",
+    author: "MVT",
+    image: "/images/tn-shop.jpg",
+    siteUrl: "https://mvthang-official.netlify.app/"
+  },
+  plugins: [
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-theme-ui`
+  ],
 }
