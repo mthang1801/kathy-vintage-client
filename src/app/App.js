@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import ButtonColorMode from "../components/Controls/ButtonColorMode"
 import GlobalStyles from "./GlobalStyles.jsx"
 import {useThemeUI} from "theme-ui"
+
 const App = ({children}) => {
   const {theme, colorMode} = useThemeUI()
   console.log(theme, colorMode)
@@ -12,6 +12,7 @@ const App = ({children}) => {
     if(theme.colors[colorMode]){
       setSelectedTheme(theme.colors[colorMode])   
     }    
+  
     setThemeLoaded(true);
   }, [colorMode])
 

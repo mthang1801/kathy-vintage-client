@@ -1,5 +1,9 @@
 export const en = {
-  translation : {
+  translation : {   
+    auth : {
+      login : "login",
+      register : "sign up"
+    } ,
     search : {
       placeholder : "Search..."
     }

@@ -13,6 +13,7 @@ module.exports = {
     siteUrl: "https://mvthang-official.netlify.app/"
   },
   plugins: [
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-theme-ui`
   ],
