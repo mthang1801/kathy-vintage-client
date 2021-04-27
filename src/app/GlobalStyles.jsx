@@ -54,9 +54,9 @@ export default createGlobalStyle`
     --mainTransition : all 0.2s;
   }
   body{
-    background: ${({ theme }) => theme.colors.body};
-    color: ${({ theme }) => theme.colors.text};
-    font-family: ${({ theme }) => theme.font};
+    background: ${({ theme }) => theme.colors.body} !important;
+    color: ${({ theme }) => theme.colors.text}  !important;
+    font-family: ${({ theme }) => theme.font}  !important;
     transition: all 0.50s linear;
   }
   a {

@@ -23,10 +23,10 @@ export const Flex = styled.div`
     justify-content: flex-end
   }
   align-items: center;
-  width : 80vw; 
+  width : 85vw; 
   padding : 0 1rem;
   &:last-child{
-    width : 20vw;
+    width : 15vw;
   }
   @media screen and (min-width: 768px){
     width : 60vw;
@@ -44,12 +44,12 @@ export const Flex = styled.div`
 
 
 export const BrandLogo = styled.img`    
-  max-width : 5rem;      
+  max-width : 3rem;      
   @media screen and (min-width : 768px){
-    max-width : 8rem;
+    max-width : 6rem;
   }
   @media screen and (min-width : 992px){
-    max-width : 10rem;
+    max-width : 8rem;
   }  
 `
 
@@ -66,5 +66,12 @@ export const Responsive = styled.div`
   display : none ; 
   @media screen and (min-width: 992px){
     display : flex; 
+  }
+`
+
+export const MobileResponsive = styled.div`
+  display : block;
+  @media screen and (min-width : 992px){
+    display : none;
   }
 `

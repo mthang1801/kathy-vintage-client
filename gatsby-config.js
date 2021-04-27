@@ -1,3 +1,5 @@
+require("dotenv").config({path : ".env"})
+
 /**
  * Configure your Gatsby site with this file.
  *
@@ -15,6 +17,15 @@ module.exports = {
   plugins: [
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-theme-ui`
+    `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
   ],
 }
