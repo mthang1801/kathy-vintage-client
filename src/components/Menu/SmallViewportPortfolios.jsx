@@ -14,6 +14,7 @@ import Image from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
 import useLanguage from "../Global/useLanguage"
 import ChevronRight from "@material-ui/icons/ChevronRight"
+import ChevronLeft from "@material-ui/icons/ChevronLeft"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
@@ -55,19 +56,21 @@ const queryPortfolio = graphql`
 const MobilePortfolio = ({ open }) => {
   const query = useStaticQuery(queryPortfolio)
   const classes = useStyles()
+  const initialSelectedPortfolio = {id : null, x : 0, y : 0}
   const [expanded, setExpanded] = useState(false)
-  const [selectedPortfolio, setSelectedPortfolio] = useState({
-    id: null,
-    x: 0,
-    y: 0,
-  })
+  const [selectedPortfolio, setSelectedPortfolio] = useState(initialSelectedPortfolio)
   const portfolios = query.allContentfulPortfolio.edges
   const { lang } = useLanguage()
-
+  console.log(lang)
   const handleChange = contentful_id => (e, newExpanded) => {
     setExpanded(newExpanded ? contentful_id : false)
   }
+
+  
   const onSelectedPortfolio = (e, id) => {
+    if(selectedPortfolio.id === id){
+      return setSelectedPortfolio(initialSelectedPortfolio)
+    }
     setSelectedPortfolio({
       id,
       x: e.clientX,
@@ -78,11 +81,7 @@ const MobilePortfolio = ({ open }) => {
   useEffect(() => {
     if(!open){
       setExpanded(false);
-      setSelectedPortfolio({
-        id : null,
-        x: 0,
-        y: 0,
-      })
+      setSelectedPortfolio(initialSelectedPortfolio)
     }
   },[open])
   
@@ -139,11 +138,11 @@ const MobilePortfolio = ({ open }) => {
                   <ListItemImage>
                     <Image fluid={node.image.fluid} alt={node.nameVi} />
                   </ListItemImage>
-                  <ListItemText>{node.nameVi}</ListItemText>
+                  <ListItemText>{lang === "en" ? node.nameEn : lang === "vi" ? node.nameVi : ""}</ListItemText>
                   <ListitemIcon
                     onClick={e => onSelectedPortfolio(e, node.contentful_id)}
                   >
-                    <ChevronRight />
+                    {selectedPortfolio.id === node.contentful_id ? <ChevronLeft/> : <ChevronRight /> }
                   </ListitemIcon>
                 </ListItem>
                 {selectedPortfolio.id === node.contentful_id && (

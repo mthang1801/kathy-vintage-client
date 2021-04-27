@@ -15,6 +15,11 @@ export const getLanguage = () => {
   return null
 }
 
+export const configLang = {
+  en: { key: "en", text: "English", code: "US" },
+  vi: { key: "vi", text: "Tiếng Việt", code: "VN" },  
+};
+
 export default {
   en, 
   vi

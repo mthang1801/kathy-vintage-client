@@ -9,10 +9,7 @@ import {
 import {setLanguage} from "../../locales"
 import useLanguage from "../Global/useLanguage";
 import {useThemeUI} from "theme-ui"
-const configLang = {
-  en: { key: "en", text: "English", code: "US" },
-  vi: { key: "vi", text: "Tiếng Việt", code: "VN" },  
-};
+import {configLang} from "../../locales"
 
 const ToggleLanguage = () => {  
   const [showLangBoard, setShowLangBoard] = useState(false);
