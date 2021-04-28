@@ -25,36 +25,42 @@ export const en = {
       home: {
         id : "home",
         name: "Home",
+        path : "/",
         icon: <AiOutlineHome />,
         activeIcon: <AiFillHome />,
       },
       products: {
         id : "shop",
         name: "Shop",
+        path : "/shop",
         icon: <AiOutlineShop />,
         activeIcon: <AiFillShop />,
       },
       discountProducts: {
         id : "discount products",
         name: "Discount Products",
+        path: "/discount-products",
         icon: <AiOutlinePercentage />,
         activeIcon: <RiPercentFill />,
       },
       recommendedProducts: {
         id : "recommended products",
         name: "Recommended Products",
+        path : "/recommended-products",
         icon: <RiVipDiamondLine />,
         activeIcon: <RiVipDiamondFill />,
       },
       contact: {
         id : "contact",
         name: "Contact",
+        path :"/contact",
         icon: <RiContactsLine />,
         activeIcon: <RiContactsFill />,
       },
       setting: {
         id : "setting",
         name: "Setting",
+        path : "void(0)",
         icon: <IoMdSettings />,
         activeIcon: <IoIosSettings />,
       },
@@ -77,6 +83,11 @@ export const en = {
       default : "Light",
       light : "Light",
       dark : "Dark"
+    },
+    shop : {
+      portfolio : {
+        title : "Portfolio"
+      }      
     }
   },
   

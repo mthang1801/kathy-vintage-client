@@ -10,23 +10,34 @@ export default {
         text: "#000000",
         button: {
           text: "#FFFFFF",
-          background: "#000000"
+          background: "#000000",
         },
         link: {
           text: "teal",
-          opacity: 1
+          opacity: 1,
         },
-        header : {
-          background : "linear-gradient(to right bottom, #fff59d,#fff176, #ffeb3b  )",                
+        header: {
+          background: "#fff",
         },
-        background : "#f0f0f0",
-        card : "#e0e0e0",
-        hover : "#f5f5f5",
-        border : "#e0e0e0"
+        navigation: {
+          background: "#f5f5f5",
+          active: {
+            background: "#f5f5f5",
+            color: "#ffc107",
+          },
+        },
+        background: "#f0f0f0",
+        card: "#e0e0e0",
+        hover: {
+          background: "#f5f5f5",
+          color: "#ffc107",
+        },
+        border: "#e0e0e0",
+        boxShadow: "0 0px 5px rgba(0,0,0,0.15)",
       },
-      font: '"Roboto", "Helvetica", "Arial", sans-serif'
+      font: '"Roboto", "Helvetica", "Arial", sans-serif',
     },
-    dark : {
+    dark: {
       id: "T_007",
       name: "Dark",
       colors: {
@@ -38,17 +49,29 @@ export default {
         },
         link: {
           text: "#0d47a1",
-          opacity: 0.8
+          opacity: 0.8,
         },
-        header : {
-          background : "linear-gradient(to right bottom,#202020, #212121)"
+        header: {
+          background: "linear-gradient(to right bottom,#202020, #212121)",
         },
-        background : "#2c2c2c",
-        card : "#2d2f31",
-        hover : "#343a40",
-        border : "#616161"
+        navigation: {
+          background:
+            "#424242",
+          active: {
+            background: "#424242",
+            color: "#ffc107",
+          },
+        },
+        background: "#2c2c2c",
+        card: "#2d2f31",
+        hover: {
+          background: "#343a40",
+          color: "#ffc107",
+        },
+        border: "#616161",
+        boxShadow: "0 0px 0px 5px #bdbdbd",
       },
-      font: '"Roboto", "Helvetica", "Arial", sans-serif'
-    }
-  }
+      font: '"Roboto", "Helvetica", "Arial", sans-serif',
+    },
+  },
 }

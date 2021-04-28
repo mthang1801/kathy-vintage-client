@@ -24,36 +24,42 @@ export const vi = {
       home: {
         id : "home",
         name : "Trang chủ", 
+        path : "/",
         icon : <AiOutlineHome/>,
         activeIcon : <AiFillHome/>
       },
       products : {
         id : "shop",
         name : "Shop",
+        path : "/shop",
         icon : <AiOutlineShop/>,
         activeIcon : <AiFillShop/>
       },
       discountProducts : {
-        id : "discount products",
+        id : "discount products",        
         name : "Khuyến mãi",
+        path : "/discount-products",
         icon : <AiOutlinePercentage/>,
         activeIcon : <RiPercentFill/>
       },            
       recommendedProducts : {
-        id : "recommended products",
+        id : "recommended products",        
         name : "Đề xuất",
+        path : "/recommended-products",
         icon : <RiVipDiamondLine/>,
         activeIcon : <RiVipDiamondFill/>
       },
       contact: {
         id : "contact",
         name : "Liên hệ", 
+        path : "/contact",
         icon : <RiContactsLine/>,
         activeIcon : <RiContactsFill/>
       }, 
       setting: {
         id : "setting",
         name : "Cài đặt",
+        path : "void(0)",
         icon : <IoIosSettings/>,
         activeIcon : <IoMdSettings/>
       }         
@@ -77,5 +83,10 @@ export const vi = {
       light : "Sáng",
       dark : "Tối"
     },
+    shop : {
+      portfolio : {
+        title : "Danh mục SP"
+      }      
+    }
   }
 }

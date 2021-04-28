@@ -20,41 +20,39 @@ import AccordionDetails from "@material-ui/core/AccordionDetails"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import SmallViewportCategories from "./SmallViewportCategories"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-
-const queryPortfolio = graphql`
-  query FetchPortfolios {
-    allContentfulPortfolio {
-      edges {
-        node {
+const QUERY_PORTFOLIOS = graphql`
+query FetchPortfolios {
+  allContentfulPortfolio {
+    edges {
+      node {
+        contentful_id
+        nameVi
+        nameEn
+        slug
+        image {
+          fluid {
+            ...GatsbyContentfulFluid
+          }
+        }
+        category {
           contentful_id
           nameVi
           nameEn
           slug
           image {
+            title
             fluid {
               ...GatsbyContentfulFluid
-            }
-          }
-          category {
-            contentful_id
-            nameVi
-            nameEn
-            slug
-            image {
-              title
-              fluid {
-                ...GatsbyContentfulFluid
-              }
             }
           }
         }
       }
     }
   }
+}
 `
-
 const MobilePortfolio = ({ open }) => {
-  const query = useStaticQuery(queryPortfolio)
+  const query = useStaticQuery(QUERY_PORTFOLIOS)
   const classes = useStyles()
   const initialSelectedPortfolio = {id : null, x : 0, y : 0}
   const [expanded, setExpanded] = useState(false)
@@ -85,7 +83,7 @@ const MobilePortfolio = ({ open }) => {
     }
   },[open])
   
-  console.log(selectedPortfolio)
+ 
   return (
     <>
       <MobileWrapper open={open}>

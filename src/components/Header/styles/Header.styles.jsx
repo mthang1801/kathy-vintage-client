@@ -1,5 +1,5 @@
-import styled from "styled-components";
-
+import styled from "styled-components"; 
+import {config} from "../../../config"
 export const Wrapper = styled.header`
   width : 100%; 
   height: 65px;
@@ -8,7 +8,7 @@ export const Wrapper = styled.header`
   border-bottom:1px solid ${({theme}) => theme.colors.border} ;  
   padding: 0.75rem;
   @media screen and (min-width : 768px){
-    height : 80px;
+    height : ${config.headerHeight}px;
     padding : 0.75rem 3rem;
   }
   @media screen and (min-width : 992px){
@@ -65,7 +65,7 @@ export const Responsive = styled.div`
   }  
   display : none ; 
   @media screen and (min-width: 992px){
-    display : flex; 
+    display : flex;    
   }
 `
 

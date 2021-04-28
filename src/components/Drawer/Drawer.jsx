@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Drawer from "@material-ui/core/Drawer"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import List from "@material-ui/core/List"
@@ -10,7 +10,7 @@ import Backdrop from "@material-ui/core/Backdrop"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import ChevronRightIcon from "@material-ui/icons/ChevronRight"
 import ExpandMore from "@material-ui/icons/ExpandMore"
-import SettingDialog from "./SettingDialog"
+import SettingDialog from "../Setting/SettingDialog"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
@@ -43,7 +43,7 @@ function PersistentDrawerLeft({ open, setOpen }) {
   const onTogglePortfolios = () => {
     setOpenPortfolio(prevState => !prevState)
   }
-  console.log(openPortfolio)
+
   return (
     <>
       <SettingDialog open={openDialog} setOpen={setOpenDialog}/>

@@ -22,7 +22,7 @@ export default function AlertDialog({open, setOpen}) {
         open={open}
         onClose={handleClose}
         fullWidth={true}
-        maxWidth="md"
+        maxWidth="sm"
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         class             

@@ -11,14 +11,15 @@ export const SettingContents = styled.div`
   flex-direction: column;
   width: 90%;
   margin: auto;
-  min-height: 50vh;
+  min-height: 35vh;
 `
 
 export const ContentItem = styled.div`
   display: flex;
-  align-items: center;
+  align-items: center;  
   & > *:first-child {
-    width : 120px;
+    color : black;
+    width : 10rem;
     margin-right: 2rem;
   }
   

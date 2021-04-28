@@ -38,13 +38,7 @@ const Header = () => {
           <Search />
         </SearchContainer>
       </Flex>
-      <Flex>
-        <Responsive>
-          <LanguagesSelection />
-        </Responsive>
-        <Responsive>
-          <ButtonColorMode />
-        </Responsive>
+      <Flex>      
         <Responsive>
           <Button color="primary">{auth.login}</Button>
           <Button color="secondary">{auth.register}</Button>
