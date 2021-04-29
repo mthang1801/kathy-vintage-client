@@ -19,7 +19,7 @@ import { Link } from "@reach/router"
 import Logo from "../../images/brandlogo.png"
 import CartButton from "../Controls/CartButton"
 import useLanguage from "../Global/useLanguage"
-import SmallViewPortPortfolios from "../Menu/SmallViewportPortfolios"
+import DrawerPortfoliosDropdown from "../Dropdown/DrawerPortfoliosDropdown"
 import { Scrollbars } from "react-custom-scrollbars"
 function PersistentDrawerLeft({ open, setOpen }) {
   const [openPortfolio, setOpenPortfolio] = useState(false)
@@ -111,7 +111,7 @@ function PersistentDrawerLeft({ open, setOpen }) {
                     )}
                   </ListItem>
                   {navigation.name.toLowerCase() === "shop" && (
-                    <SmallViewPortPortfolios open={openPortfolio} />
+                    <DrawerPortfoliosDropdown open={openPortfolio} />
                   )}
                 </>
               ))}

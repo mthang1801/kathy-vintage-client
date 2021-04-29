@@ -9,7 +9,7 @@ import {
   useStyles,
   ViewPort,
   CategoriesList,
-} from "./styles/SmallViewportPortfolios.styles"
+} from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
 import useLanguage from "../Global/useLanguage"
@@ -18,7 +18,7 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
-import SmallViewportCategories from "./SmallViewportCategories"
+import SmallViewportCategories from "./DrawerCategoriesDropdown"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 const QUERY_PORTFOLIOS = graphql`
 query FetchPortfolios {

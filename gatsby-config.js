@@ -1,4 +1,5 @@
 require("dotenv").config({path : ".env"})
+const path = require("path");
 
 /**
  * Configure your Gatsby site with this file.
@@ -27,5 +28,12 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    {
+      resolve : `gatsby-source-filesystem`,
+      options : {
+        name : "images-carousel",
+        path : path.join(__dirname, `src`, `images`, `carousel`)
+      }
+    }
   ],
 }

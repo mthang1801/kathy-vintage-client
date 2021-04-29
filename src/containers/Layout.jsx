@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from "../components/Header/Header"
-import Navigation from "../components/Navigation/Navigation"
+import NavigationBar from "../components/Navigation/NavigationBar"
 const Layout = ({children}) => {
   return (
     <>
      <Header/> 
-     <Navigation/>
+     <NavigationBar/>
+     <div>{children}</div>
     </>
   )
 }

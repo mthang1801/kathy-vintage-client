@@ -8,10 +8,10 @@ import {
   useStyles,
   ViewPort,
   CategoriesList,
-} from "./styles/SmallViewportPortfolios.styles"
+} from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
 import {useThemeUI} from "theme-ui";
-const SmallViewportCategories = ({ categories }) => {
+const DrawerCategoriesDropdown = ({ categories }) => {
   const {theme,colorMode} =useThemeUI()
   return (
     <TabletWrapper open={categories?.length} theme={theme.colors[colorMode]}>
@@ -30,4 +30,4 @@ const SmallViewportCategories = ({ categories }) => {
   )
 }
 
-export default SmallViewportCategories
+export default DrawerCategoriesDropdown
