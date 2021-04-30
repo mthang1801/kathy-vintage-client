@@ -1,13 +1,13 @@
 import styled from "styled-components"
 import { Link } from "@reach/router"
 export const Wrapper = styled.footer`
+  width : 100%;
   display : flex;
   flex-direction : column ; 
   background-color : black;
   margin: 5rem auto 0 auto;
   padding : 3rem 5rem;
   color : white;  
-  
   @media screen and (min-width : 768px){
     display : grid; 
     grid-template-columns : repeat(2, auto);
