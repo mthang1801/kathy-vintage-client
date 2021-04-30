@@ -19,9 +19,9 @@ module.exports = {
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-image` ,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    `gatsby-transformer-sqip`,
+    `gatsby-transformer-sharp`,    
     `gatsby-remark-images-contentful`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -34,7 +34,7 @@ module.exports = {
         background_color: `#0d47a1`,
         theme_color: `#1a237e`,
         display: `standalone`,
-        icon: `src/images/icon.png`,
+        icon: `src/images/logo.jpg`,
         icons: [
           {
             src: `/favicons/android-chrome-192x192.png`,
