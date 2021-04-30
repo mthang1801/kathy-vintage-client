@@ -15,7 +15,7 @@ const CartButton = () => {
       className={classes.button}
       startIcon={<ShoppingCart />}
     >
-      {cart.name}
+      {cart.name} : 5 
     </Button>
   )
 }

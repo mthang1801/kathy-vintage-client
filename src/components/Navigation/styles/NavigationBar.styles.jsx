@@ -30,14 +30,14 @@ export const Setting = styled.div`
   padding: 0.4rem 1rem;
   cursor: pointer;
   z-index: 1;
-  &:hover {
+  // &:hover {
    
-    color: var(--blue-1);
-    & img {
-      filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
-        brightness(91%) contrast(103%);
-    }
-  }
+  //   color: var(--blue-1);
+  //   & img {
+  //     filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
+  //       brightness(91%) contrast(103%);
+  //   }
+  // }
   ${({ active }) =>
     active &&
     `    color : var(--blue-1);
@@ -67,16 +67,16 @@ export const ListItem = styled(Link)`
   position: relative;
   padding: 0.4rem 1rem;
   z-index: 1;
-  &:hover {
-    & ${ListItemText}, ${ListItemIcon} {
-      color: ${({theme}) => theme.colors.hover.color};
-    }    
+  // &:hover {
+  //   & ${ListItemText}, ${ListItemIcon} {
+  //     color: ${({theme}) => theme.colors.hover.color};
+  //   }    
     
-    & img {
-      filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
-        brightness(91%) contrast(103%);
-    }
-  }
+  //   & img {
+  //     filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
+  //       brightness(91%) contrast(103%);
+  //   }
+  // }
   ${({ active }) =>
     active &&
     `    color : var(--blue-1);

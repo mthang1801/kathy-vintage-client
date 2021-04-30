@@ -4,6 +4,10 @@ import { Link } from "@reach/router"
 export const CategoriesSliderContainer = styled.div`
   width: 90vw;
   margin: 4rem auto;
+  text-align : center;
+  @media screen and (min-width : 992px){
+    text-align : left;
+  }
   .slick-slide.slick-active > div{    
       width : 99%;    
   }

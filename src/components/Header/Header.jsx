@@ -16,6 +16,7 @@ import { useThemeUI } from "theme-ui"
 import { Button } from "@material-ui/core"
 import useLanguage from "../Global/useLanguage"
 import ButtonMenu from "../Controls/ButtonMenu"
+import Cart from "../Cart/Cart"
 import Drawer from "../Drawer/Drawer"
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -40,10 +41,14 @@ const Header = () => {
       </Flex>
       <Flex>      
         <Responsive>
+          <Cart/>
+        </Responsive>
+        <Responsive>
           <Button color="primary">{auth.login}</Button>
           <Button color="secondary">{auth.register}</Button>
         </Responsive>
         <MobileResponsive>
+          <Cart/>
           <ButtonMenu onClick={onOpenMenu}/>
         </MobileResponsive>
       </Flex>

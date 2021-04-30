@@ -7,11 +7,11 @@ export const CarouselBannerWrapper = styled.div`
   overflow : hidden;  
   @media screen and (min-width: 768px){
     width : 600px;
-    height : 350px;
+    height : 400px;
   }
   @media screen and (min-width : 992px){
     width : 800px;
-    height: 400px;
+    height: 450px;
   } 
   & *{
     height : 100%;

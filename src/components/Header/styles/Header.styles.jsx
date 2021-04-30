@@ -6,7 +6,7 @@ export const Wrapper = styled.header`
   display : flex;
   background : ${({theme}) => theme.colors.header.background}; 
   border-bottom:1px solid ${({theme}) => theme.colors.border} ;  
-  padding: 0.75rem;
+  padding: 0.75rem 0.25rem;
   @media screen and (min-width : 768px){
     height : ${config.headerHeight}px;
     padding : 0.75rem 3rem;
@@ -23,10 +23,10 @@ export const Flex = styled.div`
     justify-content: flex-end
   }
   align-items: center;
-  width : 85vw; 
+  width : 80vw; 
   padding : 0 1rem;
   &:last-child{
-    width : 15vw;
+    width : 20vw;
   }
   @media screen and (min-width: 768px){
     width : 60vw;
@@ -46,10 +46,10 @@ export const Flex = styled.div`
 export const BrandLogo = styled.img`    
   max-width : 3rem;      
   @media screen and (min-width : 768px){
-    max-width : 6rem;
+    max-width : 5rem;
   }
   @media screen and (min-width : 992px){
-    max-width : 8rem;
+    max-width : 7rem;
   }  
 `
 
@@ -65,12 +65,17 @@ export const Responsive = styled.div`
   }  
   display : none ; 
   @media screen and (min-width: 992px){
-    display : flex;    
+    display : flex;  
+    margin : 0 1rem;      
   }
 `
 
 export const MobileResponsive = styled.div`
-  display : block;
+  display : flex;
+  align-items : center;
+  & > *:not(first-child){
+    margin-left: 0.5rem;
+  }
   @media screen and (min-width : 992px){
     display : none;
   }
