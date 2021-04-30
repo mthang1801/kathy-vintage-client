@@ -4,8 +4,8 @@ export const Wrapper = styled.header`
   width : 100%; 
   height: 65px;
   display : flex;
-  background : ${({theme}) => theme.colors.header.background}; 
-  border-bottom:1px solid ${({theme}) => theme.colors.border} ;  
+  background : white; 
+  border-bottom:1px solid var(--gray-1);  
   padding: 0.75rem 0.25rem;
   @media screen and (min-width : 768px){
     height : ${config.headerHeight}px;

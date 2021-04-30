@@ -28,13 +28,13 @@ export const CategoryItem = styled.div`
   text-decoration: none;
   color: inherit;
   height: 5rem;  
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: 1px solid var(--gray-1);
   margin: 3px 0;
   transition : var(--mainTransition);
   cursor: pointer;
   &:hover{    
     transform : scale(1.01);
-    background-color : ${({theme}) => theme.colors.hover.background};
+    background-color : white
   }
 `
 

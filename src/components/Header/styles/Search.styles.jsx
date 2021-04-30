@@ -10,7 +10,7 @@ export const SearchForm = styled.form`
   justify-content : center;
   align-items :center;
   background-color :  var(--white);
-  border: 1px solid ${({theme}) => theme.colors.border} ;
+  border: 1px solid var(--gray-1) ;
   color : var(--black);  
   padding : 0.5rem 1rem;
   transition : ${({open}) => open ? "width 0.2s": "unset" } ;
