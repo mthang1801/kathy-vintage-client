@@ -1,52 +1,61 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {CarouselBannerWrapper, Image} from "./styles/Banners.styles";
-import useLanguage from "../Global/useLanguage"
-import {Link} from "@reach/router"
-import Slider from "react-slick";
-import {CustomArrowNext, CustomArrowPrev} from "./CustomArrowSlider"
-
+import React, { useEffect, useRef, useState } from "react"
+import { CarouselBannerWrapper } from "./styles/Banners.styles"
+import { Link } from "@reach/router"
+import Slider from "react-slick"
+import { CustomArrowNext, CustomArrowPrev } from "./CustomArrowSlider"
+import { useStaticQuery, graphql } from "gatsby"
+import Image from "gatsby-image"
 const CarouselBanner = () => {
-  const [carouselHeight, setCarouselHeight] = useState(0)
-  const carouselRef = useRef(null);
-  const {i18n, lang} = useLanguage()
-  const {bannerImages} = i18n.store.data[lang].translation  
+  
+  const carouselRef = useRef(null)  
+  
+  const { imagesCarousel } = useStaticQuery(QUERY_IMAGES_CAROUSEL)
+  const images = imagesCarousel.edges.map(({ node }) => node)
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <CustomArrowNext />,
     prevArrow: <CustomArrowPrev />,
     autoplaySpeed: 4000,
-    autoplay : true , 
-    appendDots : dots => (<div
-      style={{
-        position : "absolute",
-        bottom : "3%",
-        color : "white"       
-      }}
-    >
-      <ul style={{ margin: "0px" }}> {dots} </ul>
-    </div>)
-  };
+    autoplay: true,
+    dots : false , 
+    fade : true ,    
+  }
 
-  useEffect(() => {
-    setCarouselHeight(carouselRef.current.clientHeight);
-  },[carouselRef.current] )
-  if(!bannerImages || !bannerImages.length)  return null; 
+  console.log(images)
   return (
-    <CarouselBannerWrapper  ref={carouselRef}>
-      <Slider {...settings} >        
-        {bannerImages.map(image => (
-          <Link to={image.linkUrl} key={image.id}>
-            
-              <Image img={image.image} height={carouselHeight} alt={image.image}/>            
+    <CarouselBannerWrapper ref={carouselRef}>
+      <Slider {...settings}>
+        {images.map(image => (
+          <Link to={"/"} key={image.name}>
+            <Image fluid={image.childImageSharp.fluid} alt={image.name}/>
           </Link>
         ))}
       </Slider>
     </CarouselBannerWrapper>
   )
 }
+
+const QUERY_IMAGES_CAROUSEL = graphql`
+  query {
+    imagesCarousel: allFile(
+      filter: { sourceInstanceName: { eq: "images-carousel" } }
+    ) {
+      edges {
+        node {
+          name
+          childImageSharp {
+            fluid{
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export default CarouselBanner

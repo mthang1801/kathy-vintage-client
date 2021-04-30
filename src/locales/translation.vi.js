@@ -87,48 +87,11 @@ export const vi = {
       portfolio : {
         title : "Danh mục SP"
       }      
-    },
-    bannerImages: [
-      {
-        id: "banner-1",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-        id: "banner-2",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-        id: "banner-3",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-        id: "banner-4",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-        id: "banner-5",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-        id: "banner-6",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-        id: "banner-7",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-        id: "banner-8",
-        linkUrl: "/",
-        image: "https://images.pexels.com/photos/5738114/pexels-photo-5738114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-    ],
+    },    
+    page : {
+      home: {
+        categoryCarouselTitle : "Các loại Sản phẩm"
+      }
+    }
   }
 }

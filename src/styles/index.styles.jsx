@@ -1,17 +1,12 @@
 import styled from "styled-components";
 
 export const BannerContainer = styled.div`
-  width : 100vw;  
-  padding: 1rem 7rem;
-  height: 50rem;  
-  margin : 0rem auto; 
-  display : flex;
-  flex-direction : column;
+  width : 95vw;  
+  height : 400px;
+  margin: 2rem auto;      
   @media screen and (min-width : 992px){
-    display : grid; 
-    grid-template-columns : 1fr 3fr;    
-    height : 25rem;
-    justify-content : space-between;
+    width : 75vw;
+    height: 600px;    
   }
 `
 

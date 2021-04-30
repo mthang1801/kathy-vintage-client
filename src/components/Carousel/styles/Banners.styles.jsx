@@ -1,8 +1,21 @@
 import styled from "styled-components";
 
 export const CarouselBannerWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 95vw; 
+  height: 300px;
+  margin : 2rem auto;
+  overflow : hidden;  
+  @media screen and (min-width: 768px){
+    width : 600px;
+    height : 350px;
+  }
+  @media screen and (min-width : 992px){
+    width : 800px;
+    height: 400px;
+  } 
+  & *{
+    height : 100%;
+  }
 `;
 
 export const Image = styled.div`

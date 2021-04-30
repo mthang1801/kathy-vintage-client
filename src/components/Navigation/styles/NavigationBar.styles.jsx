@@ -5,6 +5,10 @@ export const Wrapper = styled.nav`
   width: 100%;
   background: ${({ theme }) => theme.colors.navigation.background};
   padding: 0 5rem;
+  display : none; 
+  @media screen and (min-width: 992px){
+    display : block;
+  }
 `
 
 export const List = styled.section`

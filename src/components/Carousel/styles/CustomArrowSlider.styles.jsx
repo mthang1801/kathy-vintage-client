@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CustomPortfoliosArrowPrevContainer = styled.div`
   width: 1.5rem;
   height: 1.5rem;
-  background-color: var(--light-gray-1);
+  background-color: var(--light-gray-3);
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -12,10 +12,10 @@ export const CustomPortfoliosArrowPrevContainer = styled.div`
   border-radius: 50%;
   transition : all 0.3s; 
   &:hover {
-    background-color: var(--light-gray-2);
-    transform : scale(1.5);
+    background-color: var(--gray-1);
+    transform : scale(1.5);    
     &:before {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
   }
   &:before {
@@ -25,14 +25,14 @@ export const CustomPortfoliosArrowPrevContainer = styled.div`
     position : absolute; 
     left: 50%; 
     top : 40%; 
-    transform : translate(-50%, -50%);
+    transform : translate(-55%, -50%);
   }
 `;
 
 export const CustomPortfoliosArrowNextContainer = styled.div`
   width: 1.5rem;
   height: 1.5rem;
-  background-color: var(--light-gray-1);
+  background-color: var(--light-gray-3);
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -41,10 +41,10 @@ export const CustomPortfoliosArrowNextContainer = styled.div`
   border-radius: 50%;
   transition : all 0.3s;
   &:hover {
-    background-color: var(--light-gray-2);
+    background-color: var(--gray-1);
     transform : scale(1.5);
     &:after {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
   }
   &:after {
@@ -54,6 +54,6 @@ export const CustomPortfoliosArrowNextContainer = styled.div`
     position : absolute; 
     left: 50%; 
     top : 40%; 
-    transform : translate(-50%, -50%);
+    transform : translate(-45%, -50%);
   }
 `;
