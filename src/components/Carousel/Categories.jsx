@@ -12,17 +12,18 @@ import {
   CustomPortfoliosArrowPrev,
 } from "./CustomArrowSlider"
 import { useStaticQuery, graphql, navigate } from "gatsby"
-import { useThemeUI } from "theme-ui"
 import Image from "gatsby-image"
+import {useTheme} from "../../theme"
 let dragging = false
 const CategoriesSlider = () => {
   const { i18n, lang } = useLanguage()
   const { categoryCarouselTitle } = i18n.store.data[lang].translation.page.home
   const [slide, setSlide] = useState(null)
   const { fetchAllCategories } = useStaticQuery(CATEGORIES_QUERY)
-  const { theme, colorMode } = useThemeUI()
+  // const { theme, colorMode } = useThemeUI()
   const categories = fetchAllCategories.edges.map(({ node }) => node)
-
+  const {theme} = useTheme()
+  console.log(theme)
   const slideRef = useRef(null)
   useEffect(() => {
     setSlide(slideRef.current)
@@ -51,13 +52,13 @@ const CategoriesSlider = () => {
   }
   return (
     <CategoriesSliderContainer>
-      <Caption>{categoryCarouselTitle}</Caption>    
+      {/* <Caption>{categoryCarouselTitle}</Caption>    
         <Slider {...settings}>
           {categories.map( (category,idx) => (
             <CategoryItem              
               onClick={() => onClickCategoryItem(category)}
               key={category.contentful_id}              
-              theme={theme.colors[colorMode]}                  
+              theme={theme.modes[colorMode]}                  
             >
               <ImageContainer>
                 <Image
@@ -69,7 +70,7 @@ const CategoriesSlider = () => {
             </CategoryItem>
           ))}
         </Slider>
-      
+       */}
     </CategoriesSliderContainer>
   )
 }

@@ -8,14 +8,14 @@ import {
   Setting,
   CategoriesContainer,
 } from "./styles/NavigationBar.styles"
-import { useThemeUI } from "theme-ui"
+import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 import SettingDialog from "../Setting/SettingDialog"
 import CategoriesDropdown from "../Dropdown/CategoriesDropdown"
 const NavigationBar = () => {
-  const { theme, colorMode } = useThemeUI()
+  const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
   const { navigations } = i18n.store.data[lang].translation
   const { portfoliosList } = useStaticQuery(PORFOLIOS_LIST)
@@ -26,11 +26,11 @@ const NavigationBar = () => {
     setSelectedPortfolio(prevState => ({ ...prevState, id }))
   }
   return (
-    <Wrapper theme={theme.colors[colorMode]}>
+    <Wrapper theme={theme}>
       <SettingDialog open={openSetting} setOpen={setOpenSetting} />
       <List>
         {/* Home page */}
-        <ListItem to={navigations.home.path} theme={theme.colors[colorMode]}>
+        <ListItem to={navigations.home.path} theme={theme}>
           <ListItemIcon>{navigations.home.icon}</ListItemIcon>
           <ListItemText>{navigations.home.name}</ListItemText>
         </ListItem>
@@ -38,7 +38,7 @@ const NavigationBar = () => {
           <ListItem
             key={portfolio.contentful_id}
             to={portfolio.slug}
-            theme={theme.colors[colorMode]}
+            theme={theme}
             onMouseEnter={() =>
               onMouseEnterPortfolioItem(portfolio.contentful_id)
             }
@@ -62,13 +62,13 @@ const NavigationBar = () => {
           </ListItem>
         ))}
         {/* Contact */}
-        <ListItem to={navigations.contact.path} theme={theme.colors[colorMode]}>
+        <ListItem to={navigations.contact.path} theme={theme}>
           <ListItemIcon>{navigations.contact.icon}</ListItemIcon>
           <ListItemText>{navigations.contact.name}</ListItemText>
         </ListItem>
         {/* Setting */}
         <Setting
-          theme={theme.colors[colorMode]}
+          theme={theme}
           onClick={() => setOpenSetting(true)}
         >
           <ListItemIcon>{navigations.setting.icon}</ListItemIcon>

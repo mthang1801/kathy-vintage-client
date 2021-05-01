@@ -25,8 +25,8 @@ export const LanguageDropdownContainer = styled.div`
   visibility : ${({show}) => show ? "visible" : "hidden"};
   transition : all 0.25s;
   box-shadow: var(--lightShadow);
-  border : 1px solid var(--gray-1); 
-  background : white; 
+  border : 1px solid ${({theme}) => theme.border}; 
+  background : ${({theme}) => theme.background}; 
   border-radius : 0.5rem;
   overflow : hidden; 
 `
@@ -39,7 +39,7 @@ export const RowInline = styled.div`
     border-bottom : 1px solid #7fad39;
   }
   &:hover{
-    background-color : white; 
+    background-color : ${({theme}) => theme.background}; 
     color : var(--green-1);
   }
 `

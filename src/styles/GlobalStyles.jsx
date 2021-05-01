@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 
-export default createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   *, :*, :after, :before, ::after, ::before{
     padding : 0; 
     box-sizing: border-box;
@@ -53,11 +53,13 @@ export default createGlobalStyle`
 
     --mainTransition : all 0.2s;
   }
-  body{
-    background: ${({ theme }) => theme.colors.body} !important;
-    color: ${({ theme }) => theme.colors.text}  !important;
-    font-family: ${({ theme }) => theme.font}  !important;
-    transition: all 0.50s linear;
+  body{    
+    background-color : ${({theme}) => theme.body}  !important  ;
+    color : ${({theme}) => theme.text} !important;
+    width : 100vw;
+    overflow-x: hidden;        
+    font-family:"Roboto", "Helvetica", "Arial", sans-serif !important;
+    transition: all 0.5s linear;
   }
   
 `

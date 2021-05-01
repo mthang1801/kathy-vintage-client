@@ -6,13 +6,14 @@ import {
   ProductGroupsContainer,
 } from "./styles/DropdownList.styles"
 import ProductGroupsDropdown from "./ProductGroupsDropdown"
-import { useThemeUI } from "theme-ui"
+import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
 const CategoriesDropdown = ({ parentSlug, categories }) => {
-  const { theme, colorMode } = useThemeUI()
+  const { theme } = useTheme()
   const initialCategory = { id: null, x: 0, y: 0 }
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
   const {lang} = useLanguage()
+  console.log(theme)
   const onMouseEnterCategory = id => {
     setSelectedCategory(prevState => ({ ...prevState, id }))
   }
@@ -20,14 +21,14 @@ const CategoriesDropdown = ({ parentSlug, categories }) => {
   if (!categories || !categories.length) return null
   return (
     <List
-      theme={theme.colors[colorMode]}
+      theme={theme}
       onMouseLeave={() => setSelectedCategory(initialCategory)}
     >
       {categories.map(category => (
         <ListItem
           key={category.contentful_id}
           to={`/${parentSlug}/${category.slug}`}
-          theme={theme.colors[colorMode]}          
+          theme={theme}          
           onMouseEnter={() => onMouseEnterCategory(category.contentful_id)}
         >
           <ListItemText>{lang === "en" ? category.nameEn : category.nameVi}</ListItemText>

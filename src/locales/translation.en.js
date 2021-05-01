@@ -81,8 +81,7 @@ export const en = {
       },
       close : "Close"
     },
-    colorMode : {
-      default : "Light",
+    colorMode : {      
       light : "Light",
       dark : "Dark"
     },

@@ -81,8 +81,7 @@ export const vi = {
       },
       close : "Đóng"
     },
-    colorMode : {
-      default : "Sáng",
+    colorMode : {      
       light : "Sáng",
       dark : "Tối"
     },

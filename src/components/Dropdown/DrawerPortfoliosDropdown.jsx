@@ -59,7 +59,7 @@ const MobilePortfolio = ({ open }) => {
   const [selectedPortfolio, setSelectedPortfolio] = useState(initialSelectedPortfolio)
   const portfolios = query.allContentfulPortfolio.edges
   const { lang } = useLanguage()
-  console.log(lang)
+  
   const handleChange = contentful_id => (e, newExpanded) => {
     setExpanded(newExpanded ? contentful_id : false)
   }

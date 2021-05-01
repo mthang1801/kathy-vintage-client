@@ -1,25 +1,17 @@
-import React, {useState, useEffect} from 'react'
-import GlobalStyles from "./GlobalStyles.jsx"
-import {useThemeUI} from "theme-ui"
+import React, { useState, useEffect } from "react"
+import { GlobalStyles } from "../styles/GlobalStyles.jsx"
+import {useTheme} from "../theme"
 
-const App = ({children}) => {
-  const {theme, colorMode} = useThemeUI()
+const App = ({ children }) => {
+  const {theme, setColorMode, colorMode} = useTheme()
   console.log(theme, colorMode)
-  const [selectedTheme, setSelectedTheme] = useState(theme.colors[colorMode] || theme.colors.default);
-  const [themeLoaded, setThemeLoaded] = useState(false);
-
-  useEffect(() => {
-    if(theme.colors[colorMode]){
-      setSelectedTheme(theme.colors[colorMode])   
-    }    
-  
-    setThemeLoaded(true);
-  }, [colorMode])
-
-  console.log(selectedTheme)
-  
-  if(typeof window=== "undefined") return null; 
-  return themeLoaded ? <><GlobalStyles theme={selectedTheme}/>{children} </> : null 
+  if (typeof window === "undefined") return null
+  return (
+    <>
+      <GlobalStyles theme={theme} />
+      {children}{" "}
+    </>
+  )
 }
 
 export default App

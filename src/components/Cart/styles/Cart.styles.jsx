@@ -22,4 +22,5 @@ export const CartNumber = styled.div`
   justify-content : center;
   border-radius : 50%;
   background-color : #ffff00;
+  color : #000;
 `

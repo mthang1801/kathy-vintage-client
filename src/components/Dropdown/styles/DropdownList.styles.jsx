@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import { Link } from "@reach/router"
 export const List = styled.section`
-  border: 1px solid var(--gray-1);
+border: 1px solid ${({ theme }) => theme.border};
   display: flex;
   flex-direction: column;
-  background-color :white;
+  background-color : ${({theme}) => theme.body};
   color: inherit;
   &:hover {
     color: inherit;
@@ -23,9 +23,9 @@ export const ListItem = styled(Link)`
   width: 200px;
   &:hover {
     & > ${ListItemText}{
-      color: var(--gray-1);      
+      color: ${({ theme }) => theme.hover.text};      
     }    
-    background: white;
+    background: ${({ theme }) => theme.background};
   }
 `
 

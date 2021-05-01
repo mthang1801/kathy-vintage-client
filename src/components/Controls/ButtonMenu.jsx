@@ -1,10 +1,10 @@
 import React from 'react'
 import {Wrapper} from "./styles/ButtonMenu.styles"
-import {useThemeUI} from "theme-ui"
+import {useTheme} from "../../theme"
 const ButtonMenu = ({...props}) => {
-  const {theme, colorMode} = useThemeUI()
+  const {theme} = useTheme();
   return (
-    <Wrapper {...props} theme={theme.colors[colorMode]}>
+    <Wrapper {...props} theme={theme}>
       <span></span>
       <span></span>
       <span></span>

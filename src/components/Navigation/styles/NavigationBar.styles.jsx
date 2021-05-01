@@ -3,12 +3,13 @@ import { config } from "../../../config"
 import { Link } from "@reach/router"
 export const Wrapper = styled.nav`
   width: 100%;
-  background: white;
+  background: ${({ theme }) => theme.navigation.background};
   padding: 0 5rem;
   display : none; 
   @media screen and (min-width: 992px){
     display : block;
   }
+  z-index: 2;
 `
 
 export const List = styled.section`
@@ -29,7 +30,15 @@ export const Setting = styled.div`
   align-items: space-around;
   padding: 0.4rem 1rem;
   cursor: pointer;
-  z-index: 1; 
+  z-index: 1;
+  // &:hover {
+   
+  //   color: var(--blue-1);
+  //   & img {
+  //     filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
+  //       brightness(91%) contrast(103%);
+  //   }
+  // }
   ${({ active }) =>
     active &&
     `    color : var(--blue-1);
@@ -59,7 +68,16 @@ export const ListItem = styled(Link)`
   position: relative;
   padding: 0.4rem 1rem;
   z-index: 1;
- 
+  // &:hover {
+  //   & ${ListItemText}, ${ListItemIcon} {
+  //     color: ${({theme}) => theme.hover.text};
+  //   }    
+    
+  //   & img {
+  //     filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
+  //       brightness(91%) contrast(103%);
+  //   }
+  // }
   ${({ active }) =>
     active &&
     `    color : var(--blue-1);

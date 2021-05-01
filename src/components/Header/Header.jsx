@@ -12,7 +12,7 @@ import Logo from "../../images/brandlogo.png"
 import { Link } from "@reach/router"
 import ButtonColorMode from "../Controls/ButtonColorMode"
 import Search from "./Search"
-import { useThemeUI } from "theme-ui"
+import { useTheme } from "../../theme"
 import { Button } from "@material-ui/core"
 import useLanguage from "../Global/useLanguage"
 import ButtonMenu from "../Controls/ButtonMenu"
@@ -22,15 +22,15 @@ const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const { i18n, lang } = useLanguage()
   const { auth } = i18n.store.data[lang].translation
-  const { theme, colorMode } = useThemeUI()
-
+  const { theme } = useTheme()  
+  
   const onOpenMenu =useCallback( () => {
     setOpenDrawer(true);
   },[])
 
   return (
     <>
-    <Wrapper theme={theme.colors[colorMode]}>
+    <Wrapper theme={theme}>
       <Flex>
         <Link to="/">
           <BrandLogo src={Logo} alt="logo" />

@@ -16,12 +16,12 @@ export const Wrapper = styled.div`
     display :inline-block;
     width : 1.5rem;
     height: 2px;
-    background-color :black;
+    background-color : ${({theme}) => theme.text};
   }
   &:hover{
     border: 1px solid var(--gray-1);
     border-radius : 0.2rem;  
-    background-color :white;  
+    background-color : ${({theme}) => theme.header.background};
   }
 `
 
