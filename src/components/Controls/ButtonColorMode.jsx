@@ -1,5 +1,5 @@
 import React from "react"
-import { useColorMode } from "theme-ui"
+import { useColorMode } from "../../theme"
 import Switch from "react-switch"
 import sun from "../../images/sun.png"
 import moon from "../../images/moon.png"

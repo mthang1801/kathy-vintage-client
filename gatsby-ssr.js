@@ -6,6 +6,9 @@ import "slick-carousel/slick/slick-theme.css"
 import "./src/fonts/index.css"
 import { ThemeProvider } from "./src/theme"
 import { theme } from "./src/theme/theme"
+import "typeface-pt-mono"
+import "whatwg-fetch"
+
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>
     <App>{element}</App>

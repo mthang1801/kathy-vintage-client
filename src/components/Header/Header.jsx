@@ -18,6 +18,7 @@ import useLanguage from "../Global/useLanguage"
 import ButtonMenu from "../Controls/ButtonMenu"
 import Cart from "../Cart/Cart"
 import Drawer from "../Drawer/Drawer"
+import {navigate} from "gatsby"
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const { i18n, lang } = useLanguage()
@@ -44,8 +45,8 @@ const Header = () => {
           <Cart/>
         </Responsive>
         <Responsive>
-          <Button color="primary">{auth.login}</Button>
-          <Button color="secondary">{auth.register}</Button>
+          <Button color="primary" onClick={() => navigate("/auth")}>{auth.login}</Button>
+          <Button color="secondary" onClick={() => navigate("/auth/signup")}>{auth.register}</Button>
         </Responsive>
         <MobileResponsive>
           <Cart/>

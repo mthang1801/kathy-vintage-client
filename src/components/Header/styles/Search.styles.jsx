@@ -27,6 +27,7 @@ export const SearchForm = styled.form`
     background-color : inherit;
     color : inherit;
     cursor : pointer;
+    color : #000;
   }
   @media screen and (min-width : 992px){
     width : 100%;

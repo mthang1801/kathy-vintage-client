@@ -1,0 +1,28 @@
+import firebase from "firebase/app"
+import "firebase/firestore"
+import "firebase/"
+
+console.log(process.env.GATSBY_FIREBASE_API_KEY)
+export default new Proxy(
+  {
+    get firestore() {
+      return firebase.firestore()
+    },
+  },
+  {
+    get: function (target, name) {
+      if (!firebase.apps.length) {
+        firebase.initializeApp({
+          apiKey: "AIzaSyCXMEft0BHsyV5Xaq0-If-0YeeDVKTmFCg",
+          authDomain: "tn-clothes-shop.firebaseapp.com",
+          projectId: "tn-clothes-shop",
+          storageBucket: "tn-clothes-shop.appspot.com",
+          messagingSenderId: "256312030338",
+          appId: "1:256312030338:web:d3cf87903065523312b09b",
+          measurementId: "G-M6VCEL3QYV",
+        })
+      }
+      return target[name]
+    },
+  }
+)

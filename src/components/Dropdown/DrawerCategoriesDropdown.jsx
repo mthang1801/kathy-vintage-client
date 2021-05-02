@@ -10,11 +10,11 @@ import {
   CategoriesList,
 } from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
-import {useThemeUI} from "theme-ui";
+import {useTheme} from "../../theme";
 const DrawerCategoriesDropdown = ({ categories }) => {
-  const {theme,colorMode} =useThemeUI()
+  const {theme} =useTheme()
   return (
-    <TabletWrapper open={categories?.length} theme={theme.colors[colorMode]}>
+    <TabletWrapper open={categories?.length} theme={theme}>
       {categories?.length &&
         categories.map(category => (
           <ViewPort key={category.contentful_id}>
