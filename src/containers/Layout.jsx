@@ -3,6 +3,7 @@ import Header from "../components/Header/Header"
 import NavigationBar from "../components/Navigation/NavigationBar"
 import Footer from "../components/Footer/Footer"
 import {Container, MainContent} from "./styles/Latout.styles"
+
 const Layout = ({children}) => {
   return (
     <Container>

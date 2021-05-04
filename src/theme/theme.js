@@ -2,6 +2,7 @@ export const theme = {
   initialColorModeName: "light",
   modes: {
     light: {
+      name : "light",
       body: "#FFFFFF",
       text: "#000000",
       button: {
@@ -33,6 +34,7 @@ export const theme = {
       boxShadow: "0 0px 5px rgba(0,0,0,0.15)",
     },
     dark: {
+      name : "dark",
       body: "#202020",
       text: "#fff",
       button: {

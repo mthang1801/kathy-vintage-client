@@ -11,15 +11,17 @@ export const ThemeProvider = ({ theme, children }) => {
   }
   const [currentTheme, setCurrentTheme] = useState(theme.modes[theme.initialColorModeName])
   const [themeLoaded, setThemeLoaded] = useState(false)
-  const [mode, setMode] = useState(theme.initialColorModeName)
+  const [mode, setMode] = useState(theme.initialColorModeName || "light")
   useEffect(() => {
     const localTheme = getFromLS("tn-theme")
+    
     if (localTheme) {
       setCurrentTheme(localTheme)
       setMode(localTheme.name)
     }
     setThemeLoaded(true)
   }, [])
+  
 
   const setColorMode = mode => {
     //mode in here is light or dark or other colors name
@@ -47,6 +49,6 @@ export const useColorMode = () => {
 }
 
 export const useTheme = () => {
-  const { theme, colorMode, setColorMode, themes } = useContext(ThemeContext)
+  const { theme, colorMode, setColorMode, themes } = useContext(ThemeContext)  
   return { theme, colorMode, setColorMode, themes }
 }

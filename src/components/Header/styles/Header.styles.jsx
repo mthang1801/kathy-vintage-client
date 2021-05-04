@@ -9,10 +9,10 @@ export const Wrapper = styled.header`
   padding: 0.75rem 0.25rem;
   @media screen and (min-width : 768px){
     height : ${config.headerHeight}px;
-    padding : 0.75rem 3rem;
+    padding : 0.75rem 1.5rem;
   }
   @media screen and (min-width : 992px){
-    padding : 0.75rem 4rem;
+    padding : 0.75rem 2rem;
   }
 `
 

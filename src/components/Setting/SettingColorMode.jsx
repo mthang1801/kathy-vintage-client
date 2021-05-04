@@ -1,6 +1,6 @@
 import React from "react"
 import useLanguage from "../Global/useLanguage"
-import { SampleMode } from "./styles/SettingColorMode.styles"
+import { SampleMode, TextMode } from "./styles/SettingColorMode.styles"
 import Button from "@material-ui/core/Button"
 import ClickAwayListener from "@material-ui/core/ClickAwayListener"
 import Grow from "@material-ui/core/Grow"
@@ -17,7 +17,7 @@ const SettingLanguages = () => {
   const { i18n, lang } = useLanguage()    
   const { colorMode: colorModeTranslation } = i18n.store.data[lang].translation
   const {setColorMode, theme, colorMode, themes} = useTheme()
-  
+  console.log(colorMode, theme)
   const modes = Object.keys(themes).map(mode => mode);  
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen)
@@ -63,7 +63,7 @@ const SettingLanguages = () => {
         onClick={handleToggle}
       >
         <SampleMode theme={theme} />
-        <span>{colorModeTranslation[colorMode]}</span>
+        <TextMode>{colorModeTranslation[colorMode]}</TextMode>
       </Button>
       <Popper
         open={open}
@@ -93,7 +93,7 @@ const SettingLanguages = () => {
                       onClick={() => onChangeColorMode(mode)}
                     >
                       <SampleMode theme={themes[mode]} />
-                      <span>{colorModeTranslation[mode]}</span>
+                      <TextMode>{colorModeTranslation[mode]}</TextMode>
                     </MenuItem>
                   ))}
                 </MenuList>

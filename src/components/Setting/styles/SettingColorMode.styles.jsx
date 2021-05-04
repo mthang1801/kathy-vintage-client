@@ -9,3 +9,8 @@ export const SampleMode = styled.span`
   border: 1px solid gray;
   border-radius : 0.25rem;
 `
+
+export const TextMode = styled.span`
+  color : black;
+  text-transform : capitalize;
+`

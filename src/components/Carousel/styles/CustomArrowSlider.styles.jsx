@@ -8,7 +8,7 @@ export const CustomPortfoliosArrowPrevContainer = styled.div`
   position: absolute;
   top: 45%;
   left: -1%;  
-  z-index: 0;
+  z-index: 1;
   border-radius: 50%;
   transition : all 0.3s; 
   &:hover {

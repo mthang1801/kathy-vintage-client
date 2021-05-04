@@ -6,11 +6,18 @@ import "slick-carousel/slick/slick-theme.css"
 import "./src/fonts/index.css"
 import { ThemeProvider } from "./src/theme"
 import { theme } from "./src/theme/theme"
+import "./src/database/firebase"
+import { store, persistor } from "./src/redux/store"
+import { Provider } from "react-redux"
+import { PersistGate } from "redux-persist/integration/react"
 import "typeface-pt-mono"
 import "whatwg-fetch"
-
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>
-    <App>{element}</App>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App>{element}</App>
+      </PersistGate>
+    </Provider>
   </ThemeProvider>
 )

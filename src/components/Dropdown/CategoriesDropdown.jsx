@@ -12,8 +12,7 @@ const CategoriesDropdown = ({ parentSlug, categories }) => {
   const { theme } = useTheme()
   const initialCategory = { id: null, x: 0, y: 0 }
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
-  const {lang} = useLanguage()
-  console.log(theme)
+  const {lang} = useLanguage()  
   const onMouseEnterCategory = id => {
     setSelectedCategory(prevState => ({ ...prevState, id }))
   }

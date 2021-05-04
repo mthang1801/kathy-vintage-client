@@ -13,16 +13,53 @@ import {
   RiVipDiamondLine,
   RiContactsFill,
   RiContactsLine,
+  RiBillLine
 } from "react-icons/ri"
 import {IoIosSettings, IoMdSettings} from "react-icons/io"
+import { FiTwitter,FiFacebook, FiLogOut} from "react-icons/fi"
 
-import { FiTwitter,FiFacebook} from "react-icons/fi"
 export const vi = {
   translation : {
     auth : {
       login : "Đăng nhập",
-      register : "Đăng ký"
+      register : "Đăng ký",
+      signupForm : {
+        title: "Đăng ký tài khoản",
+        subTitle:  "Đăng ký tài khoản bằng email và password",        
+        name : "Tên",
+        email : "Địa chỉ Email",
+        gender:  "Giới tính", 
+        password : "Mật khẩu",
+        confirmPassword : "Xác nhận mật khẩu",
+        requiredAndInvalidName : "Trường này là bắt buộc, tên người dùng có ít nhất 3 ký tự và dài nhất là 50 ký tự.",
+        invalidName : "Tên không hợp lệ, tên người dùng có ít nhất 3 ký tự và dài nhất là 50 ký tự. ",
+        invalidEmail : "Email không hợp lệ",
+        requiredAndInvalidEmail : "Trường này là bắt buộc",
+        invalidPassword: "Mật khẩu không hợp lệ, phải có ít nhất 8 ký tự bao gồm ký tự thường, ký tự in hoa, số và ký tự đặc biệt",
+        requiredAndInvalidPassword : "Trường này là bắt buộc, phải có ít nhất 8 ký tự bao gồm ký tự thường, ký tự in hoa, số và ký tự đặc biệt",
+        invalidConfirmPassword:  "Mật khẩu xác nhận là bắt buộc và phải khớp với mật khẩu trên",
+        confirmPasswordNotMatch : "Mật khẩu xác nhận và mật khẩu trên không trùng khớp",
+        requiredError : "Trường này là bắt buộc",
+        requiredAndInvalidPassword : (minLength) => `This field is required, Invalid, at least ${minLength} characters with a mix of letters, numbers & symbols`,        
+        invalidMinLength : (minLength) => `Phải có ít nhất ${minLength} ký tự`,
+        invalidMaxLength : maxLength => `không vượt quá ${maxLength} ký tự`
+      }
     } ,
+    user: {
+      settingAccount : {
+        name: "Thiết lập tài khoản",
+        path : "/user/setting-account"
+      },
+      orderedHistory : {
+        name : "Lịch sử đặt hàng", 
+        icon : <RiBillLine/>,
+        path : `/user/ordered-history`
+      },
+      signout: {
+        name : "Đăng xuất",
+        icon : <FiLogOut/>,        
+      }
+    },
     navigations: {
       home: {
         id : "home",

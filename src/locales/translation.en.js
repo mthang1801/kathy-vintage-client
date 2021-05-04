@@ -13,15 +13,50 @@ import {
   RiVipDiamondLine,
   RiContactsFill,
   RiContactsLine,
+  RiBillLine
 } from "react-icons/ri"
 import { IoIosSettings, IoMdSettings } from "react-icons/io"
-import { FiTwitter,FiFacebook} from "react-icons/fi"
+import { FiTwitter,FiFacebook, FiLogOut} from "react-icons/fi"
 
 export const en = {
   translation: {
     auth: {
       login: "login",
       register: "sign up",
+      signupForm : {
+        title: "Sign Up",
+        subTitle:  "Sign up your account via email and password.",
+        name : "Name",
+        email : "Email",
+        gender:  "Gender", 
+        password : "Password",
+        confirmPassword : "Confirm Password",
+        requiredAndInvalidName : "This field is required, Invalid, at least 3 characters, Invalid, at most 50 characters",
+        invalidName : "Invalid, at least 3 characters, Invalid, at most 50 characters",
+        invalidEmail : "Email is invalid",
+        requiredAndInvalidEmail : "This field is required, Email is invalid",
+        invalidPassword: "Invalid, at least 8 characters with a mix of letters, numbers & symbols",
+        requiredAndInvalidPassword : (minLength) => `This field is required, Invalid, at least ${minLength} characters with a mix of letters, numbers & symbols`,        
+        confirmPasswordNotMatch : "Password and confirm Password do not match",
+        requiredError : "This field is required",
+        invalidMinLength : (minLength) => `at least ${minLength} characters`,
+        invalidMaxLength : maxLength => `at most ${maxLength} characters`
+      }
+    },
+    user: {
+      settingAccount : {
+        name : "Setting your account",
+        path : "/user/setting-account"
+      },
+      orderedHistory : {
+        name : "Ordered History", 
+        icon : <RiBillLine/>,
+        path : `/user/ordered-history`
+      },
+      signout: {
+        name : "Sign out",
+        icon : <FiLogOut/>,        
+      }
     },
     navigations: {
       home: {

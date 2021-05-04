@@ -22,16 +22,15 @@ const CategoriesSlider = () => {
   const { fetchAllCategories } = useStaticQuery(CATEGORIES_QUERY)
   // const { theme, colorMode } = useThemeUI()
   const categories = fetchAllCategories.edges.map(({ node }) => node)
-  const {theme} = useTheme()
-  console.log(theme)
+  const {theme} = useTheme()  
   const slideRef = useRef(null)
   useEffect(() => {
     setSlide(slideRef.current)
   }, [slideRef])
   const settings = {
     infinite: true,    
-    autoPlay: true,
-    slidesToShow: window.innerWidth < 600 ? 3 : window.innerWidth < 992 ? 4 : 3,
+    autoplay: true,
+    slidesToShow: window.innerWidth < 600 ? 2 : window.innerWidth < 992 ? 3 : 4,
     speed: 500,
     slidesPerRow: 1,
     slidesToScroll: 1,    
@@ -41,7 +40,7 @@ const CategoriesSlider = () => {
     swipeToSlide: true,
     focusOnSelect: false,
     pauseOnHover : true,
-    autoPlaySpeed: 2000,
+    autoplaySpeed: 4000,
     beforeChange: () => (dragging = true),
     afterChange: () => (dragging = false),
   }
@@ -50,15 +49,16 @@ const CategoriesSlider = () => {
       navigate(`/${category.portfolio.slug}/${category.slug}`);
     }
   }
+  console.log(categories)
   return (
     <CategoriesSliderContainer>
-      {/* <Caption>{categoryCarouselTitle}</Caption>    
+      <Caption>{categoryCarouselTitle}</Caption>    
         <Slider {...settings}>
           {categories.map( (category,idx) => (
             <CategoryItem              
               onClick={() => onClickCategoryItem(category)}
               key={category.contentful_id}              
-              theme={theme.modes[colorMode]}                  
+              theme={theme}                  
             >
               <ImageContainer>
                 <Image
@@ -70,7 +70,7 @@ const CategoriesSlider = () => {
             </CategoryItem>
           ))}
         </Slider>
-       */}
+      
     </CategoriesSliderContainer>
   )
 }

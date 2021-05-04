@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { GlobalStyles } from "../styles/GlobalStyles.jsx"
 import {useTheme} from "../theme"
-
-const App = ({ children }) => {
-  const {theme, setColorMode, colorMode} = useTheme()
-  console.log(theme, colorMode)
+import {selectCurrentUser, selectUserError} from "../redux/user/user.selectors"
+import {createStructuredSelector} from "reselect"
+import {checkUserSession} from "../redux/user/user.actions";
+import {connect} from "react-redux"
+const App = ({ children, user, checkUserSession }) => {
+  const {theme} = useTheme()
+  useEffect(() => {
+    checkUserSession();
+  },[])
   if (typeof window === "undefined") return null
   return (
     <>
@@ -14,4 +19,12 @@ const App = ({ children }) => {
   )
 }
 
-export default App
+const mapStateToProps = createStructuredSelector({
+  user : selectUserError
+})
+
+const mapDispatchToProps = dispatch => ({
+  checkUserSession : () => dispatch(checkUserSession())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
