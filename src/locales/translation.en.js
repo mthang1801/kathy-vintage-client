@@ -46,6 +46,7 @@ export const en = {
     user: {
       settingAccount : {
         name : "Setting your account",
+        icon : <IoIosSettings/>,
         path : "/user/setting-account"
       },
       orderedHistory : {

@@ -9,7 +9,7 @@ const Signup = ({user, ...props}) => {
   
   useEffect(() => {
     if(user){
-      navigate(props.location.state.from || "/")
+      navigate(props?.location?.state?.from || "/")
     }
   }, [user])
   return (

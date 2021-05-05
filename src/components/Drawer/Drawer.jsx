@@ -21,11 +21,22 @@ import CartButton from "../Controls/CartButton"
 import useLanguage from "../Global/useLanguage"
 import DrawerPortfoliosDropdown from "../Dropdown/DrawerPortfoliosDropdown"
 import { Scrollbars } from "react-custom-scrollbars"
-function PersistentDrawerLeft({ open, setOpen }) {
+import { navigate } from "gatsby"
+import UserOverview from "./UserOverview"
+import { signInPattern, signUpPattern } from "../../utils/auth"
+import { useLocation } from "@reach/router"
+function PersistentDrawerLeft({
+  open,
+  setOpen,
+  userLoading,
+  userFetched,
+  user,
+}) {
   const [openPortfolio, setOpenPortfolio] = useState(false)
   const [openDialog, setOpenDialog] = useState(false)
   const classes = useStyles()
   const theme = useTheme()
+  const { pathname } = useLocation()
   const handleDrawerClose = () => {
     setOpen(false)
     onTogglePortfolios(false)
@@ -35,8 +46,8 @@ function PersistentDrawerLeft({ open, setOpen }) {
   const navigationsArr = Object.keys(navigations).map(
     navigation => navigations[navigation]
   )
-  const onClickMenu = id => {    
-    if (id.toLowerCase() === "setting") {    
+  const onClickMenu = id => {
+    if (id.toLowerCase() === "setting") {
       setOpenDialog(true)
     }
   }
@@ -44,9 +55,40 @@ function PersistentDrawerLeft({ open, setOpen }) {
     setOpenPortfolio(prevState => !prevState)
   }
 
+  const RenderUserOverview = () => <UserOverview user={user} />
+  const RenderUserAuth = () => (
+    <>
+      {(userFetched || !userLoading) && (
+        <Auth>
+          {!signInPattern.test(pathname) && (
+            <Button
+              color="primary"
+              onClick={() => {
+                navigate("/auth", { state: { from: pathname } })
+                handleDrawerClose()
+              }}
+            >
+              {auth.login}
+            </Button>
+          )}
+          {!signUpPattern.test(pathname) && (
+            <Button
+              color="secondary"
+              onClick={() => {
+                navigate("/auth/signup", { state: { from: pathname } })
+                handleDrawerClose()
+              }}
+            >
+              {auth.register}
+            </Button>
+          )}
+        </Auth>
+      )}
+    </>
+  )
   return (
     <>
-      <SettingDialog open={openDialog} setOpen={setOpenDialog}/>
+      <SettingDialog open={openDialog} setOpen={setOpenDialog} />
       <div className={classes.root}>
         <CssBaseline />
         <Backdrop
@@ -71,7 +113,7 @@ function PersistentDrawerLeft({ open, setOpen }) {
             autoHeightMax={200}
           >
             <div className={classes.drawerHeader}>
-              <Link to="/">
+              <Link to="/" onClick={handleDrawerClose}>
                 <Image src={Logo} alt="logo" />
               </Link>
               <IconButton onClick={handleDrawerClose}>
@@ -84,18 +126,19 @@ function PersistentDrawerLeft({ open, setOpen }) {
             </div>
             <Divider />
             <CartButton />
-            <Auth>
-              <Button color="primary">{auth.login}</Button>
-              <Button color="secondary">{auth.register}</Button>
-            </Auth>
+            {user ? RenderUserOverview() : RenderUserAuth()}
+
             <List>
-              {navigationsArr.map((navigation) => (
+              {navigationsArr.map(navigation => (
                 <>
                   <ListItem
                     className={classes.listItem}
                     button
                     key={navigation.id}
-                    onClick={() => onClickMenu(navigation.id)}
+                    onClick={() => {
+                      handleDrawerClose();
+                      onClickMenu(navigation.id)
+                    }}
                   >
                     <ListItemIcon className={classes.itemIcon}>
                       {navigation.icon}
@@ -104,14 +147,17 @@ function PersistentDrawerLeft({ open, setOpen }) {
                     {navigation.name.toLowerCase() === "shop" && (
                       <ListItemIcon
                         className={`${classes.itemIcon} ${classes.dropdownButton}`}
-                        onClick={onTogglePortfolios}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onTogglePortfolios();                          
+                        }}
                       >
                         <ExpandMore />
                       </ListItemIcon>
                     )}
                   </ListItem>
                   {navigation.name.toLowerCase() === "shop" && (
-                    <DrawerPortfoliosDropdown open={openPortfolio} />
+                    <DrawerPortfoliosDropdown open={openPortfolio} handleDrawerClose={handleDrawerClose}/>
                   )}
                 </>
               ))}

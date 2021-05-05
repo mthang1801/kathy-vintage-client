@@ -48,6 +48,7 @@ export const vi = {
     user: {
       settingAccount : {
         name: "Thiết lập tài khoản",
+        icon : <IoIosSettings/>,
         path : "/user/setting-account"
       },
       orderedHistory : {

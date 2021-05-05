@@ -25,6 +25,7 @@ import Cart from "../Cart/Cart"
 import Drawer from "../Drawer/Drawer"
 import { navigate } from "gatsby"
 import UserSettings from "./UserSettings"
+import { signInPattern, signUpPattern } from "../../utils/auth"
 const Header = ({ userLoading, userFetched, user }) => {
   const [openDrawer, setOpenDrawer] = useState(false)
   const { i18n, lang } = useLanguage()
@@ -34,39 +35,38 @@ const Header = ({ userLoading, userFetched, user }) => {
   const onOpenMenu = useCallback(() => {
     setOpenDrawer(true)
   }, [])
-  const signInPattern = /^\/auth\/?(signin)?$/
-  const signUpPattern = /^\/auth\/signup\/?$/
 
-  const RenderUserSettings = (
+  const RenderUserSettings = () => (
     <Responsive>
       <UserSettings user={user} />
     </Responsive>
   )
-  const RenderUserAuth = (
+
+  console.log(user, userLoading, userFetched)
+  const RenderUserAuth = () => (
     <>
-      {userLoading ||
-        (!userFetched && (
-          <Responsive>
-            {!signInPattern.test(pathname) && (
-              <Button
-                color="primary"
-                onClick={() => navigate("/auth", { state: { from: pathname } })}
-              >
-                {auth.login}
-              </Button>
-            )}
-            {!signUpPattern.test(pathname) && (
-              <Button
-                color="secondary"
-                onClick={() =>
-                  navigate("/auth/signup", { state: { from: pathname } })
-                }
-              >
-                {auth.register}
-              </Button>
-            )}
-          </Responsive>
-        ))}
+      {(!userLoading || userFetched) && (
+        <Responsive>
+          {!signInPattern.test(pathname) && (
+            <Button
+              color="primary"
+              onClick={() => navigate("/auth", { state: { from: pathname } })}
+            >
+              {auth.login}
+            </Button>
+          )}
+          {!signUpPattern.test(pathname) && (
+            <Button
+              color="secondary"
+              onClick={() =>
+                navigate("/auth/signup", { state: { from: pathname } })
+              }
+            >
+              {auth.register}
+            </Button>
+          )}
+        </Responsive>
+      )}
     </>
   )
   return (
@@ -84,7 +84,7 @@ const Header = ({ userLoading, userFetched, user }) => {
           <Responsive>
             <Cart />
           </Responsive>
-          {user ? RenderUserSettings : RenderUserAuth}
+          {user ? RenderUserSettings() : RenderUserAuth()}
 
           <MobileResponsive>
             <Cart />
@@ -92,14 +92,20 @@ const Header = ({ userLoading, userFetched, user }) => {
           </MobileResponsive>
         </Flex>
       </Wrapper>
-      <Drawer open={openDrawer} setOpen={setOpenDrawer} />
+      <Drawer
+        open={openDrawer}
+        setOpen={setOpenDrawer}
+        userLoading={userLoading}
+        userFetched={userFetched}
+        user={user}
+      />
     </>
   )
 }
 
 const mapStateToProps = createStructuredSelector({
   userLoading: selectUserLoading,
-  selectUserFetched: selectUserFetched,
+  userFetched: selectUserFetched,
   user: selectCurrentUser,
 })
 

@@ -51,7 +51,7 @@ query FetchPortfolios {
   }
 }
 `
-const MobilePortfolio = ({ open }) => {
+const MobilePortfolio = ({ open, handleDrawerClose }) => {
   const query = useStaticQuery(QUERY_PORTFOLIOS)
   const classes = useStyles()
   const initialSelectedPortfolio = {id : null, x : 0, y : 0}
@@ -97,7 +97,7 @@ const MobilePortfolio = ({ open }) => {
                   style={{ padding: 0 }}
                 >
                   <AccordionSummary>
-                    <ListItem>
+                    <ListItem >
                       <ListItemImage>
                         <Image fluid={node.image.fluid} alt={node.nameVi} />
                       </ListItemImage>
