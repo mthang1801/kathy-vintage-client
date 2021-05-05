@@ -25,7 +25,8 @@ export const vi = {
       register : "Đăng ký",
       signupForm : {
         title: "Đăng ký tài khoản",
-        subTitle:  "Đăng ký tài khoản bằng email và password",        
+        subTitle:  "Đăng ký tài khoản bằng email và password",
+        button : "Đăng ký",
         name : "Tên",
         email : "Địa chỉ Email",
         gender:  "Giới tính", 
@@ -42,7 +43,37 @@ export const vi = {
         requiredError : "Trường này là bắt buộc",
         requiredAndInvalidPassword : (minLength) => `This field is required, Invalid, at least ${minLength} characters with a mix of letters, numbers & symbols`,        
         invalidMinLength : (minLength) => `Phải có ít nhất ${minLength} ký tự`,
-        invalidMaxLength : maxLength => `không vượt quá ${maxLength} ký tự`
+        invalidMaxLength : maxLength => `không vượt quá ${maxLength} ký tự`,
+        footer : {
+          haveAccount : {
+            title: "Đã có tài khoản",
+            pathName : "Đăng nhập",
+            path : "/auth"
+          },
+          forgotPassword : {
+            title: "Quên mật khẩu?",
+            pathName: "Khôi phục mật khẩu",
+            path : "/auth/reset-password"
+          }
+        }
+      },
+      loginForm : {
+        title: "Đăng nhập",
+        subTitle : "Đăng nhập tài khoản bằng email và mật khẩu",
+        requireEmailAndPassword : "Email và Password là bắt buộc",
+        button : "Đăng nhập",
+        footer: {
+          dontHaveAccount : {
+            title : "Chưa có tài khoản?" , 
+            pathName : "Đăng ký tài khoản",
+            path : "/auth/signup"
+          } ,
+          forgotPassword : {
+            title: "Quên mật khẩu?",
+            pathName: "Khôi phục mật khẩu",
+            path : "/auth/reset-password"
+          }
+        }
       }
     } ,
     user: {

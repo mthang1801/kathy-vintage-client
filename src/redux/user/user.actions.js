@@ -73,3 +73,28 @@ export const signOutUser = () => async dispatch => {
     dispatch(signOutUserFail(error.message))
   }
 }
+
+ const signInStart = () => ({
+  type : userActionTypes.SIGN_IN_START
+})
+
+ const signInSuccess = (user) => ({
+  type : userActionTypes.SIGN_IN_SUCCESS,
+  payload: user
+})
+
+ const signInFail = (error) => ({
+  type : userActionTypes.SIGN_IN_FAIL,
+  payload : error
+})
+
+export const signIn = (email, password) => async dispatch => {
+  try {    
+    dispatch(signInStart());
+    const user = await userDB.signInUser(email, password);
+    console.log(user)
+    dispatch(signInSuccess(user));
+  } catch (error) {
+    dispatch(signInFail(error.message));
+  }
+}

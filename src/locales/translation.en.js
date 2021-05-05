@@ -26,6 +26,7 @@ export const en = {
       signupForm : {
         title: "Sign Up",
         subTitle:  "Sign up your account via email and password.",
+        button : "Sign up",
         name : "Name",
         email : "Email",
         gender:  "Gender", 
@@ -40,7 +41,37 @@ export const en = {
         confirmPasswordNotMatch : "Password and confirm Password do not match",
         requiredError : "This field is required",
         invalidMinLength : (minLength) => `at least ${minLength} characters`,
-        invalidMaxLength : maxLength => `at most ${maxLength} characters`
+        invalidMaxLength : maxLength => `at most ${maxLength} characters`,  
+        footer : {
+          haveAccount : {
+            title: "You have account?",
+            pathName : "Signin Account",
+            path : "/auth"
+          },
+          forgotPassword : {
+            title: "Forgot password?",
+            pathName:  "Restore account",
+            path : "/auth/reset-password"
+          }
+        }      
+      },
+      loginForm : {
+        title: "Sign In",
+        subTitle : "Sign in account via email and password",
+        requireEmailAndPassword : "Email and Password are require",
+        button : "Sign in",
+        footer: {
+          dontHaveAccount : {
+            title : "Don't have account?" , 
+            pathName : "Sign up account",
+            path : "/auth/signup"
+          } ,
+          forgotPassword : {
+            title: "Forgot password?",
+            pathName:  "Restore account",
+            path : "/auth/reset-password"
+          }
+        }
       }
     },
     user: {

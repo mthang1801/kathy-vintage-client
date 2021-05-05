@@ -13,15 +13,30 @@ import {
 } from "./styles/AuthForm.styles"
 import Input from "./Input"
 import Button from "@material-ui/core/Button"
-import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
-import { selectUserError } from "../../redux/user/user.selectors"
-import { loginStart } from "../../redux/user/user.actions"
+import {
+  selectUserError,
+  selectUserLoading,
+} from "../../redux/user/user.selectors"
+import { signIn } from "../../redux/user/user.actions"
 import GoogleRecaptcha from "./GoogleRecaptcha"
-import FacebookLogin from "./FacebookLogin"
-import GoogleLogin from "./GoogleLogin"
-class SignIn extends React.Component {
+import useLanguage from "../Global/useLanguage"
+
+const SignInFormWrapper = ({ error, signIn, loading }) => {
+  const { i18n, lang } = useLanguage()
+  const { loginForm } = i18n.store.data[lang].translation.auth  
+  return (
+    <SignInForm
+      locales={loginForm}
+      error={error}
+      signIn={signIn}
+      loading={loading}
+    />
+  )
+}
+
+class SignInForm extends React.Component {
   constructor(props) {
     super(props)
     this.signInRef = React.createRef()
@@ -40,7 +55,7 @@ class SignIn extends React.Component {
       this.setState({ loaded: true })
     }, 1000)
     window.scrollTo({
-      top: this.signInRef.current.offsetTop,
+      top: this.signInRef.current.offsetTop - 100,
       behavior: "smooth",
     })
   }
@@ -62,15 +77,13 @@ class SignIn extends React.Component {
     e.preventDefault()
     const { email, password } = this.state
     if (!email || !password) {
-      this.setState({ error: "Email và mật khẩu không được để trống" })
+      this.setState({ error: this.props.locales.requireEmailAndPassword })
       return
     }
     this.setState({ error: null })
-    try {
-      this.props.login(email, password)
-    } catch (error) {
-      console.log(error)
-    }
+    console.log(email, password)
+    this.props.signIn(email, password)
+    
   }
   handleChangeGoogleRecaptcha = value => {
     this.setState({ captcha_value: value, disabled: false })
@@ -79,21 +92,22 @@ class SignIn extends React.Component {
 
   render() {
     const { email, password, disabled, loaded } = this.state
-    const { authPath, error } = this.props
+    const { error, locales, loading } = this.props
     return (
       <AuthFormContainer
         onSubmit={this.onSubmitSigninForm}
         ref={this.signInRef}
       >
         <FormHeader>
-          <Title>Đăng nhập</Title>
-          <SubTitle>Đăng nhập tài khoản bằng email và mật khẩu</SubTitle>
+          <Title>{locales.title}</Title>
+          <SubTitle>{locales.subTitle}</SubTitle>
         </FormHeader>
+        {loading && <div>Loading...</div>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <FlashForm>
+        {/* <FlashForm>
           <FacebookLogin />
           <GoogleLogin />
-        </FlashForm>
+        </FlashForm> */}
         <FormGroups>
           <Input
             type="text"
@@ -115,23 +129,26 @@ class SignIn extends React.Component {
             <GoogleRecaptcha onChange={this.handleChangeGoogleRecaptcha} />
           )}
           <Button
-            variant="outlined"
-            size="small"           
+            type="submit"
+            variant="contained"
+            color="primary"
             disabled={disabled}
             style={{ marginTop: "1rem" }}
           >
-            Sign In
+            {locales.button}
           </Button>
         </FormGroups>
         <FormActions>
           <Option>
-            Don't have account ?{" "}
-            <StyledLink to={`${authPath}/signup`}>Signup account</StyledLink>
+            {locales.footer.dontHaveAccount.title}{" "}
+            <StyledLink to={locales.footer.dontHaveAccount.path}>
+              {locales.footer.dontHaveAccount.pathName}
+            </StyledLink>
           </Option>
           <Option>
-            Forgot password ?{" "}
-            <StyledLink to={`${authPath}/restore-account`}>
-              Get Password Again.
+            {locales.footer.forgotPassword.title}{" "}
+            <StyledLink to={locales.footer.forgotPassword.path}>
+              {locales.footer.forgotPassword.pathName}
             </StyledLink>
           </Option>
         </FormActions>
@@ -142,10 +159,11 @@ class SignIn extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   error: selectUserError,
+  loading: selectUserLoading,
 })
 
 const mapDispatchToProps = dispatch => ({
-  login: (email, password) => dispatch(loginStart(email, password)),
+  signIn: (email, password) => dispatch(signIn(email, password)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignIn))
+export default connect(mapStateToProps, mapDispatchToProps)(SignInFormWrapper)

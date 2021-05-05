@@ -42,7 +42,6 @@ const Header = ({ userLoading, userFetched, user }) => {
     </Responsive>
   )
 
-  console.log(user, userLoading, userFetched)
   const RenderUserAuth = () => (
     <>
       {(!userLoading || userFetched) && (

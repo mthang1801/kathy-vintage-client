@@ -17,7 +17,7 @@ export const AuthFormContainer = styled.form`
   };
 `
 export const FormHeader = styled.div`
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.8rem;
 `
 
 export const FormGroups = styled.div`
@@ -35,6 +35,7 @@ export const FormActions = styled.div`
   flex-direction : column;
   justify-content :center;
   align-items: center;  
+  margin : 1.5rem 0;
 `
 
 export const Title = styled.h2`

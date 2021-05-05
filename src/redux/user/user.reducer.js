@@ -12,8 +12,9 @@ export default (state = INITIAL_STATE, action) => {
     case userActionTypes.SIGN_UP_START:
     case userActionTypes.GET_CURRENT_USER_START:
     case userActionTypes.SIGN_OUT_USER_START:
+    case userActionTypes.SIGN_IN_START:
       return { ...state, loading: true, error: undefined }
-    case userActionTypes.SIGN_IN_SUCCESS:
+    case userActionTypes.SIGN_IN_SUCCESS:    
     case userActionTypes.GET_CURRENT_USER_SUCCESS:
       return { ...state, user: action.payload, fetched: true, loading: false }
     case userActionTypes.SIGN_OUT_USER_SUCCESS:
@@ -21,6 +22,7 @@ export default (state = INITIAL_STATE, action) => {
     case userActionTypes.SIGN_UP_FAIL:
     case userActionTypes.GET_CURRENT_USER_FAIL:
     case userActionTypes.SIGN_OUT_USER_FAIL:
+    case userActionTypes.SIGN_IN_FAIL: 
       return { ...state, error: action.payload }
     default:
       return state

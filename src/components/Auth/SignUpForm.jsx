@@ -4,9 +4,8 @@ import {
   FormHeader,
   FormGroups,
   FormActions,
-  StyledLink,
   Option,
-  FlashForm,
+  StyledLink,
   Title,
   SubTitle,
   ErrorMessage,
@@ -18,6 +17,7 @@ import { connect } from "react-redux"
 import { signUpUser } from "../../redux/user/user.actions"
 import { createStructuredSelector } from "reselect"
 import { selectUserError } from "../../redux/user/user.selectors"
+import GoogleRecaptcha from "./GoogleRecaptcha"
 const SignUpFormWrapper = ({ error, signUpUser }) => {
   const { i18n, lang } = useLanguage()
   const { signupForm } = i18n.store.data[lang].translation.auth
@@ -156,7 +156,7 @@ class SignUpForm extends React.Component {
 
   handleChange = (e, name) => {
     let updatedControls = { ...this.state.controls }
-    if (name === "gender") {      
+    if (name === "gender") {
       return this.setState({
         ...updatedControls,
         [name]: { ...updatedControls[name], value: e.target.value },
@@ -192,10 +192,10 @@ class SignUpForm extends React.Component {
     this.props.signUpUser(name.value, gender.value, email.value, password.value)
   }
 
-  // handleChangeGoogleRecaptcha = value => {
-  //   this.setState({ captcha_value: value, disabled: false })
-  //   if (value === null) this.setState({ disabled: true })
-  // }
+  handleChangeGoogleRecaptcha = value => {
+    this.setState({ captcha_value: value, disabled: false })
+    if (value === null) this.setState({ disabled: true })
+  }
 
   render() {
     const { formIsValid, loaded, disabled } = this.state
@@ -203,7 +203,6 @@ class SignUpForm extends React.Component {
     Object.keys(this.state.controls).map(controlItem => {
       formInputArray.push(this.state.controls[controlItem])
     })
-    console.log(formIsValid)
     const { error, locales } = this.props
     return (
       <AuthFormContainer onSubmit={this.handleSubmitSignUpForm}>
@@ -241,9 +240,29 @@ class SignUpForm extends React.Component {
             )
           )}
         </FormGroups>
-        <Button type="submit" color="primary" variant="outlined" disabled={!formIsValid}>
-          Submit
+        {loaded && (
+          <GoogleRecaptcha onChange={this.handleChangeGoogleRecaptcha} />
+        )}
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          disabled={!formIsValid}
+        >
+          {locales.button}
         </Button>
+        <FormActions>
+          <Option>
+            {locales.footer.haveAccount.title}{" "}
+            <StyledLink to={locales.footer.haveAccount.path}>{locales.footer.haveAccount.pathName}</StyledLink>
+          </Option>
+          <Option>
+            {locales.footer.forgotPassword.title}{" "}
+            <StyledLink to={locales.footer.forgotPassword.path}>
+              {locales.footer.forgotPassword.pathName}
+            </StyledLink>
+          </Option>
+        </FormActions>
       </AuthFormContainer>
     )
   }

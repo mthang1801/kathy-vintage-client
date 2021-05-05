@@ -62,3 +62,20 @@ export const signOutUser = () => {
     }
   })
 }
+
+export const signInUser = (email, password) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const userAuth = await firebase.auth.signInWithEmailAndPassword(email, password);        
+      const user = await firebase.firestore.doc(`users/${userAuth?.user?.uid}`).get();
+      if(!user.exists){
+        return resolve(null);
+      }
+      const userResult = {...user.data()};
+      delete userResult.password;
+      resolve(userResult);
+    } catch (error) {
+      reject(error);
+    }
+  })
+}

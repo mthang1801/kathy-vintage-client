@@ -25,7 +25,6 @@ const CarouselBanner = () => {
     fade : true ,    
   }
 
-  console.log(images)
   return (
     <CarouselBannerWrapper ref={carouselRef}>
       <Slider {...settings}>

@@ -49,7 +49,6 @@ const CategoriesSlider = () => {
       navigate(`/${category.portfolio.slug}/${category.slug}`);
     }
   }
-  console.log(categories)
   return (
     <CategoriesSliderContainer>
       <Caption>{categoryCarouselTitle}</Caption>    

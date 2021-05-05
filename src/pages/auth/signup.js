@@ -1,11 +1,11 @@
 import React,{useEffect} from 'react'
 import Layout from "../../containers/Layout"
 import SignUpForm from "../../components/Auth/SignUpForm"
-import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {selectCurrentUser, selectUserFetched} from "../../redux/user/user.selectors";
 import {createStructuredSelector} from "reselect"
 import {connect} from "react-redux";
 import {navigate} from "gatsby"
-const Signup = ({user, ...props}) => {  
+const Signup = ({user, isFetched, ...props}) => {  
   
   useEffect(() => {
     if(user){
@@ -14,13 +14,14 @@ const Signup = ({user, ...props}) => {
   }, [user])
   return (
     <Layout>
-      {!user && <SignUpForm/>}
+      {!user &&isFetched && <SignUpForm/>}
     </Layout>
   )
 }
 
 const mapStateToProps = createStructuredSelector({
-  user : selectCurrentUser
+  user : selectCurrentUser,
+  isFetched : selectUserFetched
 })
 
 export default connect(mapStateToProps)(Signup)

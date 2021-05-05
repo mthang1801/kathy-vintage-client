@@ -7,7 +7,6 @@ const AddressContact = () => {
   const {
     contact: { title, listContacts },
   } = i18n.store.data[lang].translation.footer
-  console.log(listContacts)
   return (
     <section>
       <Title>{title}</Title>
