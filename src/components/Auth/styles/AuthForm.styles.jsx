@@ -27,7 +27,11 @@ export const FormGroups = styled.div`
   justify-content : center;
   align-items : center;
   margin : 1rem auto ;
-
+  .MuiFormControl-root{
+    width : 90%;
+    max-width : 600px;
+    margin-bottom : 1rem;
+  }
 `
 
 export const FormActions = styled.div`
@@ -72,6 +76,11 @@ export const SocialLoginButtons = styled.div`
 
 export const ErrorMessage = styled.div`
   color : red ; 
+  margin-bottom : 0.75rem;
+  font-weight : 600;
+`
+export const SuccessMessage = styled.div`
+  color : green ; 
   margin-bottom : 0.75rem;
   font-weight : 600;
 `

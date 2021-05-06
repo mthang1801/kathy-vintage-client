@@ -134,3 +134,15 @@ export const signInWithFacebook = () => async dispatch => {
 export const clearUserError = () => ({
   type : userActionTypes.CLEAR_USER_ERROR
 })
+
+export const restoreAccount = (email) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await userDB.restoreAccount(email);    
+      resolve(true) ; 
+    } catch (error) {
+      reject(error.message)
+    }
+  })
+ 
+}

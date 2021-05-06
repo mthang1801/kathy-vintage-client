@@ -1,6 +1,6 @@
 import React from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
-const TEST_SITE_KEY = "6LcvD8AZAAAAACzN8Rm8GyuqDckBjdIft40W75wJ";
+const SITE_KEY = "6LcmCMkaAAAAAGDrEpHQ_oOod_X9bjpN38lHM_JB";
 
 const GoogleRecaptcha = React.forwardRef( ({onChange}, ref) => {
   return (
@@ -10,7 +10,7 @@ const GoogleRecaptcha = React.forwardRef( ({onChange}, ref) => {
       badge="inline"
       size="normal"
       ref={ref}
-      sitekey={TEST_SITE_KEY}
+      sitekey={SITE_KEY}
       onChange={onChange}          
   />
   )

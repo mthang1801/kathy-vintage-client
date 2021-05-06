@@ -56,7 +56,7 @@ export const vi = {
           forgotPassword : {
             title: "Quên mật khẩu?",
             pathName: "Khôi phục mật khẩu",
-            path : "/auth/reset-password"
+            path : "/auth/restore-account"
           }
         }
       },
@@ -74,9 +74,15 @@ export const vi = {
           forgotPassword : {
             title: "Quên mật khẩu?",
             pathName: "Khôi phục mật khẩu",
-            path : "/auth/reset-password"
+            path : "/auth/restore-account"
           }
         }
+      }, 
+      restoreAccountForm : {
+        title : "Khôi phục tài khoản",
+        subTitle : "Nhập địa chỉ email và xác nhận mật khẩu email gửi về",
+        restoreButton : "Khôi phục",
+        restoreSuccessText : "Yêu cầu khôi phục tài khoản thành công, vui lòng kiểm tra email để kích hoạt lại mật khẩu"
       }
     } ,
     user: {

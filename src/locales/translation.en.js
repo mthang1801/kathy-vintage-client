@@ -54,7 +54,7 @@ export const en = {
           forgotPassword : {
             title: "Forgot password?",
             pathName:  "Restore account",
-            path : "/auth/reset-password"
+            path : "/auth/restore-account"
           }
         }      
       },
@@ -72,9 +72,15 @@ export const en = {
           forgotPassword : {
             title: "Forgot password?",
             pathName:  "Restore account",
-            path : "/auth/reset-password"
+            path : "/auth/restore-account"
           }
         }
+      },
+      restoreAccountForm : {
+        title : "Restore Account",
+        subTitle : "Enter your email and check new password at Email address",
+        restoreButton : "Restore",
+        restoreSuccessText : "Your request to restore account successfully, please check your email to activate new password"
       }
     },
     user: {

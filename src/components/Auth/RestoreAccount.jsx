@@ -1,118 +1,104 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
+import useLanguage from "../Global/useLanguage"
 import {
   AuthFormContainer,
   FormHeader,
-  FormGroups,
-  FormActions,
-  StyledLink,
-  Option,
-  ErrorMessage,
   Title,
   SubTitle,
-} from "./styles/AuthForm.styles";
-import CustomInput from "../Custom/CustomInput";
-import CustomButton from "../Custom/CustomButton";
-import { withRouter } from "react-router-dom";
-import { restoreAccount } from "../../redux/user/user.actions";
-import { connect } from "react-redux";
-import { selectUserError} from "../../redux/user/user.selectors"
-import {createStructuredSelector} from "reselect"
-import Loader from "../UI/loader/loader.component";
+  FormGroups,
+  ErrorMessage,
+  SuccessMessage
+} from "./styles/AuthForm.styles"
+import TextField from "@material-ui/core/TextField"
+import Button from "@material-ui/core/Button"
 import GoogleRecaptcha from "./GoogleRecaptcha"
-class RestoreAccount extends React.Component {
-  state = {
-    email: "",   
-    loaded: false,
-    disabled: true,
-    submitLoading: false,
-    captcha_value : null
-  };
-
-  componentDidMount() {    
-     setTimeout(() => {
-      this.setState({ loaded: true });
-     },1000)
+import { restoreAccount } from "../../redux/user/user.actions"
+import {FcCheckmark} from "react-icons/fc"
+const emailPattern = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const RestoreAccount = () => {
+  const { i18n, lang } = useLanguage()
+  const { restoreAccountForm } = i18n.store.data[lang].translation.auth
+  const [emailValue, setEmailValue] = useState("")
+  const [disabled, setDisabled] = useState(true)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [captchaValue, setCaptchaValue] = useState(null)
+  const handleChangeGoogleRecaptcha = value => {
+    if (value) {
+      setCaptchaValue(value)
+    }
+  }
+  const onChangeEmail = e => {
+    setEmailValue(e.target.value)
   }
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = async (e) => {
-    this.setState({submitLoading : true })
-    const { email } = this.state;
-    e.preventDefault();
-    if (!email) {
-      return;
+  useEffect(() => {
+    if (captchaValue) {
+      if (emailPattern.test(emailValue)) {
+        return setDisabled(false)
+      }
+      return setDisabled(true)
     }
-    try {
-      await this.props.restoreAccount(email);
-      this.setState({submitLoading : false});
-      this.props.history.push(`${this.props.match.path}/done`);
-    } catch (error) {      
-      this.setState({submitLoading : false});      
+    setDisabled(true)
+  }, [emailValue, captchaValue])
+
+  const onRestoreAccount = async () => {
+    if (emailPattern.test(emailValue)) {
+      try {
+        setLoading(true)
+        await restoreAccount(emailValue)
+        setSuccess(true)
+        setLoading(false)        
+      } catch (error) {
+        setError(error)
+        setLoading(false)
+        setEmailValue("")
+      }
     }
-  };
-
-  reCaptchaHandleChange = (value) => {
-    this.setState({ captcha_value : value, disabled: false });
-    if (value === null) this.setState({ disabled: true });
-  };
-
-  render() {  
-    const { email, loaded, disabled, submitLoading } = this.state;
-    const {error} = this.props;
-    return (
-      <React.Fragment>
-        {submitLoading && <Loader />}
-        <AuthFormContainer onSubmit={this.handleSubmit}>
+  }
+  return (
+    <AuthFormContainer onSubmit={e => e.preventDefault()}>
+      {success ? (
+        <>
           <FormHeader>
-            <Title>Forgot account</Title>
-            <SubTitle>Get your account via Email.</SubTitle>
+            <Title><FcCheckmark/></Title>
+          </FormHeader>
+          <SuccessMessage>{restoreAccountForm.restoreSuccessText}</SuccessMessage>
+        </>
+      ) : (
+        <>
+          <FormHeader>
+            <Title>{restoreAccountForm.title}</Title>
+            <SubTitle>{restoreAccountForm.subTitle}</SubTitle>
           </FormHeader>
           {error && <ErrorMessage>{error}</ErrorMessage>}
           <FormGroups>
-            <CustomInput
-              type="text"
-              name="email"
-              value={email}
+            <TextField
               label="Email"
-              onChange={this.handleChange}
-              required
-            />
-            {loaded && (
-              <Option>
-                {" "}
-               <GoogleRecaptcha onChange={this.reCaptchaHandleChange}/>
-               </Option>
-            )}
-            <CustomButton
-              variant="contained"
-              color="white"
+              type="email"
+              value={emailValue}
               size="small"
-              bgColor="#3949ab"
+              variant="outlined"
+              autoComplete={true}
+              autoFocus={true}
+              onChange={onChangeEmail}
+            />
+            <GoogleRecaptcha onChange={handleChangeGoogleRecaptcha} />
+            <Button
+              onClick={onRestoreAccount}
+              type="button"
               disabled={disabled}
+              color="primary"
+              variant="contained"
             >
-              Submit
-            </CustomButton>
+              {restoreAccountForm.restoreButton}
+            </Button>
           </FormGroups>
-
-          <FormActions>
-            <Option>
-              <StyledLink to="/auth">Back to Signin</StyledLink>
-            </Option>
-          </FormActions>
-        </AuthFormContainer>
-      </React.Fragment>
-    );
-  }
+        </>
+      )}
+    </AuthFormContainer>
+  )
 }
-const mapStateToProps = createStructuredSelector({
-  error : selectUserError
-})
-const mapDispatchToProps = (dispatch) => ({
-  restoreAccount: (email) => dispatch(restoreAccount(email)),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RestoreAccount));
+export default RestoreAccount
