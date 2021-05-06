@@ -98,3 +98,39 @@ export const signIn = (email, password) => async dispatch => {
     dispatch(signInFail(error.message));
   }
 }
+
+const signInWithSocialNetworkStart = () => ({
+  type : userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_START
+})
+const signInWithSocialNetworkSuccess = (user) => ({
+  type : userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_SUCCESS,
+  payload: user
+})
+const signInWithSocialNetworkFail = (error) => ({
+  type : userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_FAIL,
+  payload : error
+})
+
+export const signInWithGoogle = () => async dispatch => {
+  try {
+    dispatch(signInWithSocialNetworkStart());    
+    const user = await userDB.signInWithGoogle();
+    dispatch(signInWithSocialNetworkSuccess(user));
+  } catch (error) {
+    dispatch(signInWithSocialNetworkFail(error.message))
+  }
+}
+
+export const signInWithFacebook = () => async dispatch => {
+  try {
+    dispatch(signInWithSocialNetworkStart());    
+    const user = await userDB.signInWithFacebook();
+    dispatch(signInWithSocialNetworkSuccess(user));
+  } catch (error) {
+    dispatch(signInWithSocialNetworkFail(error.message))
+  }
+}
+
+export const clearUserError = () => ({
+  type : userActionTypes.CLEAR_USER_ERROR
+})

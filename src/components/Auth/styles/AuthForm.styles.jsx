@@ -58,22 +58,16 @@ export const Option = styled.span`
   font-size : .95em;
 `
 
-export const FlashForm = styled.div`
+export const SocialLoginButtons = styled.div`
   width : 100%;
-  display : flex ; 
-  justify-content : space-around;
-  & > * {
-    display : block;
-    width : 46% !important;
-  }
-  @media screen and (max-width : 500px){    
-    flex-direction : column;        
-    &> *{
-      width : 100% !important;
-      margin-bottom : 1rem;
-    }
-  }
-  
+  display : flex; 
+  flex-direction : column;
+  margin : 0.5rem auto;
+  @media screen and (min-width: 768px){
+    display : grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap : 1rem;
+  }  
 `
 
 export const ErrorMessage = styled.div`

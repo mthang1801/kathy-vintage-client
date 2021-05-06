@@ -8,7 +8,7 @@ import {
   FormActions,
   StyledLink,
   Option,
-  FlashForm,
+  SocialLoginButtons,
   ErrorMessage,
 } from "./styles/AuthForm.styles"
 import Input from "./Input"
@@ -17,13 +17,14 @@ import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 import {
   selectUserError,
-  selectUserLoading,
+  selectUserLoading,  
 } from "../../redux/user/user.selectors"
-import { signIn } from "../../redux/user/user.actions"
+import { signIn, signInWithGoogle, signInWithFacebook, clearUserError } from "../../redux/user/user.actions"
 import GoogleRecaptcha from "./GoogleRecaptcha"
 import useLanguage from "../Global/useLanguage"
-
-const SignInFormWrapper = ({ error, signIn, loading }) => {
+import GoogleLoginButton from "./GoogleLoginButton"
+import FacebookLoginButton from "./FacebookLoginButton"
+const SignInFormWrapper = ({ error, signIn, loading, signInWithGoogle, signInWithFacebook, clearUserError }) => {
   const { i18n, lang } = useLanguage()
   const { loginForm } = i18n.store.data[lang].translation.auth  
   return (
@@ -32,6 +33,9 @@ const SignInFormWrapper = ({ error, signIn, loading }) => {
       error={error}
       signIn={signIn}
       loading={loading}
+      signInWithGoogle={signInWithGoogle}
+      signInWithFacebook={signInWithFacebook}
+      clearUserError={clearUserError}
     />
   )
 }
@@ -45,19 +49,26 @@ class SignInForm extends React.Component {
     email: "",
     password: "",
     disabled: true,
-    loaded: false,
+    loaded: true,
     captcha_value: null,
   }
 
   timer = null
-  componentDidMount() {
-    this.timer = setTimeout(() => {
-      this.setState({ loaded: true })
-    }, 1000)
+  componentDidMount() {   
     window.scrollTo({
       top: this.signInRef.current.offsetTop - 100,
       behavior: "smooth",
     })
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.error !== this.props.error){
+      clearTimeout(this.timer);
+      this.timer = setTimeout(()=>{
+        this.props.clearUserError();
+      },5000)
+      
+    }
   }
   componentWillUnmount() {
     clearTimeout(this.timer)
@@ -104,10 +115,10 @@ class SignInForm extends React.Component {
         </FormHeader>
         {loading && <div>Loading...</div>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        {/* <FlashForm>
-          <FacebookLogin />
-          <GoogleLogin />
-        </FlashForm> */}
+        <SocialLoginButtons>
+          <GoogleLoginButton onClick={this.props.signInWithGoogle}/>
+          <FacebookLoginButton onClick={this.props.signInWithFacebook}/>
+        </SocialLoginButtons>
         <FormGroups>
           <Input
             type="text"
@@ -129,7 +140,8 @@ class SignInForm extends React.Component {
             <GoogleRecaptcha onChange={this.handleChangeGoogleRecaptcha} />
           )}
           <Button
-            type="submit"
+            onClick={this.onSubmitSigninForm}
+            type="button"
             variant="contained"
             color="primary"
             disabled={disabled}
@@ -164,6 +176,9 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   signIn: (email, password) => dispatch(signIn(email, password)),
+  signInWithGoogle : () => dispatch(signInWithGoogle()),
+  signInWithFacebook : () => dispatch(signInWithFacebook()),
+  clearUserError : () => dispatch(clearUserError())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInFormWrapper)

@@ -23,6 +23,9 @@ export const en = {
     auth: {
       login: "login",
       register: "sign up",
+      signInGoogle : "Sign in with Google",
+      signInFacebook : "Sign in with Facebook",      
+      signInApple : "Sign in with Apple",
       signupForm : {
         title: "Sign Up",
         subTitle:  "Sign up your account via email and password.",

@@ -23,6 +23,9 @@ export const vi = {
     auth : {
       login : "Đăng nhập",
       register : "Đăng ký",
+      signInGoogle : "Đăng nhập Google",
+      signInFacebook : "Đăng nhập Facebook",      
+      signInApple : "Đăng nhập Apple",
       signupForm : {
         title: "Đăng ký tài khoản",
         subTitle:  "Đăng ký tài khoản bằng email và password",

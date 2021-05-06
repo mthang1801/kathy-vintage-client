@@ -5,6 +5,9 @@ import "firebase/auth";
 
 export default new Proxy(
   {
+    get firebase() {
+      return firebase
+    },
     get firestore() {
       return firebase.firestore()
     },

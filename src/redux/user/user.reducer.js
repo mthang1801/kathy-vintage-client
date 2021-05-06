@@ -13,17 +13,22 @@ export default (state = INITIAL_STATE, action) => {
     case userActionTypes.GET_CURRENT_USER_START:
     case userActionTypes.SIGN_OUT_USER_START:
     case userActionTypes.SIGN_IN_START:
+    case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_START:
       return { ...state, loading: true, error: undefined }
-    case userActionTypes.SIGN_IN_SUCCESS:    
+    case userActionTypes.SIGN_IN_SUCCESS:
+    case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_SUCCESS:
     case userActionTypes.GET_CURRENT_USER_SUCCESS:
       return { ...state, user: action.payload, fetched: true, loading: false }
     case userActionTypes.SIGN_OUT_USER_SUCCESS:
       return { ...state, user: null, loading: false }
+    case userActionTypes.CLEAR_USER_ERROR : 
+      return {...state, error : undefined};
     case userActionTypes.SIGN_UP_FAIL:
     case userActionTypes.GET_CURRENT_USER_FAIL:
     case userActionTypes.SIGN_OUT_USER_FAIL:
-    case userActionTypes.SIGN_IN_FAIL: 
-      return { ...state, error: action.payload }
+    case userActionTypes.SIGN_IN_FAIL:
+    case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_FAIL:
+      return { ...state, user: null, error: action.payload }
     default:
       return state
   }

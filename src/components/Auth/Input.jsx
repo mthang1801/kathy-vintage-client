@@ -59,6 +59,7 @@ const CustomInput = ({
         {...otherProps}
         border={border}
         ref={inputRef}
+        required={false}
       />
       <Label shrinkLabel={!!value} onClick={handleClick}>
         {label}

@@ -29,6 +29,8 @@ const addUserToProfileDocument = (userAuth, data)  => {
 export const createUserWithEmailAndPassword = (name, gender, email, password) => {
   return new Promise( async (resolve, reject) => {
     try {
+      firebase.firestore.collection("users").where("email", "==", email).get().then(snap => console.log(snap));      
+      
       const userAuth = await firebase.auth.createUserWithEmailAndPassword(email, password);
       const userRef = await addUserToProfileDocument(userAuth.user, {displayName: name, gender, email, password});
       const user = await userRef.get();
@@ -74,6 +76,39 @@ export const signInUser = (email, password) => {
       const userResult = {...user.data()};
       delete userResult.password;
       resolve(userResult);
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
+
+export const signInWithGoogle = () => {
+  return new Promise(async (resolve, reject) => {
+    try {      
+      const GoogleProvider = new firebase.firebase.auth.GoogleAuthProvider();
+      GoogleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+      GoogleProvider.setCustomParameters({prompt : "select_account"});
+      const {user} = await firebase.auth.signInWithPopup(GoogleProvider)
+      if(user.providerData.length){
+        return resolve(user.providerData[0]);
+      }
+      resolve(null)
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
+export const signInWithFacebook = () => {
+  return new Promise(async (resolve, reject) => {
+    try {      
+      const FacebookProvider = new firebase.firebase.auth.FacebookAuthProvider();      
+      FacebookProvider.setCustomParameters({'display': 'popup'});
+      const {user} = await firebase.auth.signInWithPopup(FacebookProvider)
+      console.log(user)
+      if(user.providerData.length){
+        return resolve(user.providerData[0]);
+      }
+      resolve(null)
     } catch (error) {
       reject(error);
     }

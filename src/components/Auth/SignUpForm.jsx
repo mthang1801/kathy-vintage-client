@@ -9,16 +9,30 @@ import {
   Title,
   SubTitle,
   ErrorMessage,
+  SocialLoginButtons,
 } from "./styles/AuthForm.styles"
 import Input from "./Input"
 import Button from "@material-ui/core/Button"
 import useLanguage from "../Global/useLanguage"
 import { connect } from "react-redux"
-import { signUpUser } from "../../redux/user/user.actions"
+import {
+  signUpUser,
+  signInWithGoogle,
+  signInWithFacebook,
+  clearUserError,
+} from "../../redux/user/user.actions"
 import { createStructuredSelector } from "reselect"
 import { selectUserError } from "../../redux/user/user.selectors"
 import GoogleRecaptcha from "./GoogleRecaptcha"
-const SignUpFormWrapper = ({ error, signUpUser }) => {
+import FacebookLoginButton from "./FacebookLoginButton"
+import GoogleLoginButton from "./GoogleLoginButton"
+const SignUpFormWrapper = ({
+  error,
+  signUpUser,
+  signInWithGoogle,
+  signInWithFacebook,
+  clearUserError,
+}) => {
   const { i18n, lang } = useLanguage()
   const { signupForm } = i18n.store.data[lang].translation.auth
   const INITIAL_STATE = {
@@ -95,7 +109,7 @@ const SignUpFormWrapper = ({ error, signUpUser }) => {
       },
     },
     formIsValid: false,
-    loaded: false,
+    loaded: true,
     disabled: true,
   }
   return (
@@ -104,17 +118,44 @@ const SignUpFormWrapper = ({ error, signUpUser }) => {
       error={error}
       signUpUser={signUpUser}
       initialState={INITIAL_STATE}
+      signInWithGoogle={signInWithGoogle}
+      clearUserError={clearUserError}
+      signInWithFacebook={signInWithFacebook}
     />
   )
 }
 
 class SignUpForm extends React.Component {
   state = { ...this.props.initialState }
-
+  timer;
+  signUpRef = React.createRef()
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loaded: true })
-    }, 1000)
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {    
+      window.scrollTo({
+        top: this.signUpRef.current.offsetTop - 100,
+        behavior: "smooth",
+      })
+    }, 66)
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.error !== this.props.error) {
+      this.resetForm();
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.props.clearUserError()        
+      }, 5000)
+    }
+  }
+  componentWillUnmount() {
+    clearTimeout(this.timer)
+  }
+  resetForm = () => {
+    this.setState(
+      this.props.initialState
+    )
   }
 
   checkValidity = (value, rules) => {
@@ -205,12 +246,16 @@ class SignUpForm extends React.Component {
     })
     const { error, locales } = this.props
     return (
-      <AuthFormContainer onSubmit={this.handleSubmitSignUpForm}>
+      <AuthFormContainer onSubmit={this.handleSubmitSignUpForm} ref={this.signUpRef}>
         <FormHeader>
           <Title>{locales.title}</Title>
           <SubTitle>{locales.subTitle}</SubTitle>
         </FormHeader>
         {error && <ErrorMessage>{error}</ErrorMessage>}
+        <SocialLoginButtons>
+          <GoogleLoginButton onClick={this.props.signInWithGoogle} />
+          <FacebookLoginButton onClick={this.props.signInWithFacebook} />
+        </SocialLoginButtons>
         <FormGroups>
           {formInputArray.map(
             ({
@@ -244,9 +289,10 @@ class SignUpForm extends React.Component {
           <GoogleRecaptcha onChange={this.handleChangeGoogleRecaptcha} />
         )}
         <Button
-          type="submit"
+          type="button"
           color="primary"
           variant="contained"
+          onClick={this.handleSubmitSignUpForm}
           disabled={!formIsValid}
         >
           {locales.button}
@@ -254,7 +300,9 @@ class SignUpForm extends React.Component {
         <FormActions>
           <Option>
             {locales.footer.haveAccount.title}{" "}
-            <StyledLink to={locales.footer.haveAccount.path}>{locales.footer.haveAccount.pathName}</StyledLink>
+            <StyledLink to={locales.footer.haveAccount.path}>
+              {locales.footer.haveAccount.pathName}
+            </StyledLink>
           </Option>
           <Option>
             {locales.footer.forgotPassword.title}{" "}
@@ -275,6 +323,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   signUpUser: (name, gender, email, password) =>
     dispatch(signUpUser(name, gender, email, password)),
+  signInWithGoogle: () => dispatch(signInWithGoogle()),
+  clearUserError: () => dispatch(clearUserError()),
+  signInWithFacebook : () => dispatch(signInWithFacebook())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpFormWrapper)
