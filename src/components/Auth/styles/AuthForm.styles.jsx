@@ -6,7 +6,7 @@ export const AuthFormContainer = styled.form`
   padding : 1.5rem 2.5rem ;
   text-align : center;  
   border: 1px solid #ccc;
-  margin : 1rem auto;
+  margin : 3rem auto 1rem auto;
   border-radius : 10px;
   box-shadow : 0 3px 6px rgba(0,0,0,0.15);
   display : flex ; 

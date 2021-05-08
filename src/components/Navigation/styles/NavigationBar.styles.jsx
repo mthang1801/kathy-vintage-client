@@ -48,8 +48,8 @@ export const Setting = styled.div`
 `
 
 export const ListItemIcon = styled.div`
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 
   & img,
   & svg {
@@ -67,23 +67,7 @@ export const ListItem = styled(Link)`
   color: inherit;
   position: relative;
   padding: 0.4rem 1rem;
-  z-index: 1;
-  // &:hover {
-  //   & ${ListItemText}, ${ListItemIcon} {
-  //     color: ${({theme}) => theme.hover.text};
-  //   }    
-    
-  //   & img {
-  //     filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
-  //       brightness(91%) contrast(103%);
-  //   }
-  // }
-  ${({ active }) =>
-    active &&
-    `    color : var(--blue-1);
-  & img{
-    filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg) brightness(91%) contrast(103%);
-  }`}
+  z-index: 1;  
 `
 
 

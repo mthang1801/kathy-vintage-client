@@ -5,7 +5,7 @@ import {
   AiOutlinePercentage,
   AiFillShop,
   AiOutlineShop,
-  AiOutlineInstagram
+  AiOutlineInstagram,
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -13,10 +13,19 @@ import {
   RiVipDiamondLine,
   RiContactsFill,
   RiContactsLine,
-  RiBillLine
+  RiBillLine,
+  RiShirtLine,
+  RiShirtFill
 } from "react-icons/ri"
-import { IoIosSettings, IoMdSettings } from "react-icons/io"
-import { FiTwitter,FiFacebook, FiLogOut} from "react-icons/fi"
+import {
+  IoIosSettings,
+  IoMdSettings,    
+  IoIosGlasses,
+} from "react-icons/io"
+import { FiTwitter, FiFacebook, FiLogOut } from "react-icons/fi"
+import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
+import {BsBagFill, BsBag} from "react-icons/bs"
+import {BiGlasses} from "react-icons/bi"
 
 export const en = {
   translation: {
@@ -98,6 +107,28 @@ export const en = {
         name : "Sign out",
         icon : <FiLogOut/>,        
       }
+    }, 
+    portfolioIcons: {
+      portfolioId_1 : {
+        contentful_id: "3baS7MxSRZpYZ2fzItxVur",        
+        icon: <BsBag />,
+        activeIcon: <BsBagFill />,
+      },
+      portfolioId_2 : {
+        contentful_id: "4yTnyIDJGdpMuzPJgY7QCA",        
+        icon:<BiGlasses />,
+        activeIcon: <IoIosGlasses />,
+      },
+      portfolioId_3 : {
+        contentful_id: "3f72lftmOXB4lPRTZJfI73",        
+        icon:<GiConverseShoe />,
+        activeIcon: <GiRunningShoe />,
+      },
+      portfolioId_4 :{
+        contentful_id: "3pidDuLDjGd8D5oFc8AiE7",        
+        icon:<RiShirtLine />,
+        activeIcon: <RiShirtFill />,
+      },
     },
     navigations: {
       home: {
