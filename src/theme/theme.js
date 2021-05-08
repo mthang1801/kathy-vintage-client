@@ -30,6 +30,13 @@ export const theme = {
         background : "#f5f5f5",
         text : "#ffc107"
       },      
+      breadcrumb : {
+        background : "#dedede",
+        link : {
+          background : "#f0f0f0",                    
+          color : "#757575",
+        }
+      },
       border: "#e0e0e0",
       boxShadow: "0 0px 5px rgba(0,0,0,0.15)",
     },
@@ -62,6 +69,13 @@ export const theme = {
         background : "#343a40",
         text: "#ffc107"
       },      
+      breadcrumb : {
+        background : "#363636",
+        link : {
+          background : "#2c2c2c",   
+          color : "#f5f5f5",                    
+        }
+      },
       border: "#616161",
       boxShadow: "0 0px 0px 5px #bdbdbd",
     },

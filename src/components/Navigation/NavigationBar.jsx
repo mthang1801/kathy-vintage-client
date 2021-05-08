@@ -41,9 +41,6 @@ const NavigationBar = () => {
   const onMouseLeaveStaticNavigation = () => {
     setActiveItem(null)
   }
-  React.useEffect(()=>{
-    console.log(activeItem);
-  },[activeItem])
   return (
     <Wrapper theme={theme}>
       <SettingDialog open={openSetting} setOpen={setOpenSetting} />
@@ -69,7 +66,7 @@ const NavigationBar = () => {
           return (
             <ListItem
               key={portfolio.contentful_id}
-              to={portfolio.slug}
+              to={`/${portfolio.slug}`}
               theme={theme}
               onMouseEnter={() =>
                 onMouseEnterPortfolioItem(portfolio.contentful_id)

@@ -22,10 +22,16 @@ exports.createPages = async ({ graphql, actions }) => {
       pages: allContentfulPortfolio {
         edges {
           node {
+            nameEn
+            nameVi
             slug
             categories {
+              nameEn
+              nameVi
               slug
               productGroups {
+                nameEn
+                nameVi
                 slug
               }
             }
@@ -44,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }       
     })
     //create category page
-    portfolio.categories.map(category => {
+    portfolio.categories.forEach(category => {
       createPage({
         path : `/${portfolio.slug}/${category.slug}`,
         component : path.resolve("./src/templates/category.template.jsx"),
@@ -54,7 +60,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       })
       //create product Groups page
-      category.productGroups.map(productGroup => {
+      category.productGroups.forEach(productGroup => {
         createPage({
           path : `/${portfolio.slug}/${category.slug}/${productGroup.slug}`,
           component : path.resolve("./src/templates/productGroup.template.jsx"),
