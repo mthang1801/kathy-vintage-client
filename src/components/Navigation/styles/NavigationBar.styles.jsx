@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { config } from "../../../config"
-import { Link } from "@reach/router"
+import { Link } from "gatsby"
 export const Wrapper = styled.nav`
   width: 100%;
   background: ${({ theme }) => theme.navigation.background};

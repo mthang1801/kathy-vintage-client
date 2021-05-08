@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Link } from "@reach/router"
+import { Link } from "gatsby"
 export const List = styled.section`
 border: 1px solid ${({ theme }) => theme.border};
   display: flex;

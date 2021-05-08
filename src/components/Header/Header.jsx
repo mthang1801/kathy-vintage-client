@@ -8,7 +8,8 @@ import {
   MobileResponsive,
 } from "./styles/Header.styles"
 import Logo from "../../images/brandlogo.png"
-import { Link, useLocation } from "@reach/router"
+import {  useLocation } from "@reach/router"
+import {Link} from "gatsby"
 import {
   selectCurrentUser,
   selectUserFetched,

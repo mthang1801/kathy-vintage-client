@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Link} from "@reach/router";
+import {Link} from "gatsby";
 export const AuthFormContainer = styled.form`
   width : 90%; 
   max-width : 500px ;

@@ -4,7 +4,7 @@ import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
 const ProductGroupsDropdown = ({ parentSlug, productGroups }) => {
   const { theme } = useTheme()
-  const  {lang} = useLanguage()
+  const  {lang} = useLanguage()  
   if (!parentSlug || !productGroups?.length) return null
   return (
     <List theme={theme}>

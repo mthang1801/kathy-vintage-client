@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Link} from "@reach/router"
+import {Link} from "gatsby"
 export const Wrapper = styled(Link)`
   position : relative;    
   cursor: pointer;

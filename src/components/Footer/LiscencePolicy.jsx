@@ -1,7 +1,7 @@
 import React from "react"
 import useLanguage from "../Global/useLanguage"
 import { Title, Policies } from "./styles/Footer.styles"
-import { Link } from "@reach/router"
+import { Link } from "gatsby"
 const AddressContact = () => {
   const { i18n, lang } = useLanguage()
   const {

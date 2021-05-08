@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { CarouselBannerWrapper } from "./styles/Banners.styles"
-import { Link } from "@reach/router"
+import { Link } from "gatsby"
 import Slider from "react-slick"
 import { CustomArrowNext, CustomArrowPrev } from "./CustomArrowSlider"
 import { useStaticQuery, graphql } from "gatsby"
