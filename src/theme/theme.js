@@ -3,7 +3,7 @@ export const theme = {
   modes: {
     light: {
       name : "light",
-      body: "#FFFFFF",
+      body: "#ededed",
       text: "#000000",
       button: {
         text: "#FFFFFF",
@@ -25,7 +25,7 @@ export const theme = {
         },
       },
       background: "#f0f0f0",
-      card: "#e0e0e0",
+      card: "#fff",
       hover : {
         background : "#f5f5f5",
         text : "#ffc107"
@@ -36,7 +36,7 @@ export const theme = {
           background : "#f0f0f0",                    
           color : "#757575",
         }
-      },
+      },     
       border: "#e0e0e0",
       boxShadow: "0 0px 5px rgba(0,0,0,0.15)",
     },

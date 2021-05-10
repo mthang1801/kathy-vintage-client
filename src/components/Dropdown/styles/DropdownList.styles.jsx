@@ -4,7 +4,7 @@ export const List = styled.section`
 border: 1px solid ${({ theme }) => theme.border};
   display: flex;
   flex-direction: column;
-  background-color : ${({theme}) => theme.body};
+  background-color : ${({theme}) => theme.card};
   color: inherit;
   &:hover {
     color: inherit;

@@ -6,7 +6,7 @@ export const Wrapper = styled.section`
   background : ${({theme}) => theme.breadcrumb.background};
   display : flex;
   align-items :center;  
-  padding : 0 2rem;  
+  padding : 0 2rem;    
 `
 
 export const BreadcrumbItemLink = styled(Link)`

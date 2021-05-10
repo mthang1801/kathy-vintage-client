@@ -24,7 +24,7 @@ import {
 } from "react-icons/io"
 import { FiTwitter, FiFacebook, FiLogOut } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
-import {BsBagFill, BsBag} from "react-icons/bs"
+import {BsBagFill, BsBag, BsArrowRepeat} from "react-icons/bs"
 import {BiGlasses} from "react-icons/bi"
 
 export const en = {
@@ -199,9 +199,15 @@ export const en = {
     },    
     page : {
       home: {
-        about : {
-          name : ""
-        }
+        categoryCarouselTitle: "Products Category",        
+      }
+    },
+    product : {
+      newProducts : {
+        styledTitle : "Top",
+        title :"New Products", 
+        path : "/new-products",
+        pathIcon : <BsArrowRepeat/>
       }
     },
     footer: {
@@ -259,6 +265,9 @@ export const en = {
           }
         ]
       }
+    },
+    others : {
+      seeAll : "See All"
     }
   },
   

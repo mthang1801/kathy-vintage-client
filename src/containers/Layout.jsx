@@ -2,7 +2,7 @@ import React from 'react'
 import Header from "../components/Header/Header"
 import NavigationBar from "../components/Navigation/NavigationBar"
 import Footer from "../components/Footer/Footer"
-import {Container, MainContent} from "./styles/Latout.styles"
+import {Container, MainContent} from "./styles/Layout.styles"
 
 const Layout = ({children}) => {
   return (

@@ -24,7 +24,7 @@ import {
 } from "react-icons/io"
 import { FiTwitter, FiFacebook, FiLogOut } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
-import {BsBagFill, BsBag} from "react-icons/bs"
+import {BsBagFill, BsBag, BsArrowRepeat} from "react-icons/bs"
 import {BiGlasses} from "react-icons/bi"
 
 export const vi = {
@@ -209,8 +209,16 @@ export const vi = {
     },
     page: {
       home: {
-        categoryCarouselTitle: "Các loại Sản phẩm",
+        categoryCarouselTitle: "Danh Mục Sản phẩm",        
       },
+    },
+    product: {
+      newProducts : {
+        styledTitle : "TOP",
+        title : "Sản phẩm mới", 
+        path : "/new-products",
+        pathIcon : <BsArrowRepeat/>
+      }
     },
     footer: {
       about: {
@@ -271,5 +279,8 @@ export const vi = {
         ],
       },
     },
+    others : {
+      seeAll : "Xem Tất cả"
+    }
   },
 }
