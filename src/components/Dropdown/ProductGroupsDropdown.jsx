@@ -2,8 +2,7 @@ import React from "react"
 import { List, ListItem, ListItemText } from "./styles/DropdownList.styles"
 import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
-const ProductGroupsDropdown = ({ parentSlug, productGroups }) => {
-  console.log(parentSlug)
+const ProductGroupsDropdown = ({ parentSlug, productGroups }) => {  
   const { theme } = useTheme()
   const  {lang} = useLanguage()  
   if (!parentSlug || !productGroups?.length) return null

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react"
 import {
   MobileWrapper,
   TabletWrapper,
-  ListitemIcon,
+  ListItemIcon,
   ListItem,
   ListItemImage,
   ListItemText,
   useStyles,
   ViewPort,
   CategoriesList,
+  ListItemContainer,
 } from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
@@ -18,55 +19,56 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
-import SmallViewportCategories from "./DrawerCategoriesDropdown"
+import DrawerCategoriesDropdown from "./DrawerCategoriesDropdown"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
+import { navigate } from "gatsby"
 const QUERY_PORTFOLIOS = graphql`
-query FetchPortfolios {
-  allContentfulPortfolio {
-    edges {
-      node {
-        contentful_id
-        nameVi
-        nameEn
-        slug
-        image {
-          fluid {
-            ...GatsbyContentfulFluid
-          }
-        }
-        category {
+  query FetchPortfolios {
+    allContentfulPortfolio {
+      edges {
+        node {
           contentful_id
           nameVi
           nameEn
           slug
           image {
-            title
             fluid {
               ...GatsbyContentfulFluid
+            }
+          }
+          categories {
+            contentful_id
+            nameVi
+            nameEn
+            slug
+            image {
+              title
+              fluid {
+                ...GatsbyContentfulFluid
+              }
             }
           }
         }
       }
     }
   }
-}
 `
-const MobilePortfolio = ({ open, handleDrawerClose }) => {
+const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
   const query = useStaticQuery(QUERY_PORTFOLIOS)
   const classes = useStyles()
-  const initialSelectedPortfolio = {id : null, x : 0, y : 0}
+  const initialSelectedPortfolio = { id: null, x: 0, y: 0 }
   const [expanded, setExpanded] = useState(false)
-  const [selectedPortfolio, setSelectedPortfolio] = useState(initialSelectedPortfolio)
+  const [selectedPortfolio, setSelectedPortfolio] = useState(
+    initialSelectedPortfolio
+  )
   const portfolios = query.allContentfulPortfolio.edges
   const { lang } = useLanguage()
-  
+
   const handleChange = contentful_id => (e, newExpanded) => {
     setExpanded(newExpanded ? contentful_id : false)
   }
-
-  
   const onSelectedPortfolio = (e, id) => {
-    if(selectedPortfolio.id === id){
+    if (selectedPortfolio.id === id) {
       return setSelectedPortfolio(initialSelectedPortfolio)
     }
     setSelectedPortfolio({
@@ -75,43 +77,55 @@ const MobilePortfolio = ({ open, handleDrawerClose }) => {
       y: e.clientY,
     })
   }
+  console.log(selectedPortfolio)
 
   useEffect(() => {
-    if(!open){
-      setExpanded(false);
+    if (!open) {
+      setExpanded(false)
       setSelectedPortfolio(initialSelectedPortfolio)
     }
-  },[open])
-  
- 
+  }, [open])
+
   return (
     <>
       <MobileWrapper open={open}>
         {portfolios?.length
-          ? portfolios.map(({ node }, index) => (
-              <ViewPort key={node.contentful_id}>
+          ? portfolios.map(({ node: portfolio }, index) => (
+              <ViewPort key={portfolio.contentful_id}>
                 <Accordion
-                  expanded={node.contentful_id === expanded}
-                  onChange={handleChange(node.contentful_id)}
+                  expanded={portfolio.contentful_id === expanded}
+                  onChange={handleChange(portfolio.contentful_id)}
                   className={classes.accordion}
                   style={{ padding: 0 }}
                 >
                   <AccordionSummary>
-                    <ListItem >
-                      <ListItemImage>
-                        <Image fluid={node.image.fluid} alt={node.nameVi} />
-                      </ListItemImage>
-                      <ListItemText>{node.nameVi}</ListItemText>
-                      <ListitemIcon>
+                    <ListItem>
+                      <ListItemContainer
+                        onClick={() => onNavigate(`/${portfolio.slug}`)}
+                      >
+                        <ListItemImage>
+                          <Image
+                            fluid={portfolio.image.fluid}
+                            alt={portfolio.nameVi}
+                          />
+                        </ListItemImage>
+                        <ListItemText>{portfolio.nameVi}</ListItemText>
+                      </ListItemContainer>
+                      <ListItemIcon>
                         <ExpandMoreIcon />
-                      </ListitemIcon>
+                      </ListItemIcon>
                     </ListItem>
                   </AccordionSummary>
 
                   <AccordionDetails className={classes.accordionDetails}>
-                    {node?.category?.length
-                      ? node.category.map(category => (
-                          <ListItem key={category.contentful_id}>
+                    {portfolio?.categories?.length
+                      ? portfolio.categories.map(category => (
+                          <ListItem
+                            key={category.contentful_id}
+                            onClick={() =>
+                              onNavigate(`/${portfolio.slug}/${category.slug}`)
+                            }
+                          >
                             <ListItemImage>
                               <Image
                                 fluid={category?.image?.fluid}
@@ -130,26 +144,49 @@ const MobilePortfolio = ({ open, handleDrawerClose }) => {
       </MobileWrapper>
       <TabletWrapper open={open}>
         {portfolios?.length
-          ? portfolios.map(({ node }, index) => (
-              <ViewPort key={node.contentful_id}>
+          ? portfolios.map(({ node: portfolio }, index) => (
+              <ViewPort key={portfolio.contentful_id}>
                 <ListItem>
-                  <ListItemImage>
-                    <Image fluid={node.image.fluid} alt={node.nameVi} />
-                  </ListItemImage>
-                  <ListItemText>{lang === "en" ? node.nameEn : lang === "vi" ? node.nameVi : ""}</ListItemText>
-                  <ListitemIcon
-                    onClick={e => onSelectedPortfolio(e, node.contentful_id)}
+                  <ListItemContainer
+                    onClick={() => onNavigate(`/${portfolio.slug}`)}
                   >
-                    {selectedPortfolio.id === node.contentful_id ? <ChevronLeft/> : <ChevronRight /> }
-                  </ListitemIcon>
+                    <ListItemImage>
+                      <Image
+                        fluid={portfolio.image.fluid}
+                        alt={portfolio.nameVi}
+                      />
+                    </ListItemImage>
+                    <ListItemText>
+                      {lang === "en"
+                        ? portfolio.nameEn
+                        : lang === "vi"
+                        ? portfolio.nameVi
+                        : ""}
+                    </ListItemText>
+                  </ListItemContainer>
+                  <ListItemIcon
+                    onClick={e =>
+                      onSelectedPortfolio(e, portfolio.contentful_id)
+                    }
+                  >
+                    {selectedPortfolio.id === portfolio.contentful_id ? (
+                      <ChevronLeft />
+                    ) : (
+                      <ChevronRight />
+                    )}
+                  </ListItemIcon>
                 </ListItem>
-                {selectedPortfolio.id === node.contentful_id && (
+                {selectedPortfolio.id === portfolio.contentful_id && (
                   <CategoriesList
                     x={selectedPortfolio.x}
                     y={selectedPortfolio.y}
-                    numberOfItems={5}
+                    numberOfItems={portfolio.categories.length}
                   >
-                    <SmallViewportCategories categories={node.category} />
+                    <DrawerCategoriesDropdown
+                      onNavigate={onNavigate}
+                      categories={portfolio.categories}
+                      portfolio={portfolio}
+                    />
                   </CategoriesList>
                 )}
               </ViewPort>
@@ -160,4 +197,4 @@ const MobilePortfolio = ({ open, handleDrawerClose }) => {
   )
 }
 
-export default MobilePortfolio
+export default PorfoliosDropdown

@@ -214,6 +214,7 @@ export const vi = {
     },
     product: {
       newProducts : {
+        id : "new-products",
         styledTitle : "TOP",
         title : "Sản phẩm mới", 
         path : "/new-products",
@@ -281,6 +282,12 @@ export const vi = {
     },
     others : {
       seeAll : "Xem Tất cả"
+    },
+    breadcrumbs : {
+      home : {
+        name : "Trang chủ", 
+        path : "/"
+      }
     }
   },
 }

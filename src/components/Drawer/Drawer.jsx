@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import Drawer from "@material-ui/core/Drawer"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import List from "@material-ui/core/List"
@@ -39,18 +39,29 @@ function PersistentDrawerLeft({
   const { pathname } = useLocation()
   const handleDrawerClose = () => {
     setOpen(false)
-    onTogglePortfolios(false)
+    setOpenPortfolio(false)
   }
   const { i18n, lang } = useLanguage()
   const { auth, navigations } = i18n.store.data[lang].translation
   const navigationsArr = Object.keys(navigations).map(
     navigation => navigations[navigation]
   )
-  const onClickMenu = id => {
-    if (id.toLowerCase() === "setting") {
-      setOpenDialog(true)
+  const onClickMenu = navigation => {
+    switch (navigation.id.toLowerCase()) {
+      case "setting":
+        return setOpenDialog(true)
+      case "shop":
+        return onTogglePortfolios()
+      default:
+        onNavigate(navigation.path)
     }
   }
+
+  const onNavigate = path => {
+    navigate(path)
+    handleDrawerClose()
+  }
+
   const onTogglePortfolios = () => {
     setOpenPortfolio(prevState => !prevState)
   }
@@ -136,8 +147,7 @@ function PersistentDrawerLeft({
                     button
                     key={navigation.id}
                     onClick={() => {
-                      handleDrawerClose();
-                      onClickMenu(navigation.id)
+                      onClickMenu(navigation)
                     }}
                   >
                     <ListItemIcon className={classes.itemIcon}>
@@ -147,17 +157,17 @@ function PersistentDrawerLeft({
                     {navigation.name.toLowerCase() === "shop" && (
                       <ListItemIcon
                         className={`${classes.itemIcon} ${classes.dropdownButton}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onTogglePortfolios();                          
-                        }}
                       >
                         <ExpandMore />
                       </ListItemIcon>
                     )}
                   </ListItem>
                   {navigation.name.toLowerCase() === "shop" && (
-                    <DrawerPortfoliosDropdown open={openPortfolio} handleDrawerClose={handleDrawerClose}/>
+                    <DrawerPortfoliosDropdown
+                      open={openPortfolio}
+                      handleDrawerClose={handleDrawerClose}
+                      onNavigate={onNavigate}
+                    />
                   )}
                 </>
               ))}

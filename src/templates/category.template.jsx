@@ -7,7 +7,7 @@ const CategoryTemplate = (props) => {
   const {pageContext: {portfolio, category}} = props;
   return (
     <Layout>
-      <BreadcrumbNavigation portfolio={portfolio} category={category}/>
+      <BreadcrumbNavigation contenfulData={[portfolio, category]}/>
     </Layout>
   )
 }

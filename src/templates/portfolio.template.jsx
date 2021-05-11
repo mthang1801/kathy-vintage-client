@@ -8,7 +8,7 @@ const PortfolioTemplate = (props) => {
   const {pageContext: {portfolio}} = props;
   return (
     <Layout>
-      <BreadcrumbNavigation portfolio={portfolio}/>
+      <BreadcrumbNavigation contenfulData={[portfolio]}/>
     </Layout>
   )
 }

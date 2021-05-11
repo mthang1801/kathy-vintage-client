@@ -1,11 +1,11 @@
 import React from "react"
 import Layout from "../containers/Layout"
-import Banners from "../components/Carousel/Banners"
-import Categories from "../components/Carousel/Categories"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
 import useLanguage from "../components/Global/useLanguage"
-function Home() {
+import { ProductsWrapper } from "./styles/new-products.styles"
+import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
+function NewProductsPage() {
   let { newProducts } = useStaticQuery(query)
   const { i18n, lang } = useLanguage()
   const { product } = i18n.store.data[lang].translation
@@ -15,15 +15,16 @@ function Home() {
 
   return (
     <Layout>
-      <Banners />
-      <Categories />
-      {newProductsEdges?.length ? (
-        <ProductsList
-          header={product.newProducts}
-          products={newProductsEdges}
-          isAllProducts={newProductsTotalCount === newProductsEdges.length}
-        />
-      ) : null}
+      <BreadcrumbNavigation staticData={[product.newProducts]}/>
+      <ProductsWrapper>
+        {newProductsEdges?.length ? (
+          <ProductsList
+            header={product.newProducts}
+            products={newProductsEdges}
+            isAllProducts={newProductsTotalCount === newProductsEdges.length}
+          />
+        ) : null}
+      </ProductsWrapper>
     </Layout>
   )
 }
@@ -32,7 +33,6 @@ const query = graphql`
   query {
     newProducts: allContentfulProduct(
       sort: { fields: updatedAt, order: DESC }
-      limit: 18
     ) {
       edges {
         node {
@@ -56,4 +56,4 @@ const query = graphql`
   }
 `
 
-export default Home
+export default NewProductsPage

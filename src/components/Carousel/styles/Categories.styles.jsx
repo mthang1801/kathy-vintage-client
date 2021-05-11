@@ -18,9 +18,12 @@ export const CategoriesSliderContainer = styled.div`
 
 export const Title = styled.h3`
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   margin: 1rem 2.5rem 2rem 2.5rem;
+  @media screen and (min-width : 768px){
+    font-size : 1.5rem;
+  }
 `
 
 export const CategoryItem = styled.div`

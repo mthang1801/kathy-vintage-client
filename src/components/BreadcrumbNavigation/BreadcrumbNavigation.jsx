@@ -5,37 +5,30 @@ import {
 } from "./styles/BreadcrumbNavigation.styles"
 import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
-const BreadcrumbNavigation = ({
-  portfolio,
-  category,
-  productGroup,
-  product,
+const BreadcrumbNavigation = ({  
+  contenfulData, 
+  staticData
 }) => {
   const { theme } = useTheme()
-  const { lang } = useLanguage()
+  const { i18n, lang } = useLanguage()
+  const {breadcrumbs} = i18n.store.data[lang].translation
 
   return (
     <Wrapper theme={theme}>
-      {portfolio && (
-        <BreadcrumbItemLink to={`/${portfolio.slug}`} theme={theme}>
-          {lang === "en" ? portfolio.nameEn : portfolio.nameVi}{" "}
-        </BreadcrumbItemLink>
-      )}
-      {category && (
-        <BreadcrumbItemLink to={`/${category.slug}`} theme={theme}>
-          {lang === "en" ? category.nameEn : category.nameVi}{" "}
-        </BreadcrumbItemLink>
-      )}
-      {productGroup && (
-        <BreadcrumbItemLink to={`/${productGroup.slug}`} theme={theme}>
-          {lang === "en" ? productGroup.nameEn : productGroup.nameVi}{" "}
-        </BreadcrumbItemLink>
-      )}
-      {product && (
-        <BreadcrumbItemLink to={`/${product.slug}`} theme={theme}>
-          {lang === "en" ? product.nameEn : product.nameVi}{" "}
-        </BreadcrumbItemLink>
-      )}
+      <BreadcrumbItemLink to={breadcrumbs.home.path} theme={theme}>
+          {breadcrumbs.home.name}
+      </BreadcrumbItemLink>
+      {contenfulData && contenfulData.map(dataItem => (
+        <BreadcrumbItemLink key={dataItem.contentful_id} to={`/${dataItem.slug}`} theme={theme}>
+        {lang === "en" ? dataItem.nameEn : dataItem.nameVi}{" "}
+      </BreadcrumbItemLink>
+      ))}
+      {staticData && staticData.map(dataItem => (
+        <BreadcrumbItemLink key={dataItem.id} to={`${dataItem.path}`} theme={theme}>
+        {dataItem.title}
+      </BreadcrumbItemLink>
+      ))}
+      
     </Wrapper>
   )
 }

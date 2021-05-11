@@ -51,7 +51,6 @@ export const DiscountBrand = styled.div`
   position : absolute;  
   text-align : center;
   background-color : red;
-  color : white;
+  color : #ffea00 ;
   padding : 0.25rem 0.5rem;
-  
 `

@@ -198,12 +198,13 @@ export const en = {
       }      
     },    
     page : {
-      home: {
+      home: {        
         categoryCarouselTitle: "Products Category",        
       }
     },
     product : {
       newProducts : {
+        id : "new-products",
         styledTitle : "Top",
         title :"New Products", 
         path : "/new-products",
@@ -268,6 +269,12 @@ export const en = {
     },
     others : {
       seeAll : "See All"
+    },
+    breadcrumbs : {
+      home : {
+        name : "Home", 
+        path : "/"
+      }
     }
   },
   

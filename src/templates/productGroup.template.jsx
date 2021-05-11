@@ -7,7 +7,7 @@ const ProductGroupTemplate = (props) => {
   const {pageContext: {category, portfolio, productGroup}} = props;
   return (
     <Layout>
-      <BreadcrumbNavigation portfolio={portfolio} category={category} productGroup={productGroup}/>      
+      <BreadcrumbNavigation contenfulData={[portfolio, category, productGroup]}/>      
     </Layout>
   )
 }

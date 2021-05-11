@@ -10,13 +10,16 @@ import {
 import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
 import ProductItem from "./ProductItem"
-const ProductsList = ({ header, products }) => {
+const ProductsList = ({ header, products, isAllProducts }) => {
   const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
   const {
     others: { seeAll },
   } = i18n.store.data[lang].translation
-  products = window.innerWidth < 500 ? products.filter((_,idx) => idx < 10).map(product => product) : products;
+  products =
+    window.innerWidth < 500
+      ? products.filter((_, idx) => idx < 10).map(product => product)
+      : products
   return (
     <Wrapper theme={theme}>
       {header && (
@@ -27,9 +30,11 @@ const ProductsList = ({ header, products }) => {
             )}{" "}
             {header.title}
           </Title>
-          <ReadMoreLink to={header.path}>
-            <span>{seeAll}</span> <span>{header.pathIcon}</span>
-          </ReadMoreLink>
+          {!isAllProducts && (
+            <ReadMoreLink to={header.path}>
+              <span>{seeAll}</span> <span>{header.pathIcon}</span>
+            </ReadMoreLink>
+          )}
         </Header>
       )}
       {products?.length ? (

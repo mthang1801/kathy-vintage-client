@@ -40,6 +40,8 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+
+    
   //create portfolio page
   data.pages.edges.forEach(({node : portfolio}) => {
     createPage({
