@@ -5,30 +5,51 @@ import {
 } from "./styles/BreadcrumbNavigation.styles"
 import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
-const BreadcrumbNavigation = ({  
-  contenfulData, 
-  staticData
-}) => {
+const BreadcrumbNavigation = ({ contenfulData, staticData }) => {
   const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
-  const {breadcrumbs} = i18n.store.data[lang].translation
+  const { breadcrumbs } = i18n.store.data[lang].translation
 
+  const accumulativePath = index => {    
+    let path = ""
+    if (contenfulData?.length) {
+      for (let i = 0; i <= index; i++) {
+        path += `/${contenfulData[i].slug}`
+      }
+    }    
+    return path
+  }
+  const formatBreadcrumbLinkName = (dataItem) => {
+    const fullName = lang === "en" ? dataItem.nameEn : dataItem.nameVi;    
+    const shortName = fullName.length > 60 ? fullName.slice(0,60) + "..." : fullName;
+    return {fullName, shortName}
+  }
   return (
     <Wrapper theme={theme}>
       <BreadcrumbItemLink to={breadcrumbs.home.path} theme={theme}>
-          {breadcrumbs.home.name}
+        {breadcrumbs.home.name}
       </BreadcrumbItemLink>
-      {contenfulData && contenfulData.map(dataItem => (
-        <BreadcrumbItemLink key={dataItem.contentful_id} to={`/${dataItem.slug}`} theme={theme}>
-        {lang === "en" ? dataItem.nameEn : dataItem.nameVi}{" "}
-      </BreadcrumbItemLink>
-      ))}
-      {staticData && staticData.map(dataItem => (
-        <BreadcrumbItemLink key={dataItem.id} to={`${dataItem.path}`} theme={theme}>
-        {dataItem.title}
-      </BreadcrumbItemLink>
-      ))}
-      
+      {contenfulData &&
+        contenfulData.map((dataItem, idx) => (
+          <BreadcrumbItemLink
+            key={dataItem.contentful_id}
+            to={accumulativePath(idx)}
+            theme={theme}
+            title={formatBreadcrumbLinkName(dataItem).fullName}
+          >
+            {formatBreadcrumbLinkName(dataItem).shortName}{" "}
+          </BreadcrumbItemLink>
+        ))}
+      {staticData &&
+        staticData.map(dataItem => (
+          <BreadcrumbItemLink
+            key={dataItem.id}
+            to={`${dataItem.path}`}
+            theme={theme}
+          >
+            {dataItem.title}
+          </BreadcrumbItemLink>
+        ))}
     </Wrapper>
   )
 }

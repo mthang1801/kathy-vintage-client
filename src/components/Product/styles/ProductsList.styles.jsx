@@ -4,7 +4,7 @@ export const Wrapper = styled.section`
   width: 90vw;
   background-color : ${({theme}) => theme.card} !important;
   border-radius : 1rem;
-  padding : 0.75rem 1rem;
+  padding : 0.75rem 1rem 3rem 1rem;
   margin: 4rem auto;    
 `
 
@@ -76,4 +76,8 @@ export const Body = styled.div`
     grid-template-columns : repeat(8, 1fr);
   }
   
+`
+
+export const Footer = styled.div`
+
 `

@@ -31,7 +31,7 @@ const CategoriesSlider = () => {
   const settings = {
     infinite: true,
     autoplay: true,
-    slidesToShow: window.innerWidth < 600 ? 3 : window.innerWidth < 992 ? 4 : 6,
+    slidesToShow: window.innerWidth < 600 ? 2 : window.innerWidth < 992 ? 4 : 6,
     speed: 500,
     slidesPerRow: 1,
     slidesToScroll: 1,

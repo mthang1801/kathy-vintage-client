@@ -48,6 +48,21 @@ const query = graphql`
               src
             }
           }
+          portfolio{
+            nameEn
+            nameVi
+            slug
+          }
+          category{
+            nameEn
+            nameVi
+            slug
+          }
+          productGroup{
+            nameEn
+            nameVi
+            slug
+          }
           updatedAt(formatString: "DD/MM/YYYY")
         }
       }

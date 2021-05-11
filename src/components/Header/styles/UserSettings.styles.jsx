@@ -27,7 +27,7 @@ export const Dropdown = styled.div`
   top : 100%;
   right: -1rem;    
   display : ${({show}) => show ? "block" : "none"};
-  background-color: ${({theme}) => theme.body};
+  background-color: ${({theme}) => theme.card};
   border : 1px solid ${({theme}) => theme.border};
   border-radius : 0.5rem;
   box-shadow : 0 2px 10px ${({theme})=> theme.border};
