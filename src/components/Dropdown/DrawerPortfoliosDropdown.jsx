@@ -28,8 +28,8 @@ const QUERY_PORTFOLIOS = graphql`
       edges {
         node {
           contentful_id
-          nameVi
-          nameEn
+          name_vi
+          name_en
           slug
           image {
             fluid {
@@ -38,8 +38,8 @@ const QUERY_PORTFOLIOS = graphql`
           }
           categories {
             contentful_id
-            nameVi
-            nameEn
+            name_vi
+            name_en
             slug
             image {
               title
@@ -106,10 +106,10 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                         <ListItemImage>
                           <Image
                             fluid={portfolio.image.fluid}
-                            alt={portfolio.nameVi}
+                            alt={portfolio[`name_${lang}`]}
                           />
                         </ListItemImage>
-                        <ListItemText>{portfolio.nameVi}</ListItemText>
+                        <ListItemText>{portfolio[`name_${lang}`]}</ListItemText>
                       </ListItemContainer>
                       <ListItemIcon>
                         <ExpandMoreIcon />
@@ -132,7 +132,7 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                                 alt={category?.image?.title}
                               />
                             </ListItemImage>
-                            <ListItemText>{category.nameVi}</ListItemText>
+                            <ListItemText>{category[`name_${lang}`]}</ListItemText>
                           </ListItem>
                         ))
                       : null}
@@ -153,15 +153,11 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                     <ListItemImage>
                       <Image
                         fluid={portfolio.image.fluid}
-                        alt={portfolio.nameVi}
+                        alt={portfolio[`name_${lang}`]}
                       />
                     </ListItemImage>
                     <ListItemText>
-                      {lang === "en"
-                        ? portfolio.nameEn
-                        : lang === "vi"
-                        ? portfolio.nameVi
-                        : ""}
+                      {portfolio[`name_${lang}`]}
                     </ListItemText>
                   </ListItemContainer>
                   <ListItemIcon

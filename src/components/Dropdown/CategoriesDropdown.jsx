@@ -30,7 +30,7 @@ const CategoriesDropdown = ({ parentSlug, categories }) => {
           theme={theme}          
           onMouseEnter={() => onMouseEnterCategory(category.contentful_id)}
         >
-          <ListItemText>{lang === "en" ? category.nameEn : category.nameVi}</ListItemText>
+          <ListItemText>{category[`name_${lang}`]}</ListItemText>
           {selectedCategory.id === category.contentful_id && (
             <ProductGroupsContainer>
               <ProductGroupsDropdown

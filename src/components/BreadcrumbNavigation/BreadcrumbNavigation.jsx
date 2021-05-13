@@ -20,7 +20,7 @@ const BreadcrumbNavigation = ({ contenfulData, staticData }) => {
     return path
   }
   const formatBreadcrumbLinkName = (dataItem) => {
-    const fullName = lang === "en" ? dataItem.nameEn : dataItem.nameVi;    
+    const fullName = dataItem[`name_${lang}`]
     const shortName = fullName.length > 60 ? fullName.slice(0,60) + "..." : fullName;
     return {fullName, shortName}
   }

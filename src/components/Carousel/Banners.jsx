@@ -47,7 +47,7 @@ const QUERY_IMAGES_CAROUSEL = graphql`
         node {
           name
           childImageSharp {
-            fluid{
+            fluid (quality : 100){
               ...GatsbyImageSharpFluid
             }
           }

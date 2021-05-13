@@ -251,17 +251,17 @@ export const en = {
         listContacts : [
           {
             name : "facebook", 
-            path : "fb.com",
+            path : "https://fb.com",
             icon : <FiFacebook/>
           },
           {
             name : "twitter", 
-            path : "twitter.com",
+            path : "https://twitter.com",
             icon : <FiTwitter/>
           },
           {
             name : "instagram",
-            path : "instagram.com",
+            path : "https://instagram.com",
             icon : <AiOutlineInstagram/>
           }
         ]

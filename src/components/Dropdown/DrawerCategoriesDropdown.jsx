@@ -11,8 +11,10 @@ import {
 } from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
 import { useTheme } from "../../theme"
+import useLanguage from "../Global/useLanguage"
 const DrawerCategoriesDropdown = ({ portfolio, categories, onNavigate }) => {
   const { theme } = useTheme()
+  const {lang} = useLanguage()
   return (
     <TabletWrapper open={categories?.length} theme={theme}>
       {categories?.length &&
@@ -22,9 +24,9 @@ const DrawerCategoriesDropdown = ({ portfolio, categories, onNavigate }) => {
               onClick={() => onNavigate(`/${portfolio.slug}/${category.slug}`)}
             >
               <ListItemImage>
-                <Image fluid={category?.image?.fluid} alt={category?.nameVi} />
+                <Image fluid={category?.image?.fluid} alt={category[`name_${lang}`]} />
               </ListItemImage>
-              <ListItemText>{category.nameVi}</ListItemText>
+              <ListItemText>{category[`name_${lang}`]}</ListItemText>
             </ListItem>
           </ViewPort>
         ))}

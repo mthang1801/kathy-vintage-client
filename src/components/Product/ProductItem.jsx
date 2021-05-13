@@ -23,14 +23,7 @@ const ProductItem = ({ product }) => {
         100
       : product.unitPrice
 
-  const productName =
-    lang === "en"
-      ? product.nameEn.length > 60
-        ? product.nameEn.slice(0, 60) + "..."
-        : product.nameEn
-      : product.nameVi.length > 60
-      ? product.nameVi.slice(0, 60) + "..."
-      : product.nameVi
+  const productName = product[`name_${lang}`].length > 60 ? product[`name_${lang}`].slice(0,60) + "..." : product[`name_${lang}`]   
 
   const path =
     product?.portfolio?.slug &&
@@ -44,7 +37,7 @@ const ProductItem = ({ product }) => {
         <DiscountBrand>{-product.discountPercentage}%</DiscountBrand>
       )}
       <ImageContainer>
-        <Image fluid={product.images[0]?.fluid} alt={product.nameVi} />
+        <Image fluid={product.images[0]?.fluid} alt={product[`name_${lang}`]} />
       </ImageContainer>
       <ProductText>
         <ProductName>{productName}</ProductName>

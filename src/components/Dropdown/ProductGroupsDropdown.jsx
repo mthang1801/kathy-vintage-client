@@ -14,7 +14,7 @@ const ProductGroupsDropdown = ({ parentSlug, productGroups }) => {
           to={`${parentSlug}/${productGroup.slug}`}
           theme={theme}
         >
-          <ListItemText>{lang === "en" ? productGroup.nameEn : productGroup.nameVi}</ListItemText>
+          <ListItemText>{productGroup[`name_${lang}`]}</ListItemText>
         </ListItem>
       ))}
     </List>

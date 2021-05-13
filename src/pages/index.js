@@ -36,8 +36,8 @@ const query = graphql`
     ) {
       edges {
         node {
-          nameEn
-          nameVi
+          name_en
+          name_vi
           slug
           unitPrice
           isDiscount
@@ -45,22 +45,22 @@ const query = graphql`
           shippingFee
           images {
             fluid {
-              src
+              ...GatsbyContentfulFluid
             }
           }
           portfolio{
-            nameEn
-            nameVi
+            name_en
+            name_vi
             slug
           }
           category{
-            nameEn
-            nameVi
+            name_en
+            name_vi
             slug
           }
           productGroup{
-            nameEn
-            nameVi
+            name_en
+            name_vi
             slug
           }
           updatedAt(formatString: "DD/MM/YYYY")

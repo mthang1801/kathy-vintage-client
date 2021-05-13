@@ -81,7 +81,7 @@ const NavigationBar = () => {
                   : portfolioIcons[`portfolioId_${portfolio.portfolioId}`].icon}
               </ListItemIcon>
               <ListItemText>
-                {lang === "en" ? portfolio.nameEn : portfolio.nameVi}
+                {portfolio[`name_${lang}`]}
               </ListItemText>
               {portfolio.contentful_id === selectedPortfolio.id && (
                 <CategoriesContainer>
@@ -128,8 +128,8 @@ const PORFOLIOS_LIST = graphql`
         node {
           portfolioId
           contentful_id
-          nameVi
-          nameEn
+          name_vi
+          name_en
           slug
           image {
             title
@@ -139,8 +139,8 @@ const PORFOLIOS_LIST = graphql`
           }
           category {
             contentful_id
-            nameVi
-            nameEn
+            name_vi
+            name_en
             slug
             image {
               title
@@ -151,8 +151,8 @@ const PORFOLIOS_LIST = graphql`
           }
           categories {
             contentful_id
-            nameVi
-            nameEn
+            name_vi
+            name_en
             slug
             image {
               title
@@ -162,8 +162,8 @@ const PORFOLIOS_LIST = graphql`
             }
             productGroups {
               contentful_id
-              nameVi
-              nameEn
+              name_vi
+              name_en
               slug
             }
           }

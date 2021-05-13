@@ -14,7 +14,7 @@ const AddressContact = () => {
         {listContacts.map(contact => (
           <ContactLink
             key={contact.name}
-            to={contact.path}
+            href={contact.path}
             title={contact.name}
             icon={contact.name}
           >

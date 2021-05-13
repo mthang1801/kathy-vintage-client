@@ -35,8 +35,8 @@ const query = graphql`
     ) {
       edges {
         node {
-          nameEn
-          nameVi
+          name_en
+          name_vi
           slug
           unitPrice
           isDiscount
@@ -48,18 +48,18 @@ const query = graphql`
             }
           }
           portfolio{
-            nameEn
-            nameVi
+            name_en
+            name_vi
             slug
           }
           category{
-            nameEn
-            nameVi
+            name_en
+            name_vi
             slug
           }
           productGroup{
-            nameEn
-            nameVi
+            name_en
+            name_vi
             slug
           }
           updatedAt(formatString: "DD/MM/YYYY")

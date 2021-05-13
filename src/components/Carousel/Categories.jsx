@@ -64,9 +64,9 @@ const CategoriesSlider = () => {
               <Image fluid={category.image.fluid} alt={category.image.title} />
             </ImageContainer>
             <CategoryItemText
-              title={lang === "en" ? category.nameEn : category.nameVi}
+              title={category[`name_${lang}`]}
             >
-              {lang === "en" ? category.nameEn : category.nameVi}
+              {category[`name_${lang}`]}
             </CategoryItemText>
           </CategoryItem>
         ))}
@@ -81,8 +81,8 @@ const CATEGORIES_QUERY = graphql`
       edges {
         node {
           contentful_id
-          nameVi
-          nameEn
+          name_vi
+          name_en
           slug
           portfolio {
             contentful_id
