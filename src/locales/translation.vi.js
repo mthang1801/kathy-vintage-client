@@ -25,7 +25,8 @@ import {
 import { FiTwitter, FiFacebook, FiLogOut } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import {BsBagFill, BsBag, BsArrowRepeat} from "react-icons/bs"
-import {BiGlasses} from "react-icons/bi"
+import {BiGlasses, BiPurchaseTag} from "react-icons/bi"
+import {MdAddShoppingCart} from "react-icons/md"
 
 export const vi = {
   translation: {
@@ -219,6 +220,21 @@ export const vi = {
         title : "Sản phẩm mới", 
         path : "/new-products",
         pathIcon : <BsArrowRepeat/>
+      },
+      productPage : {
+        manufactor:  "Nhà sản xuất",
+        origin : "Xuất xứ",
+        size : "Kích thước",
+        quantity : "Số lượng",
+        colors : "Màu sắc",
+        buttonAddToCart : {
+          name : "Thêm vào giỏ hàng",
+          icon : <MdAddShoppingCart/>
+        },
+        buttonPurchase : {
+          name : "Mua ngay",
+          icon : <BiPurchaseTag/>
+        }
       }
     },
     footer: {

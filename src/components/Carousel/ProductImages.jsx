@@ -11,7 +11,10 @@ const ProductImages = ({ images, setActiveImage, activeImage }) => {
       speed: 500,
       slidesToShow: Math.min(4, images.length),
       slidesToScroll: 2,
-      arrows : false 
+      arrows : false ,
+      autoplay : true, 
+      autoplaySpeed : 2000, 
+      cssEase : "linear"      
   }
   return (
     <Wrapper>

@@ -11,7 +11,8 @@ export const Wrapper = styled.div`
   }
 `
 
-export const ImageContainer =styled.div`    
+export const ImageContainer =styled.div`  
+  cursor : pointer;  
   height : 5rem;
   width : 5rem;
   & > img{

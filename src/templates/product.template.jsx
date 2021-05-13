@@ -1,18 +1,13 @@
 import React, { useState } from "react"
 import Layout from "../containers/Layout"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
-import {
-  ProductOverviewContainer,
-  ProductImages,
-  PresentImage,
-  CarouselImages,
-  ProductInfo
-} from "./styles/product.template.styles"
+import { ProductOverviewContainer } from "./styles/product.template.styles"
 import { graphql } from "gatsby"
-import ProductImageMagnifier from "../components/Product/ProductImageMagnifier"
-import ProductImagesCarousel from "../components/Carousel/ProductImages"
 import useLanguage from "../components/Global/useLanguage"
-
+import { useTheme } from "../theme"
+import Button from "@material-ui/core/Button"
+import ProductImages from "../components/Product/ProductImages"
+import ProductInfo from "../components/Product/ProductInfo"
 export const query = graphql`
   query($contentful_id: String) {
     product: contentfulProduct(contentful_id: { eq: $contentful_id }) {
@@ -28,10 +23,13 @@ export const query = graphql`
       shippingFee
       origin
       manufactor
-      size
+      sizes
       isDiscount
       discountPercentage
-
+      colors{
+        color 
+        image
+      }
       images {
         file {
           url
@@ -65,56 +63,20 @@ export const query = graphql`
 `
 
 const ProductProduct = props => {
-  const { product } = props.data
-  const {
-    contentful_id,
-    slug,
-    name_vi,
-    name_en,
-    status,
-    quantity,
-    unitPrice,
-    isRecommended,
-    shippingFee,
-    origin,
-    manufactor,
-    size,
-    isDiscount,
-    discountPercentage,
-    images,
-    portfolio,
-    category,
-    productGroup,
-    updatedAt,
-  } = product  
-  const [activeImage, setActiveImage] = useState(0)
-  
+  const { product } = props.data   
+  const { i18n, lang } = useLanguage()
+  const {theme} = useTheme();
+  const { productPage } = i18n.store.data[lang].translation.product
+  const { portfolio, category, productGroup, images } = product
+
   return (
     <Layout>
       <BreadcrumbNavigation
         contenfulData={[portfolio, category, productGroup, product]}
       />
-      <ProductOverviewContainer>
-        <ProductImages>
-          <PresentImage>
-            <ProductImageMagnifier
-              image={`https:${images[activeImage].file.url}`}
-              width={images[activeImage].file.details.image.width}
-            />
-          </PresentImage>
-          <CarouselImages>
-            {images.length ? (
-              <ProductImagesCarousel
-                images={images}
-                activeImage={activeImage}
-                setActiveImage={setActiveImage}
-              />
-            ) : null}
-          </CarouselImages>
-        </ProductImages>
-        <ProductInfo>
-          <h3></h3>
-        </ProductInfo>
+      <ProductOverviewContainer theme={theme}>
+        <ProductImages images={images} />
+        <ProductInfo product={product} />
       </ProductOverviewContainer>
     </Layout>
   )
