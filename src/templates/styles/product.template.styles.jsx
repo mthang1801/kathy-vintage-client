@@ -14,3 +14,11 @@ export const ProductOverviewContainer = styled.div`
     grid-gap : 1rem;
   }
 `
+
+export const Box = styled.section`
+  width : 95vw;
+  margin : 2rem auto;
+  background-color :  ${({theme}) => theme.card};
+  padding : 0.75rem;
+  border-radius : 0.5rem;
+`

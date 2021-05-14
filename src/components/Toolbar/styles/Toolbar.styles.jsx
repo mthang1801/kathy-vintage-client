@@ -4,7 +4,7 @@ export const Wrapper = styled.header`
   width : 100%; 
   height: 65px;
   display : flex;
-  background-color : ${({theme}) => theme.header.background} !important; 
+  background-color : ${({theme}) => theme.card} !important; 
   border-bottom:1px solid ${({theme}) => theme.border};  
   padding: 0.75rem 0.25rem;
   @media screen and (min-width : 768px){
@@ -14,6 +14,7 @@ export const Wrapper = styled.header`
   @media screen and (min-width : 992px){
     padding : 0.75rem 2rem;
   }
+  z-index: 100;
 `
 
 export const Flex = styled.div`

@@ -58,8 +58,30 @@ export const DiscountPercentage = styled.span`
   color: var(--red-2);
 `
 
+export const ButtonGroup = styled.div`
+  display : flex; 
+  margin : 2rem 0 ;
+  flex-direction : column ; 
+  align-items : center;
+  justify-content : center;
+  & > button {
+    margin : 0.5rem 0; 
+  }
+  @media screen and (min-width: 768px){
+    flex-direction : row; 
+    justify-content : flex-start;
+    & > button {
+      margin : 0 ;
+      &:not(:first-child){
+        margin-left : 1rem;
+      }
+    }
+  }
+`
+
 export const CustomButton = styled.button`
-    width : 300px;          
+    width : 80%;          
+    max-width : 300px;
     outline : none ; 
     border: none ; 
     cursor : pointer;
@@ -70,7 +92,7 @@ export const CustomButton = styled.button`
     text-transform : capitalize ;
     padding : 0.5rem 2.5rem;
     & svg{ 
-      font-size : 1.25rem;
+      font-size : 1.6rem;
       margin-bottom : 0.4rem;      
     };
     & *{
@@ -82,14 +104,9 @@ export const CustomButton = styled.button`
     }
     color : var(--white);
     border-radius : 0.5rem;
-    @media screen and (max-width : 768px){
-      &:last-child{
-        margin-left : 0 !important;
-        margin-top : 1rem !important;
-      }  
+    @media screen and (min-width : 768px){
+      width : 40%;
     }
-    
-    
 `
 
 export const ProductColorItem = styled.div`
@@ -105,7 +122,7 @@ export const ProductColorItem = styled.div`
       height: 100%;      
     }
     & span{
-      margin-left : 0.5rem;
+      padding: 0.25rem 0.5rem;
     }
     transition : all 0.5s linear;
     cursor : pointer;

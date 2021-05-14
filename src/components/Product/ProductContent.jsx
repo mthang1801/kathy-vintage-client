@@ -8,7 +8,8 @@ import {
   Flex,
   Grid,
   CustomButton,
-  ProductColorItem
+  ProductColorItem,
+  ButtonGroup
 } from "./styles/ProductContent.styles"
 import Button from "@material-ui/core/Button"
 import useLanguage from "../Global/useLanguage"
@@ -122,7 +123,7 @@ const ProductContent = ({ product }) => {
         quantity={productQuantity}
         setQuantity={setProductQuantity}
       />
-      <Flex spacing={2} style={{ marginTop: "2rem" }}>
+      <ButtonGroup>
         <CustomButton color="primary" variant="contained" size="large">
           <span>{productPage.buttonAddToCart.icon}</span>
           <span>{productPage.buttonAddToCart.name}</span>
@@ -131,7 +132,7 @@ const ProductContent = ({ product }) => {
           <span>{productPage.buttonPurchase.icon}</span>
           <span>{productPage.buttonPurchase.name}</span>
         </CustomButton>
-      </Flex>
+      </ButtonGroup>
     </Wrapper>
   )
 }

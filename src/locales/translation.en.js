@@ -217,6 +217,10 @@ export const en = {
         size: "Size",
         quantity: "Quantity",
         colors : "Colors",
+        information : {
+          title : "Product Information",
+          category : "Category"
+        },
         buttonAddToCart: {
           name: "Thêm vào giỏ hàng",
           icon: <MdAddShoppingCart />,
