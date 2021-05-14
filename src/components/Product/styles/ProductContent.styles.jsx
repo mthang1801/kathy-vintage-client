@@ -99,10 +99,10 @@ export const ProductColorItem = styled.div`
     background-color : ${({theme}) => theme.background};
     border-radius : 0.5rem;
     overflow : hidden;
+    min-height: 3rem;
     & img{
       width : 40%;
-      height: 100%;
-      overflow : hidden;
+      height: 100%;      
     }
     & span{
       margin-left : 0.5rem;
@@ -110,7 +110,7 @@ export const ProductColorItem = styled.div`
     transition : all 0.5s linear;
     cursor : pointer;
     ${({active}) => active && `
-      background-color : #64b5f6;      
+      background-color : #42a5f5;      
       border:  1px solid transparent;
     `}
 `

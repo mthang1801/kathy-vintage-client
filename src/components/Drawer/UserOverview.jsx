@@ -11,7 +11,7 @@ import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
 import useLanguage from "../Global/useLanguage"
-import {SettingItem, SettingItemIcon, SettingItemText, SettingButton,SettingItemLink} from "../Header/styles/UserSettingsDropdown.styles"
+import {SettingItem, SettingItemIcon, SettingItemText, SettingButton,SettingItemLink} from "../Toolbar/styles/UserSettingsDropdown.styles"
 import {connect} from "react-redux";
 import {signOutUser} from "../../redux/user/user.actions"
 

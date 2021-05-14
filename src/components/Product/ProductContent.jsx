@@ -9,12 +9,12 @@ import {
   Grid,
   CustomButton,
   ProductColorItem
-} from "./styles/ProductInfo.styles"
+} from "./styles/ProductContent.styles"
 import Button from "@material-ui/core/Button"
 import useLanguage from "../Global/useLanguage"
 import QuantityControl from "../Controls/QuantityControl"
 import { useTheme } from "../../theme"
-const ProductInfo = ({ product }) => {
+const ProductContent = ({ product }) => {
   const {
     contentful_id,
     slug,
@@ -89,7 +89,7 @@ const ProductInfo = ({ product }) => {
         <Grid>
           {colors.map(({color, image}) => (
             <ProductColorItem theme={theme} active={selectedColor === color} onClick={() => onChangeColor(color)}>
-              <img src={image} alt={color}/>
+              {image && <img src={image} alt={color}/>}
               <span>{color}</span>
             </ProductColorItem>
           ))}
@@ -136,4 +136,4 @@ const ProductInfo = ({ product }) => {
   )
 }
 
-export default ProductInfo
+export default ProductContent

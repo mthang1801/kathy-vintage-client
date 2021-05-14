@@ -1,16 +1,19 @@
-import React from 'react'
-import Header from "../components/Header/Header"
+import React from "react"
+import Toolbar from "../components/Toolbar/Toolbar"
 import NavigationBar from "../components/Navigation/NavigationBar"
 import Footer from "../components/Footer/Footer"
-import {Container, MainContent} from "./styles/Layout.styles"
+import { Container, MainContent, Header } from "./styles/Layout.styles"
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <Container>
-     <Header/> 
-     <NavigationBar/>
-     <MainContent>{children}</MainContent>
-     <Footer/>
+      <Header>
+        <Toolbar />
+        <NavigationBar />
+      </Header>
+
+      <MainContent>{children}</MainContent>
+      <Footer />
     </Container>
   )
 }

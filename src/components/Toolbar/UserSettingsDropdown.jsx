@@ -15,7 +15,7 @@ import {
 } from "./styles/UserSettingsDropdown.styles"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { navigate } from "gatsby"
-import { useTheme } from "../../theme/"
+import { useTheme } from "../../theme"
 import {connect} from "react-redux";
 import {signOutUser} from "../../redux/user/user.actions";
 const UserSettingsDropdown = ({ user, signOut }) => {

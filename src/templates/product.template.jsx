@@ -7,7 +7,7 @@ import useLanguage from "../components/Global/useLanguage"
 import { useTheme } from "../theme"
 import Button from "@material-ui/core/Button"
 import ProductImages from "../components/Product/ProductImages"
-import ProductInfo from "../components/Product/ProductInfo"
+import ProductContent from "../components/Product/ProductContent"
 export const query = graphql`
   query($contentful_id: String) {
     product: contentfulProduct(contentful_id: { eq: $contentful_id }) {
@@ -76,7 +76,7 @@ const ProductProduct = props => {
       />
       <ProductOverviewContainer theme={theme}>
         <ProductImages images={images} />
-        <ProductInfo product={product} />
+        <ProductContent product={product} />
       </ProductOverviewContainer>
     </Layout>
   )
