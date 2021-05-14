@@ -227,10 +227,10 @@ export const vi = {
         size : "Kích thước",
         quantity : "Số lượng",
         colors : "Màu sắc",
-        information : {
-          title : "Thông tin sản phẩm",
-          category : "Danh mục"
-        },
+        information : "Thông tin sản phẩm" ,
+        description :"Mô tả sản phẩm",
+        readMore : "Xem thêm", 
+        shortenText : "Thu gọn",
         buttonAddToCart : {
           name : "Thêm vào giỏ hàng",
           icon : <MdAddShoppingCart/>

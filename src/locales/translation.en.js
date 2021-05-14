@@ -217,10 +217,10 @@ export const en = {
         size: "Size",
         quantity: "Quantity",
         colors : "Colors",
-        information : {
-          title : "Product Information",
-          category : "Category"
-        },
+        information : "Product Information" ,
+        description :"Product Description",
+        readMore : "Read More", 
+        shortenText : "Shorten Text",
         buttonAddToCart: {
           name: "Thêm vào giỏ hàng",
           icon: <MdAddShoppingCart />,

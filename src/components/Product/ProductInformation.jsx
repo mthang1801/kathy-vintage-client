@@ -18,7 +18,7 @@ const ProductInformation = ({ product }) => {
   console.log(information)
   return (
     <>
-      <Title>{productPage.information.title}</Title>
+      <Title>{productPage.information}</Title>
       <Table>
         {information.map(({ key, value, values }) => (
           <TableRow key={key} theme={theme}>

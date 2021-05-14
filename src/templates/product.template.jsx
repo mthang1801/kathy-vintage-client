@@ -8,6 +8,7 @@ import { useTheme } from "../theme"
 import ProductImages from "../components/Product/ProductImages"
 import ProductContent from "../components/Product/ProductContent"
 import ProductInformation from "../components/Product/ProductInformation"
+import ProductDescription from "../components/Product/ProductDescription"
 
 const ProductProduct = props => {
   const { product } = props.data   
@@ -27,6 +28,9 @@ const ProductProduct = props => {
       </ProductOverviewContainer>
       <Box theme={theme}>
         <ProductInformation product={product}/>
+      </Box>
+      <Box theme={theme}>
+        <ProductDescription product={product}/>
       </Box>
     </Layout>
   )
@@ -59,6 +63,12 @@ export const query = graphql`
         key
         value
         values
+      }
+      description_vi{
+        description_vi
+      }
+      description_en{
+        description_en
       }
       colors{
         color 
