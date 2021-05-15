@@ -44,7 +44,7 @@ export const ProductPrice = styled.div`
   font-size : 1.2rem;
 `
 
-export const DiscountBrand = styled.div`
+export const DiscountBrand = styled.span`
   z-index : 1;
   top : 0;
   right : 0;  

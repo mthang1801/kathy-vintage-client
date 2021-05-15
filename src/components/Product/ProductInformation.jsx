@@ -15,18 +15,19 @@ const ProductInformation = ({ product }) => {
   const { information_en, information_vi, images } = product
   const {theme} = useTheme()
   const information = lang === "en" ? information_en : information_vi
-  console.log(information)
+  
   return (
     <>
       <Title>{productPage.information}</Title>
-      <Table>
+      {information?.length ? (<Table>
         {information.map(({ key, value, values }) => (
           <TableRow key={key} theme={theme}>
             <TableCell theme={theme}>{key}</TableCell>
             <TableCell>{values? values.map(valueItem => <p key={uuidv4()}>{valueItem}</p>) : value}</TableCell>           
           </TableRow>
         ))}
-      </Table>
+      </Table>) : null}
+      
     </>
   )
 }

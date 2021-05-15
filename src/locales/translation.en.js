@@ -221,6 +221,7 @@ export const en = {
         description :"Product Description",
         readMore : "Read More", 
         shortenText : "Shorten Text",
+        relevantProducts : "Relevant Products",
         buttonAddToCart: {
           name: "Thêm vào giỏ hàng",
           icon: <MdAddShoppingCart />,

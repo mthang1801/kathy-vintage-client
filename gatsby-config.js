@@ -13,7 +13,7 @@ module.exports = {
     description: "Women Clothes",
     author: "MVT",
     image: "/images/tn-shop.jpg",
-    siteUrl: "https://mvthang-official.netlify.app/"
+    siteUrl: "https://tn-clothes-shop.netlify.app"
   },
   plugins: [
     `gatsby-plugin-material-ui`,
@@ -35,6 +35,12 @@ module.exports = {
         name : "images-carousel",
         path : path.join(__dirname, `src`, `images`, `carousel`)
       }
+    },
+    {
+      resolve : "gatsby-plugin-disqus",
+      options: {
+        shortname: process.env.GATSBY_DISQUS_NAME,
+      },
     }
   ],
 }

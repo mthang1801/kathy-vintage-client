@@ -116,9 +116,9 @@ export const ProductColorItem = styled.div`
     background-color : ${({theme}) => theme.background};
     border-radius : 0.5rem;
     overflow : hidden;
-    min-height: 3rem;
+    min-height: 2rem;
     & img{
-      width : 40%;
+      width : 35%;
       height: 100%;      
     }
     & span{

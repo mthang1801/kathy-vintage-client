@@ -44,12 +44,15 @@ exports.createPages = async ({ graphql, actions }) => {
             contentful_id
             slug            
             portfolio{
+              contentful_id
               slug
             }
             category{
+              contentful_id
               slug
             }
             productGroup{
+              contentful_id
               slug
             }
             createdAt
@@ -105,7 +108,9 @@ exports.createPages = async ({ graphql, actions }) => {
       path : `/products/${product.slug}`,
       component : path.resolve("./src/templates/product.template.jsx"),
       context : {
-        contentful_id : product.contentful_id
+        contentful_id : product.contentful_id,
+        category_contentful_id : product.category.contentful_id, 
+        productGroup_contentful_id : product.productGroup.contentful_id
       }
     })
     if(product?.portfolio?.slug && product?.category?.slug && product?.productGroup?.slug){
@@ -113,7 +118,9 @@ exports.createPages = async ({ graphql, actions }) => {
         path : `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`, 
         component : path.resolve("./src/templates/product.template.jsx"), 
         context : {          
-          contentful_id : product.contentful_id
+          contentful_id : product.contentful_id,
+          category_contentful_id : product.category.contentful_id, 
+          productGroup_contentful_id : product.productGroup.contentful_id
         },       
       })
     }

@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid"
 const ProductImages = ({ images, setActiveImage, activeImage }) => {
   const settings = {          
       dots: false,
-      infinite: true,
+      infinite: true,      
       speed: 500,
       slidesToShow: Math.min(4, images.length),
       slidesToScroll: 2,

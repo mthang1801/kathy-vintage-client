@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { Title } from "./styles/ProductDescription.styles"
 import { validateYouTubeUrl, checkImageUrl } from "../../utils/checkUrl"
 import ReactPlayer from "react-player"
@@ -6,7 +6,12 @@ import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
 import Markdown from "markdown-to-jsx"
 import PostImageItem from "./PostImageItem"
-import { MarkdownContainer, BlurSection, ReadMore, ReadMoreLink } from "./styles/ProductDescription.styles"
+import {
+  MarkdownContainer,
+  BlurSection,
+  ReadMore,
+  ReadMoreLink,
+} from "./styles/ProductDescription.styles"
 
 const ProductDescription = ({ product }) => {
   const { i18n, lang } = useLanguage()
@@ -16,7 +21,7 @@ const ProductDescription = ({ product }) => {
     lang === "en"
       ? product.description_en.description_en
       : product.description_vi.description_vi
-  const [isReadMore, setIsReadMore] = useState(false);
+  const [isReadMore, setIsReadMore] = useState(false)
   const HeadingsMainOfPost = ({ children, ...props }) => {
     return <h2 {...props}>{children}</h2>
   }
@@ -27,7 +32,14 @@ const ProductDescription = ({ product }) => {
   const AnchorOfPost = ({ children, ...props }) => {
     const { href: uri } = props
     if (validateYouTubeUrl(uri)) {
-      return <ReactPlayer url={uri} controls width="650px" height="450px" />
+      return (
+        <ReactPlayer
+          url={uri}
+          controls
+          width={window.innerWidth < 600 ? "100%" : "650px"}
+          height={window.innerWidth < 600 ? "300px" : "450px"}
+        />
+      )
     }
     if (checkImageUrl(uri)) {
       return <PostImageItem src={uri} title={uri} />
@@ -47,9 +59,7 @@ const ProductDescription = ({ product }) => {
   const ImageOfPost = ({ children, ...props }) => {
     const staticVideoPattern = /(watch|videos|video)+/
     if (staticVideoPattern.test(props.src)) {
-      return (
-        <ReactPlayer src={`https:${props.src}`}/>
-      )
+      return <ReactPlayer src={`https:${props.src}`} />
     }
     return <PostImageItem src={props.src} title={props.title} />
   }
@@ -72,14 +82,17 @@ const ProductDescription = ({ product }) => {
 
   return (
     <>
-      <Title>{productPage.description}</Title>            
-      <MarkdownContainer readMore={isReadMore}>
+      <Title>{productPage.description}</Title>
+      {description && (<><MarkdownContainer readMore={isReadMore}>
         {!isReadMore && <BlurSection theme={theme} />}
-        <Markdown options={options}>{description}</Markdown>        
+        <Markdown options={options}>{description}</Markdown>
       </MarkdownContainer>
-      <ReadMore>
-        <ReadMoreLink onClick={() => setIsReadMore(prevState => !prevState)}>{isReadMore ? productPage.shortenText : productPage.readMore}</ReadMoreLink>
-      </ReadMore>
+        <ReadMore>
+          <ReadMoreLink onClick={() => setIsReadMore(prevState => !prevState)}>
+            {isReadMore ? productPage.shortenText : productPage.readMore}
+          </ReadMoreLink>
+        </ReadMore></>)}
+
     </>
   )
 }

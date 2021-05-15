@@ -231,6 +231,7 @@ export const vi = {
         description :"Mô tả sản phẩm",
         readMore : "Xem thêm", 
         shortenText : "Thu gọn",
+        relevantProducts : "Sản phẩm tương tự",
         buttonAddToCart : {
           name : "Thêm vào giỏ hàng",
           icon : <MdAddShoppingCart/>
