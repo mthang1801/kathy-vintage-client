@@ -113,7 +113,7 @@ exports.createPages = async ({ graphql, actions }) => {
         productGroup_contentful_id : product.productGroup.contentful_id
       }
     })
-    if(product?.portfolio?.slug && product?.category?.slug && product?.productGroup?.slug){
+    if(product.portfolio.slug && product.category.slug && product.productGroup.slug){
       createPage({
         path : `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`, 
         component : path.resolve("./src/templates/product.template.jsx"), 

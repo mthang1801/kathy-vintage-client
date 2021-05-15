@@ -3,7 +3,7 @@ import {Link} from "gatsby"
 export const Wrapper = styled.section`
   width : 100%;
   height: 2.5rem;  
-  background : ${({theme}) => theme.breadcrumb.background};  
+  background : ${({theme}) => theme?.breadcrumb?.background || theme?.body};  
   align-items :center;  
   padding : 0 2rem;      
   display : none ; 
