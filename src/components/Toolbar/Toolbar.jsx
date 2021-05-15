@@ -81,13 +81,9 @@ const Header = ({ userLoading, userFetched, user }) => {
           </SearchContainer>
         </Flex>
         <Flex>
-          <Responsive>
-            <Cart />
-          </Responsive>
+          <Cart/>
           {user ? RenderUserSettings() : RenderUserAuth()}
-
-          <MobileResponsive>
-            <Cart />
+          <MobileResponsive>            
             <ButtonMenu onClick={onOpenMenu} />
           </MobileResponsive>
         </Flex>

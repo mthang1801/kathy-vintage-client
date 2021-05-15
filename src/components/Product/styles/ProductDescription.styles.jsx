@@ -39,7 +39,7 @@ export const ReadMoreLink = styled.div`
   color : var(--blue-1);
   border: 1px solid var(--blue-1);
   border-radius : 3px;
-  box-shadow : 0 0px 3px 3px var(--light-gray-1);
+  box-shadow : ${({theme}) => theme.boxShadow};
   transition : var(--mainTransition);
   cursor: pointer;
   &:hover{

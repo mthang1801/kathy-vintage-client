@@ -187,6 +187,10 @@ export const vi = {
     },
     cart: {
       name: "Giỏ hàng",
+      cartPreview : "Giỏ hàng của bạn",
+      cartEmpty : "Giỏ hàng trống",
+      cartAlert : "✅ Thêm vào giỏ hàng thành công",
+      goToCheckout : "Xem giỏ hàng và thanh toán"
     },
     search: {
       placeholder: "Tìm kiếm...",

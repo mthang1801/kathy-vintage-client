@@ -177,6 +177,10 @@ export const en = {
     },
     cart: {
       name: "Cart",
+      cartPreview : "Cart Preview",
+      cartEmpty : "Empty Item",
+      cartAlert : "✅ Product is added to cart",
+      goToCheckout : "Go to Checkout"
     },
     search: {
       placeholder: "Search...",
@@ -221,7 +225,7 @@ export const en = {
         description :"Product Description",
         readMore : "Read More", 
         shortenText : "Shorten Text",
-        relevantProducts : "Relevant Products",
+        relevantProducts : "Relevant Products",        
         buttonAddToCart: {
           name: "Thêm vào giỏ hàng",
           icon: <MdAddShoppingCart />,

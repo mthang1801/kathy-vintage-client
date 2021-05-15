@@ -9,43 +9,52 @@ import {
   Grid,
   CustomButton,
   ProductColorItem,
-  ButtonGroup
+  ButtonGroup,
 } from "./styles/ProductContent.styles"
 import Button from "@material-ui/core/Button"
 import useLanguage from "../Global/useLanguage"
 import QuantityControl from "../Controls/QuantityControl"
 import { useTheme } from "../../theme"
-const ProductContent = ({ product }) => {
+import { addProductItemToCart } from "../../redux/cart/cart.actions"
+import { connect } from "react-redux"
+import { selectCartItems } from "../../redux/cart/cart.selectors"
+import { createStructuredSelector } from "reselect"
+
+const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
   const {
-    contentful_id,
-    slug,
     name_vi,
     name_en,
-    status,
-    quantity,
     unitPrice,
-    isRecommended,
-    shippingFee,
     origin,
     manufactor,
     sizes,
     isDiscount,
     discountPercentage,
-    colors,  
+    colors,
   } = product
   const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
   const { productPage } = i18n.store.data[lang].translation.product
   const [selectedSize, setSelectedSize] = useState(sizes[0])
-  const [selectedColor, setSelectedColor ] = useState(colors ? colors[0].color : null)
-  const [productQuantity, setProductQuantity] = useState(0)
+  const [selectedColor, setSelectedColor] = useState(
+    colors ? colors[0].color : null
+  )
+  const [productQuantity, setProductQuantity] = useState(
+    cartItems.find(item => item.contentful_id === product.contentful_id)
+      ?.quantity || 1
+  )
   const productPrice =
     isDiscount && discountPercentage
       ? (unitPrice * (100 - parseFloat(discountPercentage))) / 100
       : unitPrice
   const onChangeColor = color => {
-    setSelectedColor(color);
+    setSelectedColor(color)
   }
+
+  const onAddProductItemToCart = () => {
+    addProductItemToCart(product, productQuantity)
+  }
+
   return (
     <Wrapper theme={theme}>
       <Title>{lang === "en" ? name_en : name_vi}</Title>
@@ -62,7 +71,7 @@ const ProductContent = ({ product }) => {
         )}
       </div>
       {/* Price component */}
-      <Flex spacing={0.5} theme={theme} style={{padding : "1rem"}}>
+      <Flex spacing={0.5} theme={theme} style={{ padding: "1rem" }}>
         <OfficialPrice>
           {productPrice.toLocaleString("de-DE", {
             style: "currency",
@@ -84,17 +93,21 @@ const ProductContent = ({ product }) => {
       {/* Colors product */}
       {colors?.length ? (
         <>
-        <Flex>
-          <span>{productPage.colors}:</span>
-        </Flex>
-        <Grid>
-          {colors.map(({color, image}) => (
-            <ProductColorItem theme={theme} active={selectedColor === color} onClick={() => onChangeColor(color)}>
-              {image && <img src={image} alt={color}/>}
-              <span>{color}</span>
-            </ProductColorItem>
-          ))}
-        </Grid>
+          <Flex>
+            <span>{productPage.colors}:</span>
+          </Flex>
+          <Grid>
+            {colors.map(({ color, image }) => (
+              <ProductColorItem
+                theme={theme}
+                active={selectedColor === color}
+                onClick={() => onChangeColor(color)}
+              >
+                {image && <img src={image} alt={color} />}
+                <span>{color}</span>
+              </ProductColorItem>
+            ))}
+          </Grid>
         </>
       ) : null}
       {/* Sizes product */}
@@ -124,7 +137,7 @@ const ProductContent = ({ product }) => {
         setQuantity={setProductQuantity}
       />
       <ButtonGroup>
-        <CustomButton color="primary" variant="contained" size="large">
+        <CustomButton color="primary" variant="contained" size="large" onClick={onAddProductItemToCart}>
           <span>{productPage.buttonAddToCart.icon}</span>
           <span>{productPage.buttonAddToCart.name}</span>
         </CustomButton>
@@ -137,4 +150,13 @@ const ProductContent = ({ product }) => {
   )
 }
 
-export default ProductContent
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+})
+
+const mapDispatchToProps = dispatch => ({
+  addProductItemToCart: (product, quantity) =>
+    dispatch(addProductItemToCart(product, quantity)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductContent)

@@ -53,6 +53,10 @@ export const GlobalStyles = createGlobalStyle`
 
     --mainTransition : all 0.2s;
   }
+  html{
+    width : 100vw;
+    overflow-x :hidden;
+  }
   body{    
     background-color : ${({theme}) => theme.body}  !important  ;
     color : ${({theme}) => theme.text} !important;
@@ -61,5 +65,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family:"Roboto", "Helvetica", "Arial", sans-serif !important;
     transition: all 0.5s linear;
   }
-  
+  div[role=button]{
+    outline : none ;     
+  }
 `

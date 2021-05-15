@@ -38,7 +38,7 @@ export const theme = {
         }
       },     
       border: "#e0e0e0",
-      boxShadow: "0 0 3px 3px rgba(0,0,0,0.15)",
+      boxShadow: "0 0 3px 3px #f5f5f5",
     },
     dark: {
       name : "dark",
@@ -77,7 +77,7 @@ export const theme = {
         }
       },
       border: "#616161",
-      boxShadow: "0 0 3px 5px #302f2f",
+      boxShadow: "0 0 3px 3px #302f2f",
     },
   },
 }

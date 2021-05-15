@@ -8,6 +8,7 @@ export const Container = styled.div`
 `
 
 export const MainContent = styled.div`
+  width : 100%;  
   flex : 1;
   margin-top : 60px;
   @media  screen and (min-width: 768px){

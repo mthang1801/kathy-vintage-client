@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from "gatsby"
 export const List = styled.section`
-border: 1px solid ${({ theme }) => theme.border};
+  border: 1px solid ${({ theme }) => theme.border};
   display: flex;
   flex-direction: column;
   background-color : ${({theme}) => theme.card};
@@ -25,7 +25,7 @@ export const ListItem = styled(Link)`
     & > ${ListItemText}{
       color: ${({ theme }) => theme.hover.text};      
     }    
-    background: ${({ theme }) => theme.background};
+    background: ${({ theme }) => theme.background};       
   }
 `
 

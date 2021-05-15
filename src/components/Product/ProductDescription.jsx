@@ -88,7 +88,7 @@ const ProductDescription = ({ product }) => {
         <Markdown options={options}>{description}</Markdown>
       </MarkdownContainer>
         <ReadMore>
-          <ReadMoreLink onClick={() => setIsReadMore(prevState => !prevState)}>
+          <ReadMoreLink onClick={() => setIsReadMore(prevState => !prevState)} theme={theme}>
             {isReadMore ? productPage.shortenText : productPage.readMore}
           </ReadMoreLink>
         </ReadMore></>)}

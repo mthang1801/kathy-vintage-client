@@ -15,9 +15,9 @@ import "whatwg-fetch"
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      
+      <PersistGate persistor={persistor}>
         <App>{element}</App>
-      
+      </PersistGate>
     </Provider>
   </ThemeProvider>
 )
