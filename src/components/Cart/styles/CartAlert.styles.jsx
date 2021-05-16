@@ -18,11 +18,12 @@ export const Wrapper = styled.div`
   border : 2px solid var(--blue-1);
   box-shadow : ${({theme}) => theme.boxShadow};
   background-color : ${({theme}) => theme.card};  
-  animation: ${CartAlertAnimation} 1.25s;
+  animation: ${CartAlertAnimation} 0.5s;
   font-size : 1rem;  
 `
 
 export const ButtonCheckout = styled(Link)`
+  display : block;
   text-transform : capitalize; 
   text-decoration : none;     
   outline : none ; 
@@ -32,7 +33,7 @@ export const ButtonCheckout = styled(Link)`
   border-radius : 0.5rem;
   padding : 0.75rem 1rem;
   color : #fff;
-  margin : 0.5rem auto;
+  margin : 1rem auto;
   &:hover{
     background : var(--red-3);
   }

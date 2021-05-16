@@ -18,6 +18,7 @@ import {
   removeProductFromCart,
 } from "../../redux/cart/cart.actions"
 import { BsTrash } from "react-icons/bs"
+import QuantityControl from "../Controls/QuantityControl"
 const CartItem = ({
   product,
   increaseProductQuantity,
@@ -68,7 +69,7 @@ const CartItem = ({
             </ButtonQuantity>
           </ProductQuantityControl>
           <div>
-            <strong> = {productPrice * product.quantity}</strong>
+            <strong> = {(productPrice * product.quantity).toLocaleString("de-DE")}</strong>
           </div>
         </ProductInfo>
       </ProductContent>

@@ -30,7 +30,7 @@ const CartDropdown = ({ cartItems }) => {
       ) : (
         <EmptyItem>{cart.cartEmpty}</EmptyItem>
       )}
-      <ButtonCheckout to="/checkout">{cart.goToCheckout}</ButtonCheckout>
+      <ButtonCheckout to="/checkout">{cart.checkoutButton}</ButtonCheckout>
     </Wrapper>
   )
 }

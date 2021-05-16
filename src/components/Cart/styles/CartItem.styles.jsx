@@ -29,7 +29,7 @@ export const ProductContent = styled.div`
 `
 
 export const ProductName = styled.h4`
-  font-weight : bold; 
+  font-weight : 400; 
   font-size : 0.9rem;
   text-transform : capitalize ;     
   overflow : hidden ;
@@ -40,6 +40,8 @@ export const ProductName = styled.h4`
 export const ProductInfo = styled.div`  
   margin : 0.75rem 0;
   display : flex;
+  flex-wrap : wrap;
+  justify-content : flex-start;
   align-items : center;
   & > *:not(:first-child){
     margin-left : 0.6rem;
@@ -49,8 +51,7 @@ export const ProductInfo = styled.div`
 export const ProductQuantityControl = styled.div`
   display : flex;
   align-items : center;
-  justify-content : center;
-  flex : 1;      
+  justify-content : center;  
   margin: 0 0.5rem;
 
 `
@@ -71,5 +72,9 @@ export const DeleteProduct = styled.div`
   text-align : center;
   & svg{
     font-size : 1.2rem;
+  }
+  transition : 0.25s all; 
+  &:hover{    
+    color : red;    
   }
 `

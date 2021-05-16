@@ -3,7 +3,7 @@ import Layout from "../containers/Layout"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
 import useLanguage from "../components/Global/useLanguage"
-import { ProductsWrapper } from "./styles/new-products.styles"
+import { ProductsWrapper } from "../styles/new-products.styles"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 function NewProductsPage() {
   let { newProducts } = useStaticQuery(query)  

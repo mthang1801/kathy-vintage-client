@@ -20,12 +20,12 @@ export const ListItem = styled(Link)`
   position : relative;  
   text-decoration: none;
   padding: 0.5rem 1rem;
-  width: 200px;
+  width: 200px;  
   &:hover {
     & > ${ListItemText}{
       color: ${({ theme }) => theme.hover.text};      
     }    
-    background: ${({ theme }) => theme.background};       
+    background: ${({ theme }) => theme.body};       
   }
 `
 

@@ -180,7 +180,7 @@ export const en = {
       cartPreview : "Cart Preview",
       cartEmpty : "Empty Item",
       cartAlert : "✅ Product is added to cart",
-      goToCheckout : "Go to Checkout"
+      checkoutButton : "Go to Checkout"
     },
     search: {
       placeholder: "Search...",
@@ -304,5 +304,13 @@ export const en = {
         path: "/",
       },
     },
+    dialog : {
+      agree : "Agree",
+      disagree : "Disagree",
+      removeProductFromCart : {
+        title : "Remove Product from cart.",
+        content : (name) => `<p>Are you sure to remove <strong>${name}</strong> from cart?</p>`
+      }
+    }
   },
 }

@@ -190,7 +190,7 @@ export const vi = {
       cartPreview : "Giỏ hàng của bạn",
       cartEmpty : "Giỏ hàng trống",
       cartAlert : "✅ Thêm vào giỏ hàng thành công",
-      goToCheckout : "Xem giỏ hàng và thanh toán"
+      checkoutButton : "Xem giỏ hàng và thanh toán"
     },
     search: {
       placeholder: "Tìm kiếm...",
@@ -312,6 +312,14 @@ export const vi = {
       home : {
         name : "Trang chủ", 
         path : "/"
+      }
+    },
+    dialog : {
+      agree : "Đồng ý",
+      disagree : "Hủy bỏ",
+      removeProductFromCart : {
+        title : "Loại bỏ sản phẩm khỏi giỏ hàng",
+        content : name => `<p>Bạn có chắc chắn muốn loại bỏ <strong>${name}</strong> khỏi giỏ hàng?</p>`
       }
     }
   },

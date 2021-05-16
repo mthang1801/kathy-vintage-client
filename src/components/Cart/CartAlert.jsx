@@ -21,7 +21,7 @@ const CartAlert = ({alertCart,removeAlertCart }) => {
   return (
     <Wrapper theme={theme}>    
       <div>{cart.cartAlert}</div>
-      <ButtonCheckout to="/checkout">{cart.goToCheckout}</ButtonCheckout>
+      <ButtonCheckout to="/checkout">{cart.checkoutButton}</ButtonCheckout>
     </Wrapper>
   )
 }
