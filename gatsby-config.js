@@ -1,5 +1,5 @@
-require("dotenv").config({path : ".env"})
-const path = require("path");
+require("dotenv").config({ path: ".env" })
+const path = require("path")
 
 /**
  * Configure your Gatsby site with this file.
@@ -13,14 +13,14 @@ module.exports = {
     description: "Women Clothes",
     author: "MVT",
     image: "/images/tn-shop.jpg",
-    siteUrl: "https://tn-clothes-shop.netlify.app"
+    siteUrl: "https://tn-clothes-shop.netlify.app",
   },
   plugins: [
     `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,    
-    `gatsby-plugin-image` ,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,    
+    `gatsby-transformer-sharp`,
     `gatsby-remark-images-contentful`,
     {
       resolve: `gatsby-source-contentful`,
@@ -30,17 +30,26 @@ module.exports = {
       },
     },
     {
-      resolve : `gatsby-source-filesystem`,
-      options : {
-        name : "images-carousel",
-        path : path.join(__dirname, `src`, `images`, `carousel`)
-      }
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "images-carousel",
+        path: path.join(__dirname, `src`, `images`, `carousel`),
+      },
     },
     {
-      resolve : "gatsby-plugin-disqus",
+      resolve: "gatsby-plugin-disqus",
       options: {
         shortname: process.env.GATSBY_DISQUS_NAME,
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: false,
+      },
+    },
   ],
 }

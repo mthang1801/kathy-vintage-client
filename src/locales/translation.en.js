@@ -311,6 +311,15 @@ export const en = {
         title : "Remove Product from cart.",
         content : (name) => `<p>Are you sure to remove <strong>${name}</strong> from cart?</p>`
       }
-    }
+    },
+    checkout: {      
+      invoice: {
+        title : "Temporary Invoice",
+        totalBeforeTax: "Total Before Tax",
+        tax: "Tax VAT",
+        totalAfterTax: "Total Price",
+      },
+      button_proceed_order : "Proceed to Order"
+    },
   },
 }

@@ -7,7 +7,7 @@ export const CheckoutContainer  = styled.div`
   @media screen and (min-width : 768px){
     display : grid ; 
     grid-template-columns : 2fr 1.5fr; 
-    grid-gap : 0.5rem;
+    grid-gap : 1rem;
   }
   @media screen and (min-width : 992px){
     display : grid ; 
@@ -18,7 +18,5 @@ export const CartItems = styled.div`
   width : 100%;   
 `
 export const TemporaryInvoiceSide = styled.div`
-background-color :yellow;
-  width : 100%; 
-  height : 5rem;
+  width : 100%;   
 `

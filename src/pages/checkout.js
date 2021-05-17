@@ -10,6 +10,7 @@ import { selectCartItems } from "../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
 import { useTheme } from "../theme"
 import CheckoutProductItem from "../components/Checkout/CheckoutProductItem"
+import TemporaryInvoice from "../components/Checkout/TemporaryInvoice"
 const CheckoutPage = ({ cartItems }) => {
   const { theme } = useTheme()
   return (
@@ -21,7 +22,9 @@ const CheckoutPage = ({ cartItems }) => {
               <CheckoutProductItem key={`checkout-${product.contentful_id}`} product={product}/>
             ))}
           </CartItems>
-          <TemporaryInvoiceSide></TemporaryInvoiceSide>
+          <TemporaryInvoiceSide>
+            <TemporaryInvoice cartItems={cartItems}/>
+          </TemporaryInvoiceSide>
         </CheckoutContainer>
       ) : null}
     </Layout>

@@ -15,18 +15,14 @@ import {
   RiContactsLine,
   RiBillLine,
   RiShirtLine,
-  RiShirtFill
+  RiShirtFill,
 } from "react-icons/ri"
-import {
-  IoIosSettings,
-  IoMdSettings,    
-  IoIosGlasses,
-} from "react-icons/io"
+import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
 import { FiTwitter, FiFacebook, FiLogOut } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
-import {BsBagFill, BsBag, BsArrowRepeat} from "react-icons/bs"
-import {BiGlasses, BiPurchaseTag} from "react-icons/bi"
-import {MdAddShoppingCart} from "react-icons/md"
+import { BsBagFill, BsBag, BsArrowRepeat } from "react-icons/bs"
+import { BiGlasses, BiPurchaseTag } from "react-icons/bi"
+import { MdAddShoppingCart } from "react-icons/md"
 
 export const vi = {
   translation: {
@@ -120,24 +116,24 @@ export const vi = {
       },
     },
     portfolioIcons: {
-      portfolioId_1 : {
-        contentful_id: "3baS7MxSRZpYZ2fzItxVur",        
+      portfolioId_1: {
+        contentful_id: "3baS7MxSRZpYZ2fzItxVur",
         icon: <BsBag />,
         activeIcon: <BsBagFill />,
       },
-      portfolioId_2 : {
-        contentful_id: "4yTnyIDJGdpMuzPJgY7QCA",        
-        icon:<BiGlasses />,
+      portfolioId_2: {
+        contentful_id: "4yTnyIDJGdpMuzPJgY7QCA",
+        icon: <BiGlasses />,
         activeIcon: <IoIosGlasses />,
       },
-      portfolioId_3 : {
-        contentful_id: "3f72lftmOXB4lPRTZJfI73",        
-        icon:<GiConverseShoe />,
+      portfolioId_3: {
+        contentful_id: "3f72lftmOXB4lPRTZJfI73",
+        icon: <GiConverseShoe />,
         activeIcon: <GiRunningShoe />,
       },
-      portfolioId_4 :{
-        contentful_id: "3pidDuLDjGd8D5oFc8AiE7",        
-        icon:<RiShirtLine />,
+      portfolioId_4: {
+        contentful_id: "3pidDuLDjGd8D5oFc8AiE7",
+        icon: <RiShirtLine />,
         activeIcon: <RiShirtFill />,
       },
     },
@@ -146,7 +142,7 @@ export const vi = {
         id: "home",
         name: "Trang chủ",
         path: "/",
-        icon:<AiOutlineHome />,
+        icon: <AiOutlineHome />,
         activeIcon: <AiFillHome />,
       },
       products: {
@@ -187,10 +183,10 @@ export const vi = {
     },
     cart: {
       name: "Giỏ hàng",
-      cartPreview : "Giỏ hàng của bạn",
-      cartEmpty : "Giỏ hàng trống",
-      cartAlert : "✅ Thêm vào giỏ hàng thành công",
-      checkoutButton : "Xem giỏ hàng và thanh toán"
+      cartPreview: "Giỏ hàng của bạn",
+      cartEmpty: "Giỏ hàng trống",
+      cartAlert: "✅ Thêm vào giỏ hàng thành công",
+      checkoutButton: "Xem giỏ hàng và thanh toán",
     },
     search: {
       placeholder: "Tìm kiếm...",
@@ -214,37 +210,37 @@ export const vi = {
     },
     page: {
       home: {
-        categoryCarouselTitle: "Danh Mục Sản phẩm",        
+        categoryCarouselTitle: "Danh Mục Sản phẩm",
       },
     },
     product: {
-      newProducts : {
-        id : "new-products",
-        styledTitle : "TOP",
-        title : "Sản phẩm mới", 
-        path : "/new-products",
-        pathIcon : <BsArrowRepeat/>
+      newProducts: {
+        id: "new-products",
+        styledTitle: "TOP",
+        title: "Sản phẩm mới",
+        path: "/new-products",
+        pathIcon: <BsArrowRepeat />,
       },
-      productPage : {
-        manufactor:  "Nhà sản xuất",
-        origin : "Xuất xứ",
-        size : "Kích thước",
-        quantity : "Số lượng",
-        colors : "Màu sắc",
-        information : "Thông tin sản phẩm" ,
-        description :"Mô tả sản phẩm",
-        readMore : "Xem thêm", 
-        shortenText : "Thu gọn",
-        relevantProducts : "Sản phẩm tương tự",
-        buttonAddToCart : {
-          name : "Thêm vào giỏ hàng",
-          icon : <MdAddShoppingCart/>
+      productPage: {
+        manufactor: "Nhà sản xuất",
+        origin: "Xuất xứ",
+        size: "Kích thước",
+        quantity: "Số lượng",
+        colors: "Màu sắc",
+        information: "Thông tin sản phẩm",
+        description: "Mô tả sản phẩm",
+        readMore: "Xem thêm",
+        shortenText: "Thu gọn",
+        relevantProducts: "Sản phẩm tương tự",
+        buttonAddToCart: {
+          name: "Thêm vào giỏ hàng",
+          icon: <MdAddShoppingCart />,
         },
-        buttonPurchase : {
-          name : "Mua ngay",
-          icon : <BiPurchaseTag/>
-        }
-      }
+        buttonPurchase: {
+          name: "Mua ngay",
+          icon: <BiPurchaseTag />,
+        },
+      },
     },
     footer: {
       about: {
@@ -305,22 +301,32 @@ export const vi = {
         ],
       },
     },
-    others : {
-      seeAll : "Xem Tất cả"
+    others: {
+      seeAll: "Xem Tất cả",
     },
-    breadcrumbs : {
-      home : {
-        name : "Trang chủ", 
-        path : "/"
-      }
+    breadcrumbs: {
+      home: {
+        name: "Trang chủ",
+        path: "/",
+      },
     },
-    dialog : {
-      agree : "Đồng ý",
-      disagree : "Hủy bỏ",
-      removeProductFromCart : {
-        title : "Loại bỏ sản phẩm khỏi giỏ hàng",
-        content : name => `<p>Bạn có chắc chắn muốn loại bỏ <strong>${name}</strong> khỏi giỏ hàng?</p>`
-      }
-    }
+    dialog: {
+      agree: "Đồng ý",
+      disagree: "Hủy bỏ",
+      removeProductFromCart: {
+        title: "Loại bỏ sản phẩm khỏi giỏ hàng",
+        content: name =>
+          `<p>Bạn có chắc chắn muốn loại bỏ <strong>${name}</strong> khỏi giỏ hàng?</p>`,
+      },
+    },
+    checkout: {
+      invoice: {
+        title : "Hóa đơn Tạm tính",
+        totalBeforeTax: "Tổng tiền trước thuế",
+        tax: "Thuế VAT",
+        totalAfterTax: "Thành tiền",
+      },
+      button_proceed_order : "Tiến hành đặt hàng"
+    },
   },
 }
