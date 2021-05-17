@@ -120,7 +120,8 @@ export const en = {
           required : "This field is required",
           fullName : "You need to type first name and last name",
           invalidPhone : "Invalid phone number"
-        }
+        },
+        buttonSubmit : "Complete"
       }
     },
     portfolioIcons: {
@@ -333,7 +334,17 @@ export const en = {
         tax: "Tax VAT",
         totalAfterTax: "Total Price",
       },
-      button_proceed_order : "Proceed to Order"
+      button_proceed_order : "Proceed to Order",
+      userInformation : {
+        phone : "Phone",
+        address : "Address",   
+        ward : "Ward",
+        district : "District",
+        city : "City",
+        button_change_information : "Update",
+        button_create_new_information : "Create new Information",
+        button_proceed_order : "Proceed Order"
+      }
     },
 
   },

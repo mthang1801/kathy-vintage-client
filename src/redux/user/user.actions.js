@@ -161,11 +161,11 @@ const updateUserInformationFail = (error) => ({
   payload : error
 })
 
-export const updateUserInformation = (information) => dispatch => {
+export const updateUserInformation = (information) => async dispatch => {
   try {
     dispatch(updateUserInformationStart());
-    const updateUser = await userDB.updateUserInformation(information);
-    
+    const updatedUser = await userDB.updateUserInformation(information);
+    dispatch(updateUserInformationSuccess(updatedUser));
   } catch (error) {
     dispatch(updateUserInformationFail(error.message));
   }

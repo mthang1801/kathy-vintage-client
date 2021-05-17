@@ -9,23 +9,37 @@ import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import localData from "../../database/local.json"
 
-const WrapperUserInformationForm = () => {
+const WrapperUserInformationForm = ({
+  user,
+  updateUserInformation,
+  isUpdate,
+}) => {
   const { i18n, lang } = useLanguage()
   const { information } = i18n.store.data[lang].translation.user
   const { theme } = useTheme()
-  return <UserInformationForm information={information} theme={theme} />
+  return (
+    <UserInformationForm
+      information={information}
+      theme={theme}
+      updateUserInformation={updateUserInformation}
+      user={user}
+      isUpdate={isUpdate}
+    />
+  )
 }
 
 class UserInformationForm extends React.Component {
-  state = {
+  INITIAL_STATE = {
     cities: localData,
     districts: [],
     wards: [],
     fullname: {
       name: "fullname",
       nameField: this.props.information.fullname,
-      value: "",
-      isValid: false,
+      value: this.props.isUpdate ? this.props.user.information.fullname : "",
+      isValid: this.props.isUpdate
+        ? !!this.props.user.information.fullname
+        : false,
       rules: {
         isFullName: true,
         required: true,
@@ -36,8 +50,10 @@ class UserInformationForm extends React.Component {
     phone: {
       name: "phone",
       nameField: this.props.information.phone,
-      value: "",
-      isValid: false,
+      value: this.props.isUpdate ? this.props.user.information.phone : "",
+      isValid: this.props.isUpdate
+        ? !!this.props.user.information.phone
+        : false,
       rules: {
         isValidPhone: true,
         required: true,
@@ -48,24 +64,24 @@ class UserInformationForm extends React.Component {
     city: {
       name: "city",
       nameField: this.props.information.city,
-      value: "",
+      value: this.props.isUpdate ? this.props.user.information.city : "",
       errorMessage: "",
     },
     district: {
       name: "district",
       nameField: this.props.information.district,
-      value: "",
+      value: this.props.isUpdate ? this.props.user.information.district : "",
     },
     ward: {
       name: "ward",
       nameField: this.props.information.ward,
-      value: "",
+      value: this.props.isUpdate ? this.props.user.information.ward : "",
     },
     address: {
       name: "address",
       nameField: this.props.information.address,
-      value: "",
-      isValid: false,
+      value:  this.props.isUpdate ? this.props.user.information.address : "",
+      isValid: this.props.isUpdate ? !!this.props.user.information.address : false,
       rules: {
         required: true,
       },
@@ -74,6 +90,9 @@ class UserInformationForm extends React.Component {
     },
     addressType: "home",
     validation: false,
+  }
+  state = {
+    ...this.INITIAL_STATE,
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -89,14 +108,39 @@ class UserInformationForm extends React.Component {
         this.setState({ districts: [], wards: [] })
       }
     }
-    if (prevState.district.value !== this.state.district.value ) {
+    if (prevState.district.value !== this.state.district.value) {
       if (this.state.district.value && this.state.districts.length) {
-        const wardsList = this.state.districts.find(district => district.name === this.state.district.value).wards;
-        if(wardsList){
-          this.setState({wards : wardsList});
+        const wardsList = this.state.districts.find(
+          district => district.name === this.state.district.value
+        ).wards
+        if (wardsList) {
+          this.setState({ wards: wardsList })
         }
       } else {
         this.setState({ wards: [] })
+      }
+    }
+  }
+  componentDidMount() {
+    if (this.props.isUpdate) {
+      if (this.state.city.value) {
+        const districtLists = localData.find(
+          city => city.name === this.state.city.value
+        ).districts
+        if (districtLists) {
+          this.setState({ districts: districtLists })
+        }
+      }
+      
+      if (this.state.district.value ) {
+        const wardsList =localData.find(
+          city => city.name === this.state.city.value
+        ).districts.find(
+          district => district.name === this.state.district.value
+        ).wards
+        if (wardsList) {
+          this.setState({ wards: wardsList })
+        }
       }
     }
   }
@@ -153,7 +197,7 @@ class UserInformationForm extends React.Component {
       phone.isValid &&
       city.value &&
       district.value &&
-      ward.value && 
+      ward.value &&
       address.isValid
     ) {
       formIsValid = true
@@ -172,7 +216,43 @@ class UserInformationForm extends React.Component {
     this.setState({ ...updatedState })
   }
 
-  render() {    
+  resetForm = () => {
+    this.setState(this.INITIAL_STATE)
+  }
+
+  onSubmitForm = () => {
+    const {
+      fullname,
+      phone,
+      city,
+      district,
+      ward,
+      address,
+      validation,
+    } = this.state
+
+    if (
+      fullname.value &&
+      phone.value &&
+      city.value &&
+      district.value &&
+      ward.value &&
+      address.value &&
+      validation
+    ) {
+      const information = {
+        fullname: fullname.value,
+        phone: phone.value,
+        city: city.value,
+        district: district.value,
+        address: address.value,
+        ward: ward.value,
+      }
+      this.props.updateUserInformation(information)
+    }
+  }
+
+  render() {
     const {
       fullname,
       phone,
@@ -180,10 +260,10 @@ class UserInformationForm extends React.Component {
       districts,
       wards,
       validation,
-      city,      
+      city,
       district,
       ward,
-      address
+      address,
     } = this.state
     const { information } = this.props
 
@@ -298,7 +378,14 @@ class UserInformationForm extends React.Component {
           onChange={this.onChangeField}
           helperText={address.errorMessage}
         />
-        <Button disabled={!validation} color="primary" variant="contained">Submit</Button>
+        <Button
+          onClick={this.onSubmitForm}
+          disabled={!validation}
+          color="primary"
+          variant="contained"
+        >
+          {information.buttonSubmit}
+        </Button>
       </Wrapper>
     )
   }

@@ -126,7 +126,8 @@ export const vi = {
           required : "Trường này là bắt buộc",
           fullName : "Bạn cần phải điền cả họ và tên",
           invalidPhone : "Số điện thoại không hợp lệ"
-        }
+        },
+        buttonSubmit : "Hoàn tất"
       }
 
     },
@@ -341,7 +342,17 @@ export const vi = {
         tax: "Thuế VAT",
         totalAfterTax: "Thành tiền",
       },
-      button_proceed_order : "Tiến hành đặt hàng"
+      button_proceed_order : "Tiến hành đặt hàng",
+      userInformation : {
+        phone : "Điện thoại",
+        address : "Địa chỉ",       
+        ward : "Phường",
+        district : "Quận",
+        city : "Thành phố",  
+        button_change_information : "Sửa",
+        button_create_new_information : "Tạo mới thông tin",
+        button_proceed_order : "Tiến hành đặt hàng"
+      }
     },
   },
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   display : flex;   
   flex-wrap : wrap;
   flex-direction : column;   

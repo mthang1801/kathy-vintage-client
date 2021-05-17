@@ -6,9 +6,12 @@ export const ContentContainer= styled.div`
   @media screen and (min-width: 992px){
     width : 90vw;
   }
+  & > *:not(:last-child){
+    margin-bottom : 1rem;
+  }
 `
 
-export const Form = styled.div`
+export const FormContainer = styled.div`
   width : 100% ;   
   max-width : 600px;
   border : 1px solid ${({theme}) => theme.border};
