@@ -10,6 +10,7 @@ export const CheckoutContainer  = styled.div`
     grid-gap : 1rem;
   }
   @media screen and (min-width : 992px){
+    width : 90vw;
     display : grid ; 
     grid-template-columns : 3fr 1.25fr; 
   }

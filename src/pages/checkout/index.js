@@ -1,16 +1,16 @@
 import React from "react"
-import Layout from "../containers/Layout"
+import Layout from "../../containers/Layout"
 import {
   CheckoutContainer,
   CartItems,
   TemporaryInvoiceSide,
-} from "../styles/checkout.styles"
+} from "../../styles/checkout.styles"
 import { connect } from "react-redux"
-import { selectCartItems } from "../redux/cart/cart.selectors"
+import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
-import { useTheme } from "../theme"
-import CheckoutProductItem from "../components/Checkout/CheckoutProductItem"
-import TemporaryInvoice from "../components/Checkout/TemporaryInvoice"
+import { useTheme } from "../../theme"
+import CheckoutProductItem from "../../components/Checkout/CheckoutProductItem"
+import TemporaryInvoice from "../../components/Checkout/TemporaryInvoice"
 const CheckoutPage = ({ cartItems }) => {
   const { theme } = useTheme()
   return (

@@ -3,6 +3,7 @@ import {Wrapper, List, ListItem, Title} from "./styles/TemporaryInvoice.styles"
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
+import {navigate} from "gatsby";
 const tax = 10; 
 
 const TemporaryInvoice = ({ cartItems }) => {
@@ -16,6 +17,10 @@ const TemporaryInvoice = ({ cartItems }) => {
         : acc + item.unitPrice,
     0
   )  
+ 
+  const onClickProceedOrder = () => {
+    navigate("/checkout/shipping")
+  }
   return (
     <Wrapper>
       <List theme={theme}>
@@ -34,7 +39,7 @@ const TemporaryInvoice = ({ cartItems }) => {
         </ListItem>
       </List>
     
-        <Button color="secondary" variant="contained" style={{display : "block",width : "100%"}}>{checkout.button_proceed_order}</Button>
+        <Button color="secondary" variant="contained" style={{display : "block",width : "100%"}} onClick={onClickProceedOrder}>{checkout.button_proceed_order}</Button>
       
     </Wrapper>
   )

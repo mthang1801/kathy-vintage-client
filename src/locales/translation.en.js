@@ -108,6 +108,20 @@ export const en = {
         name: "Sign out",
         icon: <FiLogOut />,
       },
+      information : {
+        title : "Form Information",
+        fullname : "Full Name",
+        phone : "Phone Number",
+        city : "Select City",
+        district : "Select District",
+        ward : "Select Ward",
+        address : "Select Address",
+        errorMessages : {
+          required : "This field is required",
+          fullName : "You need to type first name and last name",
+          invalidPhone : "Invalid phone number"
+        }
+      }
     },
     portfolioIcons: {
       portfolioId_1: {
@@ -321,5 +335,6 @@ export const en = {
       },
       button_proceed_order : "Proceed to Order"
     },
+
   },
 }

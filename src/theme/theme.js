@@ -25,7 +25,10 @@ export const theme = {
         },
       },
       background: "#f0f0f0",
-      card: "#fff",
+      card: "#fff",      
+      form : {
+        background : "#e0e0e0"
+      },
       hover : {
         background : "#f5f5f5",
         text : "#ffc107"
@@ -65,6 +68,9 @@ export const theme = {
       },
       background: "#2c2c2c",
       card: "#2d2f31",
+      form : {
+        background : "#242424"
+      },
       hover: {
         background : "#343a40",
         text: "#ffc107"

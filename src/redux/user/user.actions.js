@@ -146,3 +146,27 @@ export const restoreAccount = (email) => {
   })
  
 }
+
+const updateUserInformationStart = () => ({
+  type : userActionTypes.UPDATE_USER_INFORMATION_START
+})
+
+const updateUserInformationSuccess = (updatedUser) => ({
+  type : userActionTypes.UPDATE_USER_INFORMATION_SUCCESS, 
+  payload : updatedUser
+})
+
+const updateUserInformationFail = (error) => ({
+  type : userActionTypes.UPDATE_USER_INFORMATION_FAIL, 
+  payload : error
+})
+
+export const updateUserInformation = (information) => dispatch => {
+  try {
+    dispatch(updateUserInformationStart());
+    const updateUser = await userDB.updateUserInformation(information);
+    
+  } catch (error) {
+    dispatch(updateUserInformationFail(error.message));
+  }
+}

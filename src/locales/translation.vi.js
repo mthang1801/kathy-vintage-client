@@ -114,6 +114,21 @@ export const vi = {
         name: "Đăng xuất",
         icon: <FiLogOut />,
       },
+      information : {
+        title : "Thông tin giao hàng",
+        fullname : "Họ và tên",
+        phone : "Số điện thoại",
+        city : "Thành phố",
+        district : "Quận/ Huyện",
+        ward : "Phường/ Xã",
+        address : "Địa chỉ",
+        errorMessages : {
+          required : "Trường này là bắt buộc",
+          fullName : "Bạn cần phải điền cả họ và tên",
+          invalidPhone : "Số điện thoại không hợp lệ"
+        }
+      }
+
     },
     portfolioIcons: {
       portfolioId_1: {

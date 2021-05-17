@@ -164,3 +164,14 @@ export const restoreAccount = (email) => {
     }
   })
 }
+
+export const updateUserInformation = (information) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const currentUser = firebase.auth.currentUser();
+      console.log(currentUser)
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
