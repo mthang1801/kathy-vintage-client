@@ -4,14 +4,14 @@ import {
   List,
   ListItem,
   Title,
-} from "./styles/TemporaryInvoice.styles"
+} from "./styles/Invoice.styles"
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
 const tax = 10
 
-const TemporaryInvoice = ({ cartItems }) => {
+const Invoice = ({ cartItems, isPayment }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
   const { checkout } = i18n.store.data[lang].translation
@@ -64,4 +64,4 @@ const TemporaryInvoice = ({ cartItems }) => {
   )
 }
 
-export default TemporaryInvoice
+export default Invoice

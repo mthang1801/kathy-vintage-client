@@ -348,6 +348,11 @@ export const en = {
         button_change_information : "Update",
         button_create_new_information : "Create new Information",
         button_proceed_order : "Proceed Order",        
+      },
+      payment : {
+        listOfProducts: "List Of Products",
+        typeOfShipping : "Type of Shipping",
+        typeOfPayment : "Type of Payment",
       }
     },
 

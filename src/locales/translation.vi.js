@@ -356,7 +356,11 @@ export const vi = {
         button_change_information : "Sửa",
         button_create_new_information : "Tạo mới thông tin",
         button_proceed_order : "Tiến hành đặt hàng",
-        
+      },
+      payment : {
+        listOfProducts: "Danh sách sản phẩm",
+        typeOfShipping : "Phương thức vận chuyển",
+        typeOfPayment : "Phương thức thanh toán"
       }
     },
   },

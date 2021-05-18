@@ -10,7 +10,7 @@ import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
 import { useTheme } from "../../theme"
 import CheckoutProductItem from "../../components/Checkout/CheckoutProductItem"
-import TemporaryInvoice from "../../components/Checkout/TemporaryInvoice"
+import Invoice from "../../components/Checkout/Invoice"
 import EmptyProductInCart from "../../components/Checkout/EmptyProductInCart"
 import {
   increaseProductQuantity,
@@ -29,7 +29,7 @@ const CheckoutPage = ({
     <Layout>
       {cartItems.length ? (
         <CheckoutContainer>
-          <CartItems theme={theme}>
+          <div>
             {cartItems.map(product => (
               <CheckoutProductItem
                 key={`checkout-${product.contentful_id}`}
@@ -39,10 +39,10 @@ const CheckoutPage = ({
                 removeProductFromCart={removeProductFromCart}
               />
             ))}
-          </CartItems>
-          <TemporaryInvoiceSide>
-            <TemporaryInvoice cartItems={cartItems} />
-          </TemporaryInvoiceSide>
+          </div>
+          <div>
+            <Invoice cartItems={cartItems} />
+          </div>
         </CheckoutContainer>
       ) : (
         <EmptyProductInCart />
