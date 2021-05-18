@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef,  createRef } from "react"
 import Layout from "../../containers/Layout"
 import { connect } from "react-redux"
 import { selectCurrentUser } from "../../redux/user/user.selectors"
 import { createStructuredSelector } from "reselect"
-import UserInformationForm from "../../components/User/UserInformationForm"
+import UserInformationForm from "../../components/Checkout/UserInformationForm"
 import { navigate } from "gatsby"
 import { useLocation } from "@reach/router"
 import {
@@ -14,7 +14,7 @@ import { useTheme } from "../../theme"
 import { updateUserInformation } from "../../redux/user/user.actions"
 import UserInformationShipping from "../../components/Checkout/UserInformationShipping"
 const Shipping = ({ user, updateUserInformation }) => {
-  const [updateInfo, setUpdateInfo] = useState(false)
+  const [updateInfo, setUpdateInfo] = useState(false);
   const { pathname } = useLocation()
   const { theme } = useTheme()
   useEffect(() => {
@@ -22,10 +22,19 @@ const Shipping = ({ user, updateUserInformation }) => {
       navigate("/auth", { state: { from: pathname } })
     }
   }, [user])
-
+  const userInfoRef = useRef(null);
+  
+  useEffect(() => {
+    if(!updateInfo){
+      window.scrollTo({
+        top : userInfoRef?.current?.offsetTop - 160 || 160, 
+        behavior : "smooth"
+      })
+    }
+  }, [updateInfo, userInfoRef])
   return (
     <Layout>
-      <ContentContainer>
+      <ContentContainer ref={userInfoRef}>
         {user.information && (
           <>
             <UserInformationShipping
@@ -37,7 +46,8 @@ const Shipping = ({ user, updateUserInformation }) => {
                 <UserInformationForm
                   user={user}
                   updateUserInformation={updateUserInformation}
-                  isUpdate
+                  setUpdateInfo={setUpdateInfo}
+                  isUpdate                  
                 />
               </FormContainer>
             )}
@@ -47,7 +57,7 @@ const Shipping = ({ user, updateUserInformation }) => {
           <FormContainer theme={theme}>
             <UserInformationForm
               user={user}
-              updateUserInformation={updateUserInformation}
+              updateUserInformation={updateUserInformation}              
             />
           </FormContainer>
         )}

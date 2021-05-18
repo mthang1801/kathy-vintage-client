@@ -14,12 +14,6 @@ import {
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import { BsTrash } from "react-icons/bs"
-import {
-  increaseProductQuantity,
-  decreaseProductQuantity,
-  removeProductFromCart,
-} from "../../redux/cart/cart.actions"
-import { connect } from "react-redux"
 import QuantityControl from "../Controls/QuantityControl"
 import AlertDialog from "../Dialog/AlertDialog"
 const CheckoutProductItem = ({
@@ -88,12 +82,4 @@ const CheckoutProductItem = ({
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  increaseProductQuantity: product =>
-    dispatch(increaseProductQuantity(product)),
-  decreaseProductQuantity: product =>
-    dispatch(decreaseProductQuantity(product)),
-  removeProductFromCart: product => dispatch(removeProductFromCart(product)),
-})
-
-export default connect(null, mapDispatchToProps)(CheckoutProductItem)
+export default CheckoutProductItem

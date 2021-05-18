@@ -44,7 +44,8 @@ const Cart = ({
     window.addEventListener("click", trackingUserClick)
     return () => window.removeEventListener("click", trackingUserClick)
   })
-  
+
+  const cartItemsQuantity = cartItems.reduce((acc,item) => acc + item.quantity, 0);
   return (
     <Wrapper
       type="button"
@@ -56,7 +57,7 @@ const Cart = ({
         <AiOutlineShoppingCart />
       </CartIcon>
       {cartItems.length > 0 ? (
-        <CartNumber>{cartItems.length}</CartNumber>
+        <CartNumber>{cartItemsQuantity}</CartNumber>
       ) : null}
       {showCartDropdown && (
         <Dropdown>

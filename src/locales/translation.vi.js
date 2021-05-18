@@ -121,13 +121,15 @@ export const vi = {
         city : "Thành phố",
         district : "Quận/ Huyện",
         ward : "Phường/ Xã",
-        address : "Địa chỉ",
+        address : "Địa chỉ",        
         errorMessages : {
           required : "Trường này là bắt buộc",
           fullName : "Bạn cần phải điền cả họ và tên",
           invalidPhone : "Số điện thoại không hợp lệ"
         },
-        buttonSubmit : "Hoàn tất"
+        buttonSubmit : "Hoàn tất",
+        buttonUpdate : "Cập nhật",
+        button_close_information_form : "Đóng"
       }
 
     },
@@ -336,6 +338,8 @@ export const vi = {
       },
     },
     checkout: {
+      cartEmpty : "Không có sản phẩm nào trong giỏ hàng" ,
+      buttonContinueShopping: "Tiếp tục mua sắm",
       invoice: {
         title : "Hóa đơn Tạm tính",
         totalBeforeTax: "Tổng tiền trước thuế",
@@ -351,7 +355,8 @@ export const vi = {
         city : "Thành phố",  
         button_change_information : "Sửa",
         button_create_new_information : "Tạo mới thông tin",
-        button_proceed_order : "Tiến hành đặt hàng"
+        button_proceed_order : "Tiến hành đặt hàng",
+        
       }
     },
   },

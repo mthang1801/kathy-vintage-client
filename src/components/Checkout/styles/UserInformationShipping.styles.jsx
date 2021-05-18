@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   width : 100%; 
   max-width : 600px;  
-  border : 1px solid ${({theme}) => theme.border};
+  border : 2px dashed var(--green-1);
   padding : 1rem; 
   border-radius : 0.5rem;
   background-color : ${({theme}) => theme.card};

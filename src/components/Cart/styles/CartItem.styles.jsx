@@ -22,10 +22,15 @@ export const AvatarContainer = styled.div`
   }
 `
 
-export const ProductContent = styled.div`
-  flex : 1;     
-  margin-left : 0.5rem;  
+export const PruductDetail = styled.div`
+  flex:  1;  
+  padding : 0 0.5rem;
+`
+
+export const ProductContent = styled.div`    
   font-size :0.95rem;
+  display  : flex;
+  align-items : flex-start;
 `
 
 export const ProductName = styled.h4`
@@ -35,6 +40,7 @@ export const ProductName = styled.h4`
   overflow : hidden ;
   margin : 0;
   text-align : left;
+  max-width : 90%;
 ` 
 
 export const ProductInfo = styled.div`  
@@ -68,7 +74,7 @@ export const ButtonQuantity = styled.button`
 `
 
 export const DeleteProduct = styled.div`
-  width : 3rem;
+  
   text-align : center;
   & svg{
     font-size : 1.2rem;

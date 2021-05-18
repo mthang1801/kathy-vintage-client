@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Wrapper = styled.div`
   outline : none ; 
   border: none ; 
-  width : 28rem;
+  width : 22rem;
   height: 25rem;
   background-color : ${({theme}) => theme.card};
   border-radius : 0.5rem;

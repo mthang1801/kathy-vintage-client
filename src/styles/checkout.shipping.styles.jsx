@@ -7,7 +7,7 @@ export const ContentContainer= styled.div`
     width : 90vw;
   }
   & > *:not(:last-child){
-    margin-bottom : 1rem;
+    margin-bottom : 2rem;
   }
 `
 

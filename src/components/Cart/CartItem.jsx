@@ -7,6 +7,7 @@ import {
   ProductInfo,
   ProductQuantityControl,
   ButtonQuantity,
+  PruductDetail,
   DeleteProduct,
 } from "./styles/CartItem.styles"
 import useLanguage from "../Global/useLanguage"
@@ -55,9 +56,14 @@ const CartItem = ({
           alt={product[`name_${lang}`]}
         />
       </AvatarContainer>
-      <ProductContent>
+      <PruductDetail>
+      <ProductContent>        
         <ProductName>{product[`name_${lang}`]}</ProductName>
-        <ProductInfo>
+        <DeleteProduct onClick={onRemoveProduct}>
+          <BsTrash />
+        </DeleteProduct>        
+      </ProductContent>
+      <ProductInfo>
           <div>{productPrice} x</div>
           <ProductQuantityControl>
             <ButtonQuantity onClick={onDecreaseProductQuantity}>
@@ -72,10 +78,7 @@ const CartItem = ({
             <strong> = {(productPrice * product.quantity).toLocaleString("de-DE")}</strong>
           </div>
         </ProductInfo>
-      </ProductContent>
-      <DeleteProduct onClick={onRemoveProduct}>
-        <BsTrash />
-      </DeleteProduct>
+        </PruductDetail>
     </Wrapper>
   )
 }

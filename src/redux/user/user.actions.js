@@ -161,12 +161,17 @@ const updateUserInformationFail = (error) => ({
   payload : error
 })
 
-export const updateUserInformation = (information) => async dispatch => {
-  try {
-    dispatch(updateUserInformationStart());
-    const updatedUser = await userDB.updateUserInformation(information);
-    dispatch(updateUserInformationSuccess(updatedUser));
-  } catch (error) {
-    dispatch(updateUserInformationFail(error.message));
-  }
+export const updateUserInformation = (information) => dispatch => {
+  return new Promise(async (resolve, reject ) => {
+    try {
+      dispatch(updateUserInformationStart());
+      const updatedUser = await userDB.updateUserInformation(information);
+      dispatch(updateUserInformationSuccess(updatedUser));
+      resolve(true);
+    } catch (error) {
+      dispatch(updateUserInformationFail(error.message));
+      reject(error.message)
+    }
+  })
+  
 }

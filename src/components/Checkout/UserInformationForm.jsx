@@ -1,10 +1,15 @@
-import React from "react"
+import React , {useEffect, useRef} from "react"
 import TextField from "@material-ui/core/TextField"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import InputLabel from "@material-ui/core/InputLabel"
 import Button from "@material-ui/core/Button"
-import { Wrapper, Title } from "./styles/UserInformationForm.styles"
+import {
+  Wrapper,
+  Title,
+  ErrorAlert,
+  Flex,
+} from "./styles/UserInformationForm.styles"
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import localData from "../../database/local.json"
@@ -13,17 +18,22 @@ const WrapperUserInformationForm = ({
   user,
   updateUserInformation,
   isUpdate,
+  setUpdateInfo,
 }) => {
   const { i18n, lang } = useLanguage()
   const { information } = i18n.store.data[lang].translation.user
   const { theme } = useTheme()
+  const formRef= useRef(null)
+ 
   return (
     <UserInformationForm
+      ref={formRef}
       information={information}
       theme={theme}
       updateUserInformation={updateUserInformation}
       user={user}
       isUpdate={isUpdate}
+      setUpdateInfo={setUpdateInfo}
     />
   )
 }
@@ -80,8 +90,10 @@ class UserInformationForm extends React.Component {
     address: {
       name: "address",
       nameField: this.props.information.address,
-      value:  this.props.isUpdate ? this.props.user.information.address : "",
-      isValid: this.props.isUpdate ? !!this.props.user.information.address : false,
+      value: this.props.isUpdate ? this.props.user.information.address : "",
+      isValid: this.props.isUpdate
+        ? !!this.props.user.information.address
+        : false,
       rules: {
         required: true,
       },
@@ -90,10 +102,13 @@ class UserInformationForm extends React.Component {
     },
     addressType: "home",
     validation: false,
+    error: null,
   }
   state = {
     ...this.INITIAL_STATE,
   }
+
+  timer
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.city.value !== this.state.city.value) {
@@ -120,6 +135,12 @@ class UserInformationForm extends React.Component {
         this.setState({ wards: [] })
       }
     }
+    if (prevState.error !== this.state.error) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.setState({ error: null })
+      }, 7000)
+    }
   }
   componentDidMount() {
     if (this.props.isUpdate) {
@@ -131,17 +152,23 @@ class UserInformationForm extends React.Component {
           this.setState({ districts: districtLists })
         }
       }
-      
-      if (this.state.district.value ) {
-        const wardsList =localData.find(
-          city => city.name === this.state.city.value
-        ).districts.find(
-          district => district.name === this.state.district.value
-        ).wards
+
+      if (this.state.district.value) {
+        const wardsList = localData
+          .find(city => city.name === this.state.city.value)
+          .districts.find(
+            district => district.name === this.state.district.value
+          ).wards
         if (wardsList) {
           this.setState({ wards: wardsList })
         }
       }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer)
     }
   }
   checkFieldValidation = (value, rules) => {
@@ -205,22 +232,11 @@ class UserInformationForm extends React.Component {
     return this.setState({ ...updatedState, validation: formIsValid })
   }
 
-  onChangeSelection = e => {
-    const { name, value } = e.target
-    const updatedState = { ...this.state }
-    let updatedElement = updatedState[name]
-
-    updatedElement.value = { ...JSON.parse(value) }
-    updatedState[name] = { ...updatedElement }
-
-    this.setState({ ...updatedState })
-  }
-
   resetForm = () => {
     this.setState(this.INITIAL_STATE)
   }
 
-  onSubmitForm = () => {
+  onSubmitForm = async () => {
     const {
       fullname,
       phone,
@@ -248,7 +264,12 @@ class UserInformationForm extends React.Component {
         address: address.value,
         ward: ward.value,
       }
-      this.props.updateUserInformation(information)
+      try {
+        await this.props.updateUserInformation(information)
+        this.props.setUpdateInfo(false)
+      } catch (error) {
+        this.setState({ error })
+      }
     }
   }
 
@@ -264,12 +285,14 @@ class UserInformationForm extends React.Component {
       district,
       ward,
       address,
+      error,
     } = this.state
     const { information } = this.props
 
     return (
-      <Wrapper theme={this.props.theme}>
+      <Wrapper theme={this.props.theme} id="shipping-user-form-information">
         <Title>{information.title}</Title>
+        {error && <ErrorAlert>{error}</ErrorAlert>}
         {/* Full name */}
         <TextField
           fullWidth
@@ -378,14 +401,27 @@ class UserInformationForm extends React.Component {
           onChange={this.onChangeField}
           helperText={address.errorMessage}
         />
-        <Button
-          onClick={this.onSubmitForm}
-          disabled={!validation}
-          color="primary"
-          variant="contained"
-        >
-          {information.buttonSubmit}
-        </Button>
+
+        <Flex isUpdate={this.props.isUpdate}>
+          {this.props.isUpdate && (
+            <Button
+              variant="contained"
+              onClick={() => this.props.setUpdateInfo(false)}
+            >
+              {information.button_close_information_form}
+            </Button>
+          )}
+          <Button
+            onClick={this.onSubmitForm}
+            disabled={!validation}
+            color="primary"
+            variant="contained"
+          >
+            {this.props.isUpdate
+              ? information.buttonUpdate
+              : information.buttonSubmit}
+          </Button>
+        </Flex>
       </Wrapper>
     )
   }

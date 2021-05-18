@@ -121,7 +121,9 @@ export const en = {
           fullName : "You need to type first name and last name",
           invalidPhone : "Invalid phone number"
         },
-        buttonSubmit : "Complete"
+        buttonSubmit : "Complete",
+        buttonUpdate : "Update",
+        button_close_information_form : "Close"
       }
     },
     portfolioIcons: {
@@ -327,7 +329,9 @@ export const en = {
         content : (name) => `<p>Are you sure to remove <strong>${name}</strong> from cart?</p>`
       }
     },
-    checkout: {      
+    checkout: {  
+      cartEmpty : "Your cart is empty" ,
+      buttonContinueShopping: "Continue Shopping",
       invoice: {
         title : "Temporary Invoice",
         totalBeforeTax: "Total Before Tax",
@@ -343,7 +347,7 @@ export const en = {
         city : "City",
         button_change_information : "Update",
         button_create_new_information : "Create new Information",
-        button_proceed_order : "Proceed Order"
+        button_proceed_order : "Proceed Order",        
       }
     },
 
