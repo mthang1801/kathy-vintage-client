@@ -350,9 +350,22 @@ export const en = {
         button_proceed_order : "Proceed Order",        
       },
       payment : {
-        listOfProducts: "List Of Products",
-        typeOfShipping : "Type of Shipping",
+        listOfOrderedProducts: "List Of Ordered Products",
+        typeOfShipping : {
+          title : "Type of Shipping", 
+          standard : {
+            key : "standard", 
+            value : "standard"
+          },
+          fast : {
+            key : "fast",
+            value : "fast delivery"
+          }
+        },        
         typeOfPayment : "Type of Payment",
+        quantity : "Quantity", 
+        unitPrice : "Unit Price",
+        totalPrice : "Total price"
       }
     },
 

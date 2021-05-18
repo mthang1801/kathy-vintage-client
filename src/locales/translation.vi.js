@@ -358,9 +358,22 @@ export const vi = {
         button_proceed_order : "Tiến hành đặt hàng",
       },
       payment : {
-        listOfProducts: "Danh sách sản phẩm",
-        typeOfShipping : "Phương thức vận chuyển",
-        typeOfPayment : "Phương thức thanh toán"
+        listOfOrderedProducts: "Danh sách Đơn hàng",
+        typeOfShipping : {
+          title : "Phương thức vận chuyển", 
+          standard : {
+            key : "standard", 
+            value : "Tiêu chuẩn"
+          },
+          fast : {
+            key : "fast",
+            value : "Giao hàng nhanh (Chỉ áp dụng trong nội thành)"
+          }
+        },
+        typeOfPayment : "Phương thức thanh toán",
+        quantity : "Số lượng", 
+        unitPrice : "Đơn giá", 
+        totalPrice : "Thành tiền"
       }
     },
   },

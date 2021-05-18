@@ -42,7 +42,7 @@ const Header = ({ userLoading, userFetched, user }) => {
       <UserSettings user={user} />
     </Responsive>
   )
-
+  const patternHideCart = /^\/checkout/
   const RenderUserAuth = () => (
     <>
       {(!userLoading || userFetched) && (
@@ -81,7 +81,7 @@ const Header = ({ userLoading, userFetched, user }) => {
           </SearchContainer>
         </Flex>
         <Flex>
-          <Cart/>
+          {!patternHideCart.test(pathname) &&  <Cart/>}
           {user ? RenderUserSettings() : RenderUserAuth()}
           <MobileResponsive>            
             <ButtonMenu onClick={onOpenMenu} />

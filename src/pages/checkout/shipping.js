@@ -13,6 +13,7 @@ import {
 import { useTheme } from "../../theme"
 import { updateUserInformation } from "../../redux/user/user.actions"
 import UserInformationShipping from "../../components/Checkout/UserInformationShipping"
+
 const Shipping = ({ user, updateUserInformation }) => {
   const [updateInfo, setUpdateInfo] = useState(false);
   const { pathname } = useLocation()
