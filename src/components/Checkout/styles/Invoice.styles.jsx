@@ -17,6 +17,7 @@ export const List = styled.ul`
   overflow : hidden ; 
   padding : 0 ;  
   margin : 0 0 1rem 0;
+  font-size : 0.95rem;
   & > *:hover{
     background-color : ${({theme}) => theme.hover};
   }
@@ -29,11 +30,13 @@ export const ListItem = styled.li`
   display : flex;
   justify-content : space-between ;    
   padding: 1rem;  
+  
   font-size : 1rem;
-  ${({total}) => total && `
+  ${({total}) => total && `    
     & span:last-child{
       color : var(--red-1);
       font-weight : bold;
+      
     }
   `}
 `

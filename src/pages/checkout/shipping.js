@@ -5,19 +5,20 @@ import { selectCurrentUser } from "../../redux/user/user.selectors"
 import { createStructuredSelector } from "reselect"
 import UserInformationForm from "../../components/Checkout/UserInformationForm"
 import { navigate } from "gatsby"
-import { useLocation } from "@reach/router"
+import { useLocation, useMatch } from "@reach/router"
 import {
   ContentContainer,
   FormContainer,
 } from "../../styles/checkout.shipping.styles"
 import { useTheme } from "../../theme"
 import { updateUserInformation } from "../../redux/user/user.actions"
-import UserInformationShipping from "../../components/Checkout/UserInformationShipping"
-
-const Shipping = ({ user, updateUserInformation }) => {
-  const [updateInfo, setUpdateInfo] = useState(false);
-  const { pathname } = useLocation()
-  const { theme } = useTheme()
+import UserInformationShipping from "../../components/Checkout/UserInformation.Shipping"
+const Shipping = ({ user, updateUserInformation }) => {  
+  const { pathname, state } = useLocation()
+  
+  const [updateInfo, setUpdateInfo] = useState(state?.from === "/checkout/payment");
+  const { theme } = useTheme()  
+  
   useEffect(() => {
     if (!user) {
       navigate("/auth", { state: { from: pathname } })
@@ -41,6 +42,7 @@ const Shipping = ({ user, updateUserInformation }) => {
             <UserInformationShipping
               user={user}
               setUpdateInfo={setUpdateInfo}
+              openUpdateForm={updateInfo}
             />
             {updateInfo && (
               <FormContainer theme={theme}>

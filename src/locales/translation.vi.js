@@ -341,13 +341,17 @@ export const vi = {
       cartEmpty : "Không có sản phẩm nào trong giỏ hàng" ,
       buttonContinueShopping: "Tiếp tục mua sắm",
       invoice: {
-        title : "Hóa đơn Tạm tính",
+        temporaryTitle : "Temporary Invoice" ,
+        title : "Hóa đơn Thanh toán",
         totalBeforeTax: "Tổng tiền trước thuế",
         tax: "Thuế VAT",
-        totalAfterTax: "Thành tiền",
+        totalAfterTax: "Tổng tiền sau thuế",
+        totalPrice : "Thành tiền",
+        shippingFee : "Phí vận chuyển"
       },
       button_proceed_order : "Tiến hành đặt hàng",
       userInformation : {
+        fullname : "Họ tên",
         phone : "Điện thoại",
         address : "Địa chỉ",       
         ward : "Phường",
@@ -356,6 +360,7 @@ export const vi = {
         button_change_information : "Sửa",
         button_create_new_information : "Tạo mới thông tin",
         button_proceed_order : "Tiến hành đặt hàng",
+        link_change_information : "Chỉnh sửa thông tin giao hàng"        
       },
       payment : {
         listOfOrderedProducts: "Danh sách Đơn hàng",
@@ -373,7 +378,8 @@ export const vi = {
         typeOfPayment : "Phương thức thanh toán",
         quantity : "Số lượng", 
         unitPrice : "Đơn giá", 
-        totalPrice : "Thành tiền"
+        totalPrice : "Thành tiền",
+        shipping : "Giao hàng"
       }
     },
   },

@@ -333,13 +333,17 @@ export const en = {
       cartEmpty : "Your cart is empty" ,
       buttonContinueShopping: "Continue Shopping",
       invoice: {
-        title : "Temporary Invoice",
+        temporaryTitle : "Temporary Invoice" ,
+        title : "Invoice",
         totalBeforeTax: "Total Before Tax",
         tax: "Tax VAT",
-        totalAfterTax: "Total Price",
+        totalAfterTax: "Total After Tax",
+        totalPrice: "Total Price",
+        shippingFee : "Shipping Fee"
       },
       button_proceed_order : "Proceed to Order",
       userInformation : {
+        fullname : "Full Name",        
         phone : "Phone",
         address : "Address",   
         ward : "Ward",
@@ -347,7 +351,8 @@ export const en = {
         city : "City",
         button_change_information : "Update",
         button_create_new_information : "Create new Information",
-        button_proceed_order : "Proceed Order",        
+        button_proceed_order : "Proceed Order",  
+        link_change_information : "Update your information"        
       },
       payment : {
         listOfOrderedProducts: "List Of Ordered Products",
@@ -365,7 +370,8 @@ export const en = {
         typeOfPayment : "Type of Payment",
         quantity : "Quantity", 
         unitPrice : "Unit Price",
-        totalPrice : "Total price"
+        totalPrice : "Total price",
+        shipping : "Shipping"
       }
     },
 

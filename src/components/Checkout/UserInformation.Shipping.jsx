@@ -3,12 +3,12 @@ import {
   Wrapper,
   UserName,
   UserInfomationControls,
-} from "./styles/UserInformationShipping.styles"
+} from "./styles/UserInformation.Shipping.styles"
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
 import {navigate} from "gatsby"
-const UserInformationShipping = ({ user, setUpdateInfo }) => {
+const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
   const { userInformation } = i18n.store.data[lang].translation.checkout
@@ -33,13 +33,13 @@ const UserInformationShipping = ({ user, setUpdateInfo }) => {
         <Button size="small" color="primary" variant="contained" onClick={() => navigate("/checkout/payment")}>
           {userInformation.button_proceed_order}
         </Button>
-        <Button
+        {!openUpdateForm && <Button
           size="small"
           variant="contained"
           onClick={() => setUpdateInfo(true)}
         >
           {userInformation.button_change_information}
-        </Button>
+        </Button>}
       </UserInfomationControls>
     </Wrapper>
   )

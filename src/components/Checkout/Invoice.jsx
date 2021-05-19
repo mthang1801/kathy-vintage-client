@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from "react"
-import {
-  Wrapper,
-  List,
-  ListItem,
-  Title,
-} from "./styles/Invoice.styles"
+import { Wrapper, List, ListItem, Title } from "./styles/Invoice.styles"
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
 const tax = 10
 
-const Invoice = ({ cartItems, isPayment }) => {
+const Invoice = ({ cartItems, isPayment, shippingFee = 0 }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
   const { checkout } = i18n.store.data[lang].translation
-  const totalPrice = cartItems.reduce(
+  const totalPriceBeforeTax = cartItems.reduce(
     (acc, item) =>
       item.isDiscount && item.discountPercentage
-        ? acc + (item.unitPrice * item.quantity * (100 - item.discountPercentage)) / 100
+        ? acc +
+          (item.unitPrice * item.quantity * (100 - item.discountPercentage)) /
+            100
         : acc + item.unitPrice * item.quantity,
     0
   )
 
-  const [totalPriceBeforeTax, setTotalPriceBeforeTax] = useState(totalPrice)
-  useEffect(() => {  
-    
-    setTotalPriceBeforeTax(totalPrice)
-  }, [cartItems])
+  const totalPriceAfterTax = totalPriceBeforeTax * (100 + tax) / 100
+  const totalPrice = totalPriceAfterTax + shippingFee
 
   const onClickProceedOrder = () => {
     navigate("/checkout/shipping")
@@ -35,7 +29,9 @@ const Invoice = ({ cartItems, isPayment }) => {
   return (
     <Wrapper>
       <List theme={theme}>
-        <Title>{checkout.invoice.title}</Title>
+        <Title>
+          {isPayment ? checkout.invoice.title : checkout.invoice.temporaryTitle}
+        </Title>
         <ListItem>
           <span>{checkout.invoice.totalBeforeTax}</span>
           <span>{totalPriceBeforeTax.toLocaleString("de-DE")}</span>
@@ -44,12 +40,22 @@ const Invoice = ({ cartItems, isPayment }) => {
           <span>{checkout.invoice.tax}</span>
           <span>{tax}%</span>
         </ListItem>
-        <ListItem total>
+        <ListItem>
           <span>{checkout.invoice.totalAfterTax}</span>
-          <span>
-            {(totalPriceBeforeTax * (1 + tax / 100)).toLocaleString("de-DE")}
-          </span>
+          <span>{totalPriceAfterTax.toLocaleString("de-DE")}</span>
         </ListItem>
+        {isPayment && (
+          <ListItem>
+            <span>{checkout.invoice.shippingFee}</span>
+            <span>{shippingFee.toLocaleString("de-DE")}</span>
+          </ListItem>
+        )}
+        {isPayment && (
+          <ListItem total>
+            <span><strong>{checkout.invoice.totalPrice}</strong></span>
+            <span>{totalPrice.toLocaleString("de-DE")}</span>
+          </ListItem>
+        )}
       </List>
 
       <Button

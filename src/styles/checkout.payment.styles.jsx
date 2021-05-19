@@ -4,6 +4,11 @@ export const ContentContainer = styled.div`
   width: 95vw;
   margin: 3rem auto;
   display: block;
+  & > * {
+    & > *:not(:last-child){
+      margin-bottom : 1rem;
+    }
+  }
   @media screen and (min-width: 768px) {
     display: grid;
     grid-template-columns: 2fr 1.5fr;

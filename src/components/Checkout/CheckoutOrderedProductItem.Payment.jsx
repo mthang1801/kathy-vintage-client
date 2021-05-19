@@ -8,7 +8,7 @@ import {
   ProductShippingInformation,
   ProductShippingOverview,
   ShippingTime,
-} from "./styles/CheckoutPaymentOrderedProductItem.styles"
+} from "./styles/CheckoutOrderedProductItem.Payment.styles"
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import Moment from "react-moment"
@@ -52,7 +52,7 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingType }) => {
           </ProductPriceAndQuantity>
         </ProductInformationOverview>
         <ProductShippingOverview>
-          <span>{shippingType.value}</span>          
+          <span>{payment.shipping} {shippingType.value}</span>          
           <ShippingTime theme={theme}>
             <span style={{color : ""}}>Dự kiến: </span>
             {shippingType.key === "fast" ? (
