@@ -357,7 +357,7 @@ export const vi = {
         ward : "Phường",
         district : "Quận",
         city : "Thành phố",  
-        button_change_information : "Sửa",
+        button_change_information : "Thay đổi thông tin",
         button_create_new_information : "Tạo mới thông tin",
         button_proceed_order : "Tiến hành đặt hàng",
         link_change_information : "Chỉnh sửa thông tin giao hàng"        
@@ -375,9 +375,21 @@ export const vi = {
             value : "Giao hàng nhanh (Chỉ áp dụng trong nội thành)"
           }
         },
-        typeOfPayment : "Phương thức thanh toán",
+        typeOfPayment : {
+          title : "Phương thức thanh toán",
+          payment_in_cash : {
+            key : "payment_in_cash",
+            value : "Thanh toán bằng tiền mặt"
+          },
+          payment_in_card : {
+            key : "payment_in_card",
+            value : "Thanh toán bằng thẻ Credit Card, Visa, Master Card..."
+          },
+          payment_in_card_button : "Tiến hành đặt hàng"
+        },
         quantity : "Số lượng", 
         unitPrice : "Đơn giá", 
+        price : "Tổng tiền",
         totalPrice : "Thành tiền",
         shipping : "Giao hàng"
       }

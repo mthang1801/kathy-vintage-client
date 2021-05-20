@@ -46,19 +46,33 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingType }) => {
               {payment.quantity} : <strong>{product.quantity}</strong>
             </span>
             <span>
-              {payment.unitPrice} :{" "}
-              <strong>{unitPriceAfterDiscount.toLocaleString("de-DE")}</strong>
+              {payment.price} :{" "}
+              <strong>{productPrice.toLocaleString("de-DE")}</strong>
             </span>
           </ProductPriceAndQuantity>
         </ProductInformationOverview>
         <ProductShippingOverview>
-          <span>{payment.shipping} {shippingType.value}</span>          
+          <span>
+            {payment.shipping} {shippingType.value}
+          </span>
           <ShippingTime theme={theme}>
-            <span style={{color : ""}}>Dự kiến: </span>
+            <span style={{ color: "" }}>Dự kiến: </span>
             {shippingType.key === "fast" ? (
-              <Moment add={{ hours: 2 }} locale={lang === "vi" ? "vi" : "es-us"} format="dddd DD MMM - hh:mm">{new Date()}</Moment>
+              <Moment
+                add={{ hours: 2 }}
+                locale={lang === "vi" ? "vi" : "es-us"}
+                format="dddd DD MMM - hh:mm"
+              >
+                {new Date()}
+              </Moment>
             ) : (
-              <Moment add={{ days: 3 }} locale={lang === "vi" ? "vi" : "es-us"} format="dddd DD MMM">{new Date()}</Moment>
+              <Moment
+                add={{ days: 3 }}
+                locale={lang === "vi" ? "vi" : "es-us"}
+                format="dddd DD MMM"
+              >
+                {new Date()}
+              </Moment>
             )}
           </ShippingTime>
         </ProductShippingOverview>

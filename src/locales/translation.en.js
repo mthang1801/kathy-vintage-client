@@ -367,11 +367,23 @@ export const en = {
             value : "fast delivery"
           }
         },        
-        typeOfPayment : "Type of Payment",
+        typeOfPayment : {
+          title: "Type of Payment",
+          payment_in_cash : {
+            key : "payment_in_cash",
+            value : "Payment In Cash"
+          },
+          payment_in_card : {
+            key : "payment_in_card",
+            value : "Payment In Credit Card, VISA, Master..."
+          },
+          payment_in_card_button : "Proceed to order"
+        },
         quantity : "Quantity", 
         unitPrice : "Unit Price",
+        price : "Price",
         totalPrice : "Total price",
-        shipping : "Shipping"
+        shipping : "Shipping",        
       }
     },
 

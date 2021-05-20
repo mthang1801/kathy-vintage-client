@@ -76,8 +76,7 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
       x: e.clientX,
       y: e.clientY,
     })
-  }
-  console.log(selectedPortfolio)
+  }  
 
   useEffect(() => {
     if (!open) {

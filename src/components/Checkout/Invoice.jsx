@@ -1,31 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { Wrapper, List, ListItem, Title } from "./styles/Invoice.styles"
 import useLanguage from "../Global/useLanguage"
-import { useTheme } from "../../theme"
-import Button from "@material-ui/core/Button"
-import { navigate } from "gatsby"
-const tax = 10
+import { useTheme } from "../../theme";
 
-const Invoice = ({ cartItems, isPayment, shippingFee = 0 }) => {
+
+const Invoice = ({ cartItems, isPayment, totalPriceBeforeTax, totalPriceAfterTax, totalPrice, tax, shippingFee = 0 }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
   const { checkout } = i18n.store.data[lang].translation
-  const totalPriceBeforeTax = cartItems.reduce(
-    (acc, item) =>
-      item.isDiscount && item.discountPercentage
-        ? acc +
-          (item.unitPrice * item.quantity * (100 - item.discountPercentage)) /
-            100
-        : acc + item.unitPrice * item.quantity,
-    0
-  )
+  
 
-  const totalPriceAfterTax = totalPriceBeforeTax * (100 + tax) / 100
-  const totalPrice = totalPriceAfterTax + shippingFee
-
-  const onClickProceedOrder = () => {
-    navigate("/checkout/shipping")
-  }
   return (
     <Wrapper>
       <List theme={theme}>
@@ -58,14 +42,7 @@ const Invoice = ({ cartItems, isPayment, shippingFee = 0 }) => {
         )}
       </List>
 
-      <Button
-        color="secondary"
-        variant="contained"
-        style={{ display: "block", width: "100%" }}
-        onClick={onClickProceedOrder}
-      >
-        {checkout.button_proceed_order}
-      </Button>
+     
     </Wrapper>
   )
 }

@@ -48,6 +48,11 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: decreaseProductQuantity(state.cartItems, action.payload),
       }
+    case cartActionTypes.CLEAR_CART_ITEMS : 
+      return {
+        ...state, 
+        cartItems : []
+      };
     case cartActionTypes.REMOVE_PRODUCT_FROM_CART : 
       return {
         ...state, 
