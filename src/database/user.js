@@ -1,4 +1,4 @@
-import firebase from "./firebase"
+import firebase from "gatsby-plugin-firebase"
 import { getDeviceType } from "../utils/getDeviceType"
 const avatarMale =
   "https://media.istockphoto.com/vectors/default-avatar-profile-icon-grey-photo-placeholder-vector-id846183008?b=1&k=6&m=846183008&s=612x612&w=0&h=ZC65KHQwZj_-NvgmW8EAhNEVWjbOSUBfJXJxHXxhVrk="
@@ -8,16 +8,20 @@ const avatarFemale =
 const addUserToProfileDocument = (userAuth, data) => {
   return new Promise(async (resolve, reject) => {
     if (!userAuth) return false
-    const userRef = firebase.firestore.doc(`users/${userAuth?.uid}`)
+    const userRef = firebase.firestore().doc(`users/${userAuth?.uid}`)
     const userSnap = await userRef.get()
     if (!userSnap.exists) {
-      if(data.password){
-        delete data.password;
+      if (data.password) {
+        delete data.password
       }
       try {
         await userRef.set({
           ...data,
-          photoURL: data.photoURL? data.photoURL : data?.gender === "male" ? avatarMale : avatarFemale,
+          photoURL: data.photoURL
+            ? data.photoURL
+            : data?.gender === "male"
+            ? avatarMale
+            : avatarFemale,
           createdAt: new Date(),
         })
       } catch (error) {
@@ -43,10 +47,9 @@ export const createUserWithEmailAndPassword = (
         .get()
         .then(snap => console.log(snap))
 
-      const userAuth = await firebase.auth.createUserWithEmailAndPassword(
-        email,
-        password
-      )
+      const userAuth = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
       const userRef = await addUserToProfileDocument(userAuth.user, {
         displayName: name,
         gender,
@@ -63,9 +66,9 @@ export const createUserWithEmailAndPassword = (
 
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
-    const unsubsribe = firebase.auth.onAuthStateChanged(async userAuth => {
+    const unsubsribe = firebase.auth().onAuthStateChanged(async userAuth => {
       unsubsribe()
-      const user = await firebase.firestore.doc(`users/${userAuth?.uid}`).get()      
+      const user = await firebase.firestore().doc(`users/${userAuth?.uid}`).get()
       if (!user.exists) {
         return resolve(null)
       }
@@ -77,7 +80,7 @@ export const getCurrentUser = () => {
 export const signOutUser = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      await firebase.auth.signOut()
+      await firebase.auth().signOut()
       resolve(true)
     } catch (error) {
       reject(error)
@@ -88,10 +91,9 @@ export const signOutUser = () => {
 export const signInUser = (email, password) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const userAuth = await firebase.auth.signInWithEmailAndPassword(
-        email,
-        password
-      )
+      const userAuth = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
       const user = await firebase.firestore
         .doc(`users/${userAuth?.user?.uid}`)
         .get()
@@ -110,15 +112,18 @@ export const signInUser = (email, password) => {
 export const signInWithGoogle = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      const GoogleProvider = new firebase.firebase.auth.GoogleAuthProvider()
+      const GoogleProvider = new firebase.auth.GoogleAuthProvider()
       GoogleProvider.addScope(
         "https://www.googleapis.com/auth/contacts.readonly"
       )
       GoogleProvider.setCustomParameters({ prompt: "select_account" })
-      const { user } = await firebase.auth.signInWithPopup(GoogleProvider);
-      const userInfo = {...user?.providerData[0], uid : user.uid};
-      if (userInfo) {        
-        await addUserToProfileDocument(user, userInfo);
+      const { user } =
+        getDeviceType() !== "desktop"
+          ? await firebase.auth().signInWithRedirect(GoogleProvider)
+          : await firebase.auth().signInWithPopup(GoogleProvider)
+      const userInfo = { ...user?.providerData[0], uid: user.uid }
+      if (userInfo) {
+        await addUserToProfileDocument(user, userInfo)
         return resolve(user.providerData[0])
       }
       resolve(null)
@@ -130,16 +135,16 @@ export const signInWithGoogle = () => {
 export const signInWithFacebook = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      const FacebookProvider = new firebase.firebase.auth.FacebookAuthProvider()
+      const FacebookProvider = new firebase.auth.FacebookAuthProvider()
       FacebookProvider.setCustomParameters({ display: "popup" })
 
       const { user } =
         getDeviceType() !== "desktop"
-          ? await firebase.auth.signInWithRedirect(FacebookProvider)
-          : await firebase.auth.signInWithPopup(FacebookProvider)      
-      const userInfo = {...user?.providerData[0], uid : user.uid};
-      if (userInfo) {                
-        await addUserToProfileDocument(user, userInfo);        
+          ? await firebase.auth().signInWithRedirect(FacebookProvider)
+          : await firebase.auth().signInWithPopup(FacebookProvider)
+      const userInfo = { ...user?.providerData[0], uid: user.uid }
+      if (userInfo) {
+        await addUserToProfileDocument(user, userInfo)
         return resolve(userInfo)
       }
       resolve(null)
@@ -149,34 +154,42 @@ export const signInWithFacebook = () => {
   })
 }
 
-
-export const restoreAccount = (email) => {
+export const restoreAccount = email => {
   return new Promise(async (resolve, reject) => {
     try {
-      const checkEmailExisted = await (await firebase.firestore.collection("users").where("email", "==", email).get()).size;      
-      if(!checkEmailExisted){        
+      const checkEmailExisted = await (
+        await firebase.firestore()
+          .collection("users")
+          .where("email", "==", email)
+          .get()
+      ).size
+      if (!checkEmailExisted) {
         throw new Error("User not found")
       }
-      await firebase.auth.sendPasswordResetEmail(email);
-      resolve(true);
+      await firebase.auth().sendPasswordResetEmail(email)
+      resolve(true)
     } catch (error) {
-      reject(error);
+      reject(error)
     }
   })
 }
 
-export const updateUserInformation = (information) => {
+export const updateUserInformation = information => {
   return new Promise(async (resolve, reject) => {
-    try {      
-      const {currentUser} = firebase.auth;
-      if(!currentUser){
-        reject(new Error("User not found"));
+    try {
+      const { currentUser } = firebase.auth()
+      if (!currentUser) {
+        reject(new Error("User not found"))
       }
-      await firebase.firestore.doc(`users/${currentUser.uid}`).update({information : information});
-      const updatedUser = await firebase.firestore.doc(`users/${currentUser.uid}`).get();
-      resolve(updatedUser.data());
+      await firebase.firestore()
+        .doc(`users/${currentUser.uid}`)
+        .update({ information: information })
+      const updatedUser = await firebase.firestore()
+        .doc(`users/${currentUser.uid}`)
+        .get()
+      resolve(updatedUser.data())
     } catch (error) {
-      reject(error);
+      reject(error)
     }
   })
 }
