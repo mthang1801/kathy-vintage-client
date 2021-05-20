@@ -17,14 +17,15 @@ const TypeOfPayment = ({ user, paymentMethod, setPaymentMethod }) => {
   const { typeOfPayment } = i18n.store.data[lang].translation.checkout.payment
  
   const handleChange = e => {
-    setPaymentMethod(e.target.value)
+    const {value} = e.target; 
+    setPaymentMethod(typeOfPayment[value])
   }
 
   return (
     <Wrapper theme={theme}>
       <RadioGroup
         aria-label="type-of-payment"
-        value={paymentMethod}
+        value={paymentMethod.key}
         onChange={handleChange}
       >
         <FormControlLabel

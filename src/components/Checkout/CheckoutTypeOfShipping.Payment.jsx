@@ -11,20 +11,20 @@ const CheckoutPaymentTypeOfShipping = ({
   user,
   cartItems,
   types,
-  shippingType,
-  setShippingType,
+  shippingMethod,
+  setShippingMethod,
 }) => {
   const { theme } = useTheme()
   const handleRadioChange = e => {
     const { value, name } = e.target
-    setShippingType(types[name])
+    setShippingMethod(types[name])
   }
   return (
     <TypeOfShipping theme={theme}>
       <RadioGroup
         aria-label="type-of-shipping"
         name="type-of-shipping"
-        value={shippingType.value}
+        value={shippingMethod.value}
         onChange={handleRadioChange}
       >
         {types.standard && (

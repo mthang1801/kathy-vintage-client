@@ -68,7 +68,10 @@ export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubsribe = firebase.auth().onAuthStateChanged(async userAuth => {
       unsubsribe()
-      const user = await firebase.firestore().doc(`users/${userAuth?.uid}`).get()
+      const user = await firebase
+        .firestore()
+        .doc(`users/${userAuth?.uid}`)
+        .get()
       if (!user.exists) {
         return resolve(null)
       }
@@ -158,7 +161,8 @@ export const restoreAccount = email => {
   return new Promise(async (resolve, reject) => {
     try {
       const checkEmailExisted = await (
-        await firebase.firestore()
+        await firebase
+          .firestore()
           .collection("users")
           .where("email", "==", email)
           .get()
@@ -181,13 +185,38 @@ export const updateUserInformation = information => {
       if (!currentUser) {
         reject(new Error("User not found"))
       }
-      await firebase.firestore()
+      await firebase
+        .firestore()
         .doc(`users/${currentUser.uid}`)
         .update({ information: information })
-      const updatedUser = await firebase.firestore()
+      const updatedUser = await firebase
+        .firestore()
         .doc(`users/${currentUser.uid}`)
         .get()
       resolve(updatedUser.data())
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+export const updateUserPaymentAndShippingMethod = (
+  paymentMethod,
+) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { currentUser } = firebase.auth()
+      if (!currentUser) {
+        reject(new Error("User not found"))
+      }
+      await firebase
+        .firestore()
+        .doc(`users/${currentUser.uid}`)
+        .set(
+          { information: { paymentMethod } },
+          { merge: true }
+        )    
+      resolve(true)
     } catch (error) {
       reject(error)
     }

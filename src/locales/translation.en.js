@@ -327,7 +327,8 @@ export const en = {
       removeProductFromCart : {
         title : "Remove Product from cart.",
         content : (name) => `<p>Are you sure to remove <strong>${name}</strong> from cart?</p>`
-      }
+      },
+      loading : "Waiting for progressing"
     },
     checkout: {  
       cartEmpty : "Your cart is empty" ,

@@ -15,7 +15,7 @@ import Moment from "react-moment"
 import "moment/locale/vi"
 import "moment/locale/es-us"
 
-const CheckoutPaymentOrderedProductItem = ({ product, shippingType }) => {
+const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
   const { payment } = i18n.store.data[lang].translation.checkout
@@ -53,11 +53,11 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingType }) => {
         </ProductInformationOverview>
         <ProductShippingOverview>
           <span>
-            {payment.shipping} {shippingType.value}
+            {payment.shipping} {shippingMethod.value}
           </span>
           <ShippingTime theme={theme}>
             <span style={{ color: "" }}>Dự kiến: </span>
-            {shippingType.key === "fast" ? (
+            {shippingMethod.key === "fast" ? (
               <Moment
                 add={{ hours: 2 }}
                 locale={lang === "vi" ? "vi" : "es-us"}

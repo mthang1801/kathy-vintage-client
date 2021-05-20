@@ -9,14 +9,14 @@ import axios from "axios"
 import STRIPE_PUBLISHABLE from "../../constants/stripe"
 import PAYMENT_SERVER_URL from "../../constants/server"
 import useLanguage from "../Global/useLanguage"
-const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children }) => {
+const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children, onClickProceedOrder }) => {
   const amount = totalPrice
   const CURRENCY = "VND"
   const {i18n, lang} = useLanguage();
   const {typeOfPayment} = i18n.store.data[lang].translation.checkout.payment;
   const { theme } = useTheme()
   const onToken = amount => token => {
-    console.log(token)
+    
     const filledToken = {
       ...token,       
       card : {
@@ -32,14 +32,15 @@ const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children }) =>
         currency: CURRENCY,
         amount,
       })
-      .then(res => console.log(res))
+      .then(res => {        
+        onClickProceedOrder(token.id)
+      })
       .catch(err => console.log(err))
   }
   return (
     <StripeCheckout
       label={typeOfPayment.payment_in_card_button}
-      name="Vintage Clothes Shop"      
-      shippingAddress
+      name="Vintage Clothes Shop"            
       allowRememberMe
       currency={CURRENCY}
       email={user.email}

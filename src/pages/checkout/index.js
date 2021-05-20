@@ -12,11 +12,17 @@ import { useTheme } from "../../theme"
 import CheckoutProductItem from "../../components/Checkout/CheckoutProductItem"
 import Invoice from "../../components/Checkout/Invoice"
 import EmptyProductInCart from "../../components/Checkout/EmptyProductInCart"
+import POLICY from "../../constants/policy"
+import {totalPriceBeforeTax, totalPriceAfterTax, totalPriceWithShippingFee} from "../../utils/calculateOrderPrice"
 import {
   increaseProductQuantity,
   decreaseProductQuantity,
   removeProductFromCart,
 } from "../../redux/cart/cart.actions"
+import Button from "@material-ui/core/Button"
+import {navigate} from "gatsby"
+import useLanguage from "../../components/Global/useLanguage"
+const tax = POLICY.tax;
 const CheckoutPage = ({
   cartItems,
   increaseProductQuantity,
@@ -24,7 +30,13 @@ const CheckoutPage = ({
   removeProductFromCart,
 }) => {
   const { theme } = useTheme()
- 
+  const {i18n, lang} = useLanguage();
+  const {checkout} = i18n.store.data[lang].translation;
+  const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems);
+  const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
+  const onClickProceedOrder = () => {
+    navigate("/checkout/shipping");
+  }
   return (
     <Layout>
       {cartItems.length ? (
@@ -41,7 +53,15 @@ const CheckoutPage = ({
             ))}
           </div>
           <div>
-            <Invoice cartItems={cartItems} />
+            <Invoice cartItems={cartItems} totalPriceBeforeTax={_totalPriceBeforeTax} totalPriceAfterTax={_totalPriceAfterTax} />
+            <Button
+                color="secondary"
+                variant="contained"
+                style={{ display: "block", width: "100%" }}
+                onClick={onClickProceedOrder}
+              >
+                {checkout.button_proceed_order}
+              </Button>
           </div>
         </CheckoutContainer>
       ) : (

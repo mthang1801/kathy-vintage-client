@@ -175,3 +175,29 @@ export const updateUserInformation = (information) => dispatch => {
   })
   
 }
+
+const updateUserPaymentAndShippingTypeStart = () => ({
+  type : userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_START
+})
+const updateUserPaymentAndShippingTypeSuccess = (paymentMethod) => ({
+  type : userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_SUCCESS , 
+  payload : {paymentMethod}
+})
+const updateUserPaymentAndShippingTypeFail = (error) => ({
+  type : userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_FAIL,
+  payload : error
+})
+
+export const updateUserPaymentAndShippingType = (paymentMethod) => dispatch => {
+  return new Promise(async (resolve, reject) => {
+    try {      
+      await userDB.updateUserPaymentAndShippingMethod(paymentMethod);
+      dispatch(updateUserPaymentAndShippingTypeSuccess(paymentMethod))
+      resolve(true)
+    } catch (error) {
+      dispatch(updateUserPaymentAndShippingTypeFail());
+      reject(false);
+    }
+  })
+}
+

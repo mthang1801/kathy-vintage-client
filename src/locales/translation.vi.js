@@ -336,6 +336,7 @@ export const vi = {
         content: name =>
           `<p>Bạn có chắc chắn muốn loại bỏ <strong>${name}</strong> khỏi giỏ hàng?</p>`,
       },
+      loading : "Đang xử lý, vui lòng chờ trong giây lát."
     },
     checkout: {
       cartEmpty : "Không có sản phẩm nào trong giỏ hàng" ,
