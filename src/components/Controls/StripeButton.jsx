@@ -15,32 +15,28 @@ const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children, onCl
   const {i18n, lang} = useLanguage();
   const {typeOfPayment} = i18n.store.data[lang].translation.checkout.payment;
   const { theme } = useTheme()
-  const onToken = amount => token => {
-    
-    const filledToken = {
-      ...token,       
-      card : {
-        address_city : user.information.city, 
-        address_country : "Viet nam",
-        address_line1 : user.information.address,
-        name : user.information.fullname
-      }
-    }
+  let _token ;
+  const onToken = amount => token => {    
+    _token = token ;
     axios
       .post(PAYMENT_SERVER_URL, {
         source: token.id,
         currency: CURRENCY,
         amount,
-      })
-      .then(res => {        
-        onClickProceedOrder(token.id)
-      })
-      .catch(err => console.log(err))
+      })    
+      
+  }
+
+  const onClosed = () => {    
+    if(_token){
+      onClickProceedOrder(_token.id);
+    }    
   }
   return (
     <StripeCheckout
       label={typeOfPayment.payment_in_card_button}
-      name="Vintage Clothes Shop"                  
+      name="Vintage Clothes Shop" 
+      allowRememberMe               
       currency={CURRENCY}
       email={user.email}
       image="https://svgshare.com/i/CUz.svg"
@@ -52,7 +48,7 @@ const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children, onCl
       panelLabel={typeOfPayment.payment_in_card_button}
       token={onToken(amount)}
       stripeKey={STRIPE_PUBLISHABLE}
-      
+      closed={onClosed}      
     >
      {children}
     </StripeCheckout>

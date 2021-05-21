@@ -18,7 +18,7 @@ import OrderedProductItemPayment from "../../components/Checkout/OrderedProductI
 import UserInformationPayment from "../../components/Checkout/UserInformation.Payment"
 import TypeOfPayment from "../../components/Checkout/TypeOfPayment"
 import { selectOrdersError } from "../../redux/orders/orders.selectors"
-import { selectUserError } from "../../redux/user/user.selectors"
+import { selectUserError, selectUserFetched } from "../../redux/user/user.selectors"
 import { addNewOrder, ordersClearError } from "../../redux/orders/orders.actions"
 import { updateUserPaymentAndShippingType, userClearError } from "../../redux/user/user.actions"
 import { navigate } from "gatsby"
@@ -32,12 +32,13 @@ import {
 } from "../../utils/calculateOrderPrice"
 import LoadingDialog from "../../components/Dialog/LoadingDialog"
 import ErrorDialog from "../../components/Dialog/ErrorDialog"
-import {useLocation} from "@reach/router"
+
 const tax = POLICY.tax
 
 const Payment = ({
   cartItems,
   user,
+  userFetched,
   addNewOrder,
   updateUserPaymentAndShippingType,
   orderError,
@@ -61,6 +62,8 @@ const Payment = ({
   const [shippingFee, setShippingFee] = useState(
     shippingMethod === "standard" ? 15000 : 30000
   )
+
+  console.log(paymentMethod)
 
   useEffect(() => {
     setShippingFee(shippingMethod === "standard" ? 15000 : 30000)
@@ -99,7 +102,7 @@ const Payment = ({
     userClearError();
     ordersClearError();    
   }
-
+  if(!userFetched) return <LoadingDialog open={true} />; 
   if (!user?.information) return navigate("/checkout/shipping")
   return (
     <Layout>
@@ -144,7 +147,7 @@ const Payment = ({
               totalPrice={_totalPrice}
               tax={tax}
             />
-            {paymentMethod === payment.typeOfPayment.payment_in_card.key ? (
+            {paymentMethod.key === payment.typeOfPayment.payment_in_card.key ? (
               <StripeButton
                 user={user}
                 totalPrice={_totalPrice}
@@ -152,7 +155,7 @@ const Payment = ({
               >
                 {" "}
                 <Button
-                  color="secondary"
+                  color="primary"
                   variant="contained"
                   style={{ display: "block", width: "100%" }}
                 >
@@ -183,6 +186,7 @@ const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
   orderError: selectOrdersError,
   userError: selectUserError,
+  userFetched : selectUserFetched
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -207,7 +211,7 @@ const mapDispatchToProps = dispatch => ({
   updateUserPaymentAndShippingType: (paymentMethod, shippingMethod) =>
     dispatch(updateUserPaymentAndShippingType(paymentMethod, shippingMethod)),
   ordersClearError : () => dispatch(ordersClearError()),
-  userClearError : () => dispatch(userClearError()),
+  userClearError : () => dispatch(userClearError()),  
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment)

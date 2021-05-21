@@ -33,7 +33,7 @@ const CheckoutPage = ({
   const {i18n, lang} = useLanguage();
   const {checkout} = i18n.store.data[lang].translation;
   const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems);
-  const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
+  const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax);
   const onClickProceedOrder = () => {
     navigate("/checkout/shipping");
   }

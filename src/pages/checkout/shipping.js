@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef,  createRef } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import Layout from "../../containers/Layout"
 import { connect } from "react-redux"
 import { selectCurrentUser } from "../../redux/user/user.selectors"
@@ -26,14 +26,6 @@ const Shipping = ({ user, updateUserInformation }) => {
   }, [user])
   const userInfoRef = useRef(null);
   
-  useEffect(() => {
-    if(!updateInfo){
-      window.scrollTo({
-        top : userInfoRef?.current?.offsetTop - 160 || 160, 
-        behavior : "smooth"
-      })
-    }
-  }, [updateInfo, userInfoRef])
   if(!user) return null ;
   return (
     <Layout>

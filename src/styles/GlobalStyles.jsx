@@ -69,10 +69,6 @@ export const GlobalStyles = createGlobalStyle`
     outline : none ;     
   }
   a{
-    text-decoration : none ; 
-    color : var(--blue-1);
-    &:hover{
-      color : var(--blue-3);
-    }
+    text-decoration : none ;    
   }
 `

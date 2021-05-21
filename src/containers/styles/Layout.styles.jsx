@@ -25,3 +25,12 @@ export const Header = styled.div`
   z-index: 100;
   box-shadow : ${({theme}) => theme.boxShadow};
 `
+
+export const StepperContainer = styled.div`
+  display : none ; 
+  @media screen and (min-width : 768px){
+    display : block;
+    width : 100%;     
+  }
+  
+`

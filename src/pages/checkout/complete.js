@@ -30,7 +30,6 @@ const CheckoutComplete = ({ order, clearCartItems, user }) => {
     const {hours, days} = estimateTimeDeliveryPolicy[order?.shipping_method];
     estimateTime = calculateEstimateTimeDilivery(days, hours)
   }
- 
   
   return (
     <Layout>
