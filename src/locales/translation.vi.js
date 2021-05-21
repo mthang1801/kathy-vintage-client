@@ -348,7 +348,7 @@ export const vi = {
       buttonContinueShopping: "Tiếp tục mua sắm",
       buttonBackHome : "Trở về trang chủ",
       invoice: {
-        temporaryTitle : "Temporary Invoice" ,
+        temporaryTitle : "Hóa đơn tạm tính" ,
         title : "Hóa đơn Thanh toán",
         totalBeforeTax: "Tổng tiền trước thuế",
         tax: "Thuế VAT",
@@ -371,6 +371,8 @@ export const vi = {
       },
       payment : {
         listOfOrderedProducts: "Danh sách Đơn hàng",
+        shippingInformation : "Thông tin giao hàng",
+        invoice : "Hóa đơn",
         typeOfShipping : {
           title : "Phương thức vận chuyển", 
           standard : {

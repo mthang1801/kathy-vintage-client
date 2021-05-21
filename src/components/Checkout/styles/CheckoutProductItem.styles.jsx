@@ -103,10 +103,13 @@ export const ProductQuantityControls = styled.div`
 export const ProductDelete = styled.div`  
   & svg{
     font-size : 1.3rem;
-  }
-  padding : 0.25rem 0.75rem; 
+  }  
+  text-align :center;  
   cursor : pointer;
   &:hover{
     color : var(--red-3);
   } 
+  @media screen and (min-width : 768px){
+    padding : 0.25rem 0.75rem; 
+  }
 `

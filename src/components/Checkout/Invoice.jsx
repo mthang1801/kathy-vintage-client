@@ -13,9 +13,10 @@ const Invoice = ({ cartItems, isPayment, totalPriceBeforeTax, totalPriceAfterTax
   return (
     <Wrapper>
       <List theme={theme}>
-        <Title>
-          {isPayment ? checkout.invoice.title : checkout.invoice.temporaryTitle}
-        </Title>
+        {!isPayment && <Title>
+         {checkout.invoice.temporaryTitle}
+        </Title>}
+        
         <ListItem>
           <span>{checkout.invoice.totalBeforeTax}</span>
           <span>{totalPriceBeforeTax.toLocaleString("de-DE")}</span>

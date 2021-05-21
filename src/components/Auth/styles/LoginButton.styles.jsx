@@ -21,11 +21,13 @@ export const GoogleLoginButtonWrapper = styled.button`
   outline: none;
   border: none;
   background-color: #2196f3;
+  border : 1px solid #2196f3;
   align-items: center;
   &:active,
   &:focus,
   &:hover {
     background-color: #1976d2;
+    border : 1px solid #1976d2;
     ${ButtonIcon} {
       background-color: #52aef7;
       & svg {
@@ -43,13 +45,14 @@ export const GoogleLoginButtonWrapper = styled.button`
 export const FacebookLoginButtonWrapper = styled.button`
   display: flex;
   outline: none;
-  border: none;
+  border: 1px solid #3c5898;
   background-color: #3c5898;
   align-items: center;
   &:active,
   &:focus,
   &:hover {
     background-color: #29487d;
+    border: 1px solid #29487d;
     ${ButtonIcon}{
       background-color :#3c5898; 
       & svg{

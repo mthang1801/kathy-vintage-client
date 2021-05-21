@@ -120,10 +120,10 @@ export const signInWithGoogle = () => {
         "https://www.googleapis.com/auth/contacts.readonly"
       )
       GoogleProvider.setCustomParameters({ prompt: "select_account" })
-      const { user } =
-        getDeviceType() !== "desktop"
-          ? await firebase.auth().signInWithRedirect(GoogleProvider)
-          : await firebase.auth().signInWithPopup(GoogleProvider)      
+      const { user } =await firebase.auth().signInWithPopup(GoogleProvider)    
+        // getDeviceType() !== "desktop"
+        //   ? await firebase.auth().signInWithRedirect(GoogleProvider)
+        //   :    await firebase.auth().signInWithPopup(GoogleProvider)   
       const userInfo = { ...user?.providerData[0], uid: user.uid }           
       if (userInfo) {
         await addUserToProfileDocument(user, userInfo);
@@ -142,10 +142,10 @@ export const signInWithFacebook = () => {
       const FacebookProvider = new firebase.auth.FacebookAuthProvider()
       FacebookProvider.setCustomParameters({ display: "popup" })
 
-      const { user } =
-        getDeviceType() !== "desktop"
-          ? await firebase.auth().signInWithRedirect(FacebookProvider)
-          : await firebase.auth().signInWithPopup(FacebookProvider)
+      const { user } =await firebase.auth().signInWithPopup(FacebookProvider)
+        // getDeviceType() !== "desktop"
+        //   ? await firebase.auth().signInWithRedirect(FacebookProvider)
+        //   : await firebase.auth().signInWithPopup(FacebookProvider)
       const userInfo = { ...user?.providerData[0], uid: user.uid }
       if (userInfo) {
         await addUserToProfileDocument(user, userInfo);

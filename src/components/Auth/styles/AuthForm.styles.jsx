@@ -67,10 +67,17 @@ export const SocialLoginButtons = styled.div`
   display : flex; 
   flex-direction : column;
   margin : 0.5rem auto;
+  & > *{
+    margin : 0.5rem auto;    
+    width : 100%;
+  }
   @media screen and (min-width: 768px){
     display : grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap : 1rem;
+    & > *{
+      margin : 0;
+    }
   }  
 `
 

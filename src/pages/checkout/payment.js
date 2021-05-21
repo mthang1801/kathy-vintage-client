@@ -158,7 +158,9 @@ const Payment = ({
                 />
               </div>
               <div>
+                <Title>3. {payment.shippingInformation}</Title>
                 {user.information && <UserInformationPayment user={user} />}
+                <Title>4. {payment.invoice}</Title>
                 <Invoice
                   cartItems={cartItems}
                   isPayment

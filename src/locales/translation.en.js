@@ -365,6 +365,8 @@ export const en = {
       },
       payment: {
         listOfOrderedProducts: "List Of Ordered Products",
+        shippingInformation : "Shipping Information",
+        invoice : "Invoice",
         typeOfShipping: {
           title: "Type of Shipping",
           standard: {

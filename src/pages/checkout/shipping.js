@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useRef } from "react"
 import Layout from "../../containers/Layout"
 import { connect } from "react-redux"
-import { selectCurrentUser, selectUserFetched } from "../../redux/user/user.selectors"
+import {
+  selectCurrentUser,
+  selectUserFetched,
+} from "../../redux/user/user.selectors"
 import { createStructuredSelector } from "reselect"
 import UserInformationForm from "../../components/Checkout/UserInformationForm"
 import { navigate } from "gatsby"
@@ -27,10 +30,9 @@ const Shipping = ({ user, updateUserInformation, userFetched }) => {
     }
   }, [user, userFetched])
   const userInfoRef = useRef(null)
-
   return (
     <Layout>
-      
+      {user && (
         <ContentContainer ref={userInfoRef}>
           {user?.information && (
             <>
@@ -59,14 +61,15 @@ const Shipping = ({ user, updateUserInformation, userFetched }) => {
               />
             </FormContainer>
           )}
-        </ContentContainer>      
+        </ContentContainer>
+      )}
     </Layout>
   )
 }
 
 const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
-  userFetched : selectUserFetched
+  userFetched: selectUserFetched,
 })
 
 const mapDispatchToProps = dispatch => ({

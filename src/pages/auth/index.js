@@ -5,10 +5,13 @@ import {connect} from "react-redux"
 import {selectCurrentUser, selectUserFetched} from "../../redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
 import {navigate} from "gatsby"
+import {useLocation} from "@reach/router"
 const Login = ({user, isFetched,...props}) => {
+  const location = useLocation();
   useEffect(()=>{
-    if(user){
-      navigate(props?.location?.state?.from || "/");
+    console.log(location)
+    if(user){      
+      navigate(location?.state?.from || "/");
     }
   },[user])
   return (

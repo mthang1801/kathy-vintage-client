@@ -5,6 +5,7 @@ export const ContentContainer = styled.div`
   margin: 2rem auto;
   display: block;
   & > * {
+    margin-bottom : 1rem;
     & > *:not(:last-child){
       margin-bottom : 1rem;
     }
@@ -30,7 +31,7 @@ export const Wrapper = styled.div`
   }
 `
 export const Title = styled.h3`
-  margin : 0; 
+  margin : 0;
   font-size : 1.25rem;
   margin-bottom : 1rem;
 `
