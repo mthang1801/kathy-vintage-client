@@ -123,11 +123,12 @@ export const signInWithGoogle = () => {
       const { user } =
         getDeviceType() !== "desktop"
           ? await firebase.auth().signInWithRedirect(GoogleProvider)
-          : await firebase.auth().signInWithPopup(GoogleProvider)
-      const userInfo = { ...user?.providerData[0], uid: user.uid }
+          : await firebase.auth().signInWithPopup(GoogleProvider)      
+      const userInfo = { ...user?.providerData[0], uid: user.uid }           
       if (userInfo) {
-        await addUserToProfileDocument(user, userInfo)
-        return resolve(user.providerData[0])
+        await addUserToProfileDocument(user, userInfo);
+        const userDatabase = await firebase.firestore().doc(`users/${user.uid}`).get();
+        return resolve(userDatabase.data());
       }
       resolve(null)
     } catch (error) {
@@ -147,8 +148,9 @@ export const signInWithFacebook = () => {
           : await firebase.auth().signInWithPopup(FacebookProvider)
       const userInfo = { ...user?.providerData[0], uid: user.uid }
       if (userInfo) {
-        await addUserToProfileDocument(user, userInfo)
-        return resolve(userInfo)
+        await addUserToProfileDocument(user, userInfo);
+        const userDatabase = await firebase.firestore().doc(`users/${user.uid}`).get();
+        return resolve(userDatabase.data());       
       }
       resolve(null)
     } catch (error) {

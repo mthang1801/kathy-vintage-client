@@ -18,9 +18,19 @@ import OrderedProductItemPayment from "../../components/Checkout/OrderedProductI
 import UserInformationPayment from "../../components/Checkout/UserInformation.Payment"
 import TypeOfPayment from "../../components/Checkout/TypeOfPayment"
 import { selectOrdersError } from "../../redux/orders/orders.selectors"
-import { selectUserError, selectUserFetched } from "../../redux/user/user.selectors"
-import { addNewOrder, ordersClearError } from "../../redux/orders/orders.actions"
-import { updateUserPaymentAndShippingType, userClearError } from "../../redux/user/user.actions"
+import {useLocation} from "@reach/router"
+import {
+  selectUserError,
+  selectUserFetched,
+} from "../../redux/user/user.selectors"
+import {
+  addNewOrder,
+  ordersClearError,
+} from "../../redux/orders/orders.actions"
+import {
+  updateUserPaymentAndShippingType,
+  userClearError,
+} from "../../redux/user/user.actions"
 import { navigate } from "gatsby"
 import StripeButton from "../../components/Controls/StripeButton"
 import Button from "@material-ui/core/Button"
@@ -51,6 +61,7 @@ const Payment = ({
   const { payment } = checkout
   const { theme } = useTheme()
   const [loading, setLoading] = useState(false)
+  const {pathname} = useLocation();
   const [shippingMethod, setShippingMethod] = useState(
     payment.typeOfShipping.standard
   )
@@ -63,11 +74,16 @@ const Payment = ({
     shippingMethod === "standard" ? 15000 : 30000
   )
 
-  console.log(paymentMethod)
-
   useEffect(() => {
     setShippingFee(shippingMethod === "standard" ? 15000 : 30000)
-  }, [shippingMethod])
+  }, [shippingMethod]);
+
+
+  useEffect(() => {
+    if (!user && userFetched) {
+      navigate("/auth", { state: { from: pathname } })
+    }
+  }, [user, userFetched])
 
   const onClickProceedOrder = async (tokenId = null) => {
     setLoading(true)
@@ -83,8 +99,8 @@ const Payment = ({
       await updateUserPaymentAndShippingType(
         paymentMethod.key,
         shippingMethod.key
-      )      
-      navigate("/checkout/complete", {state : {from : "/checkout/payment"}})      
+      )
+      navigate("/checkout/complete", { state: { from: "/checkout/payment" } })
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -99,83 +115,93 @@ const Payment = ({
   )
 
   const handleClearError = () => {
-    userClearError();
-    ordersClearError();    
+    userClearError()
+    ordersClearError()
   }
-  if(!userFetched) return <LoadingDialog open={true} />; 
-  if (!user?.information) return navigate("/checkout/shipping")
+
+  if (userFetched && user &&  !user?.information) return navigate("/checkout/shipping")
   return (
     <Layout>
-      <LoadingDialog open={loading} />
-      <ErrorDialog content={orderError || userError} onClickCloseError={handleClearError}/>
-      {cartItems.length ? (
-        <ContentContainer>
-          <div>
-            <Title>1. {payment.typeOfShipping.title}</Title>
-            <Wrapper theme={theme}>
-              <CheckoutPaymentTypeOfShipping
-                user={user}
-                cartItems={cartItems}
-                types={payment.typeOfShipping}
-                shippingMethod={shippingMethod}
-                setShippingMethod={setShippingMethod}
-              />
-              <p>{payment.listOfOrderedProducts}</p>
-              {cartItems.map(product => (
-                <OrderedProductItemPayment
-                  key={product.contentful_id}
-                  shippingMethod={shippingMethod}
-                  product={product}
+      <LoadingDialog open={loading || !userFetched} />
+      <ErrorDialog
+        content={orderError || userError}
+        onClickCloseError={handleClearError}
+      />
+      {user && (
+        <>
+          {cartItems.length ? (
+            <ContentContainer>
+              <div>
+                <Title>1. {payment.typeOfShipping.title}</Title>
+                <Wrapper theme={theme}>
+                  <CheckoutPaymentTypeOfShipping
+                    user={user}
+                    cartItems={cartItems}
+                    types={payment.typeOfShipping}
+                    shippingMethod={shippingMethod}
+                    setShippingMethod={setShippingMethod}
+                  />
+                  <p>{payment.listOfOrderedProducts}</p>
+                  {cartItems.map(product => (
+                    <OrderedProductItemPayment
+                      key={product.contentful_id}
+                      shippingMethod={shippingMethod}
+                      product={product}
+                    />
+                  ))}
+                </Wrapper>
+                <Title>2. {payment.typeOfPayment.title}</Title>
+                <TypeOfPayment
+                  user={user}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
                 />
-              ))}
-            </Wrapper>
-            <Title>2. {payment.typeOfPayment.title}</Title>
-            <TypeOfPayment
-              user={user}
-              paymentMethod={paymentMethod}
-              setPaymentMethod={setPaymentMethod}
-            />
-          </div>
-          <div>
-            {user.information && <UserInformationPayment user={user} />}
-            <Invoice
-              cartItems={cartItems}
-              isPayment
-              shippingFee={shippingFee}
-              totalPriceBeforeTax={_totalPriceBeforeTax}
-              totalPriceAfterTax={_totalPriceAfterTax}
-              totalPrice={_totalPrice}
-              tax={tax}
-            />
-            {paymentMethod.key === payment.typeOfPayment.payment_in_card.key ? (
-              <StripeButton
-                user={user}
-                totalPrice={_totalPrice}
-                onClickProceedOrder={tokenId => onClickProceedOrder(tokenId)}
-              >
-                {" "}
-                <Button
-                  color="primary"
-                  variant="contained"
-                  style={{ display: "block", width: "100%" }}
-                >
-                  {checkout.button_proceed_order}
-                </Button>
-              </StripeButton>
-            ) : (
-              <Button
-                color="secondary"
-                variant="contained"
-                style={{ display: "block", width: "100%" }}
-                onClick={() => onClickProceedOrder()}
-              >
-                {checkout.button_proceed_order}
-              </Button>
-            )}
-          </div>
-        </ContentContainer>
-      ) : (
-        <EmptyProductInCart />
+              </div>
+              <div>
+                {user.information && <UserInformationPayment user={user} />}
+                <Invoice
+                  cartItems={cartItems}
+                  isPayment
+                  shippingFee={shippingFee}
+                  totalPriceBeforeTax={_totalPriceBeforeTax}
+                  totalPriceAfterTax={_totalPriceAfterTax}
+                  totalPrice={_totalPrice}
+                  tax={tax}
+                />
+                {paymentMethod.key ===
+                payment.typeOfPayment.payment_in_card.key ? (
+                  <StripeButton
+                    user={user}
+                    totalPrice={_totalPrice}
+                    onClickProceedOrder={tokenId =>
+                      onClickProceedOrder(tokenId)
+                    }
+                  >
+                    {" "}
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      style={{ display: "block", width: "100%" }}
+                    >
+                      {checkout.button_proceed_order}
+                    </Button>
+                  </StripeButton>
+                ) : (
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    style={{ display: "block", width: "100%" }}
+                    onClick={() => onClickProceedOrder()}
+                  >
+                    {checkout.button_proceed_order}
+                  </Button>
+                )}
+              </div>
+            </ContentContainer>
+          ) : (
+            <EmptyProductInCart />
+          )}
+        </>
       )}
     </Layout>
   )
@@ -186,7 +212,7 @@ const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
   orderError: selectOrdersError,
   userError: selectUserError,
-  userFetched : selectUserFetched
+  userFetched: selectUserFetched,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -210,8 +236,8 @@ const mapDispatchToProps = dispatch => ({
     ),
   updateUserPaymentAndShippingType: (paymentMethod, shippingMethod) =>
     dispatch(updateUserPaymentAndShippingType(paymentMethod, shippingMethod)),
-  ordersClearError : () => dispatch(ordersClearError()),
-  userClearError : () => dispatch(userClearError()),  
+  ordersClearError: () => dispatch(ordersClearError()),
+  userClearError: () => dispatch(userClearError()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment)

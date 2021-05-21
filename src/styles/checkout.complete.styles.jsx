@@ -14,3 +14,9 @@ export const ImageContainer = styled.div`
     color : var(--green-1);
   }
 `
+
+export const ButtonGroup = styled.div`
+  margin : 1rem auto;
+  display: flex;
+  justify-content: center;
+`

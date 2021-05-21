@@ -27,7 +27,7 @@ const Cart = ({
   const onClickCart = () => {
     console.log("clciked")
     if (window.innerWidth < 768) {
-      return navigate("/cart")
+      return navigate("/checkout")
     }
     toggleCart()
     removeAlertCart();

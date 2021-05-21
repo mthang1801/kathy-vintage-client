@@ -402,7 +402,8 @@ export const en = {
           <p>Estimated delivery time is <i>${estimatedTime}</i></p>
           <p>The information detail about this order will be sent to your email <strong>${email}</strong>, please check your mail. If you don't see, you can check at <strong>Span</strong> or <strong>Junk Folder</strong></p> or report to administrator to solve your problem.
         `,
-        body_footer : "Best regards, from tnshop team."
+        body_footer : "Best regards, from tnshop team.",
+        backHomeButton : "Back Home"
       },
     },
   },

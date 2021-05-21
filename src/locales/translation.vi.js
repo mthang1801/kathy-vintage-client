@@ -408,7 +408,8 @@ export const vi = {
           <p>Thời gian dự kiến giao hàng <i>${estimatedTime}</i> (có thể thời gian sẽ trễ hơn do tình hình dịch COVID-19 đang diễn ra phức tạp)</p>
           <p>Thông tin chi tiết đơn hàng sẽ được gửi về email <strong>${email}</strong>. Bạn vui lòng check email để kiểm tra lại đơn hàng. Trong trường hợp không thấy email, bạn vui lòng kiểm trong hộp thư <strong>Spam</strong> hoặc <strong>Junk Folder</strong> hoặc báo cáo với quản trị viên.</p>          
         `,
-        body_footer : "Trân trọng cám ơn, đội ngũ tnshop"
+        body_footer : "Trân trọng cám ơn, đội ngũ tnshop",
+        backHomeButton : "Trở lại trang chủ"
       }
     },
   },
