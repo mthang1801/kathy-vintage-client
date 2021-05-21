@@ -40,8 +40,7 @@ const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children, onCl
   return (
     <StripeCheckout
       label={typeOfPayment.payment_in_card_button}
-      name="Vintage Clothes Shop"            
-      allowRememberMe
+      name="Vintage Clothes Shop"                  
       currency={CURRENCY}
       email={user.email}
       image="https://svgshare.com/i/CUz.svg"

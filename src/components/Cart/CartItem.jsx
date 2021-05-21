@@ -27,6 +27,7 @@ const CartItem = ({
   removeProductFromCart,
 }) => {
   const { i18n, lang } = useLanguage()
+  const {cart} = i18n.store.data[lang].translation;
   const { theme } = useTheme()
   const productPrice =
     product.isDiscount && product.discountPercentage
@@ -57,28 +58,23 @@ const CartItem = ({
         />
       </AvatarContainer>
       <PruductDetail>
-      <ProductContent>        
-        <ProductName>{product[`name_${lang}`]}</ProductName>
-        <DeleteProduct onClick={onRemoveProduct}>
-          <BsTrash />
-        </DeleteProduct>        
-      </ProductContent>
-      <ProductInfo>
-          <div>{productPrice} x</div>
-          <ProductQuantityControl>
-            <ButtonQuantity onClick={onDecreaseProductQuantity}>
-              &lt;
-            </ButtonQuantity>
-            <span>{product.quantity}</span>
-            <ButtonQuantity onClick={onIncreaseProductQuantity}>
-              &gt;
-            </ButtonQuantity>
-          </ProductQuantityControl>
+        <ProductContent>
+          <ProductName>{product[`name_${lang}`]}</ProductName>
+          <DeleteProduct onClick={onRemoveProduct}>
+            <BsTrash />
+          </DeleteProduct>
+        </ProductContent>
+        <ProductInfo>        
+          <div>{cart.quantity}: <strong>{product.quantity}</strong></div>
+
           <div>
-            <strong> = {(productPrice * product.quantity).toLocaleString("de-DE")}</strong>
+            {cart.totalPrice}: <strong>
+              {(productPrice * product.quantity).toLocaleString("de-DE")}
+            </strong>
+            
           </div>
         </ProductInfo>
-        </PruductDetail>
+      </PruductDetail>
     </Wrapper>
   )
 }

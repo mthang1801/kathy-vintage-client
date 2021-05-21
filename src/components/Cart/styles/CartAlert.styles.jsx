@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
   box-shadow : ${({theme}) => theme.boxShadow};
   background-color : ${({theme}) => theme.card};  
   animation: ${CartAlertAnimation} 0.5s;
-  font-size : 1rem;  
+  font-size : 0.9rem;  
 `
 
 export const ButtonCheckout = styled(Link)`
@@ -28,12 +28,14 @@ export const ButtonCheckout = styled(Link)`
   text-decoration : none;     
   outline : none ; 
   border: none ; 
-  cursor  : pointer;
+  cursor  : pointer;  
   background : linear-gradient(to right bottom, var(--red-1), var(--red-2));
   border-radius : 0.5rem;
-  padding : 0.75rem 1rem;
+  padding : 0.75rem;
+  max-width : 240px;
   color : #fff;
-  margin : 1rem auto;
+  margin : 1rem auto 0.5rem auto;
+  font-size  :0.85rem;
   &:hover{
     background : var(--red-3);
   }

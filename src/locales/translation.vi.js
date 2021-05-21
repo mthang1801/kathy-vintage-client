@@ -204,7 +204,10 @@ export const vi = {
       cartPreview: "Giỏ hàng của bạn",
       cartEmpty: "Giỏ hàng trống",
       cartAlert: "✅ Thêm vào giỏ hàng thành công",
-      checkoutButton: "Xem giỏ hàng và thanh toán",
+      checkoutButton: "Xem giỏ hàng và thanh toán",      
+      quantity : "Số lượng",
+      totalPrice : "Tổng tiền",
+      completePrice : "Thành tiền"
     },
     search: {
       placeholder: "Tìm kiếm...",
@@ -331,6 +334,7 @@ export const vi = {
     dialog: {
       agree: "Đồng ý",
       disagree: "Hủy bỏ",
+      close : "Đóng",
       removeProductFromCart: {
         title: "Loại bỏ sản phẩm khỏi giỏ hàng",
         content: name =>
@@ -340,7 +344,9 @@ export const vi = {
     },
     checkout: {
       cartEmpty : "Không có sản phẩm nào trong giỏ hàng" ,
+      orderEmpty : "Không có đơn hàng nào vừa được thanh toán",
       buttonContinueShopping: "Tiếp tục mua sắm",
+      buttonBackHome : "Trở về trang chủ",
       invoice: {
         temporaryTitle : "Temporary Invoice" ,
         title : "Hóa đơn Thanh toán",
@@ -393,6 +399,16 @@ export const vi = {
         price : "Tổng tiền",
         totalPrice : "Thành tiền",
         shipping : "Giao hàng"
+      },
+      complete:{
+        header_letter : "Cám ơn bạn đã mua hàng tại tnshop",
+        body_letter : (orderId, estimatedTime, email) => `          
+          <p>Mã đơn hàng của bạn là: <strong>${orderId}</strong></p>
+          <p>Bạn có thể xem lại toàn bộ đơn hàng tại <a href="/ordered">Đây</a></p>
+          <p>Thời gian dự kiến giao hàng <i>${estimatedTime}</i> (có thể thời gian sẽ trễ hơn do tình hình dịch COVID-19 đang diễn ra phức tạp)</p>
+          <p>Thông tin chi tiết đơn hàng sẽ được gửi về email <strong>${email}</strong>. Bạn vui lòng check email để kiểm tra lại đơn hàng. Trong trường hợp không thấy email, bạn vui lòng kiểm trong hộp thư <strong>Spam</strong> hoặc <strong>Junk Folder</strong> hoặc báo cáo với quản trị viên.</p>          
+        `,
+        body_footer : "Trân trọng cám ơn, đội ngũ tnshop"
       }
     },
   },

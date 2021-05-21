@@ -35,6 +35,8 @@ export default (state = INITIAL_STATE, action) => {
       }
     case userActionTypes.UPDATE_USER_INFORMATION_SUCCESS:
       return { ...state, user: action.payload, loading: false }
+    case userActionTypes.CLEAR_ERROR:
+      return { ...state, error: undefined }
     case userActionTypes.SIGN_UP_FAIL:
     case userActionTypes.GET_CURRENT_USER_FAIL:
     case userActionTypes.SIGN_OUT_USER_FAIL:

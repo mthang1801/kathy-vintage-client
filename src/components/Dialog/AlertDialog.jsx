@@ -29,7 +29,7 @@ export default function AlertDialog({open, setOpen, title, content, onAgree}) {
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-describedby="alert-dialog-description"                    
       >
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>

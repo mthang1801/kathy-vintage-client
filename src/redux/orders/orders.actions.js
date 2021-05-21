@@ -51,12 +51,17 @@ export const addNewOrder = (
       if(tokenId){
         newOrderItem.tokenId = tokenId;
       }
-      await orderDB.addNewOrder(user, newOrderItem)
-      dispatch(addNewOrderSuccess(newOrderItem))
-      resolve(true);
+      const newOrderResult = await orderDB.addNewOrder(user, newOrderItem)
+      dispatch(addNewOrderSuccess(newOrderResult))      
+      resolve(true)
     } catch (error) {
       dispatch(addNewOrderFail(error.message)) ;
       reject(false);
     }
   })
 }
+
+
+export const ordersClearError = () => ({
+  type : orderActionTypes.CLEAR_ERROR
+})

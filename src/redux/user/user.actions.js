@@ -201,3 +201,6 @@ export const updateUserPaymentAndShippingType = (paymentMethod) => dispatch => {
   })
 }
 
+export const userClearError = () => ({
+  type : userActionTypes.CLEAR_ERROR
+})

@@ -7,7 +7,7 @@ import ordersReducer from "./orders/orders.reducer";
 const rootPersistConfig = {
   key: "root",
   storage,
-  whiteList: ["cart"],  
+  whitelist: ["cart"],  
 }
 
 const rootReducer = combineReducers({

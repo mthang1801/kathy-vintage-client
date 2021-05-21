@@ -37,3 +37,12 @@ export const EmptyItem = styled.h4`
   align-items : center;
   justify-content : center;
 `
+
+export const TotalPrice = styled.div`
+  text-align : right;
+`
+
+export const FooterDropdown = styled.div`
+  padding: 0.75rem;
+  border-top : 1px solid ${({theme}) => theme.border};
+`

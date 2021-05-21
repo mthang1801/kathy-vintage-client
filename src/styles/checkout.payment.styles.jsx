@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const ContentContainer = styled.div`
   width: 95vw;
-  margin: 3rem auto;
+  margin: 2rem auto;
   display: block;
   & > * {
     & > *:not(:last-child){

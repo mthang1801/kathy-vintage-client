@@ -17,8 +17,8 @@ export const AvatarContainer = styled.div`
   width : 3rem;
   height : 3rem; 
   & img{
-    width : 100%; 
-    height : 100%;
+    width : 3rem;
+    height : 3rem; 
   }
 `
 
@@ -47,7 +47,7 @@ export const ProductInfo = styled.div`
   margin : 0.75rem 0;
   display : flex;
   flex-wrap : wrap;
-  justify-content : flex-start;
+  justify-content : space-between;
   align-items : center;
   & > *:not(:first-child){
     margin-left : 0.6rem;

@@ -2,6 +2,7 @@ import orderActionTypes from "./orders.types";
 
 const INITIAL_STATE = {
   orders : [], 
+  newOrder : null, 
   loading : false, 
   error : undefined
 }
@@ -18,8 +19,14 @@ export default (state=INITIAL_STATE, action) => {
       return {
         ...state, 
         loading : false , 
-        orders : state.orders.length ?  [{...action.payload}, ...state.orders] : [...state.orders],        
+        orders : state.orders.length ?  [{...action.payload}, ...state.orders] : [...state.orders],
+        newOrder : action.payload,        
       }
+    case orderActionTypes.CLEAR_ERROR : 
+    return {
+      ...state, 
+      error : undefined
+    };
     case orderActionTypes.ADD_NEW_ORDER_FAIL : 
       return {
         ...state, 

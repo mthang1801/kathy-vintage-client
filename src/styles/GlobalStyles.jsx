@@ -68,4 +68,11 @@ export const GlobalStyles = createGlobalStyle`
   div[role=button]{
     outline : none ;     
   }
+  a{
+    text-decoration : none ; 
+    color : var(--blue-1);
+    &:hover{
+      color : var(--blue-3);
+    }
+  }
 `

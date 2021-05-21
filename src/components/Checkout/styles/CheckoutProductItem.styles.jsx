@@ -12,19 +12,22 @@ export const Wrapper = styled.section`
 
 export const ImageContainer = styled.div`
   width : 4rem; 
-  
+  & img{
+    width : 4rem;
+  }
   @media screen and (min-width :768px){
     width : 5rem;
+    & img{
+      width :5rem;
+    }
   
   }
   @media screen and (min-width :992px){
     width : 7rem;
-  
-  }
-  & img{
-    width : 100%; 
-  
-  }
+    & img{
+      width : 7rem;
+    }
+  }  
 
 `
 
@@ -59,7 +62,7 @@ export const ProductPriceAndQuantity = styled.div`
 export const ProductPrice = styled.div`
   display : flex;
   flex-direction : column; 
-  text-align : left;  
+  text-align : center;  
   @media screen and (min-width : 992px){
     text-align : center;
   }

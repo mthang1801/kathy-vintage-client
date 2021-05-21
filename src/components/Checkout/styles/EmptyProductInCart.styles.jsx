@@ -20,7 +20,24 @@ export const Wrapper = styled.div`
 export const Icon = styled.div`
   svg{
     font-size : 10rem;
+  }  
+`
+
+export const ImageContainer = styled.div` 
+  img{
+    width : 120px;
   }
+  @media screen and (min-width : 768px){
+    img{
+      width : 180px; 
+    }
+  }
+  @media screen and (min-width : 992px){
+    img{
+      width : 240px;
+    }
+  }
+
 `
 
 export const Title = styled.h2`

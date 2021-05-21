@@ -108,23 +108,23 @@ export const en = {
         name: "Sign out",
         icon: <FiLogOut />,
       },
-      information : {
-        title : "Form Information",
-        fullname : "Full Name",
-        phone : "Phone Number",
-        city : "Select City",
-        district : "Select District",
-        ward : "Select Ward",
-        address : "Select Address",
-        errorMessages : {
-          required : "This field is required",
-          fullName : "You need to type first name and last name",
-          invalidPhone : "Invalid phone number"
+      information: {
+        title: "Form Information",
+        fullname: "Full Name",
+        phone: "Phone Number",
+        city: "Select City",
+        district: "Select District",
+        ward: "Select Ward",
+        address: "Select Address",
+        errorMessages: {
+          required: "This field is required",
+          fullName: "You need to type first name and last name",
+          invalidPhone: "Invalid phone number",
         },
-        buttonSubmit : "Complete",
-        buttonUpdate : "Update",
-        button_close_information_form : "Close"
-      }
+        buttonSubmit: "Complete",
+        buttonUpdate: "Update",
+        button_close_information_form: "Close",
+      },
     },
     portfolioIcons: {
       portfolioId_1: {
@@ -194,10 +194,14 @@ export const en = {
     },
     cart: {
       name: "Cart",
-      cartPreview : "Cart Preview",
-      cartEmpty : "Empty Item",
-      cartAlert : "✅ Product is added to cart",
-      checkoutButton : "Go to Checkout"
+      cartPreview: "Cart Preview",
+      cartEmpty: "Empty Item",
+      cartAlert: "✅ Product is added to cart",
+      checkoutButton: "Go to Checkout",
+      price: "Price",
+      quantity: "Quantity",
+      totalPrice: "Price",
+      completePrice: "Total Price",
     },
     search: {
       placeholder: "Search...",
@@ -237,12 +241,12 @@ export const en = {
         origin: "Origin",
         size: "Size",
         quantity: "Quantity",
-        colors : "Colors",
-        information : "Product Information" ,
-        description :"Product Description",
-        readMore : "Read More", 
-        shortenText : "Shorten Text",
-        relevantProducts : "Relevant Products",        
+        colors: "Colors",
+        information: "Product Information",
+        description: "Product Description",
+        readMore: "Read More",
+        shortenText: "Shorten Text",
+        relevantProducts: "Relevant Products",
         buttonAddToCart: {
           name: "Thêm vào giỏ hàng",
           icon: <MdAddShoppingCart />,
@@ -321,72 +325,85 @@ export const en = {
         path: "/",
       },
     },
-    dialog : {
-      agree : "Agree",
-      disagree : "Disagree",
-      removeProductFromCart : {
-        title : "Remove Product from cart.",
-        content : (name) => `<p>Are you sure to remove <strong>${name}</strong> from cart?</p>`
+    dialog: {
+      agree: "Agree",
+      disagree: "Disagree",
+      close: "Close",
+      removeProductFromCart: {
+        title: "Remove Product from cart.",
+        content: name =>
+          `<p>Are you sure to remove <strong>${name}</strong> from cart?</p>`,
       },
-      loading : "Waiting for progressing"
+      loading: "Waiting for progressing",
     },
-    checkout: {  
-      cartEmpty : "Your cart is empty" ,
+    checkout: {
+      cartEmpty: "Your cart is empty",
+      orderEmpty: "Your order is empty",
       buttonContinueShopping: "Continue Shopping",
+      buttonBackHome: "Back Home",
       invoice: {
-        temporaryTitle : "Temporary Invoice" ,
-        title : "Invoice",
+        temporaryTitle: "Temporary Invoice",
+        title: "Invoice",
         totalBeforeTax: "Total Before Tax",
         tax: "Tax VAT",
         totalAfterTax: "Total After Tax",
         totalPrice: "Total Price",
-        shippingFee : "Shipping Fee"
+        shippingFee: "Shipping Fee",
       },
-      button_proceed_order : "Proceed to Order",
-      userInformation : {
-        fullname : "Full Name",        
-        phone : "Phone",
-        address : "Address",   
-        ward : "Ward",
-        district : "District",
-        city : "City",
-        button_change_information : "Update",
-        button_create_new_information : "Create new Information",
-        button_proceed_order : "Proceed Order",  
-        link_change_information : "Update your information"        
+      button_proceed_order: "Proceed to Order",
+      userInformation: {
+        fullname: "Full Name",
+        phone: "Phone",
+        address: "Address",
+        ward: "Ward",
+        district: "District",
+        city: "City",
+        button_change_information: "Update",
+        button_create_new_information: "Create new Information",
+        button_proceed_order: "Proceed Order",
+        link_change_information: "Update your information",
       },
-      payment : {
+      payment: {
         listOfOrderedProducts: "List Of Ordered Products",
-        typeOfShipping : {
-          title : "Type of Shipping", 
-          standard : {
-            key : "standard", 
-            value : "standard"
+        typeOfShipping: {
+          title: "Type of Shipping",
+          standard: {
+            key: "standard",
+            value: "standard",
           },
-          fast : {
-            key : "fast",
-            value : "fast delivery"
-          }
-        },        
-        typeOfPayment : {
-          title: "Type of Payment",
-          payment_in_cash : {
-            key : "payment_in_cash",
-            value : "Payment In Cash"
+          fast: {
+            key: "fast",
+            value: "fast delivery",
           },
-          payment_in_card : {
-            key : "payment_in_card",
-            value : "Payment In Credit Card, VISA, Master..."
-          },
-          payment_in_card_button : "Proceed to order"
         },
-        quantity : "Quantity", 
-        unitPrice : "Unit Price",
-        price : "Price",
-        totalPrice : "Total price",
-        shipping : "Shipping",        
-      }
+        typeOfPayment: {
+          title: "Type of Payment",
+          payment_in_cash: {
+            key: "payment_in_cash",
+            value: "Payment In Cash",
+          },
+          payment_in_card: {
+            key: "payment_in_card",
+            value: "Payment In Credit Card, VISA, Master...",
+          },
+          payment_in_card_button: "Proceed to order",
+        },
+        quantity: "Quantity",
+        unitPrice: "Unit Price",
+        price: "Price",
+        totalPrice: "Total price",
+        shipping: "Shipping",
+      },
+      complete: {
+        header_letter: "Thank you for buying product from tnshop",
+        body_letter: (orderId, estimatedTime, email) => `
+          <p>Your Order Id: <strong>${orderId}</strong></p>
+          <p>You can see this order at <a href="/ordered">My Orders</a></p>
+          <p>Estimated delivery time is <i>${estimatedTime}</i></p>
+          <p>The information detail about this order will be sent to your email <strong>${email}</strong>, please check your mail. If you don't see, you can check at <strong>Span</strong> or <strong>Junk Folder</strong></p> or report to administrator to solve your problem.
+        `,
+        body_footer : "Best regards, from tnshop team."
+      },
     },
-
   },
 }

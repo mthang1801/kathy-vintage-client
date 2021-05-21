@@ -19,8 +19,8 @@ import UserInformationPayment from "../../components/Checkout/UserInformation.Pa
 import TypeOfPayment from "../../components/Checkout/TypeOfPayment"
 import { selectOrdersError } from "../../redux/orders/orders.selectors"
 import { selectUserError } from "../../redux/user/user.selectors"
-import { addNewOrder } from "../../redux/orders/orders.actions"
-import { updateUserPaymentAndShippingType } from "../../redux/user/user.actions"
+import { addNewOrder, ordersClearError } from "../../redux/orders/orders.actions"
+import { updateUserPaymentAndShippingType, userClearError } from "../../redux/user/user.actions"
 import { navigate } from "gatsby"
 import StripeButton from "../../components/Controls/StripeButton"
 import Button from "@material-ui/core/Button"
@@ -32,6 +32,7 @@ import {
 } from "../../utils/calculateOrderPrice"
 import LoadingDialog from "../../components/Dialog/LoadingDialog"
 import ErrorDialog from "../../components/Dialog/ErrorDialog"
+import {useLocation} from "@reach/router"
 const tax = POLICY.tax
 
 const Payment = ({
@@ -41,6 +42,8 @@ const Payment = ({
   updateUserPaymentAndShippingType,
   orderError,
   userError,
+  userClearError,
+  ordersClearError,
 }) => {
   const { i18n, lang } = useLanguage()
   const { checkout } = i18n.store.data[lang].translation
@@ -51,8 +54,8 @@ const Payment = ({
     payment.typeOfShipping.standard
   )
   const [paymentMethod, setPaymentMethod] = useState(
-    user?.information?.payment_method
-      ? payment.typeOfPayment[user.information.payment_method]
+    user?.information?.paymentMethod
+      ? payment.typeOfPayment[user.information.paymentMethod]
       : payment.typeOfPayment.payment_in_cash
   )
   const [shippingFee, setShippingFee] = useState(
@@ -77,7 +80,8 @@ const Payment = ({
       await updateUserPaymentAndShippingType(
         paymentMethod.key,
         shippingMethod.key
-      )
+      )      
+      navigate("/checkout/complete", {state : {from : "/checkout/payment"}})      
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -91,11 +95,16 @@ const Payment = ({
     shippingFee
   )
 
+  const handleClearError = () => {
+    userClearError();
+    ordersClearError();    
+  }
+
   if (!user?.information) return navigate("/checkout/shipping")
   return (
     <Layout>
       <LoadingDialog open={loading} />
-      <ErrorDialog content={orderError || userError} />
+      <ErrorDialog content={orderError || userError} onClickCloseError={handleClearError}/>
       {cartItems.length ? (
         <ContentContainer>
           <div>
@@ -197,6 +206,8 @@ const mapDispatchToProps = dispatch => ({
     ),
   updateUserPaymentAndShippingType: (paymentMethod, shippingMethod) =>
     dispatch(updateUserPaymentAndShippingType(paymentMethod, shippingMethod)),
+  ordersClearError : () => dispatch(ordersClearError()),
+  userClearError : () => dispatch(userClearError()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payment)

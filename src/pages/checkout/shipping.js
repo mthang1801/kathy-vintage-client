@@ -34,10 +34,11 @@ const Shipping = ({ user, updateUserInformation }) => {
       })
     }
   }, [updateInfo, userInfoRef])
+  if(!user) return null ;
   return (
     <Layout>
       <ContentContainer ref={userInfoRef}>
-        {user.information && (
+        {user?.information && (
           <>
             <UserInformationShipping
               user={user}
@@ -56,7 +57,7 @@ const Shipping = ({ user, updateUserInformation }) => {
             )}
           </>
         )}
-        {!user.information && (
+        {!user?.information && (
           <FormContainer theme={theme}>
             <UserInformationForm
               user={user}
