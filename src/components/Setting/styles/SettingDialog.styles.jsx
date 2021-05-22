@@ -9,18 +9,29 @@ export const Wrapper = styled.div`
 export const SettingContents = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 95%;
   margin: auto;
   min-height: 35vh;
+  font-size : 0.85rem;
+  @media screen and (min-width : 768px){
+    font-size : 1rem;
+  }
 `
 
 export const ContentItem = styled.div`
-  display: flex;
+ 
+  display : grid; 
+  grid-template-columns: 1fr 1.5fr;
+  grid-gap : 0.5rem;
   align-items: center;  
-  & > *:first-child {
-    color : black;
-    width : 10rem;
-    margin-right: 2rem;
+  @media screen and (min-width : 768px){
+    grid-template-columns: 1fr 2fr;
+    & > *:first-child {
+      color : black;
+      width : 10rem;
+      margin-right: 2rem;
+    }
   }
+  
   
 `

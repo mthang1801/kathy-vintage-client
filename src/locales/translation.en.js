@@ -102,7 +102,7 @@ export const en = {
       orderedHistory: {
         name: "Ordered History",
         icon: <RiBillLine />,
-        path: `/user/ordered-history`,
+        path: `/orders`,
       },
       signout: {
         name: "Sign out",
@@ -400,7 +400,7 @@ export const en = {
         header_letter: "Thank you for buying product from tnshop",
         body_letter: (orderId, estimatedTime, email) => `
           <p>Your Order Id: <strong>${orderId}</strong></p>
-          <p>You can see this order at <a href="/ordered">My Orders</a></p>
+          <p>You can see this order at <a href="/orders">My Orders</a></p>
           <p>Estimated delivery time is <i>${estimatedTime}</i></p>
           <p>The information detail about this order will be sent to your email <strong>${email}</strong>, please check your mail. If you don't see, you can check at <strong>Span</strong> or <strong>Junk Folder</strong></p> or report to administrator to solve your problem.
         `,
@@ -408,5 +408,8 @@ export const en = {
         backHomeButton : "Back Home"
       },
     },
+    orders : {
+      title : "History Orders"
+    }
   },
 }

@@ -61,9 +61,9 @@ const SettingLanguages = () => {
         <ReactCountryFlag
           countryCode={configLang[lang].code}
           svg
-          style={{ transform: "scale(1.5)", marginRight: "1rem" }}
+          style={{ fontSize: "24px", marginRight: "10px" }}
         />
-        <span>{configLang[lang].text}</span>
+        <span style={{textTransform:"capitalize"}}>{configLang[lang].text}</span>
       </Button>
       <Popper
         open={open}

@@ -74,8 +74,9 @@ export const getCurrentUser = () => {
         .get()
       if (!user.exists) {
         return resolve(null)
-      }
-      resolve(user.data())
+      }      
+      console.log(user, user.data())
+      resolve({uid: user.id, ...user.data()})
     }, reject)
   })
 }
@@ -128,7 +129,8 @@ export const signInWithGoogle = () => {
       if (userInfo) {
         await addUserToProfileDocument(user, userInfo);
         const userDatabase = await firebase.firestore().doc(`users/${user.uid}`).get();
-        return resolve(userDatabase.data());
+        const userResult = {uid :user.uid , ...userDatabase.data()}
+        return resolve(userResult);
       }
       resolve(null)
     } catch (error) {
@@ -150,7 +152,8 @@ export const signInWithFacebook = () => {
       if (userInfo) {
         await addUserToProfileDocument(user, userInfo);
         const userDatabase = await firebase.firestore().doc(`users/${user.uid}`).get();
-        return resolve(userDatabase.data());       
+        const userResult = {uid: user.uid, ...userDatabase.data()}
+        return resolve(userResult);       
       }
       resolve(null)
     } catch (error) {

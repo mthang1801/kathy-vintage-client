@@ -46,7 +46,8 @@ export const addNewOrder = (
         tax, 
         shipping_fee, 
         payment_method,
-        shipping_method
+        shipping_method,
+        createdAt : new Date()
       }     
       if(tokenId){
         newOrderItem.tokenId = tokenId;
@@ -64,4 +65,33 @@ export const addNewOrder = (
 
 export const ordersClearError = () => ({
   type : orderActionTypes.CLEAR_ERROR
+})
+
+const fetchOrdersStart = () => ({
+  type : orderActionTypes.FETCH_ORDERS_START
+})
+
+const fetchOrdersSuccess = (orders, lastVisibleOrder) => ({
+  type : orderActionTypes.FETCH_ORDERS_SUCCESS, 
+  payload : {lastVisibleOrder, orders} 
+})
+
+const fetchOrdersFail = (error) => ({
+  type : orderActionTypes.FETCH_ORDERS_FAIL, 
+  payload : error
+})
+
+export const fetchOrders = (userId, lastVisibleOrder={}) => async dispatch => {
+  try {
+    dispatch(fetchOrdersStart());    
+    const {orders, lastOrder} = await orderDB.fetchOrders(userId, lastVisibleOrder);    
+    dispatch(fetchOrdersSuccess(orders, lastOrder))
+  } catch (error) {
+    dispatch(fetchOrdersFail(error.message))
+  }
+}
+
+export const setHasMoreOrders = (boolValue) => ({
+  type : orderActionTypes.SET_HAS_MORE_ORDERS, 
+  payload : boolValue
 })
