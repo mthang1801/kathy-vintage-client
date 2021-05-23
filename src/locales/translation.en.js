@@ -18,11 +18,14 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut } from "react-icons/fi"
+import { FiTwitter, FiFacebook, FiLogOut,FiCheckCircle } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat } from "react-icons/bs"
 import { BiGlasses, BiPurchaseTag } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
+import {} from "react-icons/fi"
+import {TiDeleteOutline} from "react-icons/ti"
+import {ImSpinner2} from "react-icons/im" 
 export const en = {
   translation: {
     auth: {
@@ -411,6 +414,7 @@ export const en = {
     orders : {
       title : "History Orders",
       product : {
+        unitPrice : "Unit Price",
         quantity : "Quantity",
         shipping_fee : "Shipping Fee",
         totalPrice : "Total",
@@ -424,11 +428,27 @@ export const en = {
         processing : "Processing",
         productsList : "Products List",
         orderStatus : "Order Status",
-        orderPrice : "Order Price"
+        orderPrice : "Order Price",        
+      },
+      status: {
+        active : {
+          label : "Processing",
+          icon : <ImSpinner2/>
+        }, 
+        canceled : {
+          label : "canceled",
+          icon : <TiDeleteOutline/>
+        },
+        completed : {
+          label : "Completed",
+          icon : <FiCheckCircle/>
+        }
       },
       emptyOrder : "No Order",
       buttonBackHome : "Back Home",
-    
+      cancelOrderButton : "Cancel Order",
+      cancelTitle : "Cancel Order",
+      cancelOrderHTML : `<p>Are you sure to cancel this order?</p>`
     }
   },
 }

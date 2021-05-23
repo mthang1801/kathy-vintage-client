@@ -50,3 +50,14 @@ export const fetchOrders = (userId, lastVisibleOrder) => {
     }
   })
 }
+
+export const cancelOrder = orderId => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await firebase.firestore().doc(`orders/${orderId}`).update({order_status : "canceled"});
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  })
+}

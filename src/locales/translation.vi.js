@@ -18,11 +18,14 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut } from "react-icons/fi"
+import { FiTwitter, FiFacebook, FiLogOut,FiCheckCircle } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat } from "react-icons/bs"
 import { BiGlasses, BiPurchaseTag } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
+import {} from "react-icons/fi"
+import {TiDeleteOutline} from "react-icons/ti"
+import {ImSpinner2} from "react-icons/im" 
 
 export const vi = {
   translation: {
@@ -417,6 +420,7 @@ export const vi = {
     orders : {
       title : "Lịch sử Đơn đặt hàng",
       product : {
+        unitPrice : "Đơn giá",
         quantity : "Số lượng",
         shipping_fee : "Phí vận chuyển",
         totalPrice : "Tổng tiền",
@@ -432,8 +436,25 @@ export const vi = {
         orderStatus : "Tình trạng đơn hàng",
         orderPrice : "Hóa đơn"
       },
+      status: {
+        active : {
+          label : "Đang tiến hành",
+          icon : <ImSpinner2/>
+        }, 
+        canceled : {
+          label : "Đã hủy",
+          icon : <TiDeleteOutline/>
+        },
+        completed : {
+          label : "Hoàn tất",
+          icon : <FiCheckCircle/>
+        }
+      },
       emptyOrder : "Không tìm thấy đơn hàng.",
-      buttonBackHome : "Trở lại trang chủ"
+      buttonBackHome : "Trở lại trang chủ",
+      cancelOrderButton : "Hủy Đơn hàng",
+      cancelTitle : "Hủy đơn hàng!",
+      cancelOrderHTML : `<p>Bạn có chắc chắn muốn hủy đơn hàng này?</p>`
     }
   },
 }

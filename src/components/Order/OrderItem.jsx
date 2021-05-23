@@ -1,5 +1,10 @@
 import React from "react"
-import { Wrapper, Title } from "./styles/OrderItem.styles"
+import {
+  Wrapper,
+  Title,
+  OrderStatus,
+  OrderLabel,
+} from "./styles/OrderItem.styles"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
@@ -9,23 +14,32 @@ import { convertSecondsTimeToDate } from "../../utils/firebase.utils"
 import ProductItem from "./ProductItem"
 import OrderPriceItem from "./OrderPriceItem"
 import OrderStatusStepper from "./OrderStatusStepper"
+import OrderControl from "./OrderControl"
+import { useTheme } from "../../theme"
 
 const OrderItem = ({ order, ordersTranslation }) => {
-  
+  const { theme } = useTheme()
+  console.log(order)
   return (
-    <Wrapper>
+    <Wrapper theme={theme}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <span>
-            <strong>{order.id}</strong>
-          </span>
-          <span style={{ color: "var(--red-3)" }}>
+          <OrderLabel>
+            <div>
+              <strong>{order.id}</strong>
+            </div>
+            <OrderStatus status={order.order_status}>
+              {ordersTranslation.status[order.order_status]?.icon}
+              <span>{ordersTranslation.status[order.order_status]?.label}</span>
+            </OrderStatus>
+          </OrderLabel>
+          <div style={{ color: "var(--red-3)" }}>
             <strong>{convertSecondsTimeToDate(order.createdAt.seconds)}</strong>
-          </span>
+          </div>
         </AccordionSummary>
         <AccordionDetails>
           <Title>{ordersTranslation.product.productsList}</Title>
@@ -37,16 +51,32 @@ const OrderItem = ({ order, ordersTranslation }) => {
             />
           ))}
           <Divider />
-          <Title>{ordersTranslation.product.orderStatus}</Title>
-          {order.status && (
-            <OrderStatusStepper
-              status={order.status}
-              ordersTranslation={ordersTranslation}
-            />
+
+          {order.shipping_status && (
+            <>
+              <Title>{ordersTranslation.product.orderStatus}</Title>
+              <OrderStatusStepper
+                status={order.shipping_status}
+                ordersTranslation={ordersTranslation}
+              />
+            </>
           )}
           <Divider />
           <Title>{ordersTranslation.product.orderPrice}</Title>
-         <OrderPriceItem order={order} ordersTranslation={ordersTranslation}/>
+          <OrderPriceItem order={order} ordersTranslation={ordersTranslation} />
+
+          {order.order_status === "active" &&
+            !order.shipping_status.received &&
+            !order.shipping_status.shipping &&
+            !order.shipping_status.complete && (
+              <>
+                <Divider />
+                <OrderControl
+                  order={order}
+                  ordersTranslation={ordersTranslation}
+                />
+              </>
+            )}
         </AccordionDetails>
       </Accordion>
     </Wrapper>

@@ -46,13 +46,14 @@ export const addNewOrder = (
         tax, 
         shipping_fee, 
         payment_method,
-        shipping_method,
-        status : {
+        shipping_method,                
+        shipping_status : {
           sent : new Date(), 
           received : null, 
           shipping : null, 
           complete : null
         }, //["sent", "received", "shipping", "complete"]
+        order_status: "active", //["active", "canceled","complete"]
         createdAt : new Date()
       }     
       if(tokenId){
@@ -101,3 +102,25 @@ export const setHasMoreOrders = (boolValue) => ({
   type : orderActionTypes.SET_HAS_MORE_ORDERS, 
   payload : boolValue
 })
+
+const cancelOrderStart = () => ({
+  type : orderActionTypes.CANCEL_ORDER_START
+})
+const cancelOrderSuccess = (orderId) => ({
+  type : orderActionTypes.CANCEL_ORDER_SUCCESS,
+  payload : orderId
+})
+const cancelOrderFail = (error) => ({
+  type : orderActionTypes.CANCEL_ORDER_ERROR,
+  payload : error
+})
+
+export const cancelOrder = (orderId) => async dispatch => {
+  try {
+    dispatch(cancelOrderStart());
+    await orderDB.cancelOrder(orderId);
+    dispatch(cancelOrderSuccess(orderId))
+  } catch (error) {
+    dispatch(cancelOrderFail())
+  }
+}

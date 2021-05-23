@@ -40,8 +40,10 @@ export const ProductInformationOverview  = styled.div`
   flex : 1 ;
   flex-direction : column ; 
   justify-content : space-between ; 
+  align-items: flex-start;
   padding : 0 1rem;
   @media screen  and (min-width : 768px){
+    align-items: center;
     flex-direction : row; 
     align-items : flex-start;    
     & > *:not(:first-child){
@@ -91,7 +93,7 @@ export const ProductPriceOrigin = styled.div`
     opacity : 0.6;
     text-decoration : line-through;    
     border-right : 1px solid ;
-    font-size : 0.9rem;
+    font-size : 1rem;
     padding-right : 0.5rem;
   }
   & span:last-child{
@@ -118,7 +120,7 @@ export const ProductQuantity =styled.div`
 export const ProductTotalPrice = styled.div`
   color : var(--red-3);
   font-weight : bold;
-  font-size : 1.25rem;
+  font-size : 1rem;
   @media screen and (min-width : 768px){
     margin-left : 1rem;  
   }

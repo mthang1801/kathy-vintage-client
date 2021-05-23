@@ -1,5 +1,6 @@
 import orderActionTypes from "./orders.types";
 import _ from "lodash"
+import {cancelOrderUtils} from "./orders.utils"
 const INITIAL_STATE = {
   orders : [], 
   newOrder : null, 
@@ -13,6 +14,7 @@ export default (state=INITIAL_STATE, action) => {
   switch(action.type){
     case orderActionTypes.ADD_NEW_ORDER_START : 
     case orderActionTypes.FETCH_ORDERS_START : 
+    case orderActionTypes.CANCEL_ORDER_START : 
       return {
         ...state, 
         loading : true, 
@@ -38,6 +40,12 @@ export default (state=INITIAL_STATE, action) => {
         lastVisibleOrder : {...action.payload.lastVisibleOrder},
         hasMoreOrders : action.payload.orders.length !== 0
       }
+    case orderActionTypes.CANCEL_ORDER_SUCCESS : 
+      return {
+        ...state, 
+        loading : false, 
+        orders : cancelOrderUtils(state.orders, action.payload),
+      }
     case orderActionTypes.CLEAR_ERROR : 
     return {
       ...state, 
@@ -45,6 +53,7 @@ export default (state=INITIAL_STATE, action) => {
     };
     case orderActionTypes.ADD_NEW_ORDER_FAIL : 
     case orderActionTypes.FETCH_ORDERS_FAIL : 
+    case orderActionTypes.CANCEL_ORDER_FAIL : 
       return {
         ...state, 
         loading : false,

@@ -4,13 +4,29 @@ export const Wrapper = styled.div`
   .MuiStepLabel-label{
     display : flex;
     flex-direction : column; 
-    align-items : center;
-    font-size : 0.6rem;
+    
+    font-size : 0.9rem;    
+    color : ${({theme}) => theme.text} !important;
     @media screen and (min-width: 768px){
-      font-size : 0.8rem;
-    }
-    @media screen and (min-width: 992px){
-      font-size : 0.9rem;
+      align-items : center;
     }
   }
+  .MuiStepper-root{
+    background : ${({theme}) => theme.background};
+    margin-bottom: 2rem;
+  }
+  .MuiStepLabel-root{
+    align-items : flex-start; 
+    @media screen and (min-width: 768px){
+      align-items : center;
+    }
+  }
+`
+
+export const Processing = styled.span`  
+  opacity : 0.3;
+`
+
+export const Processed = styled.span`
+  color : var(--green-1);
 `

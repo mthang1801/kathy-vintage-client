@@ -40,7 +40,7 @@ const CheckoutProductItem = ({
           <ProductPriceAndQuantity>
             <ProductPrice>
               <ProductPriceAfterDiscount>
-                {productPrice.toLocaleString("de-DE")}
+                {window.innerWidth < 768 && <span>{ordersTranslation.product.unitPrice}:</span>} {productPrice.toLocaleString("de-DE")}
               </ProductPriceAfterDiscount>
               {product.isDiscount && product.discountPercentage && (
                 <ProductPriceOrigin>
@@ -51,7 +51,7 @@ const CheckoutProductItem = ({
             </ProductPrice>                        
           </ProductPriceAndQuantity>          
           {window.innerWidth < 768 && <ProductQuantity>{ordersTranslation.product.quantity}: {product.quantity}</ProductQuantity>}
-          <ProductTotalPrice>{(product.quantity * productPrice).toLocaleString("de-DE", {style:"currency", currency: "vnd"})}</ProductTotalPrice>
+          <ProductTotalPrice>  {window.innerWidth < 768 && <span>{ordersTranslation.product.totalPrice}:</span>} {(product.quantity * productPrice).toLocaleString("de-DE", {style:"currency", currency: "vnd"})}</ProductTotalPrice>
         </ProductInformationOverview>       
       </Wrapper>     
     

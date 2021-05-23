@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import Typography from '@material-ui/core/Typography';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useLanguage from "../Global/useLanguage"
@@ -24,7 +25,7 @@ export default function AlertDialog({open, setOpen, title, content, onAgree}) {
   }
   if(!title || !content || !onAgree) return null; 
   return (
-    <div>
+    <>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -34,18 +35,18 @@ export default function AlertDialog({open, setOpen, title, content, onAgree}) {
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <div dangerouslySetInnerHTML={{__html : content}} />
+            <Typography gutterBottom dangerouslySetInnerHTML={{__html : content}} />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={onClickDisagree} color="primary">
             {dialog.disagree}
           </Button>
-          <Button onClick={onClickAgree} color="secondary" autoFocus>
+          <Button onClick={onClickAgree} color="secondary">
             {dialog.agree}
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
