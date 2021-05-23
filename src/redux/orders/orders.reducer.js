@@ -1,5 +1,5 @@
 import orderActionTypes from "./orders.types";
-
+import _ from "lodash"
 const INITIAL_STATE = {
   orders : [], 
   newOrder : null, 
@@ -34,7 +34,7 @@ export default (state=INITIAL_STATE, action) => {
       return {
         ...state, 
         loading : false, 
-        orders : [...state.orders, ...action.payload.orders],
+        orders : _.unionBy([...state.orders, ...action.payload.orders], "id"),
         lastVisibleOrder : {...action.payload.lastVisibleOrder},
         hasMoreOrders : action.payload.orders.length !== 0
       }

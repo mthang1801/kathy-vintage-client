@@ -415,7 +415,25 @@ export const vi = {
       }
     },
     orders : {
-      title : "Lịch sử Đơn đặt hàng"
+      title : "Lịch sử Đơn đặt hàng",
+      product : {
+        quantity : "Số lượng",
+        shipping_fee : "Phí vận chuyển",
+        totalPrice : "Tổng tiền",
+        totalBeforeTax: "Tổng tiền trước thuế",
+        tax: "Thuế VAT",
+        totalAfterTax: "Tổng tiền sau thuế",
+        sent : "Đặt hàng",
+        received:  "Đã nhận đơn hàng",
+        shipping: "Đang giao hàng",
+        complete : "Hoàn thành",
+        processing : "Đang xử lý",
+        productsList : "Danh sách Sản phẩm",
+        orderStatus : "Tình trạng đơn hàng",
+        orderPrice : "Hóa đơn"
+      },
+      emptyOrder : "Không tìm thấy đơn hàng.",
+      buttonBackHome : "Trở lại trang chủ"
     }
   },
 }

@@ -409,7 +409,26 @@ export const en = {
       },
     },
     orders : {
-      title : "History Orders"
+      title : "History Orders",
+      product : {
+        quantity : "Quantity",
+        shipping_fee : "Shipping Fee",
+        totalPrice : "Total",
+        totalBeforeTax: "Total Before Tax",
+        tax: "Tax VAT",
+        totalAfterTax: "Total After Tax",
+        sent : "Sent",
+        received:  "Received",
+        shipping: "Shipping",
+        complete : "Complete",
+        processing : "Processing",
+        productsList : "Products List",
+        orderStatus : "Order Status",
+        orderPrice : "Order Price"
+      },
+      emptyOrder : "No Order",
+      buttonBackHome : "Back Home",
+    
     }
   },
 }

@@ -17,7 +17,7 @@ export const addNewOrder = (user, newOrderItem) => {
 export const fetchOrders = (userId, lastVisibleOrder) => {
   return new Promise(async (resolve, reject) => {
     try {      
-      const LIMIT = 10 ; 
+      const LIMIT = 5 ; 
 
       let ordersList ;
       if(Object.entries(lastVisibleOrder).length){
@@ -26,7 +26,7 @@ export const fetchOrders = (userId, lastVisibleOrder) => {
         .collection("orders")               
         .where("userId","==",userId)
         .orderBy("createdAt","desc")
-        .startAfter(lastVisibleOrder).limit(LIMIT)
+        .startAfter(lastVisibleOrder)
         .limit(LIMIT)
         .get()
       }else{
@@ -39,8 +39,8 @@ export const fetchOrders = (userId, lastVisibleOrder) => {
         .get()
       }
       let orders = [] ; 
-      ordersList.docs.forEach(doc => {
-        orders.push(doc.data())
+      ordersList.docs.forEach(doc => {        
+        orders.push({id: doc.id, ...doc.data()})
       })
       const lastOrder = ordersList.docs[ordersList.docs.length - 1];      
       

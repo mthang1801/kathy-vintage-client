@@ -181,7 +181,7 @@ const Payment = ({
                   >
                     {" "}
                     <Button
-                      color="primary"
+                      color="secondary"
                       variant="contained"
                       style={{ display: "block", width: "100%" }}
                     >

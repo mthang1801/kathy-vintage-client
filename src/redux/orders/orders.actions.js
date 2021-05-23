@@ -47,6 +47,12 @@ export const addNewOrder = (
         shipping_fee, 
         payment_method,
         shipping_method,
+        status : {
+          sent : new Date(), 
+          received : null, 
+          shipping : null, 
+          complete : null
+        }, //["sent", "received", "shipping", "complete"]
         createdAt : new Date()
       }     
       if(tokenId){

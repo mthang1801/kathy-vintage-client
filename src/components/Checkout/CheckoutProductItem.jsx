@@ -20,7 +20,7 @@ const CheckoutProductItem = ({
   product,
   increaseProductQuantity,
   decreaseProductQuantity,
-  removeProductFromCart,
+  removeProductFromCart,  
 }) => {
   const { i18n, lang } = useLanguage()
   const { dialog } = i18n.store.data[lang].translation;

@@ -19,6 +19,7 @@ import { addProductItemToCart } from "../../redux/cart/cart.actions"
 import { connect } from "react-redux"
 import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
+import { navigate } from "gatsby"
 
 const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
   const {
@@ -53,6 +54,11 @@ const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
 
   const onAddProductItemToCart = () => {
     addProductItemToCart(product, productQuantity)
+  }
+
+  const onClickPurchase = () => {
+    onAddProductItemToCart();
+    navigate("/checkout")
   }
 
   return (
@@ -141,7 +147,7 @@ const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
           <span>{productPage.buttonAddToCart.icon}</span>
           <span>{productPage.buttonAddToCart.name}</span>
         </CustomButton>
-        <CustomButton color="secondary" variant="contained" size="large">
+        <CustomButton color="secondary" variant="contained" size="large" onClick={onClickPurchase}>
           <span>{productPage.buttonPurchase.icon}</span>
           <span>{productPage.buttonPurchase.name}</span>
         </CustomButton>

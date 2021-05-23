@@ -13,6 +13,8 @@ import { createStructuredSelector } from "reselect"
 import Layout from "../containers/Layout"
 import {ContentContainer, Title} from "../styles/orders.styles"
 import useLanguage from "../components/Global/useLanguage"
+import OrderItem from "../components/Order/OrderItem"
+import EmptyOrder from "../components/Order/EmptyOrder"
 const Orders = ({
   user,
   orders,
@@ -32,6 +34,12 @@ const Orders = ({
   return <Layout>
     <ContentContainer>
       <Title>{ordersTranslation.title}</Title>
+      {orders.length ? <div>
+        {orders.map(order => (
+          <OrderItem key={order.id} order={order} ordersTranslation={ordersTranslation}/>
+        ))}  
+      </div> : <EmptyOrder/> }
+      
     </ContentContainer>
   </Layout>
 }

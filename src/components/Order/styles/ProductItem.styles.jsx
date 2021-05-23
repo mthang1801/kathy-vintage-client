@@ -8,6 +8,10 @@ export const Wrapper = styled.section`
   padding : 0.75rem;
   display : flex;
   align-items : flex-start;
+  cursor : pointer;
+  &:hover{
+    background : ${({theme}) => theme.hover.background};
+  }
 `
 
 export const ImageContainer = styled.div`
@@ -22,7 +26,7 @@ export const ImageContainer = styled.div`
     }
   
   }
-  @media screen and (min-width :992px){
+  @media screen and (min-width :768px){
     width : 7rem;
     & img{
       width : 7rem;
@@ -37,34 +41,38 @@ export const ProductInformationOverview  = styled.div`
   flex-direction : column ; 
   justify-content : space-between ; 
   padding : 0 1rem;
-  @media screen  and (min-width : 992px){
+  @media screen  and (min-width : 768px){
     flex-direction : row; 
     align-items : flex-start;    
+    & > *:not(:first-child){
+      margin-left : 1rem;
+    }
   }
   
 `
 export const ProductName = styled.h4`
   flex : 1; 
   margin : 0;
+  
   font-weight : 400;
   margin-bottom : 1rem; 
-  @media screen and (min-width: 992px){
+  @media screen and (min-width: 768px){
     margin-bottom : 0;
-    max-width : 80%;
+    max-width : 60%;
   }
-  
 `
 
 
 export const ProductPriceAndQuantity = styled.div`
   display  :flex;
   align-items : flex-start;    
+  justify-content : center;
 `
 export const ProductPrice = styled.div`
   display : flex;
   flex-direction : column; 
   text-align : center;  
-  @media screen and (min-width : 992px){
+  @media screen and (min-width : 768px){
     text-align : center;
   }
 `
@@ -77,7 +85,7 @@ export const ProductPriceAfterDiscount = styled.h4`
 `
 
 export const ProductPriceOrigin = styled.div`  
-  display : flex; 
+  display : none ; 
   align-items : center;  
   & span:first-child{
     opacity : 0.6;
@@ -92,25 +100,28 @@ export const ProductPriceOrigin = styled.div`
     padding-left : 0.5rem;
     color : var(--red-3);
   }
-
-`
-
-export const ProductQuantityControls = styled.div`
-  margin-left : 1rem;
-  display : flex;
-  align-items : flex-start;
-`
-
-export const ProductDelete = styled.div`  
-  & svg{
-    font-size : 1.3rem;
-  }  
-  text-align :center;  
-  cursor : pointer;
-  &:hover{
-    color : var(--red-3);
-  } 
-  @media screen and (min-width : 768px){
-    padding : 0.25rem 0.75rem; 
+  @media screen and (min-width: 768px){
+    display  :flex;
   }
+`
+
+export const ProductQuantity =styled.div`
+  color : var(--cyan-3);
+  font-weight : bold;
+  font-size : 1rem;
+  @media screen and (min-width : 768px){
+    margin-right : 1rem;  
+  }  
+  text-align: center;  
+`
+
+export const ProductTotalPrice = styled.div`
+  color : var(--red-3);
+  font-weight : bold;
+  font-size : 1.25rem;
+  @media screen and (min-width : 768px){
+    margin-left : 1rem;  
+  }
+  
+  text-align : center;
 `
