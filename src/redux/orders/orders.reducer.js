@@ -4,7 +4,7 @@ import {cancelOrderUtils} from "./orders.utils"
 const INITIAL_STATE = {
   orders : [], 
   newOrder : null, 
-  loading : false, 
+  loading : true, 
   lastVisibleOrder : {}, 
   hasMoreOrders : true, 
   error : undefined
@@ -38,7 +38,7 @@ export default (state=INITIAL_STATE, action) => {
         loading : false, 
         orders : _.unionBy([...state.orders, ...action.payload.orders], "id"),
         lastVisibleOrder : {...action.payload.lastVisibleOrder},
-        hasMoreOrders : action.payload.orders.length !== 0
+        hasMoreOrders : action.payload.hasMoreOrders
       }
     case orderActionTypes.CANCEL_ORDER_SUCCESS : 
       return {

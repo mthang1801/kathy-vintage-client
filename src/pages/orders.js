@@ -11,10 +11,16 @@ import { fetchOrders } from "../redux/orders/orders.actions"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 import Layout from "../containers/Layout"
-import {ContentContainer, Title} from "../styles/orders.styles"
+import {
+  ContentContainer,
+  Title,
+  ReadMoreContainer,
+  ReadMoreText,
+} from "../styles/orders.styles"
 import useLanguage from "../components/Global/useLanguage"
 import OrderItem from "../components/Order/OrderItem"
 import EmptyOrder from "../components/Order/EmptyOrder"
+import OrderPageSkeleton from "../components/Skeleton/OrderPage"
 const Orders = ({
   user,
   orders,
@@ -22,26 +28,53 @@ const Orders = ({
   error,
   hasMoreOrders,
   fetchOrders,
-  lastVisibleOrder
+  lastVisibleOrder,
 }) => {
-  const {i18n, lang} = useLanguage();
-  const {orders : ordersTranslation} = i18n.store.data[lang].translation;
+  const { i18n, lang } = useLanguage()
+  const { orders: ordersTranslation } = i18n.store.data[lang].translation
   useEffect(() => {
     if (user) {
       fetchOrders(user.uid)
     }
   }, [user])
-  return <Layout>
-    <ContentContainer>
-      <Title>{ordersTranslation.title}</Title>
-      {orders.length ? <div>
-        {orders.map(order => (
-          <OrderItem key={order.id} order={order} ordersTranslation={ordersTranslation}/>
-        ))}  
-      </div> : <EmptyOrder/> }
-      
-    </ContentContainer>
-  </Layout>
+
+  const onFetchMoreOrders = () => {
+    fetchOrders(user.uid, lastVisibleOrder)
+  }
+  return (
+    <Layout>
+      <ContentContainer>
+        <Title>{ordersTranslation.title}</Title>
+        {loading && !orders.length? (
+          <OrderPageSkeleton />
+        ) : (
+          <>            
+            {orders.length ? (
+              <div>
+                {orders.map(order => (
+                  <OrderItem
+                    key={order.id}
+                    order={order}
+                    ordersTranslation={ordersTranslation}
+                  />
+                ))}
+                {loading && <OrderPageSkeleton /> }
+                {hasMoreOrders && (
+                  <ReadMoreContainer onClick={onFetchMoreOrders}>
+                    <ReadMoreText>
+                      {ordersTranslation.readMoreOrders}
+                    </ReadMoreText>
+                  </ReadMoreContainer>
+                )}
+              </div>
+            ) : (
+              <EmptyOrder />
+            )}
+          </>
+        )}
+      </ContentContainer>
+    </Layout>
+  )
 }
 
 const mapStateToProps = createStructuredSelector({

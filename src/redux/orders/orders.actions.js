@@ -78,9 +78,9 @@ const fetchOrdersStart = () => ({
   type : orderActionTypes.FETCH_ORDERS_START
 })
 
-const fetchOrdersSuccess = (orders, lastVisibleOrder) => ({
+const fetchOrdersSuccess = (orders, lastVisibleOrder, hasMoreOrders) => ({
   type : orderActionTypes.FETCH_ORDERS_SUCCESS, 
-  payload : {lastVisibleOrder, orders} 
+  payload : {lastVisibleOrder, orders, hasMoreOrders} 
 })
 
 const fetchOrdersFail = (error) => ({
@@ -91,8 +91,8 @@ const fetchOrdersFail = (error) => ({
 export const fetchOrders = (userId, lastVisibleOrder={}) => async dispatch => {
   try {
     dispatch(fetchOrdersStart());    
-    const {orders, lastOrder} = await orderDB.fetchOrders(userId, lastVisibleOrder);    
-    dispatch(fetchOrdersSuccess(orders, lastOrder))
+    const {orders, lastOrder, hasMoreOrders} = await orderDB.fetchOrders(userId, lastVisibleOrder);    
+    dispatch(fetchOrdersSuccess(orders, lastOrder, hasMoreOrders))
   } catch (error) {
     dispatch(fetchOrdersFail(error.message))
   }

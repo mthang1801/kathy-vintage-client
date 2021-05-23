@@ -3,7 +3,7 @@ import userActionTypes from "./user.types"
 const INITIAL_STATE = {
   user: null,
   fetched: false,
-  loading: false,
+  loading: true,
   error: undefined,
 }
 

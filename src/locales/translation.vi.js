@@ -454,7 +454,8 @@ export const vi = {
       buttonBackHome : "Trở lại trang chủ",
       cancelOrderButton : "Hủy Đơn hàng",
       cancelTitle : "Hủy đơn hàng!",
-      cancelOrderHTML : `<p>Bạn có chắc chắn muốn hủy đơn hàng này?</p>`
+      cancelOrderHTML : `<p>Bạn có chắc chắn muốn hủy đơn hàng này?</p>`,
+      readMoreOrders:  "Xem thêm"
     }
   },
 }

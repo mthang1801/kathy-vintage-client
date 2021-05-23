@@ -39,12 +39,19 @@ export const fetchOrders = (userId, lastVisibleOrder) => {
         .get()
       }
       let orders = [] ; 
-      ordersList.docs.forEach(doc => {        
-        orders.push({id: doc.id, ...doc.data()})
-      })
-      const lastOrder = ordersList.docs[ordersList.docs.length - 1];      
       
-      resolve( {orders, lastOrder})
+      ordersList.docs.forEach((doc,idx) => {
+        if(idx < LIMIT -1){
+          orders.push({id: doc.id, ...doc.data()})
+        }        
+      })      
+      const lastOrder = ordersList.docs[ordersList.docs.length - 1];      
+      let hasMoreOrders = false; 
+      if(orders.length < ordersList.docs.length){
+        hasMoreOrders = true; 
+      }
+      console.log(orders.length, ordersList.docs.length, hasMoreOrders)
+      resolve( {orders, lastOrder, hasMoreOrders})
     } catch (error) {
       reject(error)
     }

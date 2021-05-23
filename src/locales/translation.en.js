@@ -448,7 +448,8 @@ export const en = {
       buttonBackHome : "Back Home",
       cancelOrderButton : "Cancel Order",
       cancelTitle : "Cancel Order",
-      cancelOrderHTML : `<p>Are you sure to cancel this order?</p>`
+      cancelOrderHTML : `<p>Are you sure to cancel this order?</p>`,
+      readMoreOrders:  "Read More"
     }
   },
 }
