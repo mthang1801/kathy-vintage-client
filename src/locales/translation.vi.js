@@ -286,6 +286,27 @@ export const vi = {
             }
           }
         },
+        content : {
+          tabs : [
+            {
+              key: "all", 
+              value : "Tất cả"
+            },
+            {
+              key : "recommended",
+              value : "được đề xuất"
+            },
+            {
+              key : "latest",
+              value : "mới"
+            },
+            {
+              key : "bestSell",
+              value : "Bán chạy"
+            }
+            
+          ]
+        }
       },
     },
     product: {

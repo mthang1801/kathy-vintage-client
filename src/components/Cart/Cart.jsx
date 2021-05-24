@@ -35,8 +35,7 @@ const Cart = ({
 
   const cartRef = useRef(false)
   useEffect(() => {
-    function trackingUserClick(e) {
-      console.log(cartRef?.current?.contains(e.target))
+    function trackingUserClick(e) {     
       if (!cartRef?.current?.contains(e.target) && showCartDropdown) {
         closeCart()
       }

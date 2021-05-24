@@ -16,15 +16,20 @@ export const Wrapper = styled.section`
 
 export const ImageContainer = styled.div`
   width : 4rem; 
+  transition : all 2s; 
+  &:hover{
+    transform : scale(1.5);
+  } 
   & img{
     width : 4rem;
+   
+   
   }
   @media screen and (min-width :768px){
     width : 5rem;
     & img{
       width :5rem;
-    }
-  
+    }  
   }
   @media screen and (min-width :768px){
     width : 7rem;

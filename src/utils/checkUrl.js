@@ -15,3 +15,10 @@ export const youtubeParser = (url) => {
 export const checkImageUrl = url => {
   return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }
+
+export const getParams = (param) => {
+  if(typeof window !== undefined && param){   
+    return new URLSearchParams(window.location.search).get(param);
+  }
+  return null ; 
+} 

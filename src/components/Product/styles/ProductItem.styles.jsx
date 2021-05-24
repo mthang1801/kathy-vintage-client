@@ -17,11 +17,16 @@ export const ImageContainer = styled.div`
   position :relative;
   width : 100% ;
   height: 10rem;
+  overflow : hidden;
   flex: 1 ;
-  & > div{
-    width : 100%; 
-    height :100%;
+  background : url(${({imageHover}) => imageHover}) no-repeat center;  
+  background-size : 100% 100%;
+  &:hover{
+    background : url(${({imageMouseout}) => imageMouseout}) no-repeat center;  
+    background-size : 100% 100%;
   }
+  transition : 0.4s all; 
+ 
 `
 
 export const ProductText = styled.div`
@@ -29,7 +34,7 @@ export const ProductText = styled.div`
   display : grid; 
   grid-template-rows: 3fr; 
   grid-template-columns : 1fr;  
-  padding : 0.25rem;
+  padding : 0.3rem;
 `
 
 export const ProductName = styled.div`

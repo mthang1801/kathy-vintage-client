@@ -2,46 +2,13 @@ import React from "react"
 import Layout from "../containers/Layout"
 import { graphql } from "gatsby"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
-import {
-  ContentContainer,
-  Sidebar,
-  TemplateViewPortRight,
-} from "../styles/template.styles"
-import SidebarNavigations from "../components/Sidebar/SidebarNavigations"
-import SidebarFilter from "../components/Sidebar/SidebarFilter"
-import useLanguage from "../components/Global/useLanguage"
-import { useTheme } from "../theme"
+import LayoutTemplate from "./layout.template"
 
 const PortfolioTemplate = props => {
-  const {
-    pageContext: { portfolioId },
-    data: { portfolio, categories },
-  } = props
-  const { i18n, lang } = useLanguage()
-  const { template} = i18n.store.data[
-    lang
-  ].translation.page;
-  const { theme } = useTheme()
-  
   return (
     <Layout>
-      <BreadcrumbNavigation contenfulData={[portfolio]} />
-      <ContentContainer>
-        <Sidebar theme={theme}>
-          <SidebarNavigations
-            lang={lang}
-            slugParent={`/${portfolio.slug}`}
-            data={categories.edges.map(({ node: category }) => category)}
-            title={template?.sidebar?.navigation?.title}
-          />
-          <SidebarFilter
-            data={props.data}
-            templateTranslation={template}
-            products={categories.edges.map(({ node: category }) => category)}
-          />
-        </Sidebar>
-        <TemplateViewPortRight></TemplateViewPortRight>
-      </ContentContainer>
+      <BreadcrumbNavigation contenfulData={[props.data.portfolio]} />
+      <LayoutTemplate data={props.data} pageLocation="portfolio"/>      
     </Layout>
   )
 }
@@ -73,7 +40,8 @@ export const query = graphql`
       }
     }
     products: allContentfulProduct(
-      filter: { portfolio: { contentful_id: { eq: $portfolioId } } }
+      filter: { portfolio: { contentful_id: { eq: $portfolioId } } },
+      sort :{fields :[isRecommended, updatedAt], order :[DESC, DESC]}
     ) {
       edges {
         node {
@@ -81,6 +49,7 @@ export const query = graphql`
           name_vi
           slug
           unitPrice
+          isRecommended
           isDiscount
           discountPercentage
           shippingFee

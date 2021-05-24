@@ -52,13 +52,16 @@ export const InputGroup = styled.div`
   display : flex;
   align-items :center;   
   justify-content : space-between;
+  & button {
+    height : 2rem;
+  }
   & > * {
     display  :flex;
     align-items : center;       
   }
   & div{    
     & > *:not(:first-child){
-      margin-left : 0.3rem;
+      margin-left : 0.5rem;
     }
   }
 `
@@ -66,7 +69,7 @@ export const InputGroup = styled.div`
 export const Input = styled.input`  
   display : flex;  
   width : 3.5rem;
-  height : 2.25rem;  
+  height : 2rem;  
   padding : 0.4rem ;
   font-size : 1rem;
   border-radius : 0.2rem;

@@ -24,7 +24,7 @@ const CheckoutProductItem = ({
     product.isDiscount && product.discountPercentage
       ? (product.unitPrice * (100 - +product.discountPercentage)) / 100
       : product.unitPrice
-
+  
   return (
     
       <Wrapper theme={theme} onClick={() => navigate(`/products/${product.slug}`)}>

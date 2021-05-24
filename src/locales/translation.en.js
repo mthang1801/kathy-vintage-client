@@ -281,6 +281,27 @@ export const en = {
             }
           }
         },
+        content : {
+          tabs : [
+            {
+              key: "all", 
+              value : "All"
+            },
+            {
+              key : "recommended",
+              value : "Recommended Products"
+            },
+            {
+              key : "latest",
+              value : "Latest products"
+            },
+            {
+              key : "bestSell",
+              value : "Best Sell Products"
+            }
+            
+          ]
+        }
       },
     },
     product: {

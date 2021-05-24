@@ -1,0 +1,1 @@
+export const PRODUCTS_TEMPLATE_PER_PAGE=15

@@ -8,6 +8,7 @@ export const ContentContainer = styled.div`
   position : relative;  
   @media screen and (min-width :768px){    
     display : grid; 
+    grid-gap : 0.5rem;
     grid-template-columns : 1.25fr 2fr; 
   }
   @media screen and (min-width : 992px){        
@@ -23,10 +24,28 @@ export const Sidebar = styled.div`
   border-radius : 0.5rem;
   box-shadow : ${({theme}) => theme.boxShadow};
   & a , & span , & p{
-    font-size : 1rem;
+    font-size : 0.9rem;
   }
 `
+export const MainContain = styled.div`
+background : ${({theme}) => theme.card};
+  border-radius : 0.5rem;
+`
 
-export const TemplateViewPortRight = styled.div`
-
+export const ProductsList = styled.section`
+  width : 100%; 
+  padding : 0.75rem;
+  border-radius : 0.5rem;
+  display : grid ;  
+  grid-template-columns : repeat(2, 1fr);
+  grid-gap : 2rem 1rem;
+  @media screen and (min-width : 768px){
+    grid-template-columns : repeat(2, 1fr);
+  }
+  @media screen and (min-width : 992px){
+    grid-template-columns : repeat(3, 1fr);
+  }  
+  @media screen and (min-width : 1200px){
+    grid-template-columns : repeat(4, 1fr);
+  }  
 `
