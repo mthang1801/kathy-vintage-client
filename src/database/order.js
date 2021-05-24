@@ -17,7 +17,7 @@ export const addNewOrder = (user, newOrderItem) => {
 export const fetchOrders = (userId, lastVisibleOrder) => {
   return new Promise(async (resolve, reject) => {
     try {      
-      const LIMIT = 5 ; 
+      const LIMIT = 11 ; 
 
       let ordersList ;
       if(Object.entries(lastVisibleOrder).length){

@@ -22,8 +22,7 @@ export const MainContent = styled.div`
 export const Header = styled.div`
   position : fixed;
   width : 100vw;
-  z-index: 100;
-  box-shadow : ${({theme}) => theme.boxShadow};
+  z-index: 100;  
 `
 
 export const StepperContainer = styled.div`

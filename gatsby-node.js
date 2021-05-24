@@ -22,14 +22,17 @@ exports.createPages = async ({ graphql, actions }) => {
       pages: allContentfulPortfolio {
         edges {
           node {
+            contentful_id
             name_en
             name_vi
             slug
             categories {
+              contentful_id
               name_en
               name_vi
               slug
               productGroups {
+                contentful_id
                 name_en
                 name_vi
                 slug
@@ -70,6 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve("./src/templates/portfolio.template.jsx"),
       context: {
         portfolio,
+        portfolioId : portfolio.contentful_id
       },
     })
     //create category page

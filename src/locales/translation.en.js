@@ -18,14 +18,14 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut,FiCheckCircle } from "react-icons/fi"
+import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat } from "react-icons/bs"
 import { BiGlasses, BiPurchaseTag } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
 import {} from "react-icons/fi"
-import {TiDeleteOutline} from "react-icons/ti"
-import {ImSpinner2} from "react-icons/im" 
+import { TiDeleteOutline } from "react-icons/ti"
+import { ImSpinner2 } from "react-icons/im"
 export const en = {
   translation: {
     auth: {
@@ -230,6 +230,58 @@ export const en = {
       home: {
         categoryCarouselTitle: "Products Category",
       },
+      template: {
+        sidebar: {
+          navigation: {
+            title: "Product Categories",
+          },
+          prices: {
+            title: "Prices",
+            from : "From" , 
+            To : "To",
+            buttonFilter : "Filter",
+            range: (from, to = null) =>
+              to
+                ? `From ${from.toLocaleString("de-DE")} to ${to.toLocaleString(
+                    "de-DE"
+                  )}`
+                : `${from.toLocaleString("de-DE")}`,
+          },
+          discount: {
+            title: "Discount",
+            fields : {
+              isDiscount: {
+                key: "isDiscount",
+                value: "Discounting",
+              },
+              isNotDiscount: {
+                key: "isNotDiscount",
+                value: "Not Discounting",
+              },
+              all: {
+                key: "all",
+                value: "All",
+              },
+            }
+          },
+          manufactors : {
+            title : "Manufactors"
+          },
+          recommend : {
+            title : "Recommend",
+            fields : {
+              recommend : {
+                key : "recommend",
+                value : "Recommend"
+              },
+              all : {
+                key : "all", 
+                value : "all"
+              }
+            }
+          }
+        },
+      },
     },
     product: {
       newProducts: {
@@ -368,8 +420,8 @@ export const en = {
       },
       payment: {
         listOfOrderedProducts: "List Of Ordered Products",
-        shippingInformation : "Shipping Information",
-        invoice : "Invoice",
+        shippingInformation: "Shipping Information",
+        invoice: "Invoice",
         typeOfShipping: {
           title: "Type of Shipping",
           standard: {
@@ -407,49 +459,49 @@ export const en = {
           <p>Estimated delivery time is <i>${estimatedTime}</i></p>
           <p>The information detail about this order will be sent to your email <strong>${email}</strong>, please check your mail. If you don't see, you can check at <strong>Span</strong> or <strong>Junk Folder</strong></p> or report to administrator to solve your problem.
         `,
-        body_footer : "Best regards, from tnshop team.",
-        backHomeButton : "Back Home"
+        body_footer: "Best regards, from tnshop team.",
+        backHomeButton: "Back Home",
       },
     },
-    orders : {
-      title : "History Orders",
-      product : {
-        unitPrice : "Unit Price",
-        quantity : "Quantity",
-        shipping_fee : "Shipping Fee",
-        totalPrice : "Total",
+    orders: {
+      title: "History Orders",
+      product: {
+        unitPrice: "Unit Price",
+        quantity: "Quantity",
+        shipping_fee: "Shipping Fee",
+        totalPrice: "Total",
         totalBeforeTax: "Total Before Tax",
         tax: "Tax VAT",
         totalAfterTax: "Total After Tax",
-        sent : "Sent",
-        received:  "Received",
+        sent: "Sent",
+        received: "Received",
         shipping: "Shipping",
-        complete : "Complete",
-        processing : "Processing",
-        productsList : "Products List",
-        orderStatus : "Order Status",
-        orderPrice : "Order Price",        
+        complete: "Complete",
+        processing: "Processing",
+        productsList: "Products List",
+        orderStatus: "Order Status",
+        orderPrice: "Order Price",
       },
       status: {
-        active : {
-          label : "Processing",
-          icon : <ImSpinner2/>
-        }, 
-        canceled : {
-          label : "canceled",
-          icon : <TiDeleteOutline/>
+        active: {
+          label: "Processing",
+          icon: <ImSpinner2 />,
         },
-        completed : {
-          label : "Completed",
-          icon : <FiCheckCircle/>
-        }
+        canceled: {
+          label: "canceled",
+          icon: <TiDeleteOutline />,
+        },
+        completed: {
+          label: "Completed",
+          icon: <FiCheckCircle />,
+        },
       },
-      emptyOrder : "No Order",
-      buttonBackHome : "Back Home",
-      cancelOrderButton : "Cancel Order",
-      cancelTitle : "Cancel Order",
-      cancelOrderHTML : `<p>Are you sure to cancel this order?</p>`,
-      readMoreOrders:  "Read More"
-    }
+      emptyOrder: "No Order",
+      buttonBackHome: "Back Home",
+      cancelOrderButton: "Cancel Order",
+      cancelTitle: "Cancel Order",
+      cancelOrderHTML: `<p>Are you sure to cancel this order?</p>`,
+      readMoreOrders: "Read More",
+    },
   },
 }

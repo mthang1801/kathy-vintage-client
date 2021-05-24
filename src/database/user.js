@@ -74,8 +74,7 @@ export const getCurrentUser = () => {
         .get()
       if (!user.exists) {
         return resolve(null)
-      }      
-      console.log(user, user.data())
+      }          
       resolve({uid: user.id, ...user.data()})
     }, reject)
   })

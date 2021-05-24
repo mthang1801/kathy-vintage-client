@@ -18,14 +18,14 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut,FiCheckCircle } from "react-icons/fi"
+import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat } from "react-icons/bs"
 import { BiGlasses, BiPurchaseTag } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
 import {} from "react-icons/fi"
-import {TiDeleteOutline} from "react-icons/ti"
-import {ImSpinner2} from "react-icons/im" 
+import { TiDeleteOutline } from "react-icons/ti"
+import { ImSpinner2 } from "react-icons/im"
 
 export const vi = {
   translation: {
@@ -117,24 +117,23 @@ export const vi = {
         name: "Đăng xuất",
         icon: <FiLogOut />,
       },
-      information : {
-        title : "Thông tin giao hàng",
-        fullname : "Họ và tên",
-        phone : "Số điện thoại",
-        city : "Thành phố",
-        district : "Quận/ Huyện",
-        ward : "Phường/ Xã",
-        address : "Địa chỉ",        
-        errorMessages : {
-          required : "Trường này là bắt buộc",
-          fullName : "Bạn cần phải điền cả họ và tên",
-          invalidPhone : "Số điện thoại không hợp lệ"
+      information: {
+        title: "Thông tin giao hàng",
+        fullname: "Họ và tên",
+        phone: "Số điện thoại",
+        city: "Thành phố",
+        district: "Quận/ Huyện",
+        ward: "Phường/ Xã",
+        address: "Địa chỉ",
+        errorMessages: {
+          required: "Trường này là bắt buộc",
+          fullName: "Bạn cần phải điền cả họ và tên",
+          invalidPhone: "Số điện thoại không hợp lệ",
         },
-        buttonSubmit : "Hoàn tất",
-        buttonUpdate : "Cập nhật",
-        button_close_information_form : "Đóng"
-      }
-
+        buttonSubmit: "Hoàn tất",
+        buttonUpdate: "Cập nhật",
+        button_close_information_form: "Đóng",
+      },
     },
     portfolioIcons: {
       portfolioId_1: {
@@ -207,10 +206,10 @@ export const vi = {
       cartPreview: "Giỏ hàng của bạn",
       cartEmpty: "Giỏ hàng trống",
       cartAlert: "✅ Thêm vào giỏ hàng thành công",
-      checkoutButton: "Xem giỏ hàng và thanh toán",      
-      quantity : "Số lượng",
-      totalPrice : "Tổng tiền",
-      completePrice : "Thành tiền"
+      checkoutButton: "Xem giỏ hàng và thanh toán",
+      quantity: "Số lượng",
+      totalPrice: "Tổng tiền",
+      completePrice: "Thành tiền",
     },
     search: {
       placeholder: "Tìm kiếm...",
@@ -235,6 +234,58 @@ export const vi = {
     page: {
       home: {
         categoryCarouselTitle: "Danh Mục Sản phẩm",
+      },
+      template: {
+        sidebar: {
+          navigation: {
+            title: "Danh mục sản phẩm",
+          },
+          prices: {
+            title: "Giá",
+            from : "Từ" , 
+            to : "Đến",
+            buttonFilter : "Lọc",
+            range: (from, to) =>
+              to
+                ? `Từ ${from.toLocaleString("de-DE")} đến ${to.toLocaleString(
+                    "de-DE"
+                  )}`
+                : `${from.toLocaleString("de-DE")}`,
+          },
+          discount: {
+            title: "Khuyến mãi",
+            fields: {
+              isDiscount: {
+                key: "isDiscount",
+                value: "Đang giảm giá",
+              },
+              isNotDiscount: {
+                key: "isNotDiscount",
+                value: "Chưa giảm giá",
+              },
+              all: {
+                key: "all",
+                value: "Tất cả",
+              },
+            },
+          },
+          manufactors : {
+            title : "Thương hiệu"
+          },
+          recommend : {
+            title : "Đề xuất",
+            fields : {
+              recommend : {
+                key : "recommend",
+                value : "Sản phẩm được đề xuất"
+              },
+              all : {
+                key : "all", 
+                value : "Tất cả"
+              }
+            }
+          }
+        },
       },
     },
     product: {
@@ -337,125 +388,125 @@ export const vi = {
     dialog: {
       agree: "Đồng ý",
       disagree: "Hủy bỏ",
-      close : "Đóng",
+      close: "Đóng",
       removeProductFromCart: {
         title: "Loại bỏ sản phẩm khỏi giỏ hàng",
         content: name =>
           `<p>Bạn có chắc chắn muốn loại bỏ <strong>${name}</strong> khỏi giỏ hàng?</p>`,
       },
-      loading : "Đang xử lý, vui lòng chờ trong giây lát."
+      loading: "Đang xử lý, vui lòng chờ trong giây lát.",
     },
     checkout: {
-      cartEmpty : "Không có sản phẩm nào trong giỏ hàng" ,
-      orderEmpty : "Không có đơn hàng nào vừa được thanh toán",
+      cartEmpty: "Không có sản phẩm nào trong giỏ hàng",
+      orderEmpty: "Không có đơn hàng nào vừa được thanh toán",
       buttonContinueShopping: "Tiếp tục mua sắm",
-      buttonBackHome : "Trở về trang chủ",
+      buttonBackHome: "Trở về trang chủ",
       invoice: {
-        temporaryTitle : "Hóa đơn tạm tính" ,
-        title : "Hóa đơn Thanh toán",
+        temporaryTitle: "Hóa đơn tạm tính",
+        title: "Hóa đơn Thanh toán",
         totalBeforeTax: "Tổng tiền trước thuế",
         tax: "Thuế VAT",
         totalAfterTax: "Tổng tiền sau thuế",
-        totalPrice : "Thành tiền",
-        shippingFee : "Phí vận chuyển"
+        totalPrice: "Thành tiền",
+        shippingFee: "Phí vận chuyển",
       },
-      button_proceed_order : "Tiến hành đặt hàng",
-      userInformation : {
-        fullname : "Họ tên",
-        phone : "Điện thoại",
-        address : "Địa chỉ",       
-        ward : "Phường",
-        district : "Quận",
-        city : "Thành phố",  
-        button_change_information : "Thay đổi thông tin",
-        button_create_new_information : "Tạo mới thông tin",
-        button_proceed_order : "Tiến hành đặt hàng",
-        link_change_information : "Chỉnh sửa thông tin giao hàng"        
+      button_proceed_order: "Tiến hành đặt hàng",
+      userInformation: {
+        fullname: "Họ tên",
+        phone: "Điện thoại",
+        address: "Địa chỉ",
+        ward: "Phường",
+        district: "Quận",
+        city: "Thành phố",
+        button_change_information: "Thay đổi thông tin",
+        button_create_new_information: "Tạo mới thông tin",
+        button_proceed_order: "Tiến hành đặt hàng",
+        link_change_information: "Chỉnh sửa thông tin giao hàng",
       },
-      payment : {
+      payment: {
         listOfOrderedProducts: "Danh sách Đơn hàng",
-        shippingInformation : "Thông tin giao hàng",
-        invoice : "Hóa đơn",
-        typeOfShipping : {
-          title : "Phương thức vận chuyển", 
-          standard : {
-            key : "standard", 
-            value : "Tiêu chuẩn"
+        shippingInformation: "Thông tin giao hàng",
+        invoice: "Hóa đơn",
+        typeOfShipping: {
+          title: "Phương thức vận chuyển",
+          standard: {
+            key: "standard",
+            value: "Tiêu chuẩn",
           },
-          fast : {
-            key : "fast",
-            value : "Giao hàng nhanh (Chỉ áp dụng trong nội thành)"
-          }
+          fast: {
+            key: "fast",
+            value: "Giao hàng nhanh (Chỉ áp dụng trong nội thành)",
+          },
         },
-        typeOfPayment : {
-          title : "Phương thức thanh toán",
-          payment_in_cash : {
-            key : "payment_in_cash",
-            value : "Thanh toán bằng tiền mặt"
+        typeOfPayment: {
+          title: "Phương thức thanh toán",
+          payment_in_cash: {
+            key: "payment_in_cash",
+            value: "Thanh toán bằng tiền mặt",
           },
-          payment_in_card : {
-            key : "payment_in_card",
-            value : "Thanh toán bằng thẻ Credit Card, Visa, Master Card..."
+          payment_in_card: {
+            key: "payment_in_card",
+            value: "Thanh toán bằng thẻ Credit Card, Visa, Master Card...",
           },
-          payment_in_card_button : "Tiến hành đặt hàng"
+          payment_in_card_button: "Tiến hành đặt hàng",
         },
-        quantity : "Số lượng", 
-        unitPrice : "Đơn giá", 
-        price : "Tổng tiền",
-        totalPrice : "Thành tiền",
-        shipping : "Giao hàng"
+        quantity: "Số lượng",
+        unitPrice: "Đơn giá",
+        price: "Tổng tiền",
+        totalPrice: "Thành tiền",
+        shipping: "Giao hàng",
       },
-      complete:{
-        header_letter : "Cám ơn bạn đã mua hàng tại tnshop",
-        body_letter : (orderId, estimatedTime, email) => `          
+      complete: {
+        header_letter: "Cám ơn bạn đã mua hàng tại tnshop",
+        body_letter: (orderId, estimatedTime, email) => `          
           <p>Mã đơn hàng của bạn là: <strong>${orderId}</strong></p>
           <p>Bạn có thể xem lại toàn bộ đơn hàng tại <a href="/orders">Đây</a></p>
           <p>Thời gian dự kiến giao hàng <i>${estimatedTime}</i> (có thể thời gian sẽ trễ hơn do tình hình dịch COVID-19 đang diễn ra phức tạp)</p>
           <p>Thông tin chi tiết đơn hàng sẽ được gửi về email <strong>${email}</strong>. Bạn vui lòng check email để kiểm tra lại đơn hàng. Trong trường hợp không thấy email, bạn vui lòng kiểm trong hộp thư <strong>Spam</strong> hoặc <strong>Junk Folder</strong> hoặc báo cáo với quản trị viên.</p>          
         `,
-        body_footer : "Trân trọng cám ơn, đội ngũ tnshop",
-        backHomeButton : "Trở lại trang chủ"
-      }
+        body_footer: "Trân trọng cám ơn, đội ngũ tnshop",
+        backHomeButton: "Trở lại trang chủ",
+      },
     },
-    orders : {
-      title : "Lịch sử Đơn đặt hàng",
-      product : {
-        unitPrice : "Đơn giá",
-        quantity : "Số lượng",
-        shipping_fee : "Phí vận chuyển",
-        totalPrice : "Tổng tiền",
+    orders: {
+      title: "Lịch sử Đơn đặt hàng",
+      product: {
+        unitPrice: "Đơn giá",
+        quantity: "Số lượng",
+        shipping_fee: "Phí vận chuyển",
+        totalPrice: "Tổng tiền",
         totalBeforeTax: "Tổng tiền trước thuế",
         tax: "Thuế VAT",
         totalAfterTax: "Tổng tiền sau thuế",
-        sent : "Đặt hàng",
-        received:  "Đã nhận đơn hàng",
+        sent: "Đặt hàng",
+        received: "Đã nhận đơn hàng",
         shipping: "Đang giao hàng",
-        complete : "Hoàn thành",
-        processing : "Đang xử lý",
-        productsList : "Danh sách Sản phẩm",
-        orderStatus : "Tình trạng đơn hàng",
-        orderPrice : "Hóa đơn"
+        complete: "Hoàn thành",
+        processing: "Đang xử lý",
+        productsList: "Danh sách Sản phẩm",
+        orderStatus: "Tình trạng đơn hàng",
+        orderPrice: "Hóa đơn",
       },
       status: {
-        active : {
-          label : "Đang tiến hành",
-          icon : <ImSpinner2/>
-        }, 
-        canceled : {
-          label : "Đã hủy",
-          icon : <TiDeleteOutline/>
+        active: {
+          label: "Đang tiến hành",
+          icon: <ImSpinner2 />,
         },
-        completed : {
-          label : "Hoàn tất",
-          icon : <FiCheckCircle/>
-        }
+        canceled: {
+          label: "Đã hủy",
+          icon: <TiDeleteOutline />,
+        },
+        completed: {
+          label: "Hoàn tất",
+          icon: <FiCheckCircle />,
+        },
       },
-      emptyOrder : "Không tìm thấy đơn hàng.",
-      buttonBackHome : "Trở lại trang chủ",
-      cancelOrderButton : "Hủy Đơn hàng",
-      cancelTitle : "Hủy đơn hàng!",
-      cancelOrderHTML : `<p>Bạn có chắc chắn muốn hủy đơn hàng này?</p>`,
-      readMoreOrders:  "Xem thêm"
-    }
+      emptyOrder: "Không tìm thấy đơn hàng.",
+      buttonBackHome: "Trở lại trang chủ",
+      cancelOrderButton: "Hủy Đơn hàng",
+      cancelTitle: "Hủy đơn hàng!",
+      cancelOrderHTML: `<p>Bạn có chắc chắn muốn hủy đơn hàng này?</p>`,
+      readMoreOrders: "Xem thêm",
+    },
   },
 }
