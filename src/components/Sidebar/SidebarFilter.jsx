@@ -3,13 +3,13 @@ import { Wrapper, Title } from "./styles/Sidebar.styles"
 import SidebarFilterPrices from "./SidebarFilterPrices"
 import SidebarFilterDiscount from "./SidebarFilterDiscount"
 import SidebarManufactors from "./SidebarManufactors"
-import SidebarFilterRecommend from "./SidebarFilterRecommend"
+import SidebarSorting from "./SidebarSorting"
 const SidebarFilter = ({ data, templateTranslation }) => {
   const { productsPrice, manufactors } = data
 
   return (
     <>
-      <SidebarFilterRecommend templateTranslation={templateTranslation} />
+      <SidebarSorting templateTranslation={templateTranslation} />
       <SidebarFilterPrices
         minPrice={20000}
         maxPrice={2000000}

@@ -10,10 +10,15 @@ export const Wrapper = styled.div`
   & a{
     color : inherit; 
     &:hover{
-      color : var(--blue-1);
+      color : var(--blue-3);
     }
   }
   position : relative;
+  .MuiFormControlLabel-root{    
+    &:hover{
+      color : var(--blue-3);
+    }
+  }
 `
 
 export const Title = styled.h4`
@@ -63,7 +68,7 @@ export const InputGroup = styled.div`
     & > *:not(:first-child){
       margin-left : 0.5rem;
     }
-  }
+  }  
 `
 
 export const Input = styled.input`  

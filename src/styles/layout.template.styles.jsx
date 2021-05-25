@@ -49,3 +49,16 @@ export const ProductsList = styled.section`
     grid-template-columns : repeat(4, 1fr);
   }  
 `
+
+export const ProductCount = styled.p`
+  font-size : 1rem;
+  display : flex; 
+  align-items : center;
+  justify-content : center;
+  & > *:not(:first-child){
+    margin-left: 0.5rem;
+  }
+  & svg{
+    font-size : 1.1rem;
+  }
+`

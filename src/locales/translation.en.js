@@ -6,6 +6,7 @@ import {
   AiFillShop,
   AiOutlineShop,
   AiOutlineInstagram,
+  AiOutlineFileSearch
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -230,10 +231,31 @@ export const en = {
       home: {
         categoryCarouselTitle: "Products Category",
       },
-      template: {
+      template: {    
         sidebar: {
           navigation: {
             title: "Product Categories",
+          },
+          sort : {
+            title : "Sorting",
+            fields : [
+              {
+                key : "price_asc",
+                value : "Price Ascending 🡩"
+              },
+              {
+                key : "price_desc",
+                value : "Price Descending 🡣"
+              },
+              {
+                key : "discount_asc",
+                value : "Discount Ascending 🡩"
+              },
+              {
+                key : "discount_desc",
+                value : "Discount Descending 🡣"
+              },
+            ]
           },
           prices: {
             title: "Prices",
@@ -249,20 +271,21 @@ export const en = {
           },
           discount: {
             title: "Discount",
-            fields : {
-              isDiscount: {
-                key: "isDiscount",
-                value: "Discounting",
-              },
-              isNotDiscount: {
-                key: "isNotDiscount",
-                value: "Not Discounting",
-              },
-              all: {
+            fields :[
+              {
                 key: "all",
                 value: "All",
               },
-            }
+              {
+                key: "isDiscount",
+                value: "Discounting",
+              },
+               {
+                key: "isNotDiscount",
+                value: "Not Discounting",
+              },
+              
+            ]
           },
           manufactors : {
             title : "Manufactors"
@@ -300,7 +323,11 @@ export const en = {
               value : "Best Sell Products"
             }
             
-          ]
+          ],
+          productCount : {
+            name : (num) => `<span>Find <strong>${num}</strong> products</span>`,
+            icon : <AiOutlineFileSearch/>
+          },
         }
       },
     },

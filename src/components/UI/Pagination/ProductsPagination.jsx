@@ -11,6 +11,7 @@ const ProductsPagination = ({ numPages, currentPage, handlePageClick }) => {
         nextLabel={">"}
         breakLabel={"..."}
         breakClassName={"break-me"}
+        forcePage={currentPage-1}
         initialPage={currentPage-1}
         pageCount={numPages}
         marginPagesDisplayed={2}

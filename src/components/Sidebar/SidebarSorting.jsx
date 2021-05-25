@@ -3,8 +3,8 @@ import { Wrapper, Title } from "./styles/Sidebar.styles"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
 
-const SidebarFilterDiscount = ({ templateTranslation }) => {
-  const { fields, title } = templateTranslation?.sidebar?.discount  
+const SidebarSorting = ({ templateTranslation }) => {
+  const { fields, title } = templateTranslation?.sidebar?.sort  
   return (
     <Wrapper>
       <Title>{title}</Title>
@@ -20,4 +20,4 @@ const SidebarFilterDiscount = ({ templateTranslation }) => {
   )
 }
 
-export default SidebarFilterDiscount
+export default SidebarSorting

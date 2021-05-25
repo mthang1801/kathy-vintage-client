@@ -6,6 +6,7 @@ import {
   AiFillShop,
   AiOutlineShop,
   AiOutlineInstagram,
+  AiOutlineFileSearch
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -240,11 +241,32 @@ export const vi = {
           navigation: {
             title: "Danh mục sản phẩm",
           },
+          sort :{
+            title : "Sắp xếp",
+            fields :  [
+              {
+                key : "price_asc",
+                value : "Giá tăng dần 🡩"
+              },
+              {
+                key : "price_desc",
+                value : "Giá giảm dần 🡣"
+              },
+              {
+                key : "discount_asc",
+                value : "Khuyến mãi tăng dần 🡩"
+              },
+              {
+                key : "discount_desc",
+                value : "Khuyến mãi giảm dần 🡣"
+              },
+            ]
+          },
           prices: {
             title: "Giá",
-            from : "Từ" , 
-            to : "Đến",
-            buttonFilter : "Lọc",
+            from: "Từ",
+            to: "Đến",
+            buttonFilter: "Lọc",
             range: (from, to) =>
               to
                 ? `Từ ${from.toLocaleString("de-DE")} đến ${to.toLocaleString(
@@ -254,14 +276,30 @@ export const vi = {
           },
           discount: {
             title: "Khuyến mãi",
-            fields: {
-              isDiscount: {
+            fields: [
+              {
+                key: "all",
+                value: "Tất cả",
+              },
+              {
                 key: "isDiscount",
                 value: "Đang giảm giá",
               },
-              isNotDiscount: {
+              {
                 key: "isNotDiscount",
                 value: "Chưa giảm giá",
+              },
+            ],
+          },
+          manufactors: {
+            title: "Thương hiệu",
+          },
+          recommend: {
+            title: "Đề xuất",
+            fields: {
+              recommend: {
+                key: "recommend",
+                value: "Sản phẩm được đề xuất",
               },
               all: {
                 key: "all",
@@ -269,44 +307,31 @@ export const vi = {
               },
             },
           },
-          manufactors : {
-            title : "Thương hiệu"
-          },
-          recommend : {
-            title : "Đề xuất",
-            fields : {
-              recommend : {
-                key : "recommend",
-                value : "Sản phẩm được đề xuất"
-              },
-              all : {
-                key : "all", 
-                value : "Tất cả"
-              }
-            }
-          }
         },
-        content : {
-          tabs : [
+        content: {
+          tabs: [
             {
-              key: "all", 
-              value : "Tất cả"
+              key: "all",
+              value: "Tất cả",
             },
             {
-              key : "recommended",
-              value : "được đề xuất"
+              key: "recommended",
+              value: "được đề xuất",
             },
             {
-              key : "latest",
-              value : "mới"
+              key: "latest",
+              value: "mới",
             },
             {
-              key : "bestSell",
-              value : "Bán chạy"
-            }
-            
-          ]
-        }
+              key: "bestSell",
+              value: "Bán chạy",
+            },
+          ],
+          productCount : {
+            name : (num) => `<span>Tìm thấy <strong>${num}</strong> sản phẩm</span>`,
+            icon : <AiOutlineFileSearch/>
+          },
+        },
       },
     },
     product: {

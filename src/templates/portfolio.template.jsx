@@ -73,7 +73,7 @@ export const query = graphql`
             name_vi
             slug
           }
-          updatedAt(formatString: "DD/MM/YYYY")
+          updatedAt
         }
       }
     }
