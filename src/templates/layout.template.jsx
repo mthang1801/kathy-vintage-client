@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react"
+import React, { useState, createContext, useEffect, useRef } from "react"
 import {
   ContentContainer,
   Sidebar,
@@ -10,7 +10,7 @@ import SidebarNavigations from "../components/Sidebar/SidebarNavigations"
 import SidebarFilter from "../components/Sidebar/SidebarFilter"
 import useLanguage from "../components/Global/useLanguage"
 import { useTheme } from "../theme"
-import TabProductsList from "../components/Tabs/TabProductsList"
+import TabProductsList from "../components/UI/Tabs/TabProductsList"
 import ProductItem from "../components/Product/ProductItem"
 import ProductsPagination from "../components/UI/Pagination/ProductsPagination"
 import { getParams } from "../utils/checkUrl"
@@ -20,65 +20,128 @@ import { navigate } from "gatsby"
 import {
   filterProductsListByTab,
   getProductsCounter,
+  sortingProductsList,
+  getProductsListByPriceScope,
+  filterProductsListByDiscount,
+  filterProductsListByManufactor,
 } from "./layout.template.util"
+
+const initialState = {
+  currentTab: "all",
+  currentPage: 1,
+  sortingIndex: -1,
+  priceIndex: -1,
+  selectedPriceScope: [-Infinity, Infinity],
+  discountIndex: 0,
+  manufactor: { index: 0, value: "all" },
+}
+
 export const LayoutTemplateContext = createContext({})
 
 const LayoutTemplate = ({ data, pageLocation }) => {
   const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
-  const { template } = i18n.store.data[lang].translation.page
-  const [currentTab, setCurrentTab] = useState(getParams("tab") || "all")
-
-  const [currentPage, setCurrentPage] = useState(+getParams("page") !== 0 ? +getParams("page") : 1)
-
-  const [tabIndex, setTabIndex] = useState(0)
+  const { template } = i18n.store.data[lang].translation.page;
+  const contentRef = useRef(null)  
+  const [currentTab, setCurrentTab] = useState(
+    getParams("tab") || initialState.currentTab
+  )
+  const [initialProducts, setInitialProducts] = useState(
+    data.products.edges.map(({ node }) => node)
+  )
+  const [currentPage, setCurrentPage] = useState(
+    +getParams("page") !== 0 ? +getParams("page") : initialState.currentPage
+  )
   const [products, setProducts] = useState(
     filterProductsListByTab(
-      data.products,
+      initialProducts,
       currentTab,
       currentPage,
       PRODUCTS_TEMPLATE_PER_PAGE
     )
   )
   const [productsCounter, setProductsCounter] = useState(
-    getProductsCounter(data.products, currentTab, PRODUCTS_TEMPLATE_PER_PAGE)
+    getProductsCounter(initialProducts, currentTab, PRODUCTS_TEMPLATE_PER_PAGE)
   )
-  const [sortingIndex, setSortingIndex] = useState(0)
-  const [priceIndex, setPriceIndex] = useState(0)
-  const [selectedPrice, setSelectedPrice] = useState({ from: null, to: null })
-  const [discountIndex, setDiscountIndex] = useState(0)
-  const [manufactorIndex, setManufactorIndex] = useState(0)
+  const [sortingIndex, setSortingIndex] = useState(initialState.sortingIndex)
+  const [priceIndex, setPriceIndex] = useState(initialState.priceIndex)
+  const [selectedPriceScope, setSelectedPriceScope] = useState(
+    initialState.selectedPriceScope
+  )
+  const [discountIndex, setDiscountIndex] = useState(initialState.discountIndex)
+  const [manufactor, setManufactor] = useState(initialState.manufactor)
   const location = useLocation()
   const sidebarNavigations =
     pageLocation === "portfolio"
       ? data.categories.edges.map(({ node: category }) => category)
       : null
   const slugParentForNavigation =
-    pageLocation === "portfolio" ? `/${data.portfolio.slug}` : null  
+    pageLocation === "portfolio" ? `/${data.portfolio.slug}` : null
   useEffect(() => {
     //when tab index changed, reset all fields
-    setSortingIndex(0)
-    setPriceIndex(0)
-    setSelectedPrice({ from: null, to: null })
-    setDiscountIndex(0)
-    setManufactorIndex(0)
+    setSortingIndex(initialState.sortingIndex)
+    setPriceIndex(initialState.priceIndex)
+    setSelectedPriceScope(initialState.selectedPriceScope)
+    setDiscountIndex(initialState.discountIndex)
+    setManufactor(initialState.manufactor)
+    setProductsCounter(
+      getProductsCounter(
+        initialProducts,
+        currentTab,
+        PRODUCTS_TEMPLATE_PER_PAGE
+      )
+    )
+    setInitialProducts(data.products.edges.map(({ node }) => node))
+  }, [currentTab])
+
+  useEffect(() => {
     setProducts(
       filterProductsListByTab(
-        data.products,
+        initialProducts,
         currentTab,
         currentPage,
         PRODUCTS_TEMPLATE_PER_PAGE
       )
     )
     setProductsCounter(
-      getProductsCounter(data.products, currentTab, PRODUCTS_TEMPLATE_PER_PAGE)
-    )    
-  }, [currentTab])
+      getProductsCounter(
+        initialProducts,
+        currentTab,
+        PRODUCTS_TEMPLATE_PER_PAGE
+      )
+    )
+  }, [initialProducts])
+
+  useEffect(() => {
+    setInitialProducts(
+      filterProductsListByManufactor(
+        filterProductsListByDiscount(
+          sortingProductsList(
+            getProductsListByPriceScope(
+              data.products.edges.map(({ node }) => node),
+              selectedPriceScope[0],
+              selectedPriceScope[1]
+            ),
+            sortingIndex
+          ),
+          discountIndex
+        ),
+        manufactor.value
+      )
+    )
+
+    if(contentRef.current){    
+      window.scrollTo({
+        top : contentRef.current.offsetTop, 
+        behavior : "smooth"
+      })
+    }
+  }, [selectedPriceScope, discountIndex, sortingIndex, manufactor])
 
   useEffect(() => {
     setProducts(
       filterProductsListByTab(
-        data.products,
+        initialProducts,
         currentTab,
         currentPage,
         PRODUCTS_TEMPLATE_PER_PAGE
@@ -87,12 +150,11 @@ const LayoutTemplate = ({ data, pageLocation }) => {
   }, [currentPage])
 
   useEffect(() => {
-    
     const newTab = getParams("tab")
     const newPage = +getParams("page")
     if (newTab !== currentTab) {
-      setCurrentTab(newTab);
-      setCurrentPage(1);
+      setCurrentTab(newTab)
+      setCurrentPage(1)
     }
     if (newPage !== currentPage && newPage) {
       setCurrentPage(newPage)
@@ -100,20 +162,18 @@ const LayoutTemplate = ({ data, pageLocation }) => {
   }, [window.location.search])
 
   const states = {
-    tabIndex,
     sortingIndex,
     priceIndex,
-    selectedPrice,
+    selectedPriceScope,
     discountIndex,
-    manufactorIndex,
+    manufactor,
   }
   const actions = {
-    setTabIndex,
     setSortingIndex,
     setPriceIndex,
-    setSelectedPrice,
+    setSelectedPriceScope,
     setDiscountIndex,
-    setManufactorIndex,
+    setManufactor,
   }
 
   const handlePageClick = data => {
@@ -136,7 +196,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
           />
           <SidebarFilter data={data} templateTranslation={template} />
         </Sidebar>
-        <MainContain theme={theme}>
+        <MainContain theme={theme} ref={contentRef}>
           <TabProductsList products={products} />
           <ProductCount>
             {template.content.productCount.icon}

@@ -73,12 +73,18 @@ export const InputGroup = styled.div`
 
 export const Input = styled.input`  
   display : flex;  
-  width : 3.5rem;
+  width : 4.5rem;
   height : 2rem;  
   padding : 0.4rem ;
-  font-size : 1rem;
+  font-size : 0.9rem;
   border-radius : 0.2rem;
   border: 1px solid ${({theme}) => theme.border};
   background : ${({theme}) => theme.background};
   outline : none ;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
+}
 `

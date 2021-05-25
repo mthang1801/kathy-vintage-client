@@ -288,7 +288,11 @@ export const en = {
             ]
           },
           manufactors : {
-            title : "Manufactors"
+            title : "Manufactors",
+            all : {
+              key : "all",
+              value : "All"
+            }
           },
           recommend : {
             title : "Recommend",

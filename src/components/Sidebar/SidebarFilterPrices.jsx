@@ -2,14 +2,19 @@ import React, { useState } from "react"
 import { Wrapper, Title, InputGroup, Input } from "./styles/Sidebar.styles"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
-import {useTheme} from "../../theme"
+import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
-const SidebarFilterPrices = ({
-  minPrice,
-  maxPrice,
-  templateTranslation,
-}) => {
-  const {theme} = useTheme();
+import {
+  useLayoutTempateActions,
+  useLayoutTemplateStates,
+} from "../../hooks/useLayoutTemplate"
+const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
+  const [from, setFrom] = useState(null)
+  const [to, setTo] = useState(null)
+  const { setPriceIndex, setSelectedPriceScope } = useLayoutTempateActions()
+  const { priceIndex } = useLayoutTemplateStates()
+  const { theme } = useTheme()
+
   const priceDiff = maxPrice - minPrice
   const pricesQuantiles = [
     minPrice,
@@ -18,8 +23,29 @@ const SidebarFilterPrices = ({
     0.75 * priceDiff + minPrice,
     maxPrice,
   ]
-  const {title, from, to, buttonFilter} = templateTranslation.sidebar.prices
-  const [selectedIdx, setSelectedIdx] = useState(1)
+  const onHandleChangePrice = e => {
+    const index = +e.target.value
+    setPriceIndex(index)
+    setSelectedPriceScope([pricesQuantiles[index], pricesQuantiles[index + 1]])
+  }
+  const onClickFilterPrice = () => {
+    if(from && !to){
+      setSelectedPriceScope([from, Infinity])
+    }else if(!from && to){
+      setSelectedPriceScope([-Infinity, to]);
+    }else if(!from && !to){
+      setSelectedPriceScope([-Infinity, Infinity]);
+    }else{
+      setSelectedPriceScope([from, to]);
+    }
+    setPriceIndex(-1)
+  }
+  const {
+    title,
+    from: fromTranslation,
+    to: toTranslation,
+    buttonFilter,
+  } = templateTranslation.sidebar.prices
   return (
     <Wrapper>
       <Title>{title}</Title>
@@ -28,8 +54,9 @@ const SidebarFilterPrices = ({
           control={
             <Checkbox
               color="primary"
-              checked={idx === selectedIdx}
-              onChange={() => setSelectedIdx(idx)}
+              value={idx}
+              checked={idx === priceIndex}
+              onChange={onHandleChangePrice}
               name={templateTranslation?.sidebar?.prices?.range(
                 pricesQuantiles[idx],
                 pricesQuantiles[idx + 1]
@@ -43,9 +70,25 @@ const SidebarFilterPrices = ({
         />
       ))}
       <InputGroup>
-        <div><span>{from}</span> <Input theme={theme}/></div>
-        <div><span>{to}</span> <Input theme={theme}/></div>
-        <Button color="primary" variant="contained" size="small">{buttonFilter}</Button>
+        <div>
+          <span>{fromTranslation}</span>{" "}
+          <Input
+            type="number"
+            theme={theme}
+            onChange={e => setFrom(e.target.value)}
+          />
+        </div>
+        <div>
+          <span>{toTranslation}</span>{" "}
+          <Input
+            type="number"
+            theme={theme}
+            onChange={e => setTo(e.target.value)}
+          />
+        </div>
+        <Button color="primary" variant="contained" size="small" onClick={onClickFilterPrice}>
+          {buttonFilter}
+        </Button>
       </InputGroup>
     </Wrapper>
   )

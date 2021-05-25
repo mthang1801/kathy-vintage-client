@@ -6,13 +6,13 @@ import SidebarManufactors from "./SidebarManufactors"
 import SidebarSorting from "./SidebarSorting"
 const SidebarFilter = ({ data, templateTranslation }) => {
   const { productsPrice, manufactors } = data
-
+  
   return (
     <>
       <SidebarSorting templateTranslation={templateTranslation} />
       <SidebarFilterPrices
-        minPrice={20000}
-        maxPrice={2000000}
+        minPrice={productsPrice.min}
+        maxPrice={productsPrice.max}
         templateTranslation={templateTranslation}
       />
       <SidebarFilterDiscount templateTranslation={templateTranslation} />

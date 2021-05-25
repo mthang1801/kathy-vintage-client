@@ -53,6 +53,8 @@ export const query = graphql`
           isDiscount
           discountPercentage
           shippingFee
+          manufactor
+        	origin
           images {
             fluid {
               ...GatsbyContentfulFluid

@@ -293,6 +293,10 @@ export const vi = {
           },
           manufactors: {
             title: "Thương hiệu",
+            all : {
+              key : "all",
+              value : "Tất cả"
+            }
           },
           recommend: {
             title: "Đề xuất",

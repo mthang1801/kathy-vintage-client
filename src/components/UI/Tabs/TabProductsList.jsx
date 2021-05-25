@@ -5,12 +5,11 @@ import {
   AntTabs,
   ProductsList,
 } from "./styles/TabProductsList.styles"
-import useLanguage from "../Global/useLanguage"
-import { useTheme } from "../../theme"
-import {useLayoutTempateActions, useLayoutTemplateStates} from "../../hooks/useLayoutTemplate"
+import useLanguage from "../../Global/useLanguage"
+import { useTheme } from "../../../theme"
 import {navigate} from "gatsby"
 import {useLocation} from "@reach/router"
-import {getParams} from "../../utils/checkUrl"
+import {getParams} from "../../../utils/checkUrl"
 const TabsProductsList = ({ products }) => {  
   const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
