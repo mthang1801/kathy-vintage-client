@@ -15,14 +15,26 @@ const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
   const { priceIndex } = useLayoutTemplateStates()
   const { theme } = useTheme()
 
-  const priceDiff = maxPrice - minPrice
-  const pricesQuantiles = [
-    minPrice,
-    0.25 * priceDiff + minPrice,
-    0.5 * priceDiff + minPrice,
-    0.75 * priceDiff + minPrice,
-    maxPrice,
-  ]
+  let pricesQuantiles= [];
+  const priceDiff = maxPrice - minPrice;
+  if(priceDiff === 0 ){
+    return  null; 
+  }else if (priceDiff < 1000000 ){
+    pricesQuantiles = [
+      minPrice, 
+      0.5 * priceDiff + minPrice,
+      maxPrice
+    ]
+  }else{
+    pricesQuantiles = [
+      minPrice,
+      0.25 * priceDiff + minPrice,
+      0.5 * priceDiff + minPrice,
+      0.75 * priceDiff + minPrice,
+      maxPrice,
+    ]
+  }
+ 
   const onHandleChangePrice = e => {
     const index = +e.target.value
     setPriceIndex(index)

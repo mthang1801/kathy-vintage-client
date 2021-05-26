@@ -234,7 +234,7 @@ export const en = {
       template: {    
         sidebar: {
           navigation: {
-            title: "Product Categories",
+            title: (pageLocation) => pageLocation === "portfolio" ? "Product Categories" : pageLocation === "category" ? "Product Group List" : null,
           },
           sort : {
             title : "Sorting",

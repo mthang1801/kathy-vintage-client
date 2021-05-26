@@ -81,9 +81,8 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: `/${portfolio.slug}/${category.slug}`,
         component: path.resolve("./src/templates/category.template.jsx"),
-        context: {
-          portfolio,
-          category,
+        context: {        
+          categoryId : category.contentful_id
         },
       })
       //create product Groups page
@@ -95,6 +94,7 @@ exports.createPages = async ({ graphql, actions }) => {
             portfolio,
             category,
             productGroup,
+            productGroupId : productGroup.contentful_id
           },
         })
       })

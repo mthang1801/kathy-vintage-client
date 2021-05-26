@@ -239,7 +239,7 @@ export const vi = {
       template: {
         sidebar: {
           navigation: {
-            title: "Danh mục sản phẩm",
+            title: (pageLocation) => pageLocation === "portfolio" ? "Danh mục sản phẩm" : pageLocation === "category" ? "Nhóm sản phẩm" : null,
           },
           sort :{
             title : "Sắp xếp",

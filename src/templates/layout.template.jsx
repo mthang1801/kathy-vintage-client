@@ -42,6 +42,13 @@ const LayoutTemplate = ({ data, pageLocation }) => {
   const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
   const { template } = i18n.store.data[lang].translation.page;
+  const location = useLocation()
+  const sidebarNavigations =
+    pageLocation === "portfolio"
+      ? data.categories.edges.map(({ node: category }) => category)
+      : pageLocation === "category" ? data.productGroups.edges.map(({node: productGroup}) => productGroup)  :null
+  const slugParentForNavigation =
+    pageLocation === "portfolio" ? `/${data?.portfolio?.slug}` : "category" ? `/${data?.portfolio?.slug}/${data?.category?.slug}` : null
   const contentRef = useRef(null)  
   const [currentTab, setCurrentTab] = useState(
     getParams("tab") || initialState.currentTab
@@ -70,13 +77,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
   )
   const [discountIndex, setDiscountIndex] = useState(initialState.discountIndex)
   const [manufactor, setManufactor] = useState(initialState.manufactor)
-  const location = useLocation()
-  const sidebarNavigations =
-    pageLocation === "portfolio"
-      ? data.categories.edges.map(({ node: category }) => category)
-      : null
-  const slugParentForNavigation =
-    pageLocation === "portfolio" ? `/${data.portfolio.slug}` : null
+ 
   useEffect(() => {
     //when tab index changed, reset all fields
     setSortingIndex(initialState.sortingIndex)
@@ -188,12 +189,12 @@ const LayoutTemplate = ({ data, pageLocation }) => {
     <LayoutTemplateContext.Provider value={{ states, actions }}>
       <ContentContainer>
         <Sidebar theme={theme}>
-          <SidebarNavigations
+          {sidebarNavigations && <SidebarNavigations
             lang={lang}
             slugParent={slugParentForNavigation}
             navigations={sidebarNavigations}
-            title={template?.sidebar?.navigation?.title}
-          />
+            title={template?.sidebar?.navigation?.title(pageLocation)}
+          />}
           <SidebarFilter data={data} templateTranslation={template} />
         </Sidebar>
         <MainContain theme={theme} ref={contentRef}>
