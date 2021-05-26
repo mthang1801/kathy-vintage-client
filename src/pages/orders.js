@@ -20,7 +20,7 @@ import {
 import useLanguage from "../components/Global/useLanguage"
 import OrderItem from "../components/Order/OrderItem"
 import EmptyOrder from "../components/Order/EmptyOrder"
-import OrderPageSkeleton from "../components/Skeleton/OrderPage"
+import OrderPageSkeleton from "../components/UI/Lab/Skeleton/OrderPage"
 const Orders = ({
   user,
   orders,

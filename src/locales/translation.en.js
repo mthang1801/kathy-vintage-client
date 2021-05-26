@@ -232,6 +232,10 @@ export const en = {
         categoryCarouselTitle: "Products Category",
       },
       template: {    
+        dialog : {
+          title : "Products Filter",
+          closeButton : "Close"
+        },
         sidebar: {
           navigation: {
             title: (pageLocation) => pageLocation === "portfolio" ? "Product Categories" : pageLocation === "category" ? "Product Group List" : null,

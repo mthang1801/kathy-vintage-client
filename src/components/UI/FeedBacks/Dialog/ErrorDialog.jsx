@@ -4,7 +4,7 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
 import WarningIcon from "@material-ui/icons/Warning"
-import useLanguage from "../Global/useLanguage"
+import useLanguage from "../../../Global/useLanguage"
 import { ContentContainer } from "./styles/ErrorDialog.styles"
 import DialogActions from "@material-ui/core/DialogActions"
 

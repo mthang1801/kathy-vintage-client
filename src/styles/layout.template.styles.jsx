@@ -1,12 +1,14 @@
 import styled from "styled-components"
 
 export const ContentContainer = styled.div`
-  width : 95vw; 
-  margin : 3rem auto; 
+  width : 100%; 
+  margin : 0rem; 
   dipslay : flex;  
   flex-direction : column; 
   position : relative;  
   @media screen and (min-width :768px){    
+    margin : 3rem auto;
+    width : 95vw;
     display : grid; 
     grid-gap : 0.5rem;
     grid-template-columns : 1.25fr 2fr; 
@@ -18,6 +20,10 @@ export const ContentContainer = styled.div`
 `
 
 export const Sidebar = styled.div`
+  display : none;
+  @media screen and (min-width : 768px){
+    display : block;
+  }
   background-color : ${({theme}) => theme.card};
   padding : 0.75rem 1rem;
   border : 1px solid var(--blue-1);
@@ -61,4 +67,31 @@ export const ProductCount = styled.p`
   & svg{
     font-size : 1.1rem;
   }
+`
+export const ButtonFilter = styled.button`
+  display : flex;
+  align-items : center;
+  justify-content : space-between; 
+  padding : 0.5rem 1.25rem;
+  width : 100%;   
+  background-color : #ffecb3;
+  outline : none;
+  border: none ;
+  margin-bottom : 1rem;
+  text-align : left;
+  & svg{
+    font-size : 1.75rem;
+  }
+  @media screen and (min-width : 768px){
+    display : none; 
+  }
+`
+
+export const FilterList = styled.span`
+  flex: 1 ; 
+  display : flex;
+  align-items : center;  
+  & > span:not(:first-child){
+    margin-left : 1rem;
+  };
 `

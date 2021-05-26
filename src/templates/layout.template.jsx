@@ -5,6 +5,8 @@ import {
   ProductCount,
   ProductsList,
   MainContain,
+  ButtonFilter,
+  FilterList
 } from "../styles/layout.template.styles"
 import SidebarNavigations from "../components/Sidebar/SidebarNavigations"
 import SidebarFilter from "../components/Sidebar/SidebarFilter"
@@ -25,6 +27,8 @@ import {
   filterProductsListByDiscount,
   filterProductsListByManufactor,
 } from "./layout.template.util"
+import NavigattionAndFilterProductsDialog from "../components/UI/FeedBacks/Dialog/NavigattionAndFilterProductsDialog"
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 const initialState = {
   currentTab: "all",
@@ -41,15 +45,27 @@ export const LayoutTemplateContext = createContext({})
 const LayoutTemplate = ({ data, pageLocation }) => {
   const { theme } = useTheme()
   const { i18n, lang } = useLanguage()
-  const { template } = i18n.store.data[lang].translation.page;
+  const { template } = i18n.store.data[lang].translation.page
   const location = useLocation()
+
   const sidebarNavigations =
     pageLocation === "portfolio"
       ? data.categories.edges.map(({ node: category }) => category)
-      : pageLocation === "category" ? data.productGroups.edges.map(({node: productGroup}) => productGroup)  :null
+      : pageLocation === "category"
+      ? data.productGroups.edges.map(({ node: productGroup }) => productGroup)
+      : null
   const slugParentForNavigation =
-    pageLocation === "portfolio" ? `/${data?.portfolio?.slug}` : "category" ? `/${data?.portfolio?.slug}/${data?.category?.slug}` : null
-  const contentRef = useRef(null)  
+    pageLocation === "portfolio"
+      ? `/${data?.portfolio?.slug}`
+      : "category"
+      ? `/${data?.portfolio?.slug}/${data?.category?.slug}`
+      : null
+
+  const contentRef = useRef(null)
+  const [
+    openNavigationAndFilterDialog,
+    setOpenNavigationAndFilterDialog,
+  ] = useState(false)
   const [currentTab, setCurrentTab] = useState(
     getParams("tab") || initialState.currentTab
   )
@@ -77,7 +93,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
   )
   const [discountIndex, setDiscountIndex] = useState(initialState.discountIndex)
   const [manufactor, setManufactor] = useState(initialState.manufactor)
- 
+
   useEffect(() => {
     //when tab index changed, reset all fields
     setSortingIndex(initialState.sortingIndex)
@@ -131,10 +147,10 @@ const LayoutTemplate = ({ data, pageLocation }) => {
       )
     )
 
-    if(contentRef.current){    
+    if (contentRef.current) {
       window.scrollTo({
-        top : contentRef.current.offsetTop, 
-        behavior : "smooth"
+        top: 0,
+        behavior: "smooth",
       })
     }
   }, [selectedPriceScope, discountIndex, sortingIndex, manufactor])
@@ -187,14 +203,40 @@ const LayoutTemplate = ({ data, pageLocation }) => {
   }
   return (
     <LayoutTemplateContext.Provider value={{ states, actions }}>
-      <ContentContainer>
-        <Sidebar theme={theme}>
-          {sidebarNavigations && <SidebarNavigations
+      <NavigattionAndFilterProductsDialog
+        open={openNavigationAndFilterDialog}
+        setOpen={setOpenNavigationAndFilterDialog}
+        templateTranslation={template}
+      >
+        {sidebarNavigations && (
+          <SidebarNavigations
             lang={lang}
             slugParent={slugParentForNavigation}
             navigations={sidebarNavigations}
             title={template?.sidebar?.navigation?.title(pageLocation)}
-          />}
+          />
+        )}
+        <SidebarFilter data={data} templateTranslation={template} />
+      </NavigattionAndFilterProductsDialog>
+      <ContentContainer>
+        <ButtonFilter onClick={() => setOpenNavigationAndFilterDialog(true)}>
+          <FilterList>
+            <span>{sortingIndex !== -1 && template.sidebar.sort.fields[sortingIndex].value}</span>
+            <span>{priceIndex !== -1 && template.sidebar.prices.range(selectedPriceScope[0],selectedPriceScope[1])}</span>
+            <span>{template.sidebar.discount.fields[discountIndex].value}</span>
+            <span>{manufactor.index !== 0 && manufactor.value}</span>
+          </FilterList>
+          <FilterListIcon/>
+        </ButtonFilter>
+        <Sidebar theme={theme}>
+          {sidebarNavigations && (
+            <SidebarNavigations
+              lang={lang}
+              slugParent={slugParentForNavigation}
+              navigations={sidebarNavigations}
+              title={template?.sidebar?.navigation?.title(pageLocation)}
+            />
+          )}
           <SidebarFilter data={data} templateTranslation={template} />
         </Sidebar>
         <MainContain theme={theme} ref={contentRef}>

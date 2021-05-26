@@ -15,7 +15,7 @@ import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import { BsTrash } from "react-icons/bs"
 import QuantityControl from "../Controls/QuantityControl"
-import AlertDialog from "../Dialog/AlertDialog"
+import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
 const CheckoutProductItem = ({
   product,
   increaseProductQuantity,

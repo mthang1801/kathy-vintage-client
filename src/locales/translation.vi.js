@@ -237,6 +237,10 @@ export const vi = {
         categoryCarouselTitle: "Danh Mục Sản phẩm",
       },
       template: {
+        dialog : {
+          title : "Bộ lọc tìm kiếm",
+          closeButton : "Đóng"
+        },
         sidebar: {
           navigation: {
             title: (pageLocation) => pageLocation === "portfolio" ? "Danh mục sản phẩm" : pageLocation === "category" ? "Nhóm sản phẩm" : null,

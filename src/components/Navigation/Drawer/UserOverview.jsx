@@ -6,14 +6,14 @@ import {
   UserName,  
 } from "./styles/UserOverview.styles"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import { useTheme } from "../../theme"
+import { useTheme } from "../../../theme"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
-import useLanguage from "../Global/useLanguage"
-import {SettingItem, SettingItemIcon, SettingItemText, SettingButton,SettingItemLink} from "../Toolbar/styles/UserSettingsDropdown.styles"
+import useLanguage from "../../Global/useLanguage"
+import {SettingItem, SettingItemIcon, SettingItemText, SettingButton,SettingItemLink} from "../../Toolbar/styles/UserSettingsDropdown.styles"
 import {connect} from "react-redux";
-import {signOutUser} from "../../redux/user/user.actions"
+import {signOutUser} from "../../../redux/user/user.actions"
 
 const UserOverview = ({ user, signOutUser }) => {
   const { theme } = useTheme()  

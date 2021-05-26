@@ -40,8 +40,8 @@ import {
   totalPriceAfterTax,
   totalPriceWithShippingFee,
 } from "../../utils/calculateOrderPrice"
-import LoadingDialog from "../../components/Dialog/LoadingDialog"
-import ErrorDialog from "../../components/Dialog/ErrorDialog"
+import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
+import ErrorDialog from "../../components/UI/FeedBacks/Dialog/ErrorDialog"
 
 const tax = POLICY.tax
 

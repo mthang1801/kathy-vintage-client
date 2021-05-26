@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Button from "@material-ui/core/Button"
-import AlertDialog from "../Dialog/AlertDialog"
+import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
 import {connect} from "react-redux"
 import {cancelOrder} from "../../redux/orders/orders.actions"
 const OrderControl = ({ order, ordersTranslation, cancelOrder }) => {

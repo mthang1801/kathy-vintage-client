@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Typography from '@material-ui/core/Typography';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import useLanguage from "../Global/useLanguage"
+import useLanguage from "../../../Global/useLanguage"
 export default function AlertDialog({open, setOpen, title, content, onAgree}) {
   
   const {i18n, lang} = useLanguage()

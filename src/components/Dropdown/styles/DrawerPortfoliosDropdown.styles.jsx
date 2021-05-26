@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { makeStyles } from "@material-ui/core"
-import { drawerWidth } from "../../Drawer/styles/Drawer.styles"
+import { drawerWidth } from "../../Navigation/Drawer/styles/Drawer.styles"
 export const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",

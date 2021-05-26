@@ -19,7 +19,7 @@ export const AntTab = withStyles((theme) => ({
     textTransform: 'none',
     minWidth: 72,
     fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),        
+    marginRight: window.innerWidth < 768 ? theme.spacing(0) : theme.spacing(2),        
     '&:hover': {
       color: 'var(--blue-1)',
       opacity: 1,
@@ -37,9 +37,10 @@ export const AntTab = withStyles((theme) => ({
 
 export const Wrapper = styled.div`
   .MuiTab-wrapper{
-    text-transform : capitalize ; 
+    text-transform : capitalize ;     
   }
   .MuiTabs-root{
     border-bottom : 1px solid ${({theme}) => theme.border};
+    
   }
 `
