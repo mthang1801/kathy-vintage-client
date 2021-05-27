@@ -55,15 +55,12 @@ export const BrandLogo = styled.img`
 `
 
 export const SearchContainer = styled.div`  
-  width : 80%;
+  width : 70%;
   margin-left : 0.5rem;    
   
 `
 
-export const Responsive = styled.div`
-  button{
-    font-weight: bold;
-  }  
+export const Responsive = styled.div`  
   display : none ; 
   @media screen and (min-width: 992px){
     display : flex;  

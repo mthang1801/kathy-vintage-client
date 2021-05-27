@@ -60,6 +60,8 @@ export const GlobalStyles = createGlobalStyle`
   body{    
     background-color : ${({theme}) => theme.body}  !important  ;
     color : ${({theme}) => theme.text} !important;
+    margin : 0; 
+    padding : 0 ;
     width : 100vw;
     overflow-x: hidden;        
     font-family:"Roboto", "Helvetica", "Arial", sans-serif !important;

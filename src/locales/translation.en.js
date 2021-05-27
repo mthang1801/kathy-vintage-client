@@ -6,7 +6,8 @@ import {
   AiFillShop,
   AiOutlineShop,
   AiOutlineInstagram,
-  AiOutlineFileSearch
+  AiOutlineFileSearch,
+  AiOutlineUnorderedList
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -19,12 +20,11 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle } from "react-icons/fi"
+import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle, FiSettings } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
-import { BsBagFill, BsBag, BsArrowRepeat } from "react-icons/bs"
-import { BiGlasses, BiPurchaseTag } from "react-icons/bi"
+import { BsBagFill, BsBag, BsArrowRepeat, BsShieldLock } from "react-icons/bs"
+import { BiGlasses, BiPurchaseTag, BiUserPin } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
-import {} from "react-icons/fi"
 import { TiDeleteOutline } from "react-icons/ti"
 import { ImSpinner2 } from "react-icons/im"
 export const en = {
@@ -99,12 +99,14 @@ export const en = {
     },
     user: {
       settingAccount: {
+        key : "general-information",
         name: "Setting your account",
         icon: <IoIosSettings />,
-        path: "/user/setting-account",
+        path: "/user",
       },
-      orderedHistory: {
-        name: "Ordered History",
+      ordersHistory: {
+        key : "orders-history",
+        name: "Orders History",
         icon: <RiBillLine />,
         path: `/orders`,
       },
@@ -114,6 +116,8 @@ export const en = {
       },
       information: {
         title: "Form Information",
+        id : "Account ID",
+        email : "Email",
         fullname: "Full Name",
         phone: "Phone Number",
         city: "Select City",
@@ -125,10 +129,44 @@ export const en = {
           fullName: "You need to type first name and last name",
           invalidPhone: "Invalid phone number",
         },
+        confirm_submit_change_information : {
+          title : "Confirm Your Change Information",
+          content : `
+            <p>Are your sure to change your information?</p>
+            <p style="color:red; font-weight:bold">You will be unable to change this within next 7 days.</p>
+          `
+        },
+        null_information_field : "Not Updated Yet",
         buttonSubmit: "Complete",
         buttonUpdate: "Update",
+        buttonSaveChange : "Save Change",
         button_close_information_form: "Close",
       },
+      
+      dashboard : {
+        options : [
+          {
+            key : "general-information", 
+            name : "General Information", 
+            icon : <BiUserPin/>
+          },
+          {
+            key : "change-password", 
+            name : "Change Password", 
+            icon : <BsShieldLock/>
+          },
+          {
+            key : "orders-history",
+            name : "Orders History",
+            icon : <AiOutlineUnorderedList/>
+          },
+          {
+            key : "setting-mode",
+            name : "Setting",
+            icon: <FiSettings />,
+          }
+        ],
+      }
     },
     portfolioIcons: {
       portfolioId_1: {
@@ -192,8 +230,8 @@ export const en = {
         id: "setting",
         name: "Setting",
         path: "void(0)",
-        icon: <IoMdSettings />,
-        activeIcon: <IoIosSettings />,
+        icon: <FiSettings />,
+        activeIcon: <IoMdSettings />,
       },
     },
     cart: {
@@ -245,19 +283,19 @@ export const en = {
             fields : [
               {
                 key : "price_asc",
-                value : "Price Ascending 🡩"
+                value : "Price Ascending"
               },
               {
                 key : "price_desc",
-                value : "Price Descending 🡣"
+                value : "Price Descending"
               },
               {
                 key : "discount_asc",
-                value : "Discount Ascending 🡩"
+                value : "Discount Ascending"
               },
               {
                 key : "discount_desc",
-                value : "Discount Descending 🡣"
+                value : "Discount Descending"
               },
             ]
           },
@@ -345,6 +383,13 @@ export const en = {
         styledTitle: "Top",
         title: "New Products",
         path: "/new-products",
+        pathIcon: <BsArrowRepeat />,
+      },
+      recommendedProducts: {
+        id: "recommended-products",
+        styledTitle: "Top",
+        title: "Recommended Products",
+        path: "/recommended-products",
         pathIcon: <BsArrowRepeat />,
       },
       productPage: {

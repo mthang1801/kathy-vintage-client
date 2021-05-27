@@ -8,24 +8,28 @@ import {
   UserEmail,
   SettingButton,
   Divider,
-  SettingItem, 
+  SettingItem,
   SettingItemLink,
-  SettingItemIcon, 
-  SettingItemText
+  SettingItemIcon,
+  SettingItemText,
 } from "./styles/UserSettingsDropdown.styles"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { navigate } from "gatsby"
 import { useTheme } from "../../theme"
-import {connect} from "react-redux";
-import {signOutUser} from "../../redux/user/user.actions";
+import { connect } from "react-redux"
+import { signOutUser } from "../../redux/user/user.actions"
 const UserSettingsDropdown = ({ user, signOut }) => {
   const { i18n, lang } = useLanguage()
   const { user: userTranslation } = i18n.store.data[lang].translation
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
-  const onLogout = (e) => {
-    e.preventDefault();
-    signOut();
+  const onLogout = e => {
+    e.preventDefault()
+    signOut()
+  }
+
+  const onNavigateToUserPage = (path, state) => {
+    navigate(path, { state: { from: state } })
   }
   return (
     <Wrapper>
@@ -35,14 +39,30 @@ const UserSettingsDropdown = ({ user, signOut }) => {
         </UserAvatar>
         <UserName>{user.displayName}</UserName>
         <UserEmail>{user.email}</UserEmail>
-        <SettingButton theme={theme} to={userTranslation.settingAccount.path}>
+        <SettingButton
+          theme={theme}
+          onClick={() =>
+            onNavigateToUserPage(
+              userTranslation.settingAccount.path,
+              userTranslation.settingAccount.key
+            )
+          }
+        >
           {userTranslation.settingAccount.name}
         </SettingButton>
       </ManageAccount>
-      <Divider/>
-      <SettingItemLink to={userTranslation.orderedHistory.path} theme={theme}>
-        <SettingItemIcon>{userTranslation.orderedHistory.icon}</SettingItemIcon>
-        <SettingItemText>{userTranslation.orderedHistory.name}</SettingItemText>
+      <Divider />
+      <SettingItemLink
+        onClick={() =>
+          onNavigateToUserPage(
+            userTranslation.ordersHistory.path,
+            userTranslation.ordersHistory.key
+          )
+        }
+        theme={theme}
+      >
+        <SettingItemIcon>{userTranslation.ordersHistory.icon}</SettingItemIcon>
+        <SettingItemText>{userTranslation.ordersHistory.name}</SettingItemText>
       </SettingItemLink>
       <SettingItem theme={theme} onClick={onLogout}>
         <SettingItemIcon>{userTranslation.signout.icon}</SettingItemIcon>
@@ -51,8 +71,8 @@ const UserSettingsDropdown = ({ user, signOut }) => {
     </Wrapper>
   )
 }
-const mapDispatchToMap = dispatch=> ({
-  signOut : () => dispatch(signOutUser())
+const mapDispatchToMap = dispatch => ({
+  signOut: () => dispatch(signOutUser()),
 })
 
 export default connect(null, mapDispatchToMap)(UserSettingsDropdown)

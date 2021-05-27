@@ -33,9 +33,13 @@ export const Sidebar = styled.div`
     font-size : 0.9rem;
   }
 `
-export const MainContain = styled.div`
+export const MainContent = styled.div`
 background : ${({theme}) => theme.card};
   border-radius : 0.5rem;
+  margin-top : 3rem;
+  @media screen and (min-width : 768px){
+    margin-top:  0;
+  }
 `
 
 export const ProductsList = styled.section`
@@ -69,15 +73,20 @@ export const ProductCount = styled.p`
   }
 `
 export const ButtonFilter = styled.button`
+  position : fixed;
+  top: 65px;  
+  z-index : 10;
   display : flex;
   align-items : center;
   justify-content : space-between; 
   padding : 0.5rem 1.25rem;
-  width : 100%;   
+  width : 100vw;     
   background-color : #ffecb3;
   outline : none;
   border: none ;
   margin-bottom : 1rem;
+  height:  3rem;
+  flex-wrap : nowrap;
   text-align : left;
   & svg{
     font-size : 1.75rem;
@@ -88,9 +97,7 @@ export const ButtonFilter = styled.button`
 `
 
 export const FilterList = styled.span`
-  flex: 1 ; 
-  display : flex;
-  align-items : center;  
+  flex: 1 ;  
   & > span:not(:first-child){
     margin-left : 1rem;
   };

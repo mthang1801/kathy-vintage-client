@@ -38,12 +38,17 @@ export const UserEmail = styled.div`
   opacity : 0.6;
 `
 
-export const SettingButton = styled(Link)`
+export const SettingButton = styled.button`
   border-radius : 2rem;
   border : 1px solid ${({theme}) => theme.border};
-  padding : 0.35rem 2rem;
+  padding : 0.6rem 2rem;
   margin : 1rem auto;
   cursor : pointer;
+  outline: none; 
+  font-weight : 400;  
+  text-transform : capitalize; 
+  cursor : pointer;
+  background : transparent;
   &:hover{
     background-color : ${({theme}) => theme.border};
   };
@@ -71,13 +76,15 @@ export const SettingItem = styled.div`
   }
   overflow : hidden;
 `
-export const SettingItemLink = styled(Link)`
+export const SettingItemLink = styled.span`
   display : flex;
   padding: 0.5rem 2rem;
-  align-items : center;
-  cursor : pointer;
+  align-items : center;  
   text-decoration : none; 
   color: inherit;
+  outline : none;
+  border : none; 
+  cursor : pointer;
   &:hover{
     background-color : ${({theme}) => theme.hover.background};
   }

@@ -41,7 +41,7 @@ export const createUserWithEmailAndPassword = (
 ) => {
   return new Promise(async (resolve, reject) => {
     try {
-      firebase.firestore
+      firebase.firestore()
         .collection("users")
         .where("email", "==", email)
         .get()
@@ -97,7 +97,8 @@ export const signInUser = (email, password) => {
       const userAuth = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-      const user = await firebase.firestore
+      console.log(userAuth)
+      const user = await firebase.firestore()
         .doc(`users/${userAuth?.user?.uid}`)
         .get()
       if (!user.exists) {
@@ -192,7 +193,7 @@ export const updateUserInformation = information => {
       await firebase
         .firestore()
         .doc(`users/${currentUser.uid}`)
-        .update({ information: information })
+        .update({ information: information, updatedAt : new Date() })
       const updatedUser = await firebase
         .firestore()
         .doc(`users/${currentUser.uid}`)

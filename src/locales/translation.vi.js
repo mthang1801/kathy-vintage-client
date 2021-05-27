@@ -6,7 +6,8 @@ import {
   AiFillShop,
   AiOutlineShop,
   AiOutlineInstagram,
-  AiOutlineFileSearch
+  AiOutlineFileSearch,
+  AiOutlineUnorderedList
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -19,12 +20,11 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle } from "react-icons/fi"
+import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle, FiSettings } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
-import { BsBagFill, BsBag, BsArrowRepeat } from "react-icons/bs"
-import { BiGlasses, BiPurchaseTag } from "react-icons/bi"
+import { BsBagFill, BsBag, BsArrowRepeat, BsShieldLock } from "react-icons/bs"
+import { BiGlasses, BiPurchaseTag, BiUserPin } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
-import {} from "react-icons/fi"
 import { TiDeleteOutline } from "react-icons/ti"
 import { ImSpinner2 } from "react-icons/im"
 
@@ -105,11 +105,13 @@ export const vi = {
     },
     user: {
       settingAccount: {
+        key : "general-information",
         name: "Thiết lập tài khoản",
         icon: <IoIosSettings />,
-        path: "/user/setting-account",
+        path: "/user",
       },
-      orderedHistory: {
+      ordersHistory: {
+        key : "orders-history",
         name: "Lịch sử đặt hàng",
         icon: <RiBillLine />,
         path: `/orders`,
@@ -119,7 +121,9 @@ export const vi = {
         icon: <FiLogOut />,
       },
       information: {
-        title: "Thông tin giao hàng",
+        title: "Thông tin giao hàng",        
+        id : "ID tài khoản",
+        email : "Email",
         fullname: "Họ và tên",
         phone: "Số điện thoại",
         city: "Thành phố",
@@ -131,10 +135,44 @@ export const vi = {
           fullName: "Bạn cần phải điền cả họ và tên",
           invalidPhone: "Số điện thoại không hợp lệ",
         },
+        confirm_submit_change_information : {
+          title : "Xác nhận thay đổi thông tin cá nhân",
+          content : `
+            <p>Bạn có chắc chắn muốn thay đổi những thông tin này?</p>
+            <p style="font-weight:bold; color:red">Lưu ý : Bạn sẽ không thể cập nhật cho lần tiếp theo trong vòng 7 ngày.</p>
+          `
+        },
+        null_information_field : "Chưa dược cập nhật",
         buttonSubmit: "Hoàn tất",
         buttonUpdate: "Cập nhật",
+        buttonSaveChange : "Lưu thay đổi",
         button_close_information_form: "Đóng",
       },
+      
+      dashboard : {
+        options : [
+          {
+            key : "general-information", 
+            name : "Thông tin chung", 
+            icon : <BiUserPin/>
+          },
+          {
+            key : "change-password", 
+            name : "Thay đổi mật khẩu", 
+            icon : <BsShieldLock/>
+          },
+          {
+            key : "orders-history",
+            name : "Đơn hàng của bạn",
+            icon : <AiOutlineUnorderedList/>
+          },
+          {
+            key : "setting-mode",
+            name : "Cài đặt",
+            icon: <FiSettings />,
+          }
+        ],
+      }
     },
     portfolioIcons: {
       portfolioId_1: {
@@ -198,8 +236,8 @@ export const vi = {
         id: "setting",
         name: "Cài đặt",
         path: "void(0)",
-        icon: <IoIosSettings />,
-        activeIcon: <IoMdSettings />,
+        icon: <FiSettings />,
+        activeIcon: <IoIosSettings />,
       },
     },
     cart: {
@@ -237,34 +275,39 @@ export const vi = {
         categoryCarouselTitle: "Danh Mục Sản phẩm",
       },
       template: {
-        dialog : {
-          title : "Bộ lọc tìm kiếm",
-          closeButton : "Đóng"
+        dialog: {
+          title: "Bộ lọc tìm kiếm",
+          closeButton: "Đóng",
         },
         sidebar: {
           navigation: {
-            title: (pageLocation) => pageLocation === "portfolio" ? "Danh mục sản phẩm" : pageLocation === "category" ? "Nhóm sản phẩm" : null,
+            title: pageLocation =>
+              pageLocation === "portfolio"
+                ? "Danh mục sản phẩm"
+                : pageLocation === "category"
+                ? "Nhóm sản phẩm"
+                : null,
           },
-          sort :{
-            title : "Sắp xếp",
-            fields :  [
+          sort: {
+            title: "Sắp xếp",
+            fields: [
               {
-                key : "price_asc",
-                value : "Giá tăng dần 🡩"
+                key: "price_asc",
+                value: "Giá tăng dần",
               },
               {
-                key : "price_desc",
-                value : "Giá giảm dần 🡣"
+                key: "price_desc",
+                value: "Giá giảm dần",
               },
               {
-                key : "discount_asc",
-                value : "Khuyến mãi tăng dần 🡩"
+                key: "discount_asc",
+                value: "Khuyến mãi tăng dần",
               },
               {
-                key : "discount_desc",
-                value : "Khuyến mãi giảm dần 🡣"
+                key: "discount_desc",
+                value: "Khuyến mãi giảm dần",
               },
-            ]
+            ],
           },
           prices: {
             title: "Giá",
@@ -297,10 +340,10 @@ export const vi = {
           },
           manufactors: {
             title: "Thương hiệu",
-            all : {
-              key : "all",
-              value : "Tất cả"
-            }
+            all: {
+              key: "all",
+              value: "Tất cả",
+            },
           },
           recommend: {
             title: "Đề xuất",
@@ -335,9 +378,10 @@ export const vi = {
               value: "Bán chạy",
             },
           ],
-          productCount : {
-            name : (num) => `<span>Tìm thấy <strong>${num}</strong> sản phẩm</span>`,
-            icon : <AiOutlineFileSearch/>
+          productCount: {
+            name: num =>
+              `<span>Tìm thấy <strong>${num}</strong> sản phẩm</span>`,
+            icon: <AiOutlineFileSearch />,
           },
         },
       },
@@ -348,6 +392,13 @@ export const vi = {
         styledTitle: "TOP",
         title: "Sản phẩm mới",
         path: "/new-products",
+        pathIcon: <BsArrowRepeat />,
+      },
+      recommendedProducts: {
+        id: "recommended-products",
+        styledTitle: "Top",
+        title: "Sản phẩm được đề xuất",
+        path: "/recommended-products",
         pathIcon: <BsArrowRepeat />,
       },
       productPage: {

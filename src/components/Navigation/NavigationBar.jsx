@@ -26,6 +26,7 @@ const NavigationBar = () => {
   const initialPortfolio = { id: null, x: 0, y: 0 }
   const [selectedPortfolio, setSelectedPortfolio] = useState(initialPortfolio)
   const onMouseEnterPortfolioItem = id => {
+    console.log(id)
     setSelectedPortfolio(prevState => ({ ...prevState, id }))
     setActiveItem(id)
   }
@@ -34,7 +35,8 @@ const NavigationBar = () => {
     setActiveItem(null)
   }
 
-  const onMouseEnterStaticNavigation = path => {    
+  const onMouseEnterStaticNavigation = path => {
+    console.log(path)
     setActiveItem(path)
   }
 
@@ -50,7 +52,7 @@ const NavigationBar = () => {
           to={navigations.home.path}
           theme={theme}
           onMouseEnter={() =>
-            onMouseEnterStaticNavigation(navigations.contact.path)
+            onMouseEnterStaticNavigation(navigations.home.path)
           }
           onMouseLeave={onMouseLeaveStaticNavigation}
         >
@@ -80,9 +82,7 @@ const NavigationBar = () => {
                       .activeIcon
                   : portfolioIcons[`portfolioId_${portfolio.portfolioId}`].icon}
               </ListItemIcon>
-              <ListItemText>
-                {portfolio[`name_${lang}`]}
-              </ListItemText>
+              <ListItemText>{portfolio[`name_${lang}`]}</ListItemText>
               {portfolio.contentful_id === selectedPortfolio.id && (
                 <CategoriesContainer>
                   <CategoriesDropdown
@@ -112,8 +112,20 @@ const NavigationBar = () => {
           <ListItemText>{navigations.contact.name}</ListItemText>
         </ListItem>
         {/* Setting */}
-        <Setting theme={theme} onClick={() => setOpenSetting(true)}>
-          <ListItemIcon>{navigations.setting.icon}</ListItemIcon>
+        <Setting
+          theme={theme}
+          onMouseEnter={() =>
+            onMouseEnterStaticNavigation(navigations.setting.path)
+          }
+          onMouseLeave={onMouseLeaveStaticNavigation}
+          onClick={() => setOpenSetting(true)}
+        >
+          <ListItemIcon>
+            {pathname === navigations.setting.path ||
+            activeItem === navigations.setting.path
+              ? navigations.setting.activeIcon
+              : navigations.setting.icon}
+          </ListItemIcon>
           <ListItemText>{navigations.setting.name}</ListItemText>
         </Setting>
       </List>

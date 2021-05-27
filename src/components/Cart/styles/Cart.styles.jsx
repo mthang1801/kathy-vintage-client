@@ -6,7 +6,7 @@ export const Wrapper = styled.button`
   color : inherit;    
   outline : none ; 
   border: none;
-  background : transparent;
+  background : transparent;  
 `
 
 export const CartIcon = styled.div`

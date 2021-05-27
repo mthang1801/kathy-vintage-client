@@ -6,7 +6,7 @@ import {
   Dropdown
 } from "./styles/UserSettings.styles"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import UserSettingsDropdown from "./UserSettingsDropdown"
+import UserSettingsDropdown from "../Dropdown/UserSettingsDropdown"
 import {useTheme} from "../../theme"
 
 

@@ -41,7 +41,14 @@ export const theme = {
         }
       },     
       border: "#e0e0e0",
-      boxShadow: "0 0 3px 3px #f5f5f5",
+      boxShadow: "0 0 3px 3px #f5f5f5",     
+      dashboard : {
+        background : "#e0f2f1",
+        color : "#060717",     
+        background2 : "#fff", 
+        color2 : "#000"   
+      },
+    
     },
     dark: {
       name : "dark",
@@ -84,6 +91,13 @@ export const theme = {
       },
       border: "#616161",
       boxShadow: "0 0 3px 3px #302f2f",
+      dashboard : {
+        background : "#242444",
+        color : "#e9e9ec",
+        background2 : "#20203d", 
+        color2 : "#d3d3da"
+      },
+      
     },
   },
 }

@@ -4,7 +4,7 @@ import {
   Sidebar,
   ProductCount,
   ProductsList,
-  MainContain,
+  MainContent,
   ButtonFilter,
   FilterList
 } from "../styles/layout.template.styles"
@@ -239,7 +239,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
           )}
           <SidebarFilter data={data} templateTranslation={template} />
         </Sidebar>
-        <MainContain theme={theme} ref={contentRef}>
+        <MainContent theme={theme} ref={contentRef}>
           <TabProductsList products={products} />
           <ProductCount>
             {template.content.productCount.icon}
@@ -263,7 +263,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
               handlePageClick={data => handlePageClick(data)}
             />
           )}
-        </MainContain>
+        </MainContent>
       </ContentContainer>
     </LayoutTemplateContext.Provider>
   )

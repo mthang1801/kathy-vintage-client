@@ -11,14 +11,18 @@ import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
 import useLanguage from "../../Global/useLanguage"
-import {SettingItem, SettingItemIcon, SettingItemText, SettingButton,SettingItemLink} from "../../Toolbar/styles/UserSettingsDropdown.styles"
+import {SettingItem, SettingItemIcon, SettingItemText, SettingButton,SettingItemLink} from "../../Dropdown/styles/UserSettingsDropdown.styles"
 import {connect} from "react-redux";
 import {signOutUser} from "../../../redux/user/user.actions"
-
+import {navigate} from "gatsby";
 const UserOverview = ({ user, signOutUser }) => {
   const { theme } = useTheme()  
   const {i18n, lang} = useLanguage();
   const {user : userTranslation} = i18n.store.data[lang].translation;
+
+  const onNavigateToUserPage = (path, state) => {
+    navigate(path, { state: { from: state } })
+  }
   return (
     <Container theme={theme}>
       <Accordion>
@@ -38,13 +42,13 @@ const UserOverview = ({ user, signOutUser }) => {
           </Wrapper>
         </AccordionSummary>
         <AccordionDetails>
-          <SettingItemLink to={userTranslation.settingAccount.path} theme={theme}>
+          <SettingItemLink onClick={() => onNavigateToUserPage(userTranslation.settingAccount.path, userTranslation.settingAccount.key)} theme={theme}>
             <SettingItemIcon>{userTranslation.settingAccount.icon}</SettingItemIcon>
             <SettingItemText>{userTranslation.settingAccount.name}</SettingItemText>
           </SettingItemLink>
-          <SettingItemLink to={userTranslation.orderedHistory.path} theme={theme}>
-            <SettingItemIcon>{userTranslation.orderedHistory.icon}</SettingItemIcon>
-            <SettingItemText>{userTranslation.orderedHistory.name}</SettingItemText>
+          <SettingItemLink onClick={() => onNavigateToUserPage(userTranslation.settingAccount.path, userTranslation.settingAccount.key)} theme={theme}>
+            <SettingItemIcon>{userTranslation.ordersHistory.icon}</SettingItemIcon>
+            <SettingItemText>{userTranslation.ordersHistory.name}</SettingItemText>
           </SettingItemLink>
           <SettingItem onClick={signOutUser} theme={theme}>
             <SettingItemIcon>{userTranslation.signout.icon}</SettingItemIcon>
