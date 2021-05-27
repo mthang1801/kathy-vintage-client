@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-  width :100%; 
+  // width :100%; 
   max-width : 800px;
-  margin : 1rem auto;
+  margin : 1rem ${({userPage}) => userPage ? "2rem" : "auto"};
   .MuiAccordion-root{
     background-color : ${({theme}) => theme.card};
     color : inherit;    

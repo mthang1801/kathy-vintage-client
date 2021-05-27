@@ -22,21 +22,15 @@ const WrapperUserGeneralInformationForm = ({
 }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
-  const formRef = useRef(null)  
+  const formRef = useRef(null)
   return (
-    <>
-      <Header>
-        <Title>{title}</Title>
-      </Header>
-      <Divider />
-      <UserInformationForm
-        ref={formRef}
-        information={information}
-        theme={theme}
-        updateUserInformation={updateUserInformation}
-        user={user}
-      />
-    </>
+    <UserInformationForm
+      ref={formRef}
+      information={information}
+      theme={theme}
+      updateUserInformation={updateUserInformation}
+      user={user}
+    />
   )
 }
 
@@ -99,7 +93,7 @@ class UserInformationForm extends React.Component {
     validation: false,
     error: null,
     allowUpdate: false,
-    openAlert: false,    
+    openAlert: false,
   }
   state = {
     ...this.INITIAL_STATE,
@@ -259,8 +253,8 @@ class UserInformationForm extends React.Component {
         ward: ward.value,
       }
       try {
-        await this.props.updateUserInformation(information);
-        this.setState({allowUpdate : false});
+        await this.props.updateUserInformation(information)
+        this.setState({ allowUpdate: false })
       } catch (error) {
         this.setState({ error })
       }
@@ -284,12 +278,16 @@ class UserInformationForm extends React.Component {
       openAlert,
     } = this.state
     const { information, user } = this.props
-    const updatedDateDiffFromNow = user.updatedAt && (new Date()-new Date(user.updatedAt.seconds * 1000)) / (24 * 60 * 60 * 1000)  < 7 ;
+    const updatedDateDiffFromNow =
+      user?.updatedAt &&
+      (new Date() - new Date(user.updatedAt.seconds * 1000)) /
+        (24 * 60 * 60 * 1000) <
+        7
     return (
       <>
         <AlertDialog
           open={openAlert}
-          setOpen={value => this.setState({openAlert : value})}
+          setOpen={value => this.setState({ openAlert: value })}
           title={information.confirm_submit_change_information.title}
           content={information.confirm_submit_change_information.content}
           onAgree={this.onSubmitForm}
@@ -326,7 +324,7 @@ class UserInformationForm extends React.Component {
             id="user-information-full-name"
             label={fullname.nameField}
             name={fullname.name}
-            value={fullname.value}            
+            value={fullname.value}
             onChange={this.onChangeField}
             helperText={fullname.errorMessage}
             disabled={!allowUpdate}
@@ -355,7 +353,7 @@ class UserInformationForm extends React.Component {
               value={city.value}
               label={city.nameField}
               inputProps={{
-                shrink : true,
+                shrink: true,
                 name: "city",
                 id: "user-information-city",
               }}
@@ -380,7 +378,7 @@ class UserInformationForm extends React.Component {
               value={district.value}
               label={district.nameField}
               inputProps={{
-                shrink : true,
+                shrink: true,
                 name: "district",
                 id: "user-information-district",
               }}
@@ -402,9 +400,7 @@ class UserInformationForm extends React.Component {
             <Select
               placeholder={information.null_information_field}
               native
-              value={
-                ward.value 
-              }
+              value={ward.value}
               label={ward.nameField}
               inputProps={{
                 name: "ward",

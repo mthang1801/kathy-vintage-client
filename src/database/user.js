@@ -99,16 +99,15 @@ export const signInUser = (email, password) => {
       const userAuth = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-      console.log(userAuth)
+      
       const user = await firebase.firestore()
         .doc(`users/${userAuth?.user?.uid}`)
         .get()
       if (!user.exists) {
         return resolve(null)
       }
-      const userResult = { ...user.data() }
-      delete userResult.password;
-      console.log(userResult)
+      const userResult = { uid: userAuth.user.uid, ...user.data() }
+      delete userResult.password;      
       resolve(userResult)
     } catch (error) {
       reject(error)

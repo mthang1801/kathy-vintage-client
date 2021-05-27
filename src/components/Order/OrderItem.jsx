@@ -17,11 +17,10 @@ import OrderStatusStepper from "./OrderStatusStepper"
 import OrderControl from "./OrderControl"
 import { useTheme } from "../../theme"
 
-const OrderItem = ({ order, ordersTranslation }) => {
-  const { theme } = useTheme()
-  console.log(order)
+const OrderItem = ({ order, ordersTranslation, userPage }) => {
+  const { theme } = useTheme()  
   return (
-    <Wrapper theme={theme}>
+    <Wrapper theme={theme} userPage={userPage}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

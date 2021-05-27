@@ -95,11 +95,7 @@ const ChangePassword = ({ lang, title, user, passwordTranslation }) => {
         content={passwordTranslation.confirmDialog.content}
         onAgree={onSubmitForm}
       />
-      <UpdatePasswordSuccessDialog open={openChangeSuccess}/>
-      <Header>
-        <Title>{title}</Title>
-      </Header>
-      <Divider />
+      <UpdatePasswordSuccessDialog open={openChangeSuccess}/>     
       <Form onSubmit={e => e.preventDefault()}>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         {!isProvider && (

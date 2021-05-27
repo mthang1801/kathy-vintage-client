@@ -40,6 +40,8 @@ export const EmptyItem = styled.h4`
 
 export const TotalPrice = styled.div`
   text-align : right;
+  padding : 0 0.5rem;
+  font-size: 1rem;
 `
 
 export const FooterDropdown = styled.div`
