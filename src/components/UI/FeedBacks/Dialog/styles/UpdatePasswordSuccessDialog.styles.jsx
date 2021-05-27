@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const ContentContainer = styled.div`
-  color: var(--red-1);
+  color: var(--green-1);
   display: flex;
   flex-direction: column;
   min-height: 15rem;

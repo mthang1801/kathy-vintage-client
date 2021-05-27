@@ -166,6 +166,25 @@ export const en = {
             icon: <FiSettings />,
           }
         ],
+      },
+      password : {
+        oldPassword : "Old Password",
+        newPassword : "New Password",
+        confirmNewPassword : "Confirm New Password",
+        errorProvider : "This Account can't be changed password",
+        buttonConfirm : "Save Change",
+        errorOldPassword : "Old Password is not correct",
+        errorConfirmPassword : "Confirm Password is not correct",
+        errorInvalidPassword : "Password is not valid, minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
+        errorServer : "Something went wrong, try again",
+        updatePasswordSuccess : "Update Password success",
+        countTimeToLogout : counter => `<small style="color: #616161">Your account will be logged out automatically after <span style="color:#e53935">${counter}</span> seconds..</small>`,
+        confirmDialog : {
+          title: "Confirm change password", 
+          content : `
+            <p>Are you sure to change password?</p>
+          `
+        }
       }
     },
     portfolioIcons: {

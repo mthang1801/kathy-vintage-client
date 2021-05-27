@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Wrapper, Button, Header} from "./styles/DashBoard.styles"
+import {Wrapper, Button, Header, AvatarContainer} from "./styles/DashBoard.styles"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,7 +9,8 @@ import {navigate} from "gatsby"
 import {AiOutlineHome} from 'react-icons/ai';
 import SettingDialog from "../Setting/SettingDialog"
 import {useTheme} from "../../theme";
-const DashBoard = ({options, selectedOption, setSelectedOption}) => {
+import {LazyLoadImage} from "react-lazy-load-image-component"
+const DashBoard = ({options, selectedOption, setSelectedOption, user}) => {
   const {theme} = useTheme();
   const [openDialog, setOpenDialog] = useState(false);
   const onChangeOption = (selectedOption) => {
@@ -22,8 +23,11 @@ const DashBoard = ({options, selectedOption, setSelectedOption}) => {
     <>
     <SettingDialog open={openDialog} setOpen={setOpenDialog}/>
     <Wrapper theme={theme}>      
-      <Header>
+      <Header justify="space-between">
         <Button rounded onClick={() => navigate("/")}><AiOutlineHome/></Button>        
+        <AvatarContainer title={user.email}>
+          <LazyLoadImage src={user.photoURL} alt={user.photoURL} effect="blur"/>
+        </AvatarContainer>
       </Header>
       <Divider/>
       <List component="nav">

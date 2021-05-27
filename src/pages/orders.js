@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { selectCurrentUser } from "../redux/user/user.selectors"
+import { selectCurrentUser, selectUserFetched, selectUserLoading } from "../redux/user/user.selectors"
 import {
   selectOrders,
   selectHasMoreOrders,
@@ -21,6 +21,8 @@ import useLanguage from "../components/Global/useLanguage"
 import OrderItem from "../components/Order/OrderItem"
 import EmptyOrder from "../components/Order/EmptyOrder"
 import OrderPageSkeleton from "../components/UI/Lab/Skeleton/OrderPage"
+import { navigate } from "gatsby-link"
+import {useLocation} from "@reach/router"
 const Orders = ({
   user,
   orders,
@@ -29,14 +31,21 @@ const Orders = ({
   hasMoreOrders,
   fetchOrders,
   lastVisibleOrder,
+  userLoading, userIsFetched
 }) => {
   const { i18n, lang } = useLanguage()
-  const { orders: ordersTranslation } = i18n.store.data[lang].translation
+  const { orders: ordersTranslation } = i18n.store.data[lang].translation;
+  const {pathname} = useLocation();
   useEffect(() => {
     if (user) {
       fetchOrders(user.uid)
     }
-  }, [user])
+    if(!user && !userLoading && userIsFetched){
+      navigate("/auth", {state : {from : pathname}})
+    }
+  }, [user, userLoading, userIsFetched])
+
+  
 
   const onFetchMoreOrders = () => {
     fetchOrders(user.uid, lastVisibleOrder)
@@ -84,6 +93,8 @@ const mapStateToProps = createStructuredSelector({
   error: selectOrdersError,
   hasMoreOrders: selectHasMoreOrders,
   lastVisibleOrder: selectLastVisibleOrder,
+  userLoading : selectUserLoading,
+  userIsFetched : selectUserFetched
 })
 
 const mapDispatchToProps = dispatch => ({

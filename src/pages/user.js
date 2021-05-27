@@ -7,6 +7,7 @@ import {
 import useLanguage from "../components/Global/useLanguage"
 import DashBoard from "../components/User/Dashboard"
 import GeneralInformation from "../components/User/GeneralInformation"
+import ChangePassword from "../components/User/ChangePassword"
 import { connect } from "react-redux"
 import {
   selectCurrentUser,
@@ -16,37 +17,52 @@ import {
 import { createStructuredSelector } from "reselect"
 import { navigate } from "gatsby"
 import { useTheme } from "../theme"
-const UserPage = ({ user, loading, fetched }) => {
+const UserPage = ({ user, loading, isFetched }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
   const {
-    dashboard: { options },information
+    dashboard: { options },
+    information,
+    password,
   } = i18n.store.data[lang].translation.user
   const [selectedOption, setSelectedOption] = useState(options[0].key)
-  
+
   useEffect(() => {
-    if (!loading && fetched && !user) {
+    if (!loading && isFetched && !user) {
       navigate("/", { replace: true })
     }
-  }, [user, loading, fetched])
+  }, [user, loading, isFetched])
   return (
     <Wrapper>
-      <DashBoardContainer>
-        <DashBoard
-          options={options}
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-        />
-      </DashBoardContainer>
-      <MainContent theme={theme}>
-        {selectedOption === options[0].key && user && (
-          <GeneralInformation
-            title={options[0].name}
-            user={user}
-            information={information}
-          />
-        )}
-      </MainContent>
+      {user && (
+        <>
+          <DashBoardContainer>
+            <DashBoard
+              user={user}
+              options={options}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+          </DashBoardContainer>
+          <MainContent theme={theme}>
+            {selectedOption === options[0].key && (
+              <GeneralInformation
+                title={options[0].name}
+                user={user}
+                information={information}
+              />
+            )}
+            {selectedOption === options[1].key && (
+              <ChangePassword
+                lang={lang}
+                title={options[1].name}
+                user={user}
+                passwordTranslation={password}
+              />
+            )}
+          </MainContent>
+        </>
+      )}
     </Wrapper>
   )
 }

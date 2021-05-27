@@ -133,7 +133,7 @@ class SignUpForm extends React.Component {
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {    
       window.scrollTo({
-        top: this.signUpRef.current.offsetTop - 100,
+        top: 0,
         behavior: "smooth",
       })
     }, 66)

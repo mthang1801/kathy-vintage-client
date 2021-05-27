@@ -22,8 +22,7 @@ const WrapperUserGeneralInformationForm = ({
 }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
-  const formRef = useRef(null)
-  console.log(user)
+  const formRef = useRef(null)  
   return (
     <>
       <Header>
@@ -285,7 +284,7 @@ class UserInformationForm extends React.Component {
       openAlert,
     } = this.state
     const { information, user } = this.props
-    const updatedDateDiffFromNow = user.updatedAt ? (new Date()-new Date(user.updatedAt.seconds * 1000)) / (24 * 60 * 60 * 1000)   :true;
+    const updatedDateDiffFromNow = user.updatedAt && (new Date()-new Date(user.updatedAt.seconds * 1000)) / (24 * 60 * 60 * 1000)  < 7 ;
     return (
       <>
         <AlertDialog
@@ -327,7 +326,7 @@ class UserInformationForm extends React.Component {
             id="user-information-full-name"
             label={fullname.nameField}
             name={fullname.name}
-            value={fullname.value}
+            value={fullname.value}            
             onChange={this.onChangeField}
             helperText={fullname.errorMessage}
             disabled={!allowUpdate}
@@ -356,6 +355,7 @@ class UserInformationForm extends React.Component {
               value={city.value}
               label={city.nameField}
               inputProps={{
+                shrink : true,
                 name: "city",
                 id: "user-information-city",
               }}
@@ -375,10 +375,12 @@ class UserInformationForm extends React.Component {
               {district.nameField}
             </InputLabel>
             <Select
+              placeholder={information.null_information_field}
               native
               value={district.value}
               label={district.nameField}
               inputProps={{
+                shrink : true,
                 name: "district",
                 id: "user-information-district",
               }}
@@ -398,9 +400,10 @@ class UserInformationForm extends React.Component {
               {ward.nameField}
             </InputLabel>
             <Select
+              placeholder={information.null_information_field}
               native
               value={
-                ward.value ? ward.value : information.null_information_field
+                ward.value 
               }
               label={ward.nameField}
               inputProps={{

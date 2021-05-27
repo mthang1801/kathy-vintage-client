@@ -75,7 +75,9 @@ export const getCurrentUser = () => {
       if (!user.exists) {
         return resolve(null)
       }          
-      resolve({uid: user.id, ...user.data()})
+      const userResult = {uid: user.id, ...user.data()};
+      delete userResult.password;
+      resolve(userResult)
     }, reject)
   })
 }
@@ -105,7 +107,8 @@ export const signInUser = (email, password) => {
         return resolve(null)
       }
       const userResult = { ...user.data() }
-      delete userResult.password
+      delete userResult.password;
+      console.log(userResult)
       resolve(userResult)
     } catch (error) {
       reject(error)
@@ -224,6 +227,23 @@ export const updateUserPaymentAndShippingMethod = (
       resolve(true)
     } catch (error) {
       reject(error)
+    }
+  })
+}
+
+export const updatePassword = (oldPassword, newPassword) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      //check old password if correct
+      const userAuth = await firebase.auth().currentUser
+      const credential = firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, oldPassword)
+      await userAuth.reauthenticateWithCredential(credential);
+      //after checking password correctly, proceed to update new password
+      firebase.auth().currentUser.updatePassword(newPassword);
+      
+      resolve(true)
+    } catch (error) {
+      reject(error);
     }
   })
 }

@@ -172,6 +172,25 @@ export const vi = {
             icon: <FiSettings />,
           }
         ],
+      },
+      password : {
+        oldPassword : "Mật khẩu cũ",
+        newPassword : "Mật khẩu mới",
+        confirmNewPassword : "Xác nhận mật khẩu mới",
+        errorProvider : "Tài khoản này không thể thay đổi mật khẩu",
+        buttonConfirm : "Lưu thay đổi",
+        errorOldPassword : "Mật khẩu cũ không chính xác",
+        errorConfirmPassword : "Mật khẩu nhập lại không chính xác",
+        errorInvalidPassword : "Mật khẩu không hợp lệ, cần ít nhất 8 ký tự gồm chữ thường, chữ in hoa, số và ký tự đặc biệt.",
+        errorServer : "Cập nhật mật khẩu không thành công, có lỗi xảy ra",
+        updatePasswordSuccess : "Cập nhật mật khẩu thành công",
+        countTimeToLogout : counter => `<small style="color: #616161">Tài khoản sẽ tự động đăng xuất sau <span style="color:#e53935">${counter}</span> giây.</small>`,
+        confirmDialog : {
+          title: "Xác nhận thay đổi mật khẩu", 
+          content : `
+            <p>Bạn có chắc chắn muốn thay đổi mật khẩu?</p>
+          `
+        }
       }
     },
     portfolioIcons: {

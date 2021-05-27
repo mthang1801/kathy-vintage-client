@@ -56,7 +56,7 @@ class SignInForm extends React.Component {
   timer = null
   componentDidMount() {   
     window.scrollTo({
-      top: this.signInRef.current.offsetTop - 100,
+      top:0,
       behavior: "smooth",
     })
   }
