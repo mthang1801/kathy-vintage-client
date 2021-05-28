@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  width : 100%; 
+export const Wrapper = styled.div`  
   height: 100vh;
+  overflow-y: hidden;
   background-color : ${({theme}) => theme.dashboard.background}; 
   color : ${({theme}) => theme.dashboard.color};
   .MuiListItemIcon-root {
@@ -17,30 +17,34 @@ export const Wrapper = styled.div`
 
 export const Header = styled.div`  
   height : 60px;
-  display  :flex;
+  display  : ${({isDialog}) => isDialog ? "none" : "flex"};
   align-items : center;
   justify-content : ${({justify}) => justify || "flex-start"};
   padding  : 0 0.5rem;
+  
 `
 export const Button = styled.button`
-  width : 2.25rem;
-  height : 2.25rem;
+  width : 2.75rem;
+  height : 2.75rem;
   display : flex;
   align-items : center;
   justify-content : center;
   border : none ; 
   outline : none; 
   cursor : pointer;  
-  font-size : 1.25rem;
-  padding : 0.5rem;
+  font-size : 1.25rem;  
   background : none;   
+  color : inherit;
   &:hover{
-    background-color: #ededed;
+    background-color: ${({theme}) => theme.name === "light" ? "#cdeae9" : "#333356"}  ;
     svg{
-      fill : #060717;
+      fill : ${({theme}) => theme.name === "light" ? "var(--gray-3)" : "var(--light-gray-3)"};
     }
     
     border-radius : ${({rounded}) => rounded && "50%"} ;
+  }
+  & svg{
+    font-size :1.75rem;
   }
 `
 
@@ -60,8 +64,7 @@ export const Content = styled.div`
   }
 `
 
-export const Form = styled.div`
-  width : 100%; 
+export const Form = styled.div`  
   max-width : 400px; 
   margin: 2rem;
   .MuiFormControl-root:not(:last-child){

@@ -4,7 +4,10 @@ import {
   DashBoardContainer,
   MainContent,
   Header,
-  Title
+  Title,
+  MobileToolbar,
+  AvatarContainer,
+  ButtonHomePage,
 } from "../styles/user.index.styles"
 import useLanguage from "../components/Global/useLanguage"
 import Divider from "@material-ui/core/Divider"
@@ -24,6 +27,10 @@ import { navigate } from "gatsby"
 import { useTheme } from "../theme"
 import GeneralInformationSkeleton from "../components/UI/Lab/Skeleton/GeneralInformation"
 import UserDashboardSkeleton from "../components/UI/Lab/Skeleton/UserDashboard"
+import UserDashBoardDialog from "../components/User/UserDashBoardDialog"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import { AiOutlineHome } from "react-icons/ai"
+
 const UserPage = ({ user, loading, isFetched }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
@@ -32,14 +39,20 @@ const UserPage = ({ user, loading, isFetched }) => {
     information,
     password,
   } = i18n.store.data[lang].translation.user
-  const [selectedOption, setSelectedOption] = useState(options[0].key);
-  let title ; 
-  switch(selectedOption){
-    case options[1].key : title = options[1].name; break;
-    case options[2].key : title = options[2].name;break;
-    default : title = options[0].name
+  const [selectedOption, setSelectedOption] = useState(options[0].key)
+  const [openDashboardDialog, setOpenDashboardDialog] = useState(false)
+  let title
+  switch (selectedOption) {
+    case options[1].key:
+      title = options[1].name
+      break
+    case options[2].key:
+      title = options[2].name
+      break
+    default:
+      title = options[0].name
   }
-  
+
   useEffect(() => {
     if (!loading && isFetched && !user) {
       navigate("/", { replace: true })
@@ -47,22 +60,63 @@ const UserPage = ({ user, loading, isFetched }) => {
   }, [user, loading, isFetched])
   return (
     <Wrapper>
-      <DashBoardContainer>
-        {loading  ? <UserDashboardSkeleton/> : user && (
+      <UserDashBoardDialog
+        open={openDashboardDialog}
+        setOpen={setOpenDashboardDialog}
+      >
+        {user && (
           <DashBoard
             user={user}
             options={options}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
+            setOpenDashboardDialog={setOpenDashboardDialog}
+            isDialog
           />
         )}
-       
+      </UserDashBoardDialog>
+      <MobileToolbar>
+        {user && (
+          <Header justify="space-between">
+            <ButtonHomePage theme={theme} rounded onClick={() => navigate("/")}>
+              <AiOutlineHome />
+            </ButtonHomePage>
+            <AvatarContainer
+              title={user.email}
+              onClick={() => setOpenDashboardDialog(true)}
+            >
+              <LazyLoadImage
+                src={user.photoURL}
+                alt={user.photoURL}
+                effect="blur"
+              />
+            </AvatarContainer>
+          </Header>
+        )}
+      </MobileToolbar>
+      <DashBoardContainer>
+        {loading ? (
+          <UserDashboardSkeleton />
+        ) : (
+          user && (
+            <DashBoard
+              user={user}
+              options={options}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+          )
+        )}
       </DashBoardContainer>
-      <MainContent theme={theme}>     
+      <MainContent theme={theme}>
         <Header>
-          {loading ? <Skeleton variant="text" animation="wave" width={200} height={60}/>: <Title>{title}</Title>}
+          {loading ? (
+            <Skeleton variant="text" animation="wave" width={200} height={60} />
+          ) : (
+            <Title>{title}</Title>
+          )}
         </Header>
-        <Divider/>
+        <Divider />
         {loading ? (
           <GeneralInformationSkeleton />
         ) : (

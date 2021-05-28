@@ -48,7 +48,10 @@ export const theme = {
         background2 : "#fff", 
         color2 : "#000"   
       },
-    
+      disabled: {
+        background : "#f5f5f5",
+        color : "#424242"
+      }
     },
     dark: {
       name : "dark",
@@ -97,7 +100,10 @@ export const theme = {
         background2 : "#20203d", 
         color2 : "#d3d3da"
       },
-      
+      disabled: {
+        background : "#2d2d2d",
+        color : "#bdbdbd"
+      }
     },
   },
 }

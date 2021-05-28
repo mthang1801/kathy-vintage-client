@@ -10,7 +10,7 @@ import {AiOutlineHome} from 'react-icons/ai';
 import SettingDialog from "../Setting/SettingDialog"
 import {useTheme} from "../../theme";
 import {LazyLoadImage} from "react-lazy-load-image-component"
-const DashBoard = ({options, selectedOption, setSelectedOption, user}) => {
+const DashBoard = ({options, selectedOption, setSelectedOption, user, isDialog, setOpenDashboardDialog}) => {
   const {theme} = useTheme();
   const [openDialog, setOpenDialog] = useState(false);
   const onChangeOption = (selectedOption) => {
@@ -18,13 +18,14 @@ const DashBoard = ({options, selectedOption, setSelectedOption, user}) => {
       return setOpenDialog(true);
     }
     setSelectedOption(selectedOption.key);
+    setOpenDashboardDialog(false)
   }
   return (
     <>
     <SettingDialog open={openDialog} setOpen={setOpenDialog}/>
     <Wrapper theme={theme}>      
-      <Header justify="space-between">
-        <Button rounded onClick={() => navigate("/")}><AiOutlineHome/></Button>        
+      <Header justify="space-between" isDialog={isDialog}>
+        <Button theme={theme} rounded onClick={() => navigate("/")}><AiOutlineHome/></Button>        
         <AvatarContainer title={user.email}>
           <LazyLoadImage src={user.photoURL} alt={user.photoURL} effect="blur"/>
         </AvatarContainer>

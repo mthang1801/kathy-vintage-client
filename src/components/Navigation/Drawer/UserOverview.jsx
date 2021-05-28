@@ -46,7 +46,7 @@ const UserOverview = ({ user, signOutUser }) => {
             <SettingItemIcon>{userTranslation.settingAccount.icon}</SettingItemIcon>
             <SettingItemText>{userTranslation.settingAccount.name}</SettingItemText>
           </SettingItemLink>
-          <SettingItemLink onClick={() => onNavigateToUserPage(userTranslation.settingAccount.path, userTranslation.settingAccount.key)} theme={theme}>
+          <SettingItemLink onClick={() => onNavigateToUserPage(userTranslation.ordersHistory.path, userTranslation.ordersHistory.key)} theme={theme}>
             <SettingItemIcon>{userTranslation.ordersHistory.icon}</SettingItemIcon>
             <SettingItemText>{userTranslation.ordersHistory.name}</SettingItemText>
           </SettingItemLink>

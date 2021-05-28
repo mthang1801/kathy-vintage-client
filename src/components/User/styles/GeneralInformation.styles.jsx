@@ -5,24 +5,41 @@ export const Form = styled.form`
   display : flex;   
   flex-wrap : wrap;
   flex-direction : column;     
-  width : 100%; 
-  margin : 2rem;
-  max-width : 500px;
-  .MuiFormControl-root{    
+  width : 90%;       
+  margin : 2rem auto; 
+  max-width : 400px;
+  .MuiFormControl-root{   
+    & *{
+      color : ${({theme}) => theme.text} !important;    
+    } 
     width : 100%;
     margin : 0; 
     & input, & select{
-      background-color : ${({theme}) => theme.card};        
+      background-color : ${({theme}) => theme.card};
+      border:  1px solid ${({theme}) => theme.border} ;
+      border-radius : 3px;
+      overflow: hidden;
+      border: 1px solid transparent;
       &:hover{
-        border: ${({theme}) => theme.border};
+        border: 1px solid ${({theme}) => theme.card};
       }      
-    }    
+    }  
+    input:disabled, select:disabled  {
+      color : ${({theme}) => theme.disabled.color} !important;
+      background-color : ${({theme}) => theme.disabled.background};
+    }
     &:not(:last-child){
       margin-bottom : 1.5rem;
     }
   }
   .MuiFormLabel-root{
     color : ${({theme}) => theme.text};
+  }
+  @media screen and (min-width:768px){
+    margin : 2rem;
+  }
+  @media screen and (min-width:992px){
+    max-width : 500px;
   }
 `
 
