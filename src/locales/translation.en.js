@@ -623,5 +623,8 @@ export const en = {
       cancelOrderHTML: `<p>Are you sure to cancel this order?</p>`,
       readMoreOrders: "Read More",
     },
+    search : {
+      emptyResult : (key) => `No results have been found for ${key}`
+    }
   },
 }

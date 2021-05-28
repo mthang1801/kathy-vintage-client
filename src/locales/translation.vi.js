@@ -632,5 +632,8 @@ export const vi = {
       cancelOrderHTML: `<p>Bạn có chắc chắn muốn hủy đơn hàng này?</p>`,
       readMoreOrders: "Xem thêm",
     },
+    search : {
+      emptyResult : (key) => `Không tìm thấy sản phẩm nào có từ khóa ${key}`
+    }
   },
 }

@@ -17,7 +17,7 @@ import {
 } from "../../redux/user/user.selectors"
 import { createStructuredSelector } from "reselect"
 import { connect } from "react-redux"
-import Search from "./Search"
+import Search from "../Search/Search"
 import { useTheme } from "../../theme"
 import { Button } from "@material-ui/core"
 import useLanguage from "../Global/useLanguage"

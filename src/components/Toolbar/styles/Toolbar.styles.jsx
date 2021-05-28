@@ -3,16 +3,23 @@ import {config} from "../../../config"
 export const Wrapper = styled.header`
   width : 100%; 
   height: 65px;
-  display : flex;
+  display : grid;
+  grid-template-columns: 2.5fr 1fr; 
   background-color : ${({theme}) => theme.card} !important; 
   border-bottom:1px solid ${({theme}) => theme.border};  
   padding: 0.75rem 0.25rem;
   @media screen and (min-width : 768px){
     height : ${config.headerHeight}px;
     padding : 0.75rem 1.5rem;
+    grid-template-columns: 3fr 1fr; 
   }
   @media screen and (min-width : 992px){
     padding : 0.75rem 2rem;
+    grid-template-columns: 2fr 1fr; 
+  }
+  @media screen and (min-width : 1200px){
+    padding : 0.75rem 2rem;
+    grid-template-columns: 3fr 1fr; 
   }
   z-index: 100;
 `
@@ -23,24 +30,9 @@ export const Flex = styled.div`
   &:last-child{
     justify-content: flex-end
   }
-  align-items: center;
-  width : 80vw; 
+  align-items: center;  
   padding : 0 1rem;
-  &:last-child{
-    width : 20vw;
-  }
-  @media screen and (min-width: 768px){
-    width : 60vw;
-    &:last-child{
-      width : 40vw;
-    }
-  }
-  @media screen and (min-width: 992px){
-    width : 50vw;
-    &:last-child{
-      width : 50vw;
-    }
-  }
+  
 `
 
 
