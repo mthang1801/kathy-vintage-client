@@ -5,15 +5,18 @@ import Categories from "../components/Carousel/Categories"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
 import useLanguage from "../components/Global/useLanguage"
+import SEO from "../components/SEO/SEO"
 function Home() {
   let { newProducts, recommendedProducts } = useStaticQuery(query)
   const { i18n, lang } = useLanguage()
-  const { product } = i18n.store.data[lang].translation
+  const { product, seo } = i18n.store.data[lang].translation
   //format static data
   const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
   const newProductsTotalCount = newProducts?.totalCount
   const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
   return (
+    <>
+    <SEO title={seo.home} />
     <Layout>
       <Banners />
       <Categories />
@@ -33,6 +36,7 @@ function Home() {
         />
       ) : null}
     </Layout>
+    </>
   )
 }
 

@@ -38,11 +38,12 @@ export const Flex = styled.div`
 
 export const BrandLogo = styled.img`    
   max-width : 3rem;      
+  max-height : 50px;
   @media screen and (min-width : 768px){
-    max-width : 5rem;
+    max-width : 8rem;
   }
   @media screen and (min-width : 992px){
-    max-width : 7rem;
+    max-width : 10rem;
   }  
 `
 

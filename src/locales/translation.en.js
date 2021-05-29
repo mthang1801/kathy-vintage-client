@@ -439,20 +439,17 @@ export const en = {
     },
     footer: {
       about: {
-        title: "Về TN Shop",
-        companyName: "Công ty TNHH TN Việt Nam",
+        title: "Về Kathy Vintage",
+        companyName: "",
         registerDate: "Ngày ĐK: 30/04/2021",
         taxCode: "Mã số thuế: 0123456789",
-        address: "Địa chỉ: 123A Quang Trung P10 Q. Gò Vấp",
+        address: "Địa chỉ: 627 Thống Nhất P16 Q. Gò Vấp",
         businessCode: "Số ĐKKD: 4391FCS192",
-        bisinessDateAward: "Ngày cấp: 30/04/2021",
+        businessDateAward: "Ngày cấp: 30/04/2021",
         awardAt: "Phòng đăng ký kinh doanh Sở Kế Hoạch Đầu Tư TPHCM",
-        hotline: "Hotline: 0123456789",
-        otherBrandsTitle: " Hệ thống chi nhánh cửa hàng của TN Shop",
-        otherBrands: [
-          "Chi nhánh 1: 784 Nguyễn Văn A Q.12 TPHCM",
-          "Chi nhánh 2: 213 Nguyễn Văn B Q.Bình Thạnh TPHCM",
-        ],
+        hotline: "Hotline: 0973.594.645",
+        otherBrandsTitle: "",
+        otherBrands: [],
       },
       licensesPolicy: {
         title: "Licenses Policy",
@@ -637,6 +634,9 @@ export const en = {
       { key : "zalo", icon: <ZaloIcon />, name: 'Zalo' },      
       { key : "phone", icon: <BiPhone />, name: '0123456789' },
       { key: "email", icon: <AiOutlineMail />, name: 'Email' },       
-    ]
+    ],
+    seo : {
+      home: "Home Page"
+    }
   },
 }

@@ -7,7 +7,7 @@ import {
   Flex,
   MobileResponsive,
 } from "./styles/Toolbar.styles"
-import Logo from "../../images/brandlogo.png"
+import Logo from "../../images/logo.png"
 import {  useLocation } from "@reach/router"
 import {Link} from "gatsby"
 import {

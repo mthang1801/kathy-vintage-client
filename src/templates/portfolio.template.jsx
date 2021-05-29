@@ -3,13 +3,16 @@ import Layout from "../containers/Layout"
 import { graphql } from "gatsby"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 import LayoutTemplate from "./layout.template"
-
+import SEO from "../components/SEO/SEO"
 const PortfolioTemplate = props => {
   return (
+    <>
+    <SEO title={props.data.portfolio.name_vi} description={`Danh mục sản phẩm từ ${props.data.portfolio.name_vi}`}/>
     <Layout>
       <BreadcrumbNavigation contenfulData={[props.data.portfolio]} />
       <LayoutTemplate data={props.data} pageLocation="portfolio"/>      
     </Layout>
+    </>
   )
 }
 

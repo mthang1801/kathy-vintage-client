@@ -4,7 +4,7 @@ import {Link} from "gatsby"
 const Brand = () => {
   return (
     <ImageContainer>
-      <Link to="/">TnShop</Link>
+      <Link to="/"><span>Kathy</span><span>Vintage</span></Link>
     </ImageContainer>
   )
 }

@@ -16,8 +16,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import { useStyles, Image, Auth } from "./styles/Drawer.styles"
 import { Link } from "gatsby"
-import Logo from "../../../images/brandlogo.png"
-import CartButton from "../../Controls/CartButton"
+import Logo from "../../../images/logo.png"
 import useLanguage from "../../Global/useLanguage"
 import DrawerPortfoliosDropdown from "../../Dropdown/DrawerPortfoliosDropdown"
 import { Scrollbars } from "react-custom-scrollbars"
@@ -135,8 +134,7 @@ function PersistentDrawerLeft({
                 )}
               </IconButton>
             </div>
-            <Divider />
-            <CartButton />
+            <Divider />            
             {user ? RenderUserOverview() : RenderUserAuth()}
 
             <List>

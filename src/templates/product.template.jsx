@@ -10,6 +10,7 @@ import ProductContent from "../components/Product/ProductContent"
 import ProductInformation from "../components/Product/ProductInformation"
 import ProductDescription from "../components/Product/ProductDescription"
 import RelevantProducts from "../components/Product/RelevantProducts"
+import SEO from "../components/SEO/SEO"
 import {Disqus} from "gatsby-plugin-disqus"
 const ProductProduct = props => {
   const { product, productsByCategory, productsByProductGroup, site } = props.data
@@ -28,6 +29,8 @@ const ProductProduct = props => {
   }
   
   return (
+    <>
+    <SEO title={product.name_vi} description={`${product.description_vi.description_vi.slice(0,150)} ...`}/>
     <Layout>
       <BreadcrumbNavigation
         contenfulData={[portfolio, category, productGroup, product]}
@@ -50,6 +53,7 @@ const ProductProduct = props => {
       </Box>
       
     </Layout>
+    </>
   )
 }
 

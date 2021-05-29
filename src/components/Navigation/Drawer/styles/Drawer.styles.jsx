@@ -64,6 +64,7 @@ export const useStyles = makeStyles(theme => ({
 export const Image = styled.img`
   width : auto;
   max-width : 6rem;
+  max-height : 50px;
 `
 
 export const Auth = styled.div`

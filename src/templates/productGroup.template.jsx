@@ -3,14 +3,18 @@ import Layout from "../containers/Layout"
 import {graphql} from "gatsby";
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 import LayoutTemplate from "./layout.template"
+import SEO from "../components/SEO/SEO"
 const ProductGroupTemplate = (props) => {  
   const {productGroup} = props.data;
   
   return (
+    <>
+    <SEO title={props.data.productGroup.name_vi} description={`Danh mục sản phẩm từ ${props.data.productGroup.name_vi}`}/>
     <Layout>
       <BreadcrumbNavigation contenfulData={[productGroup.portfolio, productGroup.category, productGroup]}/>      
       <LayoutTemplate data={props.data} pageLocation="productGroup"/>
     </Layout>
+    </>
   )
 }
 export const query = graphql`
