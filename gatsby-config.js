@@ -9,10 +9,11 @@ const path = require("path")
 
 module.exports = {
   siteMetadata: {
-    title: "TN Clothing Shop",
-    description: "Women Clothes",
-    author: "MVT",
+    title: "Kathy Vintage",
+    description: "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
+    author: "@MVT",
     image: "/images/tn-shop.jpg",
+    twitterUsername: "@kathy_vintage",
     siteUrl: "https://tn-clothes-shop.netlify.app",
   },
   plugins: [
@@ -73,9 +74,14 @@ module.exports = {
         queries: require("./src/utils/algolia-queries"),
         chunkSize: 10000,
       },
-    },
+    },    
     {
-      resolve: "gatsby-plugin-react-svg",      
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /svgs/
+        }
+      }
     }
   ],
 }

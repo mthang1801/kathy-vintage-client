@@ -19,7 +19,6 @@ const Layout = ({ children }) => {
   
   return (
     <div>
-     
       <ContactSpeedDial />
       <Container>
         <Header theme={theme}>

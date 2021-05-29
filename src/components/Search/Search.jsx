@@ -88,9 +88,7 @@ const Search = () => {
         <Configure />
         <div id="search-results">
           <Results className="search-results" searchTranslation={search}>
-            <Hits hitComponent={Hit} />
-            {/* <Pagination />
-            <PoweredBy /> */}
+            <Hits hitComponent={Hit} />          
           </Results>
         </div>
       </InstantSearch>

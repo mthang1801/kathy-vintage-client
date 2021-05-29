@@ -29,8 +29,7 @@ import { MdAddShoppingCart } from "react-icons/md"
 import { TiDeleteOutline } from "react-icons/ti"
 import { ImSpinner2 } from "react-icons/im"
 import { FaFacebookMessenger, FaFacebookF } from "react-icons/fa"
-import  ZaloIcon from "../images/zalo-icon.svg"
-import  GmailIcon from "../images/gmail-icon.svg"
+import ZaloIcon from "../images/svgs/zalo-icon.svg"
 export const vi = {
   translation: {
     auth: {
@@ -644,10 +643,10 @@ export const vi = {
       placeholder: "Nhập tên sp bạn muốn tìm ...",
     },
     contacts: [      
-      { key: "facebook", icon: <FaFacebookF />, name: "Facebook" },
-      { key: "zalo", icon: <ZaloIcon />, name: "Zalo" },
+      { key: "facebook", icon: <FaFacebookF />, name: "Facebook" },      
+      { key: "zalo", icon: <ZaloIcon />, name: "Zalo" },      
       { key: "phone", icon: <BiPhone />, name: "0123456789" },      
-      { key: "email", icon: <GmailIcon />, name: "Email" },
+      { key: "email", icon: <AiOutlineMail />, name: "Email" },
     ],
   },
 }
