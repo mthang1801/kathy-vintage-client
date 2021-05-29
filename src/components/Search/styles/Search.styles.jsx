@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   width: 100%;  
   max-width : 600px;
   position : relative;
+  background-color : ${({theme}) => theme.card};
+  & *{
+    color : ${({theme}) => theme.text};
+  }
   .ais-SearchBox-form {
     width: 100%;
     max-width : 600px;
@@ -20,6 +24,7 @@ export const Wrapper = styled.div`
     padding: 0.5rem;
     outline: none;
     border: 1px solid var(--gray);
+    background : transparent;
     font-size: 1em;    
     &:focus {
       border: 1px solid var(--primary);
@@ -70,7 +75,7 @@ export const Wrapper = styled.div`
     list-style: none ; 
     padding : 0; 
     margin: 0;
-
+    background-color : ${({theme}) => theme.card};
   }
   .ais-Pagination {
     height: 12%;
@@ -98,16 +103,17 @@ export const Wrapper = styled.div`
   }
   li.ais-Hits-item {
     padding: 0.4rem 0.75rem;
-    width: 100%;   
+    width: 100%;       
     &:not(:last-child) {
-      border-bottom: 1px solid var(--gray-1);
+      border-bottom: 1px solid ${({theme}) => theme.border};
     }
     transition: var(--mainTransition);
     &:hover {
-      background-color: var(--light-gray-1);
-      color: #000;
+      background-color: ${({theme})=>theme.hover.background};
+      color: ${({theme}) => theme.hover.text};
     }
     a{
+      display : block;
       color : inherit;
     }
   }
@@ -137,6 +143,7 @@ export const Wrapper = styled.div`
     display : flex;
     justify-content : center;
     align-items : center;
+    background : ${({theme}) => theme.background}
   }
   .ais-Highlight-highlighted {
     font-weight :bold;

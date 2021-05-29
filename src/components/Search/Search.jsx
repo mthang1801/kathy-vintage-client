@@ -12,6 +12,7 @@ import {
 import Hit from "./Hit"
 import { Wrapper } from "./styles/Search.styles"
 import useLanguage from "../Global/useLanguage"
+import {useTheme} from "../../theme"
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_SEARCH_KEY
@@ -20,6 +21,7 @@ const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME
 
 const Search = () => {
   const {i18n, lang} = useLanguage();
+  const {theme} = useTheme();
   const {search} = i18n.store.data[lang].translation;
   useEffect(() => {
     window.addEventListener("click", e => {
@@ -56,10 +58,10 @@ const Search = () => {
   })
 
   return (
-    <Wrapper>
+    <Wrapper theme={theme}>
       <InstantSearch indexName={indexName} searchClient={searchClient}>
         <SearchBox
-          translations={{ placeholder: "Products" }}
+          translations={{ placeholder: search.placeholder }}
           submit={
             <svg
               xmlns="http://www.w3.org/2000/svg"

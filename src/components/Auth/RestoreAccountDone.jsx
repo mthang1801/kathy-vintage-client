@@ -5,19 +5,21 @@ import {
   TextContent,
   ButtonDone,
 } from "./styles/RestoreAccountDone.styles";
-
+import useLanguage from "../Global/useLanguage"
 import { withRouter } from "react-router-dom";
 import { FaRegCheckCircle } from "react-icons/fa";
+import {useTheme} from "../../theme"
 const ForgotPasswordDone = ({ history, location, match }) => {
+  const {theme} = useTheme();
+  const {i18n, lang} = useLanguage();
+  const {restoreAccountDone} = i18n.store.data[lang].translation.auth;
   return (
-    <ForgotDoneContainer>
+    <ForgotDoneContainer theme={theme}>
       <CheckIconContainer>
         <FaRegCheckCircle />
       </CheckIconContainer>
       <TextContent>
-        We have received your suggestion about restoring your email account. You
-        need to check your email to activate restore password feature and update
-        new password.
+        {restoreAccountDone}
       </TextContent>
       <ButtonDone onClick={() => history.replace("/auth")}>
         Done

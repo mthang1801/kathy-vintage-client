@@ -24,11 +24,14 @@ import GoogleRecaptcha from "./GoogleRecaptcha"
 import useLanguage from "../Global/useLanguage"
 import GoogleLoginButton from "./GoogleLoginButton"
 import FacebookLoginButton from "./FacebookLoginButton"
+import {useTheme} from "../../theme"
 const SignInFormWrapper = ({ error, signIn, loading, signInWithGoogle, signInWithFacebook, clearUserError }) => {
   const { i18n, lang } = useLanguage()
   const { loginForm } = i18n.store.data[lang].translation.auth  
+  const {theme} = useTheme()
   return (
     <SignInForm
+      theme={theme}
       locales={loginForm}
       error={error}
       signIn={signIn}
@@ -103,11 +106,12 @@ class SignInForm extends React.Component {
 
   render() {
     const { email, password, disabled, loaded } = this.state
-    const { error, locales, loading } = this.props
+    const { error, locales, loading, theme } = this.props
     return (
       <AuthFormContainer
         onSubmit={this.onSubmitSigninForm}
         ref={this.signInRef}
+        theme={theme}
       >
         <FormHeader>
           <Title>{locales.title}</Title>

@@ -7,7 +7,8 @@ import {
   AiOutlineShop,
   AiOutlineInstagram,
   AiOutlineFileSearch,
-  AiOutlineUnorderedList
+  AiOutlineUnorderedList,
+  AiOutlineMail
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -19,14 +20,17 @@ import {
   RiShirtLine,
   RiShirtFill,
 } from "react-icons/ri"
-import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
+import { IoIosSettings, IoIosGlasses, IoMdSettings } from "react-icons/io"
 import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle, FiSettings } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat, BsShieldLock } from "react-icons/bs"
-import { BiGlasses, BiPurchaseTag, BiUserPin } from "react-icons/bi"
+import { BiGlasses, BiPurchaseTag, BiUserPin, BiPhone } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
 import { TiDeleteOutline } from "react-icons/ti"
 import { ImSpinner2 } from "react-icons/im"
+import { FaFacebookMessenger, FaFacebookF } from "react-icons/fa"
+import ZaloIcon from "../images/zalo-icon.svg"
+import GmailIcon from "../images/gmail-icon.svg"
 export const en = {
   translation: {
     auth: {
@@ -96,6 +100,7 @@ export const en = {
         restoreSuccessText:
           "Your request to restore account successfully, please check your email to activate new password",
       },
+      restoreAccountDone : " We have received your suggestion about restoring your email account. You need to check your email to activate restore password feature and update new password.."
     },
     user: {
       settingAccount: {
@@ -624,7 +629,14 @@ export const en = {
       readMoreOrders: "Read More",
     },
     search : {
-      emptyResult : (key) => `No results have been found for ${key}`
-    }
+      emptyResult : (key) => `No results have been found for ${key}`,
+      placeholder : "Search..."
+    },
+    contacts:[      
+      { key : "facebook", icon: <FaFacebookF />, name: 'Facebook' },
+      { key: "zalo", icon: <ZaloIcon />, name: "Zalo" },
+      { key : "phone", icon: <BiPhone />, name: '0123456789' },
+      { key: "email", icon: <GmailIcon />, name: 'Email' },       
+    ]
   },
 }

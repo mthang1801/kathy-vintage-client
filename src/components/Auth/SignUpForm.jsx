@@ -26,6 +26,7 @@ import { selectUserError } from "../../redux/user/user.selectors"
 import GoogleRecaptcha from "./GoogleRecaptcha"
 import FacebookLoginButton from "./FacebookLoginButton"
 import GoogleLoginButton from "./GoogleLoginButton"
+import {useTheme} from "../../theme"
 const SignUpFormWrapper = ({
   error,
   signUpUser,
@@ -35,6 +36,7 @@ const SignUpFormWrapper = ({
 }) => {
   const { i18n, lang } = useLanguage()
   const { signupForm } = i18n.store.data[lang].translation.auth
+  const {theme} = useTheme()
   const INITIAL_STATE = {
     controls: {
       name: {
@@ -114,6 +116,7 @@ const SignUpFormWrapper = ({
   }
   return (
     <SignUpForm
+      theme={theme}
       locales={signupForm}
       error={error}
       signUpUser={signUpUser}
@@ -244,9 +247,9 @@ class SignUpForm extends React.Component {
     Object.keys(this.state.controls).map(controlItem => {
       formInputArray.push(this.state.controls[controlItem])
     })
-    const { error, locales } = this.props
+    const { error, locales, theme } = this.props
     return (
-      <AuthFormContainer onSubmit={this.handleSubmitSignUpForm} ref={this.signUpRef}>
+      <AuthFormContainer onSubmit={this.handleSubmitSignUpForm} ref={this.signUpRef} theme={theme}>
         <FormHeader>
           <Title>{locales.title}</Title>
           <SubTitle>{locales.subTitle}</SubTitle>

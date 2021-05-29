@@ -7,7 +7,8 @@ import {
   AiOutlineShop,
   AiOutlineInstagram,
   AiOutlineFileSearch,
-  AiOutlineUnorderedList
+  AiOutlineUnorderedList,
+  AiOutlineMail
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -19,15 +20,17 @@ import {
   RiShirtLine,
   RiShirtFill,
 } from "react-icons/ri"
-import { IoIosSettings, IoMdSettings, IoIosGlasses } from "react-icons/io"
+import { IoIosSettings, IoIosGlasses } from "react-icons/io"
 import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle, FiSettings } from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat, BsShieldLock } from "react-icons/bs"
-import { BiGlasses, BiPurchaseTag, BiUserPin } from "react-icons/bi"
+import { BiGlasses, BiPurchaseTag, BiUserPin, BiPhone } from "react-icons/bi"
 import { MdAddShoppingCart } from "react-icons/md"
 import { TiDeleteOutline } from "react-icons/ti"
 import { ImSpinner2 } from "react-icons/im"
-
+import { FaFacebookMessenger, FaFacebookF } from "react-icons/fa"
+import  ZaloIcon from "../images/zalo-icon.svg"
+import  GmailIcon from "../images/gmail-icon.svg"
 export const vi = {
   translation: {
     auth: {
@@ -102,16 +105,18 @@ export const vi = {
         restoreSuccessText:
           "Yêu cầu khôi phục tài khoản thành công, vui lòng kiểm tra email để kích hoạt lại mật khẩu",
       },
+      restoreAccountDone:
+        "Yêu cầu khôi phục tài khoản của bạn thành công, vui lòng kiểm tra email để kích hoạt mật khẩu mới.",
     },
     user: {
       settingAccount: {
-        key : "general-information",
+        key: "general-information",
         name: "Thiết lập tài khoản",
         icon: <IoIosSettings />,
         path: "/user",
       },
       ordersHistory: {
-        key : "orders-history",
+        key: "orders-history",
         name: "Lịch sử đặt hàng",
         icon: <RiBillLine />,
         path: `/orders`,
@@ -121,9 +126,9 @@ export const vi = {
         icon: <FiLogOut />,
       },
       information: {
-        title: "Thông tin giao hàng",        
-        id : "ID tài khoản",
-        email : "Email",
+        title: "Thông tin giao hàng",
+        id: "ID tài khoản",
+        email: "Email",
         fullname: "Họ và tên",
         phone: "Số điện thoại",
         city: "Thành phố",
@@ -135,63 +140,65 @@ export const vi = {
           fullName: "Bạn cần phải điền cả họ và tên",
           invalidPhone: "Số điện thoại không hợp lệ",
         },
-        confirm_submit_change_information : {
-          title : "Xác nhận thay đổi thông tin cá nhân",
-          content : `
+        confirm_submit_change_information: {
+          title: "Xác nhận thay đổi thông tin cá nhân",
+          content: `
             <p>Bạn có chắc chắn muốn thay đổi những thông tin này?</p>
             <p style="font-weight:bold; color:red">Lưu ý : Bạn sẽ không thể cập nhật cho lần tiếp theo trong vòng 7 ngày.</p>
-          `
+          `,
         },
-        null_information_field : "Chưa dược cập nhật",
+        null_information_field: "Chưa dược cập nhật",
         buttonSubmit: "Hoàn tất",
         buttonUpdate: "Cập nhật",
-        buttonSaveChange : "Lưu thay đổi",
+        buttonSaveChange: "Lưu thay đổi",
         button_close_information_form: "Đóng",
       },
-      
-      dashboard : {
-        options : [
+
+      dashboard: {
+        options: [
           {
-            key : "general-information", 
-            name : "Thông tin chung", 
-            icon : <BiUserPin/>
+            key: "general-information",
+            name: "Thông tin chung",
+            icon: <BiUserPin />,
           },
           {
-            key : "change-password", 
-            name : "Thay đổi mật khẩu", 
-            icon : <BsShieldLock/>
+            key: "change-password",
+            name: "Thay đổi mật khẩu",
+            icon: <BsShieldLock />,
           },
           {
-            key : "orders-history",
-            name : "Đơn hàng của bạn",
-            icon : <AiOutlineUnorderedList/>
+            key: "orders-history",
+            name: "Đơn hàng của bạn",
+            icon: <AiOutlineUnorderedList />,
           },
           {
-            key : "setting-mode",
-            name : "Cài đặt",
+            key: "setting-mode",
+            name: "Cài đặt",
             icon: <FiSettings />,
-          }
+          },
         ],
       },
-      password : {
-        oldPassword : "Mật khẩu cũ",
-        newPassword : "Mật khẩu mới",
-        confirmNewPassword : "Xác nhận mật khẩu mới",
-        errorProvider : "Tài khoản này không thể thay đổi mật khẩu",
-        buttonConfirm : "Lưu thay đổi",
-        errorOldPassword : "Mật khẩu cũ không chính xác",
-        errorConfirmPassword : "Mật khẩu nhập lại không chính xác",
-        errorInvalidPassword : "Mật khẩu không hợp lệ, cần ít nhất 8 ký tự gồm chữ thường, chữ in hoa, số và ký tự đặc biệt.",
-        errorServer : "Cập nhật mật khẩu không thành công, có lỗi xảy ra",
-        updatePasswordSuccess : "Cập nhật mật khẩu thành công",
-        countTimeToLogout : counter => `<small style="color: #616161">Tài khoản sẽ tự động đăng xuất sau <span style="color:#e53935">${counter}</span> giây.</small>`,
-        confirmDialog : {
-          title: "Xác nhận thay đổi mật khẩu", 
-          content : `
+      password: {
+        oldPassword: "Mật khẩu cũ",
+        newPassword: "Mật khẩu mới",
+        confirmNewPassword: "Xác nhận mật khẩu mới",
+        errorProvider: "Tài khoản này không thể thay đổi mật khẩu",
+        buttonConfirm: "Lưu thay đổi",
+        errorOldPassword: "Mật khẩu cũ không chính xác",
+        errorConfirmPassword: "Mật khẩu nhập lại không chính xác",
+        errorInvalidPassword:
+          "Mật khẩu không hợp lệ, cần ít nhất 8 ký tự gồm chữ thường, chữ in hoa, số và ký tự đặc biệt.",
+        errorServer: "Cập nhật mật khẩu không thành công, có lỗi xảy ra",
+        updatePasswordSuccess: "Cập nhật mật khẩu thành công",
+        countTimeToLogout: counter =>
+          `<small style="color: #616161">Tài khoản sẽ tự động đăng xuất sau <span style="color:#e53935">${counter}</span> giây.</small>`,
+        confirmDialog: {
+          title: "Xác nhận thay đổi mật khẩu",
+          content: `
             <p>Bạn có chắc chắn muốn thay đổi mật khẩu?</p>
-          `
-        }
-      }
+          `,
+        },
+      },
     },
     portfolioIcons: {
       portfolioId_1: {
@@ -632,8 +639,15 @@ export const vi = {
       cancelOrderHTML: `<p>Bạn có chắc chắn muốn hủy đơn hàng này?</p>`,
       readMoreOrders: "Xem thêm",
     },
-    search : {
-      emptyResult : (key) => `Không tìm thấy sản phẩm nào có từ khóa ${key}`
-    }
+    search: {
+      emptyResult: key => `Không tìm thấy sản phẩm nào có từ khóa ${key}`,
+      placeholder: "Nhập tên sp bạn muốn tìm ...",
+    },
+    contacts: [      
+      { key: "facebook", icon: <FaFacebookF />, name: "Facebook" },
+      { key: "zalo", icon: <ZaloIcon />, name: "Zalo" },
+      { key: "phone", icon: <BiPhone />, name: "0123456789" },      
+      { key: "email", icon: <GmailIcon />, name: "Email" },
+    ],
   },
 }

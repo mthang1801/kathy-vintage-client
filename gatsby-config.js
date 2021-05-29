@@ -74,5 +74,8 @@ module.exports = {
         chunkSize: 10000,
       },
     },
+    {
+      resolve: "gatsby-plugin-react-svg",      
+    }
   ],
 }

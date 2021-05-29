@@ -14,9 +14,11 @@ import Button from "@material-ui/core/Button"
 import GoogleRecaptcha from "./GoogleRecaptcha"
 import { restoreAccount } from "../../redux/user/user.actions"
 import {FcCheckmark} from "react-icons/fc"
+import {useTheme} from "../../theme"
 const emailPattern = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const RestoreAccount = () => {
   const { i18n, lang } = useLanguage()
+  const {theme} = useTheme()
   const { restoreAccountForm } = i18n.store.data[lang].translation.auth
   const [emailValue, setEmailValue] = useState("")
   const [disabled, setDisabled] = useState(true)
@@ -58,7 +60,7 @@ const RestoreAccount = () => {
     }
   }
   return (
-    <AuthFormContainer onSubmit={e => e.preventDefault()}>
+    <AuthFormContainer onSubmit={e => e.preventDefault()} theme={theme}>
       {success ? (
         <>
           <FormHeader>
