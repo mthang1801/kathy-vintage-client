@@ -17,6 +17,7 @@ module.exports = {
     siteUrl: "https://kathy-vintage.netlify.app/",
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
