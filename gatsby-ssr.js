@@ -12,12 +12,16 @@ import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 import "typeface-pt-mono"
 import "whatwg-fetch"
+import SEORoot from "./src/components/SEO/SEORoot"
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App>{element}</App>
-      </PersistGate>
-    </Provider>
-  </ThemeProvider>
+  <>
+    <SEORoot />
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App>{element}</App>
+        </PersistGate>
+      </Provider>
+    </ThemeProvider>
+  </>
 )

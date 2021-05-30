@@ -12,7 +12,10 @@ import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 import "typeface-pt-mono"
 import "whatwg-fetch"
+import SEORoot from "./src/components/SEO/SEORoot"
 export const wrapRootElement = ({ element }) => (
+  <>
+  <SEORoot/>  
   <ThemeProvider theme={theme}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
@@ -20,4 +23,5 @@ export const wrapRootElement = ({ element }) => (
       </PersistGate>
     </Provider>
   </ThemeProvider>
+  </>
 )
