@@ -14,7 +14,7 @@ module.exports = {
     author: "@MVT",
     image: "/images/logo.jpg",
     twitterUsername: "@kathy_vintage",
-    siteUrl: "https://kathy-vintage.netlify.app",
+    siteUrl: "https://kathy-vintage.netlify.app/",
   },
   plugins: [
     `gatsby-plugin-material-ui`,
@@ -75,11 +75,11 @@ module.exports = {
       options: {
         credentials: {
           apiKey: process.env.GATSBY_FIREBASE_API_KEY,
-          authDomain:process.env.GATSBY_FIREBASE_AUTH_DOMAIN,          
-          projectId:process.env.GATSBY_FIREBASE_PROJECT_ID,
-          storageBucket:process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
-          messagingSenderId:process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
-          appId:process.env.GATSBY_FIREBASE_APP_ID,
+          authDomain: process.env.GATSBY_FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.GATSBY_FIREBASE_PROJECT_ID,
+          storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.GATSBY_FIREBASE_APP_ID,
           measurementId: process.env.GATSBY_FIREBASE_MEASUREMENT_ID
         }
       }
@@ -101,7 +101,7 @@ module.exports = {
         queries: require("./src/utils/algolia-queries"),
         chunkSize: 10000,
       },
-    },    
+    },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
