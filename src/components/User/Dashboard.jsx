@@ -31,7 +31,9 @@ const DashBoard = ({
       return setOpenDialog(true)
     }
     setSelectedOption(selectedOption.key)
-    setOpenDashboardDialog(false)
+    if(setOpenDashboardDialog){
+      setOpenDashboardDialog(false)
+    }
   }
   return (
     <>

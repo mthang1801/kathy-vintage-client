@@ -12,7 +12,6 @@ function Home() {
   const { product, seo } = i18n.store.data[lang].translation
   //format static data
   const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
-  const newProductsTotalCount = newProducts?.totalCount
   const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
   return (
     <>
@@ -23,8 +22,7 @@ function Home() {
       {newProductsEdges?.length ? (
         <ProductsList
           header={product.newProducts}
-          products={newProductsEdges}
-          // isAllProducts={newProductsTotalCount === newProductsEdges.length}
+          products={newProductsEdges}          
           isAllProducts
         />
       ) : null}

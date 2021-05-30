@@ -36,15 +36,12 @@ export const Flex = styled.div`
 `
 
 
-export const BrandLogo = styled.img`    
-  max-width : 3rem;      
-  max-height : 50px;
-  @media screen and (min-width : 768px){
-    max-width : 8rem;
+export const BrandLogo = styled.span`    
+  svg{
+    max-width : 3rem;
+    max-height : 2rem;
   }
-  @media screen and (min-width : 992px){
-    max-width : 10rem;
-  }  
+  @media screen and ()
 `
 
 export const SearchContainer = styled.div`  

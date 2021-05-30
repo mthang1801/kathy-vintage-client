@@ -30,13 +30,7 @@ const CarouselBanner = () => {
     <CarouselBannerWrapper ref={carouselRef}>
       <Slider {...settings}>
         {images.map(image => (
-          <Link to={"/"} key={image.name} onCLick={(e) => {
-            e.preventDefault();
-            trackCustomEvent({
-              action : "Click", 
-              category : "navigate"
-            })
-          }}>
+          <Link to={"/"} key={image.name}>
             <Image fluid={image.childImageSharp.fluid} alt={image.name}/>
           </Link>
         ))}
@@ -54,7 +48,7 @@ const QUERY_IMAGES_CAROUSEL = graphql`
         node {
           name
           childImageSharp {
-            fluid (quality : 100){
+            fluid (quality : 90){
               ...GatsbyImageSharpFluid
             }
           }

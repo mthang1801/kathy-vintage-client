@@ -6,7 +6,7 @@ import {
   ProductsList,
   MainContent,
   ButtonFilter,
-  FilterList
+  FilterList,
 } from "../styles/layout.template.styles"
 import SidebarNavigations from "../components/Sidebar/SidebarNavigations"
 import SidebarFilter from "../components/Sidebar/SidebarFilter"
@@ -28,7 +28,7 @@ import {
   filterProductsListByManufactor,
 } from "./layout.template.util"
 import NavigattionAndFilterProductsDialog from "../components/UI/FeedBacks/Dialog/NavigattionAndFilterProductsDialog"
-import FilterListIcon from '@material-ui/icons/FilterList';
+import FilterListIcon from "@material-ui/icons/FilterList"
 
 const initialState = {
   currentTab: "all",
@@ -67,7 +67,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
     setOpenNavigationAndFilterDialog,
   ] = useState(false)
   const [currentTab, setCurrentTab] = useState(
-    getParams("tab") || initialState.currentTab
+    !!getParams("tab") ? getParams("tab") : initialState.currentTab
   )
   const [initialProducts, setInitialProducts] = useState(
     data.products.edges.map(({ node }) => node)
@@ -167,7 +167,9 @@ const LayoutTemplate = ({ data, pageLocation }) => {
   }, [currentPage])
 
   useEffect(() => {
-    const newTab = getParams("tab")
+    const newTab = !!getParams("tab")
+      ? getParams("tab")
+      : initialState.currentTab
     const newPage = +getParams("page")
     if (newTab !== currentTab) {
       setCurrentTab(newTab)
@@ -199,6 +201,14 @@ const LayoutTemplate = ({ data, pageLocation }) => {
       location.pathname[location.pathname.length - 1] === "/"
         ? location.pathname.slice(0, -1)
         : location.pathname
+
+    if (currentTab === "all" && selected === 0) {
+      return navigate(`${pathname}`)
+    } else if (currentTab === "all") {
+      return navigate(`${pathname}?page=${selected + 1}`)
+    }
+    // setIsFreshPage(false)
+
     navigate(`${pathname}?tab=${currentTab}&page=${selected + 1}`)
   }
   return (
@@ -221,12 +231,21 @@ const LayoutTemplate = ({ data, pageLocation }) => {
       <ContentContainer>
         <ButtonFilter onClick={() => setOpenNavigationAndFilterDialog(true)}>
           <FilterList>
-            <span>{sortingIndex !== -1 && template.sidebar.sort.fields[sortingIndex].value}</span>
-            <span>{priceIndex !== -1 && template.sidebar.prices.range(selectedPriceScope[0],selectedPriceScope[1])}</span>
+            <span>
+              {sortingIndex !== -1 &&
+                template.sidebar.sort.fields[sortingIndex].value}
+            </span>
+            <span>
+              {priceIndex !== -1 &&
+                template.sidebar.prices.range(
+                  selectedPriceScope[0],
+                  selectedPriceScope[1]
+                )}
+            </span>
             <span>{template.sidebar.discount.fields[discountIndex].value}</span>
             <span>{manufactor.index !== 0 && manufactor.value}</span>
           </FilterList>
-          <FilterListIcon/>
+          <FilterListIcon />
         </ButtonFilter>
         <Sidebar theme={theme}>
           {sidebarNavigations && (

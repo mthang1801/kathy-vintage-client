@@ -92,24 +92,7 @@ const NavigationBar = () => {
               )}
             </ListItem>
           )
-        })}
-        {/* Contact */}
-        <ListItem
-          to={navigations.contact.path}
-          theme={theme}
-          onMouseEnter={() =>
-            onMouseEnterStaticNavigation(navigations.contact.path)
-          }
-          onMouseLeave={onMouseLeaveStaticNavigation}
-        >
-          <ListItemIcon>
-            {pathname === navigations.contact.path ||
-            activeItem === navigations.contact.path
-              ? navigations.contact.activeIcon
-              : navigations.contact.icon}
-          </ListItemIcon>
-          <ListItemText>{navigations.contact.name}</ListItemText>
-        </ListItem>
+        })}        
         {/* Setting */}
         <Setting
           theme={theme}

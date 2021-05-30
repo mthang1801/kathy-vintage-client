@@ -34,6 +34,9 @@ export const Wrapper = styled.div`
       .MuiButtonBase-root{
         background: linear-gradient(-135deg, var(--blue-1) 0%, var(--blue-2) 50%, var(--blue-3) 100%);
         color : var(--white);
+        &:hover{
+          background-color: transparent;
+        }
       }
       .MuiSpeedDialAction-staticTooltipLabel{
         background-color: yellow;

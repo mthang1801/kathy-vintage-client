@@ -14,9 +14,9 @@ import SettingDialog from "../../Setting/SettingDialog"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
-import { useStyles, Image, Auth } from "./styles/Drawer.styles"
+import { useStyles, Image, Auth, LogoContainer } from "./styles/Drawer.styles"
 import { Link } from "gatsby"
-import Logo from "../../../images/logo.png"
+import Logo from "../../../images/svgs/logo.svg"
 import useLanguage from "../../Global/useLanguage"
 import DrawerPortfoliosDropdown from "../../Dropdown/DrawerPortfoliosDropdown"
 import { Scrollbars } from "react-custom-scrollbars"
@@ -135,7 +135,7 @@ function PersistentDrawerLeft({
           >
             <div className={classes.drawerHeader}>
               <Link to="/" onClick={handleDrawerClose}>
-                <Image src={Logo} alt="logo" />
+                <LogoContainer style={{width:"3rem",height:"2rem"}}><Logo/></LogoContainer>
               </Link>
               <IconButton onClick={handleDrawerClose}>
                 {theme.direction === "ltr" ? (

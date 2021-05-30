@@ -7,7 +7,7 @@ import {
   Flex,
   MobileResponsive,
 } from "./styles/Toolbar.styles"
-import Logo from "../../images/logo.png"
+import Logo from "../../images/svgs/logo.svg"
 import { useLocation } from "@reach/router"
 import { Link } from "gatsby"
 import {
@@ -100,7 +100,7 @@ const Header = ({ userLoading, userFetched, user }) => {
               navigate("/auth", { state: { from: pathname } })
             }}
           >
-            <BrandLogo src={Logo} alt="logo" />
+            <BrandLogo><Logo/></BrandLogo>
           </Link>
           <SearchContainer>
             <Search />

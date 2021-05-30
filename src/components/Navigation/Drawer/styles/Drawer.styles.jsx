@@ -74,3 +74,10 @@ export const Auth = styled.div`
     font-weight: bold;
   }
 `
+
+export const LogoContainer = styled.span`
+  svg{
+    width : 3rem;
+    height : 2rem;
+  }
+`

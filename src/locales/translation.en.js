@@ -242,14 +242,7 @@ export const en = {
         path: "/recommended-products",
         icon: <RiVipDiamondLine />,
         activeIcon: <RiVipDiamondFill />,
-      },
-      contact: {
-        id: "contact",
-        name: "Contact",
-        path: "/contact",
-        icon: <RiContactsLine />,
-        activeIcon: <RiContactsFill />,
-      },
+      },     
       setting: {
         id: "setting",
         name: "Setting",
@@ -632,7 +625,7 @@ export const en = {
     contacts:[      
       { key : "facebook", icon: <FaFacebookF />, name: 'Facebook' },      
       { key : "zalo", icon: <ZaloIcon />, name: 'Zalo' },      
-      { key : "phone", icon: <BiPhone />, name: '0123456789' },
+      { key : "phone", icon: <BiPhone />, name: '0973594645' },
       { key: "email", icon: <AiOutlineMail />, name: 'Email' },       
     ],
     seo : {
