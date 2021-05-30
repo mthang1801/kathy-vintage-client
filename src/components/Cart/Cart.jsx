@@ -16,6 +16,7 @@ import { connect } from "react-redux"
 import CartDropdown from "./CartDropdown"
 import { navigate } from "gatsby"
 import CartAlert from "./CartAlert"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const Cart = ({
   cartItems,
   showCartDropdown,
@@ -24,11 +25,17 @@ const Cart = ({
   alertCart,
   removeAlertCart,
 }) => {
-  const onClickCart = () => {
-    console.log("clciked")
+  const onClickCart = (e) => {
+    e.preventDefault();
+    trackCustomEvent({
+      action : "Click",
+      category : "cart",
+      label : "Click cart"
+    })
     if (window.innerWidth < 768) {
       return navigate("/checkout")
     }
+    
     toggleCart()
     removeAlertCart();
   }

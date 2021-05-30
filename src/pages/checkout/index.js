@@ -26,6 +26,7 @@ import {
 import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
 import useLanguage from "../../components/Global/useLanguage"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const tax = POLICY.tax
 const CheckoutPage = ({
   cartItems,
@@ -39,6 +40,11 @@ const CheckoutPage = ({
   const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems)
   const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
   const onClickProceedOrder = () => {
+    trackCustomEvent({
+      action : "Click",
+      category : "checkout", 
+      label : "Go to checkout shipping"
+    })
     navigate("/checkout/shipping")
   }
   return (

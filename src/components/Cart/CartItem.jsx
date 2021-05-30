@@ -20,6 +20,7 @@ import {
 } from "../../redux/cart/cart.actions"
 import { BsTrash } from "react-icons/bs"
 import QuantityControl from "../Controls/QuantityControl"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const CartItem = ({
   product,
   increaseProductQuantity,
@@ -33,20 +34,14 @@ const CartItem = ({
     product.isDiscount && product.discountPercentage
       ? (product.unitPrice * (100 - +product.discountPercentage)) / 100
       : product.unitPrice
-  const onIncreaseProductQuantity = e => {
-    e.preventDefault()
-    e.stopPropagation()
-    increaseProductQuantity(product)
-  }
-
-  const onDecreaseProductQuantity = e => {
-    e.preventDefault()
-    e.stopPropagation()
-    decreaseProductQuantity(product)
-  }
   const onRemoveProduct = e => {
     e.preventDefault()
     e.stopPropagation()
+    trackCustomEvent({
+      action : "Click",
+      category: "cart",
+      label : "Remove product in cart"
+    })
     removeProductFromCart(product)
   }
   return (

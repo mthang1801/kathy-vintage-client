@@ -92,3 +92,45 @@ export const SuccessMessage = styled.div`
   margin-bottom : 0.75rem;
   font-weight : 600;
 `
+
+export const ButtonSubmit = styled.button`
+  outline: none; 
+  border: none ; 
+  background-color : var(--indigo-1);
+  color : var(--light-gray-1);
+  padding: 0.75rem 1.5rem;
+  text-transform : uppercase ; 
+  font-weight : bold;
+  border-radius : 0.5rem;
+  box-shadow : 0 1px 1px 1px rgba(0,0,0,0.1);
+  transition : all 0.2s; 
+  display : flex;
+  cursor : pointer;
+  justify-content : center;
+  .MuiCircularProgress-root{
+    width : 1rem !important;
+    height : 1rem !important;
+  }
+  & svg{
+    font-size : 0.9rem;    
+    width : 100%;
+    margin-left : 0.5rem;
+    color :  var(--light-gray-1);
+  }
+  .MuiCircularProgress-indeterminate{
+    animation : unset;
+  }
+  & > *:not(:last-child){
+    margin-left : 0.25rem;
+  }
+  &:hover:not([disabled]){
+    background-color : var(--indigo-3);
+  }  
+  &:hover &:disabled{
+    // opacity : 1;
+    // background-color : var(--indigo-1);
+  }
+  &:disabled{
+    opacity : 0.4;
+  }
+`

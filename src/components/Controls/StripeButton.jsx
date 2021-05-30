@@ -9,6 +9,7 @@ import axios from "axios"
 import STRIPE_PUBLISHABLE from "../../constants/stripe"
 import PAYMENT_SERVER_URL from "../../constants/server"
 import useLanguage from "../Global/useLanguage"
+
 const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children, onClickProceedOrder }) => {
   const amount = totalPrice
   const CURRENCY = "VND"

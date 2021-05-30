@@ -12,9 +12,9 @@ module.exports = {
     title: "Kathy Vintage",
     description: "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
     author: "@MVT",
-    image: "/images/tn-shop.jpg",
+    image: "/images/logo.png",
     twitterUsername: "@kathy_vintage",
-    siteUrl: "https://tn-clothes-shop.netlify.app",
+    siteUrl: "https://kathy-vintage.netlify.app",
   },
   plugins: [
     `gatsby-plugin-material-ui`,
@@ -22,6 +22,33 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Kathy Vintage clothes shop`,
+        short_name: `Kathy Vintage`,
+        description:
+          "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
+        start_url: `/`,
+        background_color: `#f0f0f0`,
+        theme_color: `#ffc400`,
+        display: `standalone`,
+        icon: `src/images/logo.png`,
+        icons: [
+          {
+            src: `/favicons/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/android-chrome-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
+      },
+    },
     `gatsby-remark-images-contentful`,
     {
       resolve: `gatsby-source-contentful`,
@@ -82,6 +109,24 @@ module.exports = {
           include: /svgs/
         }
       }
-    }
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://kathy-vintage.netlify.app",
+        sitemap: "https://kathy-vintage.netlify.app/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_MEASUREMENT_ID,
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+      },
+    },
   ],
+
 }

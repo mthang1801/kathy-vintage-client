@@ -30,6 +30,7 @@ import UserDashboardSkeleton from "../components/UI/Lab/Skeleton/UserDashboard"
 import UserDashBoardDialog from "../components/User/UserDashBoardDialog"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { AiOutlineHome } from "react-icons/ai"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 
 const UserPage = ({ user, loading, isFetched }) => {
   const { i18n, lang } = useLanguage()
@@ -78,7 +79,13 @@ const UserPage = ({ user, loading, isFetched }) => {
       <MobileToolbar>
         {user && (
           <Header justify="space-between">
-            <ButtonHomePage theme={theme} rounded onClick={() => navigate("/")}>
+            <ButtonHomePage theme={theme} rounded onClick={() => {
+              trackCustomEvent({
+                action : "Click",
+                category : "navigate" ,
+                label : "Go Home page"
+              })
+              navigate("/")}}>
               <AiOutlineHome />
             </ButtonHomePage>
             <AvatarContainer

@@ -5,6 +5,7 @@ import Slider from "react-slick"
 import { CustomArrowNext, CustomArrowPrev } from "./CustomArrowSlider"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const CarouselBanner = () => {
   
   const carouselRef = useRef(null)  
@@ -29,7 +30,13 @@ const CarouselBanner = () => {
     <CarouselBannerWrapper ref={carouselRef}>
       <Slider {...settings}>
         {images.map(image => (
-          <Link to={"/"} key={image.name}>
+          <Link to={"/"} key={image.name} onCLick={(e) => {
+            e.preventDefault();
+            trackCustomEvent({
+              action : "Click", 
+              category : "navigate"
+            })
+          }}>
             <Image fluid={image.childImageSharp.fluid} alt={image.name}/>
           </Link>
         ))}

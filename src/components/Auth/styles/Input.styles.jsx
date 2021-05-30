@@ -19,6 +19,10 @@ export const Input = styled.input`
   letter-spacing : ${({type}) => type === "password" ? "0.3em" : "0.05em"};
   border-color: ${({border}) => border === "error" ? "red" : border=== "success" ? "green" : "#0d47a1"};
   background-color : #e3f2fd;
+  &:disabled{
+    background-color : #dcdcdc;
+    color : #fafafa;    
+  }
 `
 
 

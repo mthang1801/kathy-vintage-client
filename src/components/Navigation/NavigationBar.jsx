@@ -25,8 +25,7 @@ const NavigationBar = () => {
   const [openSetting, setOpenSetting] = useState(false)
   const initialPortfolio = { id: null, x: 0, y: 0 }
   const [selectedPortfolio, setSelectedPortfolio] = useState(initialPortfolio)
-  const onMouseEnterPortfolioItem = id => {
-    console.log(id)
+  const onMouseEnterPortfolioItem = id => {    
     setSelectedPortfolio(prevState => ({ ...prevState, id }))
     setActiveItem(id)
   }

@@ -12,16 +12,25 @@ import {
 import Image from "gatsby-image"
 import { useTheme } from "../../theme"
 import useLanguage from "../Global/useLanguage"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const DrawerCategoriesDropdown = ({ portfolio, categories, onNavigate }) => {
   const { theme } = useTheme()
   const {lang} = useLanguage()
+  const onNavigateToCategory = (portfolio, category) => {
+    trackCustomEvent({
+      action : "Click", 
+      category : "navigate" , 
+      label : "Navigate to specific category"
+    })
+    onNavigate(`/${portfolio.slug}/${category.slug}`)
+  }
   return (
     <TabletWrapper open={categories?.length} theme={theme}>
       {categories?.length &&
         categories.map(category => (
           <ViewPort key={category.contentful_id}>
             <ListItem
-              onClick={() => onNavigate(`/${portfolio.slug}/${category.slug}`)}
+              onClick={() => onNavigateToCategory(portfolio, category)}
             >
               <ListItemImage>
                 <Image fluid={category?.image?.fluid} alt={category[`name_${lang}`]} />

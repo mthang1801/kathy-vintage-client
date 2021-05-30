@@ -8,8 +8,8 @@ import {
   MobileResponsive,
 } from "./styles/Toolbar.styles"
 import Logo from "../../images/logo.png"
-import {  useLocation } from "@reach/router"
-import {Link} from "gatsby"
+import { useLocation } from "@reach/router"
+import { Link } from "gatsby"
 import {
   selectCurrentUser,
   selectUserFetched,
@@ -27,6 +27,7 @@ import Drawer from "../Navigation/Drawer/Drawer"
 import { navigate } from "gatsby"
 import UserSettings from "./UserSettings"
 import { signInPattern, signUpPattern } from "../../utils/auth"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const Header = ({ userLoading, userFetched, user }) => {
   const [openDrawer, setOpenDrawer] = useState(false)
   const { i18n, lang } = useLanguage()
@@ -50,7 +51,15 @@ const Header = ({ userLoading, userFetched, user }) => {
           {!signInPattern.test(pathname) && (
             <Button
               color="primary"
-              onClick={() => navigate("/auth", { state: { from: pathname } })}
+              onClick={e => {
+                e.preventDefault()
+                trackCustomEvent({
+                  action: "Click",
+                  category: "navigate",
+                  label: "Go To Auth",
+                })
+                navigate("/auth", { state: { from: pathname } })
+              }}
             >
               {auth.login}
             </Button>
@@ -58,9 +67,15 @@ const Header = ({ userLoading, userFetched, user }) => {
           {!signUpPattern.test(pathname) && (
             <Button
               color="secondary"
-              onClick={() =>
+              onClick={e => {
+                e.preventDefault()
+                trackCustomEvent({
+                  action: "Click",
+                  category: "navigate",
+                  label: "Go To Auth",
+                })
                 navigate("/auth/signup", { state: { from: pathname } })
-              }
+              }}
             >
               {auth.register}
             </Button>
@@ -73,7 +88,18 @@ const Header = ({ userLoading, userFetched, user }) => {
     <>
       <Wrapper theme={theme}>
         <Flex>
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={e => {
+              e.preventDefault()
+              trackCustomEvent({
+                action: "Click",
+                category: "navigate",
+                label: "Go To Home page",
+              })
+              navigate("/auth", { state: { from: pathname } })
+            }}
+          >
             <BrandLogo src={Logo} alt="logo" />
           </Link>
           <SearchContainer>
@@ -81,9 +107,9 @@ const Header = ({ userLoading, userFetched, user }) => {
           </SearchContainer>
         </Flex>
         <Flex>
-          {!patternHideCart.test(pathname) &&  <Cart/>}
+          {!patternHideCart.test(pathname) && <Cart />}
           {user ? RenderUserSettings() : RenderUserAuth()}
-          <MobileResponsive>            
+          <MobileResponsive>
             <ButtonMenu onClick={onOpenMenu} />
           </MobileResponsive>
         </Flex>

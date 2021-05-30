@@ -23,6 +23,7 @@ import EmptyOrder from "../components/Order/EmptyOrder"
 import OrderPageSkeleton from "../components/UI/Lab/Skeleton/OrderPage"
 import { navigate } from "gatsby-link"
 import {useLocation} from "@reach/router"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const Orders = ({
   user,
   orders,
@@ -48,6 +49,11 @@ const Orders = ({
   
 
   const onFetchMoreOrders = () => {
+    trackCustomEvent({
+      action : "Click",
+      category : "orders",
+      label : "Fetch more orders"
+    })
     fetchOrders(user.uid, lastVisibleOrder)
   }
   return (

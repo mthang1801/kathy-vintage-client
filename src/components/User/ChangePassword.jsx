@@ -20,6 +20,7 @@ import CircularProgress from "@material-ui/core/CircularProgress"
 import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
 import UpdatePasswordSuccessDialog from "../UI/FeedBacks/Dialog/UpdatePasswordSuccessDialog"
 import {updatePassword} from "../../database/user"
+import { trackCustomEvent} from "gatsby-plugin-google-analytics"
 const ChangePassword = ({ lang, title, user, passwordTranslation }) => {
   const [loading, setLoading] = useState(false)
   const [openAlertDialog, setOpenAlertDialog] = useState(false);
@@ -71,7 +72,12 @@ const ChangePassword = ({ lang, title, user, passwordTranslation }) => {
     setLoading(true)
     setOpenAlertDialog(true)
   }
-  const onSubmitForm = async () => {
+  const onSubmitForm = async () => {    
+    trackCustomEvent({
+      action : "Click", 
+      category : "auth", 
+      label : "Change password"
+    })
     try {
       await updatePassword(values.oldPassword, values.newPassword)
       setLoading(false);

@@ -8,6 +8,7 @@ import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
 import {navigate} from "gatsby"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
   const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
@@ -20,6 +21,22 @@ const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
       : `${user.information?.address}  
   Phường ${user.information?.ward}, Quận ${user.information?.district}, Thành phố
   ${user.information?.city}`
+  const navigateToPayment = () => {
+    trackCustomEvent({
+      action : "Click", 
+      category : "checkout", 
+      label : "Shipping to payment"
+    });
+    navigate("/checkout/payment")
+  }
+  const onUpdateInfo= () => {
+    trackCustomEvent({
+      action : "Click", 
+      category : "checkout", 
+      label : "update user information"
+    });
+    setUpdateInfo(true)
+  }
   return (
     <Wrapper theme={theme}>
       <UserName>{user.information?.fullname}</UserName>
@@ -30,13 +47,13 @@ const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
         {userInformation.address} : {userAddress}
       </p>
       <UserInfomationControls>
-        <Button size="small" color="primary" variant="contained" onClick={() => navigate("/checkout/payment")}>
+        <Button size="small" color="primary" variant="contained" onClick={navigateToPayment}>
           {userInformation.button_proceed_order}
         </Button>
         {!openUpdateForm && <Button
           size="small"
           variant="contained"
-          onClick={() => setUpdateInfo(true)}
+          onClick={onUpdateInfo}
         >
           {userInformation.button_change_information}
         </Button>}

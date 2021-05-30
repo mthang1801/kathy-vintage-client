@@ -15,6 +15,7 @@ export default (state = INITIAL_STATE, action) => {
     case userActionTypes.SIGN_IN_START:
     case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_START:
     case userActionTypes.UPDATE_USER_INFORMATION_START:
+    case userActionTypes.RESTORE_ACCOUNT_START:
       return { ...state, loading: true, error: undefined }
     case userActionTypes.SIGN_IN_SUCCESS:
     case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_SUCCESS:
@@ -44,6 +45,7 @@ export default (state = INITIAL_STATE, action) => {
     case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_FAIL:
     case userActionTypes.UPDATE_USER_INFORMATION_FAIL:
     case userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_FAIL:
+    case userActionTypes.RESTORE_ACCOUNT_FAIL:
       return { ...state, user: null, loading: false, error: action.payload }
     default:
       return state

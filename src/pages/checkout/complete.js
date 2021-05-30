@@ -17,6 +17,7 @@ import calculateEstimateTimeDilivery from "../../utils/calculateEstimateTimeDili
 import Button from "@material-ui/core/Button"
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined"
 import { navigate } from "gatsby"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const CheckoutComplete = ({ order, clearCartItems, user }) => {
   const { state } = useLocation()
   const { theme } = useTheme()
@@ -58,7 +59,13 @@ const CheckoutComplete = ({ order, clearCartItems, user }) => {
               <Button
                 color="primary"
                 variant="contained"
-                onClick={() => navigate("/")}
+                onClick={() => {
+                  trackCustomEvent({
+                    action : "Click",
+                    category : "navigate",
+                    label : "Complete, go home"
+                  })
+                  navigate("/")}}
               >
                 <HomeOutlinedIcon/>
                 {complete.backHomeButton}

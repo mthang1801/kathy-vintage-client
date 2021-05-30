@@ -10,9 +10,10 @@ import {
   Option,
   SocialLoginButtons,
   ErrorMessage,
+  ButtonSubmit
 } from "./styles/AuthForm.styles"
 import Input from "./Input"
-import Button from "@material-ui/core/Button"
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 import {
@@ -25,6 +26,7 @@ import useLanguage from "../Global/useLanguage"
 import GoogleLoginButton from "./GoogleLoginButton"
 import FacebookLoginButton from "./FacebookLoginButton"
 import {useTheme} from "../../theme"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const SignInFormWrapper = ({ error, signIn, loading, signInWithGoogle, signInWithFacebook, clearUserError }) => {
   const { i18n, lang } = useLanguage()
   const { loginForm } = i18n.store.data[lang].translation.auth  
@@ -87,8 +89,33 @@ class SignInForm extends React.Component {
     }
   }
 
+  handleChangeGoogleRecaptcha = value => {
+    this.setState({ captcha_value: value, disabled: false })
+    if (value === null) this.setState({ disabled: true })
+  }
+  onSignInWithGoogle = () => {
+    trackCustomEvent({
+      action : "Click",
+      category : "auth",
+      label : "Sign in with Google"
+    })
+    this.props.signInWithGoogle();
+  }
+  onSignInWithFacebook = () => {
+    trackCustomEvent({
+      action : "Click",
+      category : "auth",
+      label : "Sign in with Facebook"
+    })
+    this.props.signInWithFacebook();
+  }
   onSubmitSigninForm = async e => {
     e.preventDefault()
+    trackCustomEvent({
+      action : "Click", 
+      category : "auth",
+      label : "Submit sign in form"
+    })
     const { email, password } = this.state
     if (!email || !password) {
       this.setState({ error: this.props.locales.requireEmailAndPassword })
@@ -99,11 +126,6 @@ class SignInForm extends React.Component {
     this.props.signIn(email, password)
     
   }
-  handleChangeGoogleRecaptcha = value => {
-    this.setState({ captcha_value: value, disabled: false })
-    if (value === null) this.setState({ disabled: true })
-  }
-
   render() {
     const { email, password, disabled, loaded } = this.state
     const { error, locales, loading, theme } = this.props
@@ -120,8 +142,8 @@ class SignInForm extends React.Component {
         {loading && <div>Loading...</div>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <SocialLoginButtons>
-          <GoogleLoginButton onClick={this.props.signInWithGoogle}/>
-          <FacebookLoginButton onClick={this.props.signInWithFacebook}/>
+          <GoogleLoginButton onClick={this.onSignInWithGoogle}/>
+          <FacebookLoginButton onClick={this.onSignInWithFacebook}/>
         </SocialLoginButtons>
         <FormGroups>
           <Input
@@ -131,6 +153,7 @@ class SignInForm extends React.Component {
             label="Email"
             onChange={this.handleChange}
             required
+            disabled={loading}
           />
           <Input
             type="password"
@@ -139,20 +162,20 @@ class SignInForm extends React.Component {
             label="Password"
             onChange={this.handleChange}
             required
+            disabled={loading}
           />
           {loaded && (
             <GoogleRecaptcha onChange={this.handleChangeGoogleRecaptcha} />
           )}
-          <Button
+          <ButtonSubmit
             onClick={this.onSubmitSigninForm}
-            type="button"
-            variant="contained"
-            color="primary"
-            disabled={disabled}
+            type="button"            
+            disabled={disabled || loading}
             style={{ marginTop: "1rem" }}
           >
-            {locales.button}
-          </Button>
+            <span>{locales.button}</span>
+            {loading && <CircularProgress/>}
+          </ButtonSubmit>
         </FormGroups>
         <FormActions>
           <Option>

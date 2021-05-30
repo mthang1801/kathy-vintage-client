@@ -1,46 +1,50 @@
-import React, {useEffect} from 'react';
-import {useStyles, Tooltip} from "./styles/ContactSpeedDial.styles"
-import Button from '@material-ui/core/Button';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import ShareIcon from '@material-ui/icons/Share';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import React, { useEffect } from "react"
+import { useStyles, Tooltip } from "./styles/ContactSpeedDial.styles"
+import Button from "@material-ui/core/Button"
+import SpeedDial from "@material-ui/lab/SpeedDial"
+import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon"
+import SpeedDialAction from "@material-ui/lab/SpeedDialAction"
+import AccountBoxIcon from "@material-ui/icons/AccountBox"
 import useLanguage from "../../../Global/useLanguage"
-import {Wrapper} from "./styles/ContactSpeedDial.styles"
-import {navigate} from "gatsby";
-import {useTheme} from "../../../../theme"
+import { Wrapper } from "./styles/ContactSpeedDial.styles"
+import { navigate } from "gatsby"
+import { useTheme } from "../../../../theme"
+import { trackCustomEvent, OutboundLink } from "gatsby-plugin-google-analytics"
+import {MESSENGER_PAGE_ID} from "../../../../constants/client"
 
 const ContactSpeedDial = () => {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false);
-  const {i18n, lang} = useLanguage();
-  const {contacts} = i18n.store.data[lang].translation;
-  const {theme} = useTheme();
-  const handleVisibility = () => {
-    setHidden((prevHidden) => !prevHidden);
-  };
-
+  const classes = useStyles()
+  const [open, setOpen] = React.useState(false)
+  const [hidden, setHidden] = React.useState(false)
+  const { i18n, lang } = useLanguage()
+  const { contacts } = i18n.store.data[lang].translation
+  const { theme } = useTheme()
+  
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const onClickContactItem = key => e => {
-
-    switch(key){
-      case "facebook" : navigate("https://facebook.com");break;
-      case "zalo" : navigate("https://zalo.me/0939323700");break;
-      case "email" : document.getElementById("send-mail").click();
-      default : return ;
+    trackCustomEvent({
+      action: "Click",
+      category: "social contact",
+      label: key,
+    })
+    switch (key) {
+      case "facebook":
+        navigate("https://facebook.com")
+        break
+      case "zalo":
+        navigate("https://zalo.me/0973594645")
+        break
+      case "email":
+        document.getElementById("send-mail").click()
+      default:
+        return
     }
   }
   useEffect(() => {
@@ -64,38 +68,47 @@ const ContactSpeedDial = () => {
 
   return (
     <>
-     <div id="fb-root"></div>
+      <div id="fb-root"></div>
       <div
         className="fb-customerchat"
         attribution="setup_tool"
-        page_id="108320194791900"
+        page_id={MESSENGER_PAGE_ID}
       ></div>
-    <Wrapper theme={theme}>     
-      <SpeedDial
-        ariaLabel="Contact SpeedDial"
-        className={classes.speedDial}
-        hidden={hidden}
-        icon={<SpeedDialIcon openIcon={<AccountBoxIcon />} icon={<AccountBoxIcon/>}/>}
-        onClose={handleClose}
-        onOpen={handleOpen}        
-        open={open}
-        direction="up"        
-      >
-        {contacts.map((contact) => (          
-          <SpeedDialAction
-            key={contact.key}
-            icon={contact.icon}
-            tooltipTitle={contact.name}            
-            type={contact.key}
-            onClick={onClickContactItem(contact.key)}
-            tooltipOpen={contact.key === "phone" ? true : false}
-          />
-        ))}
-      </SpeedDial>
-      <a href="mailto:mthang1801@gmail.com" id="send-mail" style={{display : "none"}}></a>
-    </Wrapper>
+      <Wrapper theme={theme}>
+        <SpeedDial
+          ariaLabel="Contact SpeedDial"
+          className={classes.speedDial}
+          hidden={hidden}
+          icon={
+            <SpeedDialIcon
+              openIcon={<AccountBoxIcon />}
+              icon={<AccountBoxIcon />}
+            />
+          }
+          onClose={handleClose}
+          onOpen={handleOpen}
+          open={open}
+          direction="up"
+        >
+          {contacts.map(contact => (
+            <SpeedDialAction
+              key={contact.key}
+              icon={contact.icon}
+              tooltipTitle={contact.name}
+              type={contact.key}
+              onClick={onClickContactItem(contact.key)}
+              tooltipOpen={contact.key === "phone" ? true : false}
+            />
+          ))}
+        </SpeedDial>
+        <a
+          href="mailto:tnshop24042021@gmail.com"
+          id="send-mail"
+          style={{ display: "none" }}
+        ></a>
+      </Wrapper>
     </>
-  );
+  )
 }
 
 export default ContactSpeedDial

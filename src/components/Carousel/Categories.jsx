@@ -15,6 +15,7 @@ import {
 import { useStaticQuery, graphql, navigate } from "gatsby"
 import Image from "gatsby-image"
 import { useTheme } from "../../theme"
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 let dragging = false
 const CategoriesSlider = () => {
   const { i18n, lang } = useLanguage()
@@ -46,6 +47,11 @@ const CategoriesSlider = () => {
     afterChange: () => (dragging = false),
   }
   const onClickCategoryItem = category => {
+    trackCustomEvent({
+      action : "Click",
+      category : "category", 
+      label : "Click Category item"
+    })
     if (!dragging) {
       navigate(`/${category.portfolio.slug}/${category.slug}`)
     }

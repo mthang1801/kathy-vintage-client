@@ -42,7 +42,7 @@ import {
 } from "../../utils/calculateOrderPrice"
 import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
 import ErrorDialog from "../../components/UI/FeedBacks/Dialog/ErrorDialog"
-
+import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const tax = POLICY.tax
 
 const Payment = ({
@@ -86,6 +86,11 @@ const Payment = ({
   }, [user, userFetched])
 
   const onClickProceedOrder = async (tokenId = null) => {
+    trackCustomEvent({
+      action : "Click",
+      category : "checkout",
+      label : "proceed order payment"
+    })
     setLoading(true)
     try {
       await addNewOrder(
