@@ -51,8 +51,7 @@ const Header = ({ userLoading, userFetched, user }) => {
           {!signInPattern.test(pathname) && (
             <Button
               color="primary"
-              onClick={e => {
-                e.preventDefault()
+              onClick={() => {
                 trackCustomEvent({
                   action: "Click",
                   category: "navigate",
@@ -67,8 +66,7 @@ const Header = ({ userLoading, userFetched, user }) => {
           {!signUpPattern.test(pathname) && (
             <Button
               color="secondary"
-              onClick={e => {
-                e.preventDefault()
+              onClick={() => {
                 trackCustomEvent({
                   action: "Click",
                   category: "navigate",
@@ -90,8 +88,7 @@ const Header = ({ userLoading, userFetched, user }) => {
         <Flex>
           <Link
             to="/"
-            onClick={e => {
-              e.preventDefault()
+            onClick={() => {
               trackCustomEvent({
                 action: "Click",
                 category: "navigate",

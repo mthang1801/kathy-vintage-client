@@ -3,6 +3,7 @@ import { Wrapper, Title } from "./styles/Sidebar.styles"
 import { Link } from "gatsby"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const SidebarNavigations = ({ navigations, slugParent, lang, title }) => {
+  console.log(slugParent)
   if(!navigations.length) return null ; 
   return (
     <Wrapper>
@@ -11,8 +12,7 @@ const SidebarNavigations = ({ navigations, slugParent, lang, title }) => {
         <Link
           key={`${navigationItem.contentful_id}`}
           to={`${slugParent}/${navigationItem.slug}`}
-          onClick={e => {
-            e.preventDefault();
+          onClick={() => {            
             trackCustomEvent({
               action : "Click", 
               category : "navigate",

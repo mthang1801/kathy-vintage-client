@@ -25,8 +25,7 @@ const Cart = ({
   alertCart,
   removeAlertCart,
 }) => {
-  const onClickCart = (e) => {
-    e.preventDefault();
+  const onClickCart = () => {    
     trackCustomEvent({
       action : "Click",
       category : "cart",

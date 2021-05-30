@@ -67,8 +67,7 @@ const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
     addProductItemToCart(product, productQuantity)
   }
 
-  const onClickPurchase = (e) => {
-    e.preventDefault();
+  const onClickPurchase = () => {
     trackCustomEvent({
       action : "Click",
       category : "navigate",

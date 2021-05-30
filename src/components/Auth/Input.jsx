@@ -29,8 +29,7 @@ const CustomInput = ({
       : ""
   const border = touched ? (transformedErrors ? "error" : "success") : null
   const inputRef = useRef(null)
-  const handleClick = e => {
-    e.preventDefault();
+  const handleClick = () => {    
     trackCustomEvent({
       action : "Click", 
       category : "Focus check box",

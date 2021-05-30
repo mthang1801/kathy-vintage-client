@@ -237,8 +237,7 @@ class SignUpForm extends React.Component {
     this.setState({ controls: updatedControls, formIsValid })
   }
 
-  handleSubmitSignUpForm = e => {
-    e.preventDefault()
+  handleSubmitSignUpForm = () => {
     trackCustomEvent({
       action : "Click", 
       category : "auth",

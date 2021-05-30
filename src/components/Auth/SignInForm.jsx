@@ -109,8 +109,7 @@ class SignInForm extends React.Component {
     })
     this.props.signInWithFacebook();
   }
-  onSubmitSigninForm = async e => {
-    e.preventDefault()
+  onSubmitSigninForm = async () => {    
     trackCustomEvent({
       action : "Click", 
       category : "auth",

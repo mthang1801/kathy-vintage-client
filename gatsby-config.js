@@ -12,7 +12,7 @@ module.exports = {
     title: "Kathy Vintage",
     description: "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
     author: "@MVT",
-    image: "/images/logo.png",
+    image: "/images/logo.jpg",
     twitterUsername: "@kathy_vintage",
     siteUrl: "https://kathy-vintage.netlify.app",
   },

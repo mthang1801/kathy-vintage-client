@@ -14,8 +14,7 @@ const AddressContact = () => {
       <Title>{title}</Title>
       <Policies>
         {policies.map(policy => (
-          <Link key={policy.name} to={policy.path} onClick={e => {
-            e.preventDefault();
+          <Link key={policy.name} to={policy.path} onClick={() => {
             trackCustomEvent({
               action : "Click",
               category : "navigate"

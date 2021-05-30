@@ -150,8 +150,7 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                     <ListItemText>{portfolio[`name_${lang}`]}</ListItemText>
                   </ListItemContainer>
                   <ListItemIcon
-                    onClick={e => {
-                      e.preventDefault();
+                    onClick={ (e) => {
                       trackCustomEvent({
                         action: "Click",
                         category: "navigate",
