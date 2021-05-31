@@ -15,7 +15,7 @@ function Home() {
   const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
   return (
     <>
-    <SEO title={seo.home} />
+    <SEO title={seo.home}/>
     <Layout>
       <Banners />
       <Categories />

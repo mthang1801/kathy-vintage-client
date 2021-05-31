@@ -1,9 +1,9 @@
 import React from 'react'
 import {Wrapper} from "./styles/GeneralInformation.styles"
 import Skeleton from "@material-ui/lab/Skeleton"
-const UserDashBoard = () => {
+const UserDashBoard = ({fullScreen}) => {
   return (
-    <Wrapper>
+    <Wrapper fullScreen>
       {Array.from({length : 8 }).map((_,idx) => (
          <Skeleton variant="text" animation="wave"/>
       ))}

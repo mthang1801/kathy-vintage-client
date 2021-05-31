@@ -24,6 +24,7 @@ import OrderPageSkeleton from "../components/UI/Lab/Skeleton/OrderPage"
 import { navigate } from "gatsby-link"
 import {useLocation} from "@reach/router"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import SEO from "../components/SEO/SEO"
 const Orders = ({
   user,
   orders,
@@ -35,7 +36,7 @@ const Orders = ({
   userLoading, userIsFetched
 }) => {
   const { i18n, lang } = useLanguage()
-  const { orders: ordersTranslation } = i18n.store.data[lang].translation;
+  const { orders: ordersTranslation, seo } = i18n.store.data[lang].translation;
   const {pathname} = useLocation();
   useEffect(() => {
     if (user) {
@@ -57,11 +58,13 @@ const Orders = ({
     fetchOrders(user.uid, lastVisibleOrder)
   }
   return (
+    <>
+    <SEO title={seo.orders} description="Danh sách đơn hàng đã thực hiện"/>
     <Layout>
       <ContentContainer>
-        <Title>{ordersTranslation.title}</Title>
+        <Title>{ordersTranslation.title}</Title>        
         {loading && !orders.length? (
-          <OrderPageSkeleton />
+          <OrderPageSkeleton fullScreen/>
         ) : (
           <>            
             {orders.length ? (
@@ -89,6 +92,7 @@ const Orders = ({
         )}
       </ContentContainer>
     </Layout>
+    </>
   )
 }
 

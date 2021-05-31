@@ -629,7 +629,8 @@ export const en = {
       { key: "email", icon: <AiOutlineMail />, name: 'Email' },       
     ],
     seo : {
-      home: "Home Page"
+      home: "Home Page",
+      orders : "Orders history"
     }
   },
 }

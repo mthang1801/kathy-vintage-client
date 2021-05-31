@@ -5,6 +5,7 @@ import {selectCurrentUser, selectUserError} from "../redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
 import {checkUserSession} from "../redux/user/user.actions";
 import {connect} from "react-redux"
+import FacebookMessenger from "../components/Messenger/FacebookMessenger"
 const App = ({ children, user, checkUserSession }) => {
   const {theme} = useTheme()
   useEffect(() => {
@@ -15,6 +16,7 @@ const App = ({ children, user, checkUserSession }) => {
     <>
       <GlobalStyles theme={theme} />
       {children}{" "}
+      <FacebookMessenger/>
     </>
   )
 }

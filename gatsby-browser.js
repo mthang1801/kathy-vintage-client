@@ -12,7 +12,7 @@ import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 import "typeface-pt-mono"
 import "whatwg-fetch"
-export const wrapRootElement = ({ element }) => ( 
+export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>

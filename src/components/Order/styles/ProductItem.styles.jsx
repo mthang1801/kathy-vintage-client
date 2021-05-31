@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.section`
-  width : 100%; 
+export const Wrapper = styled.section`  
   background : ${({theme}) => theme.card};
   border-radius : 0.5rem;
   margin-bottom : 2rem;

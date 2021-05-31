@@ -639,7 +639,8 @@ export const vi = {
       { key: "email", icon: <AiOutlineMail />, name: "Email" },
     ],
     seo : {
-      home: "Trang chủ"
+      home: "Trang chủ",
+      orders : "Lịch sử đơn hàng"
     }
   },
 }

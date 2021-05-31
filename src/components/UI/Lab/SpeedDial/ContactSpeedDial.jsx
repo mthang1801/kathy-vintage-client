@@ -10,7 +10,6 @@ import { Wrapper } from "./styles/ContactSpeedDial.styles"
 import { navigate } from "gatsby"
 import { useTheme } from "../../../../theme"
 import { trackCustomEvent, OutboundLink } from "gatsby-plugin-google-analytics"
-import {MESSENGER_PAGE_ID} from "../../../../constants/client"
 
 const ContactSpeedDial = () => {
   const classes = useStyles()
@@ -47,33 +46,10 @@ const ContactSpeedDial = () => {
         return
     }
   }
-  useEffect(() => {
-    const script = document.createElement("script")
-    script.innerHTML = `window.fbAsyncInit = function() {
-      FB.init({
-        xfbml            : true,
-        version          : 'v10.0'
-      });
-    };
-
-    (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'))`
-    document.body.appendChild(script)
-  }, [])
+ 
 
   return (
-    <>
-      <div id="fb-root"></div>
-      <div
-        className="fb-customerchat"
-        attribution="setup_tool"
-        page_id={MESSENGER_PAGE_ID}
-      ></div>
+    <>     
       <Wrapper theme={theme}>
         <SpeedDial
           ariaLabel="Contact SpeedDial"
