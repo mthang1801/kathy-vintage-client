@@ -15,10 +15,11 @@ module.exports = {
     keywords : ["Quần áo si", "quần áo nam", "quần áo nữ", "si tuyển", "phụ kiện thời trang"],
     image: "/images/logo.jpg",
     twitterUsername: "@kathy_vintage",
-    siteUrl: "https://kathy-vintage.netlify.app/",
+    siteUrl: "https://kathy-vintage.netlify.app",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-social-cards`,
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,

@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import {MESSENGER_PAGE_ID} from "../../constants/client"
 const FacebookMessenger = () => {
-  useEffect(() => {
+  useEffect(() => {   
     const script = document.createElement("script")
     script.innerHTML = `window.fbAsyncInit = function() {
       FB.init({
@@ -14,9 +14,9 @@ const FacebookMessenger = () => {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
     fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'))`
+  }(document, 'script', 'facebook-jssdk'));`
     document.body.appendChild(script)
   }, [])
   return (
