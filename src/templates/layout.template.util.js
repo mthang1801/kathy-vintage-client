@@ -1,5 +1,4 @@
 import _ from "lodash"
-import { ProductQuantityControl } from "../components/Cart/styles/CartItem.styles"
 
 export const getProductsCounter = (products, tab, numberPerPage) => {
   let totalCount = 0

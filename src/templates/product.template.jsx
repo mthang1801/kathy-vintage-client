@@ -3,20 +3,17 @@ import Layout from "../containers/Layout"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 import { ProductOverviewContainer, Box } from "./styles/product.template.styles"
 import { graphql } from "gatsby"
-import useLanguage from "../components/Global/useLanguage"
 import { useTheme } from "../theme"
 import ProductImages from "../components/Product/ProductImages"
 import ProductContent from "../components/Product/ProductContent"
 import ProductInformation from "../components/Product/ProductInformation"
 import ProductDescription from "../components/Product/ProductDescription"
 import RelevantProducts from "../components/Product/RelevantProducts"
-import SEO from "../components/SEO/SEO"
+import Seo from "../components/Seo/Seo"
 import {Disqus} from "gatsby-plugin-disqus"
 const ProductProduct = props => {
   const { product, productsByCategory, productsByProductGroup, site } = props.data
-  const { i18n, lang } = useLanguage()
-  const { theme } = useTheme()
-  const { productPage } = i18n.store.data[lang].translation.product
+  const { theme } = useTheme()  
   const { portfolio, category, productGroup, images } = product
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,    
@@ -30,7 +27,7 @@ const ProductProduct = props => {
   
   return (
     <>
-    <SEO title={product.name_vi} description={`${product.description_vi.description_vi.slice(0,150)} ...`}/>
+    <Seo title={product.name_vi} description={`${product.description_vi.description_vi.slice(0,150)} ...`}/>
     <Layout>
       <BreadcrumbNavigation
         contenfulData={[portfolio, category, productGroup, product]}

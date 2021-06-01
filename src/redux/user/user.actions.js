@@ -176,9 +176,6 @@ export const updateUserInformation = (information) => dispatch => {
   
 }
 
-const updateUserPaymentAndShippingTypeStart = () => ({
-  type : userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_START
-})
 const updateUserPaymentAndShippingTypeSuccess = (paymentMethod) => ({
   type : userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_SUCCESS , 
   payload : {paymentMethod}

@@ -24,7 +24,7 @@ import OrderPageSkeleton from "../components/UI/Lab/Skeleton/OrderPage"
 import { navigate } from "gatsby-link"
 import {useLocation} from "@reach/router"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
-import SEO from "../components/SEO/SEO"
+import Seo from "../components/Seo/Seo"
 const Orders = ({
   user,
   orders,
@@ -59,7 +59,7 @@ const Orders = ({
   }
   return (
     <>
-    <SEO title={seo.orders} description="Danh sách đơn hàng đã thực hiện"/>
+    <Seo title={seo.orders} description="Danh sách đơn hàng đã thực hiện"/>
     <Layout>
       <ContentContainer>
         <Title>{ordersTranslation.title}</Title>        

@@ -6,6 +6,9 @@ import {createStructuredSelector} from "reselect"
 import {checkUserSession} from "../redux/user/user.actions";
 import {connect} from "react-redux"
 import FacebookMessenger from "../components/Messenger/FacebookMessenger"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import "../fonts/index.css"
 const App = ({ children, user, checkUserSession }) => {
   const {theme} = useTheme()
   useEffect(() => {

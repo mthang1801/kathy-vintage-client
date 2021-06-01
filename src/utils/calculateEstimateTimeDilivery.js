@@ -1,4 +1,4 @@
-export default (days, hours) =>{
+const calculateEstimateTimeDilivery = (days, hours) => {
   const estimator = days
   ? new Date(Date.now() + 7 * 86400 * 1000)
   : hours
@@ -14,3 +14,4 @@ export default (days, hours) =>{
   return null; 
 }
   
+export default calculateEstimateTimeDilivery;

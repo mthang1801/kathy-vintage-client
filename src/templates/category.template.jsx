@@ -3,12 +3,12 @@ import Layout from "../containers/Layout"
 import { graphql } from "gatsby"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 import LayoutTemplate from "./layout.template"
-import SEO from "../components/SEO/SEO"
+import Seo from "../components/Seo/Seo"
 const CategoryTemplate = props => {
   const { portfolio, category } = props.data
   return (
     <>
-    <SEO title={props.data.category.name_vi} description={`Danh mục sản phẩm từ ${props.data.category.name_vi}`}/>
+    <Seo title={props.data.category.name_vi} description={`Danh mục sản phẩm từ ${props.data.category.name_vi}`}/>
     <Layout>
       <BreadcrumbNavigation contenfulData={[portfolio, category]} />
       <LayoutTemplate data={props.data} pageLocation="category" />

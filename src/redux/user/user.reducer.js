@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   error: undefined,
 }
 
-export default (state = INITIAL_STATE, action) => {
+const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case userActionTypes.SIGN_UP_START:
     case userActionTypes.GET_CURRENT_USER_START:
@@ -51,3 +51,5 @@ export default (state = INITIAL_STATE, action) => {
       return state
   }
 }
+
+export default userReducer ;

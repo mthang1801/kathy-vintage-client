@@ -14,18 +14,30 @@ module.exports = {
     author: "@MVT",
     keywords : ["Quần áo si", "quần áo nam", "quần áo nữ", "si tuyển", "phụ kiện thời trang"],
     image: "/images/logo.jpg",
-    twitterUsername: "@kathy_vintage",
+    twitterUsername: "@mthang1801",
     siteUrl: "https://kathy-vintage.netlify.app",
   },
-  plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-social-cards`,
+  plugins: [  
+    `gatsby-plugin-react-helmet`,  
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-offline`,    
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Kathy Vintage clothes shop`,
+        short_name: `Kathy Vintage`,
+        description:
+          "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
+        start_url: `/`,
+        background_color: `#f0f0f0`,
+        theme_color: `#ffc400`,
+        display: `minimal-ui`,
+        icon: `src/images/svgs/logo.svg`,      
+      },
+    },      
     `gatsby-remark-images-contentful`,
     {
       resolve: `gatsby-source-contentful`,
@@ -39,6 +51,13 @@ module.exports = {
       options: {
         name: "images-carousel",
         path: path.join(__dirname, `src`, `images`, `carousel`),
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "images",
+        path: path.join(__dirname, `src`, `images`),
       },
     },
     {
@@ -87,6 +106,7 @@ module.exports = {
         }
       }
     },
+    `gatsby-plugin-sitemap`,
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
@@ -104,32 +124,7 @@ module.exports = {
         head: false,
       },
     },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Kathy Vintage clothes shop`,
-        short_name: `Kathy Vintage`,
-        description:
-          "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
-        start_url: `/`,
-        background_color: `#f0f0f0`,
-        theme_color: `#ffc400`,
-        display: `standalone`,
-        icon: `src/images/svgs/logo.svg`,
-        icons: [
-          {
-            src: `/favicons/android-chrome-192x192.png`,
-            sizes: `192x192`,
-            type: `image/png`,
-          },
-          {
-            src: `/favicons/android-chrome-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`,
-          },
-        ],
-      },
-    },
+    
   ],
 
 }

@@ -5,7 +5,7 @@ import Categories from "../components/Carousel/Categories"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
 import useLanguage from "../components/Global/useLanguage"
-import SEO from "../components/SEO/SEO"
+import Seo from "../components/Seo/Seo"
 function Home() {
   let { newProducts, recommendedProducts } = useStaticQuery(query)
   const { i18n, lang } = useLanguage()
@@ -14,9 +14,9 @@ function Home() {
   const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
   const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
   return (
-    <>
-    <SEO title={seo.home}/>
+    <>    
     <Layout>
+      <Seo title={seo.home} description="Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ"/>
       <Banners />
       <Categories />
       {newProductsEdges?.length ? (
