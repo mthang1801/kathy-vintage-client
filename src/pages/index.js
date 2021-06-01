@@ -1,11 +1,12 @@
 import React from "react"
+import Seo from "../components/Seo/Seo"
 import Layout from "../containers/Layout"
 import Banners from "../components/Carousel/Banners"
 import Categories from "../components/Carousel/Categories"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
 import useLanguage from "../components/Global/useLanguage"
-import Seo from "../components/Seo/Seo"
+
 function Home() {
   let { newProducts, recommendedProducts } = useStaticQuery(query)
   const { i18n, lang } = useLanguage()
