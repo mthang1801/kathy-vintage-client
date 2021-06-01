@@ -22,20 +22,20 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Kathy Vintage clothes shop`,
-        short_name: `Kathy Vintage`,
-        description:
-          "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
-        start_url: `/`,
-        background_color: `#f0f0f0`,
-        theme_color: `#ffc400`,
-        display: `minimal-ui`,
-        icon: `src/images/svgs/kathy-vintage.svg`,      
-      },
-    },      
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `Kathy Vintage clothes shop`,
+    //     short_name: `Kathy Vintage`,
+    //     description:
+    //       "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
+    //     start_url: `/`,
+    //     background_color: `#f0f0f0`,
+    //     theme_color: `#ffc400`,
+    //     display: `minimal-ui`,
+    //     icon: `src/images/svgs/kathy-vintage.svg`,      
+    //   },
+    // },      
     `gatsby-remark-images-contentful`,
     {
       resolve: `gatsby-source-contentful`,

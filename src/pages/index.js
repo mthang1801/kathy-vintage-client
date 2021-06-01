@@ -15,7 +15,7 @@ function Home() {
   const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
   return (
     <>    
-    <Seo title={seo.home} description="Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ"/>
+     <Seo title="My Amazing Gatsby App" />
     <Layout>
       <Banners />
       <Categories />
