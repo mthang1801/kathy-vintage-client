@@ -36,6 +36,7 @@ export const Wrapper = styled.div`
         color : var(--white);
         &:hover{
           background-color: transparent;
+          opacity : 1;
         }
       }
       .MuiSpeedDialAction-staticTooltipLabel{

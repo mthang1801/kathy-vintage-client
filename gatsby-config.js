@@ -35,7 +35,7 @@ module.exports = {
         background_color: `#f0f0f0`,
         theme_color: `#ffc400`,
         display: `minimal-ui`,
-        icon: `src/images/svgs/logo.svg`,      
+        icon: `src/images/svgs/kathy-vintage.svg`,      
       },
     },      
     `gatsby-remark-images-contentful`,

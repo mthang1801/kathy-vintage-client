@@ -36,10 +36,13 @@ const ContactSpeedDial = () => {
     switch (key) {
       case "facebook":
         navigate("https://facebook.com")
-        break
+        break;
       case "zalo":
         navigate("https://zalo.me/0973594645")
-        break
+        break;
+      case "phone" : 
+        handleOpen(true);
+        break;
       case "email":
         document.getElementById("send-mail").click()
       default:

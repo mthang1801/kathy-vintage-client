@@ -51,10 +51,10 @@ const Seo = ({ title, description, image, pathname, lang }) => {
     // for(let item of newHead){
     //   document.getElementsByTagName("head")[0].appendChild(item)
     // }
-    const firstStyleTag = document.getElementsByTagName("head")[0].getElementsByTagName("style")[0];
-    for(let item of metaTags){
-      document.getElementsByTagName("head")[0].insertBefore(item, firstStyleTag);
-    }
+    // const firstStyleTag = document.getElementsByTagName("head")[0].getElementsByTagName("style")[0];
+    // for(let item of metaTags){
+    //   document.getElementsByTagName("head")[0].insertBefore(item, firstStyleTag);
+    // }
   }, [title])
   return (
     <Helmet
