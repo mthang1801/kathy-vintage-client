@@ -9,8 +9,8 @@ const path = require("path")
 
 module.exports = {
   siteMetadata: {
-    title: "Kathy Vintage",
-    description: "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
+    title: `Kathy Vintage`,
+    description: `Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ`,
     author: "@MVT",
     keywords : ["Quần áo si", "quần áo nam", "quần áo nữ", "si tuyển", "phụ kiện thời trang"],
     image: "/images/logo.jpg",
@@ -18,9 +18,7 @@ module.exports = {
     siteUrl: "https://kathy-vintage.netlify.app",
   },
   plugins: [  
-    `gatsby-plugin-react-helmet`,  
-    `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,     
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -124,7 +122,9 @@ module.exports = {
         head: false,
       },
     },
-    
+    `gatsby-plugin-material-ui`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-gatsby-cloud`
   ],
 
 }

@@ -33,29 +33,7 @@ const Seo = ({ title, description, image, pathname, lang }) => {
     image: `${siteUrl}${image || siteImage}`,
     url: pathname ? `${siteUrl}${pathname}` : `${siteUrl}`,
   }
-  useEffect(() => {
 
-    let { childNodes } = document.getElementsByTagName("head")[0]
-
-    let metaTags = []
-    let nonMetaTags = []
-    childNodes.forEach((node,idx) => {
-      if (node.nodeName.toLowerCase() === "meta") {
-        metaTags.push(node)
-      }else{
-        nonMetaTags.push(node)
-      }
-    })
-    const newHead = [...metaTags, ...nonMetaTags];
-    // document.getElementsByTagName("head")[0].innerHTML = "";
-    // for(let item of newHead){
-    //   document.getElementsByTagName("head")[0].appendChild(item)
-    // }
-    const firstStyleTag = document.getElementsByTagName("head")[0].getElementsByTagName("style")[0];
-    for(let item of metaTags){
-      document.getElementsByTagName("head")[0].insertBefore(item, firstStyleTag);
-    }
-  }, [title])
   return (
     <Helmet
       title={seo.title}
