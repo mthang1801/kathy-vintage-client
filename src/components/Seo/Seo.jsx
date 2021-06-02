@@ -38,7 +38,7 @@ const Seo = ({ title, description, image, pathname, lang }) => {
       titleTemplate={`${seo.title}`}
       htmlAttributes={{ lang }}
       defer={false}
-    >
+    >       
       <link rel="canonical" href={seo.url} />
       <meta name="description" content={seo.description} />
       <meta image="image" content={seo.image} />

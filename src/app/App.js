@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { GlobalStyles } from "../styles/GlobalStyles.jsx"
 import {useTheme} from "../theme"
-import {selectCurrentUser, selectUserError} from "../redux/user/user.selectors"
+import { selectUserError} from "../redux/user/user.selectors"
 import {createStructuredSelector} from "reselect"
 import {checkUserSession} from "../redux/user/user.actions";
 import {connect} from "react-redux"

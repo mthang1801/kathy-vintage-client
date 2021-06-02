@@ -1,12 +1,5 @@
 require("dotenv").config({ path: ".env" })
 const path = require("path")
-
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
-
 module.exports = {
   siteMetadata: {
     title: `Kathy Vintage`,
@@ -18,7 +11,7 @@ module.exports = {
     siteUrl: "https://kathy-vintage.netlify.app",
   },
   plugins: [  
-    `gatsby-plugin-react-helmet`,     
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -84,7 +77,7 @@ module.exports = {
         // Setting a color is optional.
         color: `tomato`,
         // Disable the loading spinner.
-        showSpinner: true,
+        showSpinner: false,
       },
     },
     {
@@ -122,8 +115,8 @@ module.exports = {
         head: false,
       },
     },
-    `gatsby-plugin-material-ui`,
-    `gatsby-plugin-styled-components`,
+    // `gatsby-plugin-material-ui`,
+    // `gatsby-plugin-styled-components`,
     `gatsby-plugin-gatsby-cloud`
   ],
 
