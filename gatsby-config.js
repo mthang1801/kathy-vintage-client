@@ -8,7 +8,7 @@ module.exports = {
     keywords : ["Quần áo si", "quần áo nam", "quần áo nữ", "si tuyển", "phụ kiện thời trang"],
     image: "/images/logo.jpg",
     twitterUsername: "@mthang1801",
-    siteUrl: "https://kathy-vintage.netlify.app",
+    siteUrl: "https://kathy-vintage-demo.netlify.app",
   },
   plugins: [      
     `gatsby-plugin-react-helmet`,
@@ -101,8 +101,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://kathy-vintage.netlify.app",
-        sitemap: "https://kathy-vintage.netlify.app/sitemap.xml",
+        host: "https://kathy-vintage-demo.netlify.app",
+        sitemap: "https://kathy-vintage-demo.netlify.app/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
