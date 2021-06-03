@@ -16,8 +16,8 @@ export const Wrapper = styled.div`
   padding : 0.5rem 1rem;
   border-radius : 0.5rem;
   border : 2px solid var(--blue-1);
-  box-shadow : ${({theme}) => theme.boxShadow};
-  background-color : ${({theme}) => theme.card};  
+  box-shadow : ${({theme}) => theme ? theme?.boxShadow : "var(--boxShadow)"};
+  background-color : ${({theme}) => theme ? theme?.card : "var(--card)"};  
   animation: ${CartAlertAnimation} 0.5s;
   font-size : 0.9rem;  
 `

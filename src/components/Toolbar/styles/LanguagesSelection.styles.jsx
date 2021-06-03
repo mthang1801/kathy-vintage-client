@@ -25,8 +25,8 @@ export const LanguageDropdownContainer = styled.div`
   visibility : ${({show}) => show ? "visible" : "hidden"};
   transition : all 0.25s;
   box-shadow: var(--lightShadow);
-  border : 1px solid ${({theme}) => theme.border}; 
-  background : ${({theme}) => theme.background}; 
+  border : 1px solid ${({theme}) => theme ? theme.border : "var(--border)"}; 
+  background : ${({theme}) => theme ? theme.background : "var(--background)"}; 
   border-radius : 0.5rem;
   overflow : hidden; 
 `
@@ -39,7 +39,7 @@ export const RowInline = styled.div`
     border-bottom : 1px solid #7fad39;
   }
   &:hover{
-    background-color : ${({theme}) => theme.background}; 
+    background-color : ${({theme}) => theme ? theme.background : "var(--background)"}; 
     color : var(--green-1);
   }
 `

@@ -17,7 +17,7 @@ export const checkImageUrl = url => {
 }
 
 export const getParams = (param) => {
-  if(typeof window !== undefined && param){   
+  if(typeof window !== "undefined" && param){   
     return new URLSearchParams(window.location.search).get(param);
   }
   return null ; 

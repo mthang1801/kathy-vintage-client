@@ -2,7 +2,7 @@ import styled from "styled-components"
 import {Link} from "gatsby";
 export const Wrapper = styled.section`
   width: 90vw;
-  background-color : ${({theme}) => theme.card} !important;
+  background-color : ${({theme}) => theme ? theme.card : "var(--card)"} !important;
   border-radius : 1rem;
   padding : 0.75rem 1rem 3rem 1rem;
   margin: 4rem auto;    

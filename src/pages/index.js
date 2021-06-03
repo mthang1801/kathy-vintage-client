@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Seo from "../components/Seo/Seo"
 import Layout from "../containers/Layout"
 import Banners from "../components/Carousel/Banners"
@@ -14,10 +14,11 @@ function Home() {
   //format static data
   const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
   const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
+  
   return (
-    <>    
-     <Seo title="My Amazing Gatsby App" />
+    <>        
     <Layout>
+      <Seo title="Hello World"  description="New world"/>
       <Banners />
       <Categories />
       {newProductsEdges?.length ? (

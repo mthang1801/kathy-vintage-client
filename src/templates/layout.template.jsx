@@ -147,7 +147,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
       )
     )
 
-    if (contentRef.current) {
+    if (contentRef.current && typeof window !== "undefined") {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -178,7 +178,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
     if (newPage !== currentPage && newPage) {
       setCurrentPage(newPage)
     }
-  }, [window.location.search])
+  })
 
   const states = {
     sortingIndex,

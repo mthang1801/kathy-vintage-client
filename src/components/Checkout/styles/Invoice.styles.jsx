@@ -12,17 +12,17 @@ export const Title = styled.h4`
 `
 
 export const List = styled.ul`
-  background : ${({theme}) => theme.card};
+  background : ${({theme}) => theme ? theme.card : "var(--card)"};
   border-radius : 0.5rem;
   overflow : hidden ; 
   padding : 0 ;  
   margin : 0 0 1rem 0;
   font-size : 0.95rem;
   & > *:hover{
-    background-color : ${({theme}) => theme.hover};
+    background-color : ${({theme}) => theme ? theme.hover : "var(--hover-background)"};
   }
   & li:not(:last-child){
-    border-bottom : 1px solid ${({theme}) => theme.border};
+    border-bottom : 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};
   }
 `
 

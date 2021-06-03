@@ -40,7 +40,7 @@ export const UserEmail = styled.div`
 
 export const SettingButton = styled.button`
   border-radius : 2rem;
-  border : 1px solid ${({theme}) => theme.border};
+  border : 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};
   padding : 0.6rem 2rem;
   margin : 1rem auto;
   cursor : pointer;
@@ -50,7 +50,7 @@ export const SettingButton = styled.button`
   cursor : pointer;
   background : transparent;
   &:hover{
-    background-color : ${({theme}) => theme.border};
+    background-color : ${({theme}) => theme ? theme.border : "var(--border)"};
   };
   text-decoration : none; 
   color : inherit;
@@ -72,7 +72,7 @@ export const SettingItem = styled.div`
   text-decoration : none; 
   color: inherit;
   &:hover{
-    background-color : ${({theme}) => theme.hover.background};
+    background-color : ${({theme}) => theme ? theme?.hover?.background  : "var(--hover-background)"};
   }
   overflow : hidden;
 `
@@ -86,7 +86,7 @@ export const SettingItemLink = styled.span`
   border : none; 
   cursor : pointer;
   &:hover{
-    background-color : ${({theme}) => theme.hover.background};
+    background-color : ${({theme}) => theme ? theme?.hover?.background :  "var(--hover-background)"};
   }
   overflow : hidden;
 `

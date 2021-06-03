@@ -31,7 +31,7 @@ const Cart = ({
       category : "cart",
       label : "Click cart"
     })
-    if (window.innerWidth < 768) {
+    if (typeof window !== "undefined" &&  window.innerWidth < 768) {
       return navigate("/checkout")
     }
     
@@ -46,8 +46,14 @@ const Cart = ({
         closeCart()
       }
     }
-    window.addEventListener("click", trackingUserClick)
-    return () => window.removeEventListener("click", trackingUserClick)
+    if(typeof window !== "undefined"){
+      window.addEventListener("click", trackingUserClick)
+    }
+    return () => {
+      if(typeof window !== "undefined"){
+        window.removeEventListener("click", trackingUserClick)
+      }
+    }
   })
 
   const cartItemsQuantity = cartItems.reduce((acc,item) => acc + item.quantity, 0);

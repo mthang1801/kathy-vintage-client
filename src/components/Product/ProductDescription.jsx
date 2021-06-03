@@ -36,8 +36,8 @@ const ProductDescription = ({ product }) => {
         <ReactPlayer
           url={uri}
           controls
-          width={window.innerWidth < 600 ? "100%" : "650px"}
-          height={window.innerWidth < 600 ? "300px" : "450px"}
+          width={typeof window !== "undefined" && window.innerWidth < 600 ? "100%" : "650px"}
+          height={typeof window !== "undefined" && window.innerWidth < 600 ? "300px" : "450px"}
         />
       )
     }

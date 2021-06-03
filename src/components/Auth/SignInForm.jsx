@@ -60,10 +60,12 @@ class SignInForm extends React.Component {
 
   timer = null
   componentDidMount() {   
-    window.scrollTo({
-      top:0,
-      behavior: "smooth",
-    })
+    if(typeof window !== "undefined"){
+      window.scrollTo({
+        top:0,
+        behavior: "smooth",
+      })
+    }
   }
 
   componentDidUpdate(prevProps, prevState){

@@ -44,7 +44,7 @@ const CheckoutComplete = ({ order, clearCartItems, user }) => {
               <BiCheckCircle />
             </ImageContainer>
             <div>{complete.header_letter}</div>
-            {user.email && order && estimateTime && (
+            {user?.email && order && estimateTime && (
               <div
                 dangerouslySetInnerHTML={{
                   __html: complete.body_letter(

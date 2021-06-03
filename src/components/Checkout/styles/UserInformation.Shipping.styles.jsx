@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   border : 2px dashed var(--green-1);
   padding : 1rem; 
   border-radius : 0.5rem;
-  background-color : ${({theme}) => theme.card};
+  background-color : ${({theme}) => theme ? theme?.card : "var(--card)"};
 `
 
 export const UserName = styled.h4`

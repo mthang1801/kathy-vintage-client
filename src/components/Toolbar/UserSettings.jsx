@@ -2,31 +2,37 @@ import React, { useState, useRef, useEffect } from "react"
 import {
   Wrapper,
   AvatarContainer,
-  UserOverview,  
-  Dropdown
+  UserOverview,
+  Dropdown,
 } from "./styles/UserSettings.styles"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import UserSettingsDropdown from "../Dropdown/UserSettingsDropdown"
-import {useTheme} from "../../theme"
-
+import { useTheme } from "../../theme"
 
 const UserSetting = ({ user }) => {
-  const [show, setShow] = useState(false);
-  const {theme} = useTheme()
+  const [show, setShow] = useState(false)
+  const { theme } = useTheme()
   const userSettingRef = useRef(null)
-  useEffect(()=>{
-    function trackUserClickSettingUser(e){
-      if(!userSettingRef?.current?.contains(e.target) && show){
-        setShow(false);
+  useEffect(() => {
+    function trackUserClickSettingUser(e) {
+      if (!userSettingRef?.current?.contains(e.target) && show) {
+        setShow(false)
       }
     }
-    window.addEventListener("click", trackUserClickSettingUser);
-    return () => window.removeEventListener("click", trackUserClickSettingUser)
+    if (typeof window !== "undefined") {
+      window.addEventListener("click", trackUserClickSettingUser)
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("click", trackUserClickSettingUser)
+      }
+    }
   })
   return (
     <Wrapper
       ref={userSettingRef}
-      onClick={() => setShow(prevState => !prevState)}            
+      onClick={() => setShow(prevState => !prevState)}
     >
       <UserOverview>
         <AvatarContainer>
@@ -39,12 +45,10 @@ const UserSetting = ({ user }) => {
         </AvatarContainer>
       </UserOverview>
       <Dropdown show={show} theme={theme}>
-        <UserSettingsDropdown user={user}/>
+        <UserSettingsDropdown user={user} />
       </Dropdown>
-      
     </Wrapper>
   )
 }
-
 
 export default UserSetting

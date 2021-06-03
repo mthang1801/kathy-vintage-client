@@ -14,7 +14,7 @@ export const ContentContainer= styled.div`
 export const FormContainer = styled.div`
   width : 100% ;   
   max-width : 600px;
-  border : 1px solid ${({theme}) => theme.border};
+  border : 1px solid ${({theme}) => theme ? theme.border :"var(--border)"};
   padding : 1rem 2rem;  
-  background : ${({theme}) => theme.form.background};
+  background : ${({theme}) => theme ? theme?.form?.background :"var(--form-background)"};
 `

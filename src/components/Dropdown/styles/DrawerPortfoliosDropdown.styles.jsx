@@ -109,7 +109,7 @@ export const CategoriesList = styled.div`
   position: fixed;
   left: ${drawerWidth}px;
   top: ${({ y, numberOfItems }) =>
-    window.innerHeight - y - numberOfItems * 16 < 0 && y < numberOfItems * 16
+   typeof window !=="undefined" && window.innerHeight - y - numberOfItems * 16 < 0 && y < numberOfItems * 16
       ? 0
       : `${y - ((numberOfItems)* 16)}px`};
   width: ${drawerWidth}px;

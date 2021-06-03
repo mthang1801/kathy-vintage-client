@@ -16,7 +16,10 @@ const CartAlert = ({alertCart,removeAlertCart }) => {
         removeAlertCart();
       }, 5000)
     }
-    return () => clearTimeout(timing);
+    return () => {
+      removeAlertCart();
+      clearTimeout(timing);
+    } 
   }, [alertCart])
   return (
     <Wrapper theme={theme}>    

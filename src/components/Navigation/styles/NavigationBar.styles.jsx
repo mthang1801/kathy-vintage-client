@@ -3,7 +3,7 @@ import { config } from "../../../config"
 import { Link } from "gatsby"
 export const Wrapper = styled.nav`
   width: 100%;
-  background: ${({ theme }) => theme.navigation.background};
+  background: ${({ theme }) => theme ? theme?.navigation?.background : "var(--navigation-background)"};
   padding: 0 5rem;
   display : none; 
   @media screen and (min-width: 992px){

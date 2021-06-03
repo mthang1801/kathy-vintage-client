@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const Wrapper = styled.div`  
   height: 100vh;
   overflow-y: hidden;
-  background-color : ${({theme}) => theme.dashboard.background}; 
-  color : ${({theme}) => theme.dashboard.color};
+  background-color : ${({theme}) => theme ? theme?.dashboard?.background : "var(--dashboard-background)"}; 
+  color : ${({theme}) => theme ? theme?.dashboard?.color : "var(--dashboard-color)"};
   .MuiListItemIcon-root {
     font-size : 1.25rem;
     min-width : 40px;
-    color : ${({theme}) => theme.dashboard.color};
+    color : ${({theme}) => theme ? theme?.dashboard?.color : "var(--dashboard-color)"};
   }
   & button{
-    color : ${({theme}) => theme.dashboard.color};
+    color : ${({theme}) => theme ? theme?.dashboard?.color : "var(--dashboard-color)"};
   }
 `
 
@@ -36,9 +36,9 @@ export const Button = styled.button`
   background : none;   
   color : inherit;
   &:hover{
-    background-color: ${({theme}) => theme.name === "light" ? "#cdeae9" : "#333356"}  ;
+    background-color: ${({theme}) =>  theme?.name === "light" ? "#cdeae9" : "#333356"}  ;
     svg{
-      fill : ${({theme}) => theme.name === "light" ? "var(--gray-3)" : "var(--light-gray-3)"};
+      fill : ${({theme}) =>  theme?.name === "light" ? "var(--gray-3)" : "var(--light-gray-3)"};
     }
     
     border-radius : ${({rounded}) => rounded && "50%"} ;
@@ -56,10 +56,10 @@ export const Title = styled.h3`
 export const Content = styled.div`
   padding: 1rem;   
   label, input {
-    color : ${({theme}) => theme.dashboard.color2};
+    color : ${({theme}) => theme ? theme?.dashboard?.color2 : "var(--dashboard-color2)"};
   }
   input:disabled{
-    color : ${({theme}) => theme.dashboard.color2};
+    color : ${({theme}) => theme ? theme?.dashboard?.color2 :  "var(--dashboard-color2)"};
     opacity : 0.3;
   }
 `

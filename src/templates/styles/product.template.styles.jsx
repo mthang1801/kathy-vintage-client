@@ -5,7 +5,7 @@ export const ProductOverviewContainer = styled.div`
   flex-direction : column ; 
   width : 95vw; 
   margin: 2rem auto;
-  background-color : ${({theme}) => theme.card};
+  background-color : ${({theme}) => theme ?  theme.card : "var(--card)"};
   padding : 0.75rem;
   border-radius : 0.5rem;
   @media screen and (min-width: 992px){
@@ -18,7 +18,7 @@ export const ProductOverviewContainer = styled.div`
 export const Box = styled.section`
   width : 95vw;
   margin : 2rem auto;
-  background-color :  ${({theme}) => theme.card};
+  background-color :  ${({theme}) => theme ? theme.card : "var(--card)"};
   padding : 0.75rem;
   border-radius : 0.5rem;
 `

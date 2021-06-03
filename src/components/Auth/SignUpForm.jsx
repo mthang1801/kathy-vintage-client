@@ -141,10 +141,12 @@ class SignUpForm extends React.Component {
   componentDidMount() {
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {    
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      })
+      if(typeof window !== "undefined"){
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        })
+      }
     }, 66)
 
   }

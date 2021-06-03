@@ -9,9 +9,9 @@ export const Wrapper = styled.form`
   .MuiFormControl-root{    
     width : 100%;
     & input, & select{
-      background-color : ${({theme}) => theme.card};        
+      background-color : ${({theme}) =>theme ? theme.card : "var(--card)"};        
       &:hover{
-        border: ${({theme}) => theme.border};
+        border: ${({theme}) =>theme ? theme.border : "var(--border("};
       }      
     }    
     &:not(:last-child){
@@ -19,7 +19,7 @@ export const Wrapper = styled.form`
     }
   }
   .MuiFormLabel-root{
-    color : ${({theme}) => theme.text};
+    color : ${({theme}) =>theme ? theme.text : "var(--text)"};
   }
 `
 

@@ -11,7 +11,7 @@ export const InputGroup = styled.div`
 `
 
 export const Button = styled.button`
-  background-color : ${({theme}) => theme.card};
+  background-color : ${({theme}) => theme ? theme.card : "var(--card)"};
   outline : none ; 
   border: none ; 
   cursor:  pointer;
@@ -50,7 +50,7 @@ export const Input = styled.input`
   border: 1px solid var(--light-gray-2);
   &:focus{
     border : 1.5px solid var(--cyan-1);
-    box-shadow : ${({theme}) => theme.boxShadow};
+    box-shadow : ${({theme}) => theme  ? theme.boxShadow : "var(--boxShadow)" };
   }
   transition : all 0.5s linear;
 `

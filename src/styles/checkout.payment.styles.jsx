@@ -23,9 +23,9 @@ export const ContentContainer = styled.div`
 `
 export const Wrapper = styled.div`
   padding : 0.75rem;
-  border : 1px solid ${({theme}) => theme.border};
+  border : 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};
   border-radius : 0.5rem;
-  background : ${({theme}) => theme.card};
+  background : ${({theme}) => theme ? theme.card : "var(--card)"};
   & > *:not(:last-child){
     margin-bottom : 1rem;
   }

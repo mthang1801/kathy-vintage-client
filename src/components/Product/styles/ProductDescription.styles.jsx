@@ -22,7 +22,7 @@ export const BlurSection = styled.div`
   padding : 4rem 0;
   text-align: center; 
   margin: 0; 
-  background-image: linear-gradient(to bottom, transparent, ${({theme}) => theme.body});
+  background-image: linear-gradient(to bottom, transparent, ${({theme}) => theme ? theme.body : "var(--body)"});
 
 `
 
@@ -39,7 +39,7 @@ export const ReadMoreLink = styled.div`
   color : var(--blue-1);
   border: 1px solid var(--blue-1);
   border-radius : 3px;
-  box-shadow : ${({theme}) => theme.boxShadow};
+  box-shadow : ${({theme}) => theme ? theme.boxShadow : "var(--boxShadow)"};
   transition : var(--mainTransition);
   cursor: pointer;
   &:hover{

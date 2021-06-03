@@ -2,7 +2,6 @@ import React from "react"
 import Slider from "react-slick"
 import ProductItem from "../Product/ProductItem"
 import {Wrapper, ProductContainer} from "./styles/RelevantPosts.styles"
-
 let dragging = false
 
 const RelevantProductsCarousel = ({ products }) => {

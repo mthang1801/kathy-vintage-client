@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import { Link } from "gatsby"
 export const List = styled.section`
-  border: 1px solid ${({ theme }) => theme.border};
+  border: 1px solid ${({ theme }) => theme ? theme.border: "var(--border)"};
   display: flex;
   flex-direction: column;
-  background-color : ${({theme}) => theme.card};
+  background-color : ${({theme}) => theme ? theme.card: "var(--card)"};
   color: inherit;
   &:hover {
     color: inherit;
@@ -23,9 +23,9 @@ export const ListItem = styled(Link)`
   width: 200px;  
   &:hover {
     & > ${ListItemText}{
-      color: ${({ theme }) => theme.hover.text};      
+      color: ${({ theme }) => theme ? theme.hover.text : "var(--hover-text)"};      
     }    
-    background: ${({ theme }) => theme.body};       
+    background: ${({ theme }) => theme ? theme.body : "var(--body)"};       
   }
 `
 

@@ -12,7 +12,7 @@ export const getLanguage = () => {
     }
     return lang;
   }
-  return null
+  return "vi"
 }
 
 export const configLang = {

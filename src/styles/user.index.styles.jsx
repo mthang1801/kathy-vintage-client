@@ -35,8 +35,8 @@ export const MainContent = styled.div`
   width : 100%;  
   height: 100vh;
   overflow: auto;
-  background-color : ${({theme}) => theme.dashboard.background2};
-  color : ${({theme}) => theme.dashboard.color2};    
+  background-color : ${({theme}) => theme ? theme?.dashboard?.background2 : "var(--dashboard-background2)"};
+  color : ${({theme}) => theme ? theme?.dashboard?.color2 : "var(--dashboard-color2)"};    
   @media screen and (min-width:768px){
     width : calc(100% - 240px);
     margin-left : 240px;
@@ -77,9 +77,9 @@ export const ButtonHomePage = styled.button`
   background : none;   
   color: inherit;
   &:hover{
-    background-color: ${({theme}) => theme.name === "light" ? "#cdeae9" : "#333356"}  ;
+    background-color: ${({theme}) =>  theme?.name === "light" ? "#cdeae9" : "#333356"}  ;
     svg{
-      fill : ${({theme}) => theme.name === "light" ? "var(--gray-3)" : "var(--light-gray-3)"};
+      fill : ${({theme}) => theme?.name === "light" ? "var(--gray-3)" : "var(--light-gray-3)"};
     }
     
     border-radius : ${({rounded}) => rounded && "50%"} ;

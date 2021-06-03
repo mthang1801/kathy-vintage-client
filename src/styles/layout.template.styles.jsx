@@ -24,17 +24,17 @@ export const Sidebar = styled.div`
   @media screen and (min-width : 768px){
     display : block;
   }
-  background-color : ${({theme}) => theme.card};
+  background-color : ${({theme}) => theme ? theme.card : "var(--card)"};
   padding : 0.75rem 1rem;
   border : 1px solid var(--blue-1);
   border-radius : 0.5rem;
-  box-shadow : ${({theme}) => theme.boxShadow};
+  box-shadow : ${({theme}) => theme ? theme.boxShadow : "var(--boxShadow)"};
   & a , & span , & p{
     font-size : 0.9rem;
   }
 `
 export const MainContent = styled.div`
-background : ${({theme}) => theme.card};
+background : ${({theme}) => theme ? theme.card : "var(--card)"};
   border-radius : 0.5rem;
   margin-top : 3rem;
   @media screen and (min-width : 768px){

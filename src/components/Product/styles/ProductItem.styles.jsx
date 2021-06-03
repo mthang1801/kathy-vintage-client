@@ -2,14 +2,14 @@ import styled from "styled-components"
 import {Link} from "gatsby"
 export const Wrapper = styled(Link)`
   position :relative;
-  border: 1px solid ${({theme}) => theme.border};  
+  border: 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};  
   border-radius : 5px;  
   text-decoration : none;
   color : inherit;  
   transition : var(--mainTransition);
   &:hover{
     transform : translateY(-3px);
-    box-shadow : ${({theme}) => theme.boxShadow};
+    box-shadow : ${({theme}) => theme ? theme.boxShadow : "var(--boxShadow)"};
   }
 `
 

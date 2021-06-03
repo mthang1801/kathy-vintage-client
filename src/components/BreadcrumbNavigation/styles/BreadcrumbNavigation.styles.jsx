@@ -25,7 +25,7 @@ export const BreadcrumbItemLink = styled(Link)`
   padding : 0 2rem 0 0.75rem;
   overflow : hidden;
   position : relative;  
-  color : ${({theme}) => theme.breadcrumb.link.color};  
+  color : ${({theme}) => theme ? theme?.breadcrumb?.link?.color : "var(--breadcrumb-link-color)"};  
   &:not(:last-child):after{
     position : absolute;
     content : "";
@@ -33,7 +33,7 @@ export const BreadcrumbItemLink = styled(Link)`
     height: 2.5rem;
     border : 2px solid;
     transform : rotate(45deg);
-    border-color : ${({theme}) => `${theme.navigation.background} ${theme.navigation.background} transparent transparent`};
+    border-color : ${({theme}) => theme ? `${theme?.navigation?.background} ${theme?.navigation?.background} transparent transparent` : "var(--naivgation-background) var(--naivgation-background) transparent transparent"} ;
     right : 0.75rem;
   }
   &:last-child{

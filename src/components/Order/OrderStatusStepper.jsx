@@ -21,8 +21,8 @@ const OrderStatusStepper = ({ status, ordersTranslation }) => {
     <Wrapper theme={theme}>
       <Stepper
         activeStep={activeStep}
-        alternativeLabel={window.innerWidth >= 768}
-        orientation={window.innerWidth < 768 ? "vertical" : "horizontal"}
+        alternativeLabel={typeof window!== "undefined" && window.innerWidth >= 768}
+        orientation={typeof window!== "undefined" && window.innerWidth < 768 ? "vertical" : "horizontal"}
       >
         {stepsList.map(label => (
           <Step key={label}>

@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: ${({ theme }) => theme.dashboard.background};
+  background-color: ${({ theme }) => theme ? theme?.dashboard?.background : "var(--dashboard-background)"};
   .MuiListItem-root{
     padding : 0 16px;
   }

@@ -15,13 +15,13 @@ import Button from "@material-ui/core/Button"
 import useLanguage from "../Global/useLanguage"
 import QuantityControl from "../Controls/QuantityControl"
 import { useTheme } from "../../theme"
-import { addProductItemToCart } from "../../redux/cart/cart.actions"
+import { addProductItemToCart,removeAlertCart } from "../../redux/cart/cart.actions"
 import { connect } from "react-redux"
 import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
 import { navigate } from "gatsby"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
-const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
+const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCart }) => {
   const {
     name_vi,
     name_en,
@@ -57,8 +57,7 @@ const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
     setSelectedColor(color)
   }
 
-  const onAddProductItemToCart = (e) => {
-    e.preventDefault();
+  const onAddProductItemToCart = () => {
     trackCustomEvent({
       action : "Click",
       category : "cart",
@@ -72,8 +71,9 @@ const ProductContent = ({ product, addProductItemToCart, cartItems }) => {
       action : "Click",
       category : "navigate",
       label : "Go To Checkout"
-    })
+    })    
     onAddProductItemToCart();
+    removeAlertCart();
     navigate("/checkout")
   }
 
@@ -179,6 +179,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   addProductItemToCart: (product, quantity) =>
     dispatch(addProductItemToCart(product, quantity)),
+    removeAlertCart : () => dispatch(removeAlertCart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductContent)

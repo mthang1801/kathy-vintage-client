@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`  
-  background : ${({theme}) => theme.card};
+  background : ${({theme}) => theme ? theme.card : "var(--card)"};
   border-radius : 0.5rem;
   margin-bottom : 2rem;
   padding : 0.75rem;
@@ -9,7 +9,7 @@ export const Wrapper = styled.section`
   align-items : flex-start;
   cursor : pointer;
   &:hover{
-    background : ${({theme}) => theme.hover.background};
+    background : ${({theme}) => theme ? theme?.hover?.background : "var(--hover-background)" };
   }
 `
 

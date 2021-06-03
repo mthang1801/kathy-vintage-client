@@ -3,25 +3,21 @@ import { getFromLS, setToLS } from "../utils/storage"
 
 const defaultState = { theme: {}, colorMode: "", setColorMode: () => {} }
 export const ThemeContext = createContext(defaultState)
-export const ThemeProvider = ({ theme, children }) => {
-  let themesLS = getFromLS("tn-all-themes")
-  if (!themesLS) {
-    setToLS("tn-all-themes", theme.modes)
-    themesLS = theme
-  }
-  const [currentTheme, setCurrentTheme] = useState(theme.modes[theme.initialColorModeName])
+export const ThemeProvider = ({ theme, children }) => { 
+  const [currentTheme, setCurrentTheme] = useState(
+    theme.modes[theme.initialColorModeName]
+  )
   const [themeLoaded, setThemeLoaded] = useState(false)
   const [mode, setMode] = useState(theme.initialColorModeName || "light")
   useEffect(() => {
     const localTheme = getFromLS("tn-theme")
-    
+
     if (localTheme) {
       setCurrentTheme(localTheme)
       setMode(localTheme.name)
     }
     setThemeLoaded(true)
-  }, [])
-  
+  },[])
 
   const setColorMode = mode => {
     //mode in here is light or dark or other colors name
@@ -31,15 +27,16 @@ export const ThemeProvider = ({ theme, children }) => {
   }
 
   return (
-    <>
-      {themeLoaded && (
-        <ThemeContext.Provider
-          value={{ theme: currentTheme, setColorMode, colorMode: mode, themes : themesLS }}
-        >
-          {children}
-        </ThemeContext.Provider>
-      )}
-    </>
+    <ThemeContext.Provider
+      value={{
+        theme: currentTheme,
+        setColorMode,
+        colorMode: mode,
+        themes: theme.modes,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
   )
 }
 
@@ -49,6 +46,6 @@ export const useColorMode = () => {
 }
 
 export const useTheme = () => {
-  const { theme, colorMode, setColorMode, themes } = useContext(ThemeContext)  
+  const { theme, colorMode, setColorMode, themes } = useContext(ThemeContext)
   return { theme, colorMode, setColorMode, themes }
 }

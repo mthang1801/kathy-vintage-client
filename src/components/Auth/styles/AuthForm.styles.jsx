@@ -10,7 +10,7 @@ export const AuthFormContainer = styled.form`
   border-radius : 10px;
   box-shadow : 0 3px 6px rgba(0,0,0,0.15);
   display : flex ; 
-  background : ${({theme}) => theme.card};
+  background : ${({theme}) => theme?.card };
   flex-direction : column ; 
   align-items : center;    
   @media screen and (max-width: 500px){    

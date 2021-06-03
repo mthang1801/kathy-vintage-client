@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items : center;
   justify-content : center;
   flex-direction : column ;
-  background : ${({theme}) => theme.card};
+  background : ${({theme}) => theme ? theme.card : "var(--card)"};
   text-align : center;
   & > *:not(:last-child){
     margin-bottom : 1.5rem;

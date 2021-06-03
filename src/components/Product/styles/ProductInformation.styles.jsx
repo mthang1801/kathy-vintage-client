@@ -19,13 +19,13 @@ export const Table = styled.div`
 export const TableRow = styled.div`
   display : flex;      
   &:nth-of-type(2n){
-    background-color : ${({theme}) => theme.background};
+    background-color : ${({theme}) => theme ? theme.background : "var(--background)"};
   }
 `
 
 export const TableCell = styled.div`
   padding : 0.75rem; 
-  background-color : ${({theme}) => theme.background};
+  background-color : ${({theme}) => theme ? theme.background : "var(--background)"};
   &:first-child{
     width : 40%; 
   }

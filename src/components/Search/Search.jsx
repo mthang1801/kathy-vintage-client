@@ -24,36 +24,42 @@ const Search = () => {
   const {theme} = useTheme();
   const {search} = i18n.store.data[lang].translation;
   useEffect(() => {
-    window.addEventListener("click", e => {
-      const searchResults = document.getElementById("search-results")
-      if (
-        searchResults.contains(e.target) ||
-        document
-          .getElementsByClassName("ais-SearchBox-input")[0]
-          .contains(e.target)
-      ) {
-        return document
-          .getElementById("search-results")
-          .classList.remove("d-none")
-      }
-      return document.getElementById("search-results").classList.add("d-none")
-    })
-
-    return () => {
-      window.removeEventListener("click", e => {
+    if(typeof window !== "undefined"){
+      window.addEventListener("click", e => {
         const searchResults = document.getElementById("search-results")
         if (
-          (searchResults && searchResults.contains(e.target)) ||
+          searchResults?.contains(e.target) ||
           document
             .getElementsByClassName("ais-SearchBox-input")[0]
-            .contains(e.target)
+            ?.contains(e.target)
         ) {
           return document
             .getElementById("search-results")
-            .classList.remove("d-none")
+            ?.classList?.remove("d-none")
         }
-        return document.getElementById("search-results").classList.add("d-none")
+        return document.getElementById("search-results")?.classList?.add("d-none")
       })
+    }
+   
+
+    return () => {
+      if(typeof window !== "undefined"){
+        window.removeEventListener("click", e => {
+          const searchResults = document.getElementById("search-results")
+          if (
+            (searchResults && searchResults.contains(e.target)) ||
+            document
+              ?.getElementsByClassName("ais-SearchBox-input")[0]
+              ?.contains(e.target)
+          ) {
+            return document
+              .getElementById("search-results")
+              ?.classList?.remove("d-none")
+          }
+          return document.getElementById("search-results")?.classList?.add("d-none")
+        })
+      }
+      
     }
   })
 

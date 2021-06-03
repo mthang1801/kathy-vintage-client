@@ -3,14 +3,19 @@ const path = require("path")
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html" || stage === "develop-html") {
     actions.setWebpackConfig({
+      externals: ['react-helmet'],
       module: {
         rules: [
           {
             test: /firebase/,
+            use: loaders.null(),            
+          },          
+          {
+            test: /bad-module/,
             use: loaders.null(),
           },
         ],
-      },
+      },     
     })
   }
 }

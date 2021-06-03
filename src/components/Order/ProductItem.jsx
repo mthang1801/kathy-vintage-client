@@ -36,7 +36,7 @@ const CheckoutProductItem = ({ product, ordersTranslation }) => {
         navigate(`/products/${product.slug}`)
       }}
     >
-      {window.innerWidth >= 768 && (
+      {typeof window !== "undefined" && window.innerWidth >= 768 && (
         <ProductQuantity>{product.quantity} x</ProductQuantity>
       )}
       <ImageContainer>
@@ -47,7 +47,7 @@ const CheckoutProductItem = ({ product, ordersTranslation }) => {
         <ProductPriceAndQuantity>
           <ProductPrice>
             <ProductPriceAfterDiscount>
-              {window.innerWidth < 768 && (
+              {typeof window !== "undefined" && window.innerWidth < 768 && (
                 <span>{ordersTranslation.product.unitPrice}:</span>
               )}{" "}
               {productPrice.toLocaleString("de-DE")}
@@ -60,14 +60,14 @@ const CheckoutProductItem = ({ product, ordersTranslation }) => {
             )}
           </ProductPrice>
         </ProductPriceAndQuantity>
-        {window.innerWidth < 768 && (
+        {typeof window!=="undefined" && window.innerWidth < 768 && (
           <ProductQuantity>
             {ordersTranslation.product.quantity}: {product.quantity}
           </ProductQuantity>
         )}
         <ProductTotalPrice>
           {" "}
-          {window.innerWidth < 768 && (
+          {typeof window!=="undefined" && window.innerWidth < 768 && (
             <span>{ordersTranslation.product.totalPrice}:</span>
           )}{" "}
           {(product.quantity * productPrice).toLocaleString("de-DE", {

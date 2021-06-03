@@ -3,13 +3,13 @@ import styled from "styled-components"
 
 export const Wrapper = styled.section`
   width : 100%; 
-  background : ${({theme}) => theme.card};
+  background : ${({theme}) => theme ? theme.card : "var(--card)"};
   border-radius : 0.5rem;
   margin-bottom : 2rem;
   padding : 0.75rem;
   display : flex;
   align-items : flex-start;
-  border: 1px solid ${({theme}) => theme.border};  
+  border: 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};  
 `
 
 export const ImageContainer = styled.div`
@@ -80,6 +80,6 @@ export const ShippingTime = styled.div`
   color : var(--green-3);
   text-transform  :capitalize ; 
   & > span{
-    color : ${({theme}) => theme.text};
+    color : ${({theme}) => theme ? theme.text : "var(--text)"};
   }
 `

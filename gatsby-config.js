@@ -10,7 +10,7 @@ module.exports = {
     twitterUsername: "@mthang1801",
     siteUrl: "https://kathy-vintage.netlify.app",
   },
-  plugins: [  
+  plugins: [      
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -115,9 +115,14 @@ module.exports = {
         head: false,
       },
     },
-    // `gatsby-plugin-material-ui`,
-    // `gatsby-plugin-styled-components`,
-    `gatsby-plugin-gatsby-cloud`
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        disableAutoprefixing: true,
+      },
+    },   
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-gatsby-cloud`,          
   ],
 
 }

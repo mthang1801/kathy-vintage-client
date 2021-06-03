@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 export const CategoriesSliderContainer = styled.div`
   width: 90vw;
-  background-color : ${({theme}) => theme.card} !important;
+  background-color : ${({theme}) => theme ? theme.card : "var(--card)"} !important;
   border-radius : 1rem;
   padding : 0.75rem 1rem;
   margin: 4rem auto;
@@ -38,7 +38,7 @@ export const CategoryItem = styled.div`
   transition : var(--mainTransition);
   cursor: pointer;
   &:hover{       
-    background-color : ${({theme}) => theme.hover.background};
+    background-color : ${({theme}) => theme ? theme?.hover?.background : "var(--hover-background)"};
   }
   border-radius : 5px;
 `

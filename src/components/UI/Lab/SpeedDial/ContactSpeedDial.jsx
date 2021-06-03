@@ -16,7 +16,7 @@ const ContactSpeedDial = () => {
   const [open, setOpen] = React.useState(false)
   const [hidden, setHidden] = React.useState(false)
   const { i18n, lang } = useLanguage()
-  const { contacts } = i18n.store.data[lang].translation
+  const  contacts  = i18n?.store?.data[lang]?.translation?.contacts;
   const { theme } = useTheme()
   
   const handleOpen = () => {
@@ -41,7 +41,7 @@ const ContactSpeedDial = () => {
         navigate("https://zalo.me/0973594645")
         break;
       case "phone" : 
-        handleOpen(true);
+        if(typeof window !== "undefined") window.open(`tel:0939323700`);
         break;
       case "email":
         document.getElementById("send-mail").click()
@@ -69,7 +69,7 @@ const ContactSpeedDial = () => {
           open={open}
           direction="up"
         >
-          {contacts.map(contact => (
+          {contacts && contacts.map(contact => (
             <SpeedDialAction
               key={contact.key}
               icon={contact.icon}
@@ -77,6 +77,7 @@ const ContactSpeedDial = () => {
               type={contact.key}
               onClick={onClickContactItem(contact.key)}
               tooltipOpen={contact.key === "phone" ? true : false}
+                            
             />
           ))}
         </SpeedDial>

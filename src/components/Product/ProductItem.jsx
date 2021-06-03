@@ -8,7 +8,7 @@ import {
   DiscountBrand,
 } from "./styles/ProductItem.styles"
 import _ from "lodash"
-import Image from "gatsby-image"
+import {StaticImage} from "gatsby-plugin-image"
 import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 const ProductItem = ({ product }) => {
@@ -43,9 +43,7 @@ const ProductItem = ({ product }) => {
       <ImageContainer
         imageHover={`https:${product.images[0].fluid.src}`}
         imageMouseout={`https:${product.images[1].fluid.src}`}
-      >
-        {/* <Image fluid={imageFluid} alt={product[`name_${lang}`]} /> */}
-      </ImageContainer>
+      />       
       <ProductText>
         <ProductName>{productName}</ProductName>
         <ProductPrice>

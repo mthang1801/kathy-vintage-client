@@ -20,7 +20,7 @@ const ProductsList = ({ header, products, isAllProducts = true, currentPage, num
     others: { seeAll },
   } = i18n.store.data[lang].translation
   products =
-    window.innerWidth < 500
+    typeof window!=="undefined" && window.innerWidth < 500
       ? products.filter((_, idx) => idx < 10).map(product => product)
       : products
   

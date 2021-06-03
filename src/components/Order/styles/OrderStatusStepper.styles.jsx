@@ -6,13 +6,13 @@ export const Wrapper = styled.div`
     flex-direction : column; 
     
     font-size : 0.9rem;    
-    color : ${({theme}) => theme.text} !important;
+    color : ${({theme}) => theme ? theme.text : "var(--text)"} !important;
     @media screen and (min-width: 768px){
       align-items : center;
     }
   }
   .MuiStepper-root{
-    background : ${({theme}) => theme.background};
+    background : ${({theme}) => theme ? theme.background : "var(--background)"};
     margin-bottom: 2rem;
   }
   .MuiStepLabel-root{

@@ -10,5 +10,6 @@ export const getFromLS = key => {
     if(value){
       return JSON.parse(value);
     }
-  }
+  }  
+  return null;
 }

@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
     margin-left : auto;
   }
   .MuiToolbar-root{
-    background : ${({theme}) => theme.dashboard.background} !important;
+    background : ${({theme}) => theme ? theme?.dashboard?.background : "var(--dashboard-background)"} !important;
   }
   @media screen and (min-width: 768px){
     display : none;

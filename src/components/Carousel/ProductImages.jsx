@@ -17,6 +17,12 @@ const ProductImages = ({ images, setActiveImage, activeImage }) => {
       cssEase : "linear"      
   }
   const onSetActiveImage = idx => {
+    if(typeof window !== "undefined"){
+      window.scroll({
+        top : 60, 
+        behavior : "auto"        
+      })
+    }
     trackCustomEvent({
       action : "Click",
       category : "product",

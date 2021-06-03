@@ -5,8 +5,8 @@ export const Wrapper = styled.header`
   height: 65px;
   display : grid;
   grid-template-columns: 2.5fr 1fr; 
-  background-color : ${({theme}) => theme.card} !important; 
-  border-bottom:1px solid ${({theme}) => theme.border};  
+  background-color : ${({theme}) =>theme ? theme.card : "var(--card)"} !important; 
+  border-bottom:1px solid ${({theme}) =>theme ? theme.border : "var(--border)"};  
   padding: 0.75rem 0.25rem;
   @media screen and (min-width : 768px){
     height : ${config.headerHeight}px;

@@ -1,12 +1,16 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.div`
-  width: 80%;
-  margin: 3rem auto;
+export const Wrapper = styled.div` 
   .pagination {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: center;
+    margin: 2rem 0;
+    padding: 0;
+    @media screen and (min-width : 992px){
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    
   }
   .disabled {
     display: none !important;

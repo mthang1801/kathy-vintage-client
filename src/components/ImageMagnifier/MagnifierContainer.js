@@ -85,7 +85,7 @@ class MagnifierContainer extends Component {
     let inPlace = false;
     const { autoInPlace, inPlaceMinBreakpoint } = this.props;
 
-    if (autoInPlace || inPlaceMinBreakpoint) {
+    if (autoInPlace || inPlaceMinBreakpoint && typeof window !== "undefined") {
       try {
         const { left, right } = zoomContainerDimensions;
         const windowWidth = window.innerWidth;

@@ -49,7 +49,7 @@ export const BlurSection = styled.div`
   padding : 1.5rem 0;
   text-align: center; 
   margin: 0; 
-  background-image: linear-gradient(to bottom, transparent, ${({theme}) => theme.body});
+  background-image: linear-gradient(to bottom, transparent, ${({theme}) => theme ? theme.body : "var(--body)"});
 
 `
 
@@ -78,8 +78,8 @@ export const Input = styled.input`
   padding : 0.4rem ;
   font-size : 0.9rem;
   border-radius : 0.2rem;
-  border: 1px solid ${({theme}) => theme.border};
-  background : ${({theme}) => theme.background};
+  border: 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};
+  background : ${({theme}) => theme ? theme.background : "var(--background)"};
   outline : none ;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

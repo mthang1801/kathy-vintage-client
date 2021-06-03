@@ -5,11 +5,11 @@ export const Wrapper = styled.div`
   max-width : 800px;
   margin : 1rem ${({userPage}) => userPage ? "2rem" : "auto"};
   .MuiAccordion-root{
-    background-color : ${({theme}) => theme.card};
+    background-color : ${({theme}) => theme ? theme.card: "var(--card)"};
     color : inherit;    
   }
   .MuiDivider-root{
-    background-color : ${({theme}) => theme.border};
+    background-color : ${({theme}) => theme ? theme.border: "var(--border)"};
   }
   .MuiAccordionSummary-content{
     justify-content : space-between;

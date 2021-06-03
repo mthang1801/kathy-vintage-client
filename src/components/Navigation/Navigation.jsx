@@ -6,7 +6,7 @@ import NavigationsList from "./NavigationsList";
 const Navigation = () => {
   const {theme, colorMode} = useThemeUI()
   return (
-    <Wrapper theme={theme.colors[colorMode]}>
+    <Wrapper theme={theme}>
       <PortfoliosListDropdown/>
       <NavigationsList/>
     </Wrapper>

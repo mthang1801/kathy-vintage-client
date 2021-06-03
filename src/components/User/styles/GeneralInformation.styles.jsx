@@ -10,30 +10,30 @@ export const Form = styled.form`
   max-width : 400px;
   .MuiFormControl-root{   
     & *{
-      color : ${({theme}) => theme.text} !important;    
+      color : ${({theme}) => theme ? theme.text : "var(--text)"} !important;    
     } 
     width : 100%;
     margin : 0; 
     & input, & select{
-      background-color : ${({theme}) => theme.card};
-      border:  1px solid ${({theme}) => theme.border} ;
+      background-color : ${({theme}) => theme ? theme.card : "var(--card)"};
+      border:  1px solid ${({theme}) => theme ? theme.border : "var(--border)"} ;
       border-radius : 3px;
       overflow: hidden;
       border: 1px solid transparent;
       &:hover{
-        border: 1px solid ${({theme}) => theme.card};
+        border: 1px solid ${({theme}) => theme ? theme.card : "var(--card)"};
       }      
     }  
     input:disabled, select:disabled  {
-      color : ${({theme}) => theme.disabled.color} !important;
-      background-color : ${({theme}) => theme.disabled.background};
+      color : ${({theme}) => theme ? theme?.disabled?.color : "var(--disabled-color)"} !important;
+      background-color : ${({theme}) => theme ? theme?.disabled?.background : "var(--disabled-background)"};
     }
     &:not(:last-child){
       margin-bottom : 1.5rem;
     }
   }
   .MuiFormLabel-root{
-    color : ${({theme}) => theme.text};
+    color : ${({theme}) => theme ? theme.text : "var(--text)"};
   }
   @media screen and (min-width:768px){
     margin : 2rem;

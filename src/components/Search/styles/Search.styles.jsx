@@ -4,9 +4,9 @@ export const Wrapper = styled.div`
   width: 100%;  
   max-width : 600px;
   position : relative;
-  background-color : ${({theme}) => theme.card};
+  background-color : ${({theme}) => theme ? theme.card : "var(--card)"};
   & *{
-    color : ${({theme}) => theme.text};
+    color : ${({theme}) => theme ? theme.text : "var(--text)"};
   }
   .ais-SearchBox-form {
     width: 100%;
@@ -75,7 +75,7 @@ export const Wrapper = styled.div`
     list-style: none ; 
     padding : 0; 
     margin: 0;
-    background-color : ${({theme}) => theme.card};
+    background-color : ${({theme}) => theme ? theme.card : "var(--card)" };
   }
   .ais-Pagination {
     height: 12%;
@@ -105,12 +105,12 @@ export const Wrapper = styled.div`
     padding: 0.4rem 0.75rem;
     width: 100%;       
     &:not(:last-child) {
-      border-bottom: 1px solid ${({theme}) => theme.border};
+      border-bottom: 1px solid ${({theme}) =>theme ? theme?.border : "var(--border)"};
     }
     transition: var(--mainTransition);
     &:hover {
-      background-color: ${({theme})=>theme.hover.background};
-      color: ${({theme}) => theme.hover.text};
+      background-color: ${({theme})=> theme ? theme?.hover?.background : "var(--hover-background)"};
+      color: ${({theme}) => theme ? theme?.hover?.text : "var(--hover-text)"};
     }
     a{
       display : block;
@@ -143,7 +143,7 @@ export const Wrapper = styled.div`
     display : flex;
     justify-content : center;
     align-items : center;
-    background : ${({theme}) => theme.background}
+    background : ${({theme}) => theme ? theme.backgroun : "var(--card)"}
   }
   .ais-Highlight-highlighted {
     font-weight :bold;

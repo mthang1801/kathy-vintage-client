@@ -32,7 +32,7 @@ const CategoriesSlider = () => {
   const settings = {
     infinite: true,
     autoplay: true,
-    slidesToShow: window.innerWidth < 600 ? 2 : window.innerWidth < 992 ? 4 : 6,
+    slidesToShow: 6,
     speed: 500,
     slidesPerRow: 1,
     slidesToScroll: 1,
@@ -43,6 +43,23 @@ const CategoriesSlider = () => {
     focusOnSelect: false,
     pauseOnHover: true,
     autoplaySpeed: 4000,
+    responsive: [    
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,         
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },      
+    ],
     beforeChange: () => (dragging = true),
     afterChange: () => (dragging = false),
   }

@@ -9,7 +9,7 @@ export const Wrapper = styled(Link)`
   color : inherit;
   align-items : flex-start;
   &:hover{
-    background-color : ${({theme}) => theme.hover.background};
+    background-color : ${({theme}) => theme ? theme?.hover?.background : "var(--hover-background)"};
   }  
 `
 

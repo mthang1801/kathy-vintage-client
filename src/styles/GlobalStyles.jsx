@@ -52,14 +52,40 @@ export const GlobalStyles = createGlobalStyle`
     --color-border-default : #e8e8e8; 
 
     --mainTransition : all 0.2s;
+    --body: #ededed;
+    --text: #000000;
+    --button-text: #FFFFFF;
+    --button-background: #000000;
+    --link-text : teal;
+    --header-background : #fff;
+    --header-color: #000;
+    --navigation-background : #f5f5f5;
+    --navigation-active-background : #f5f5f5;
+    --navigation-active-color : #ffc107;
+    --background: #f0f0f0;
+    --card: #fff;
+    --form-background : #e0e0e0;
+    --hover-background : #f5f5f5;
+    --hover-text : #ffc107;
+    --breadcrumb-background : #dedede;
+    --breadcrumb-link-background : #f0f0f0;
+    --breadcrumb-link-color : #757575;
+    --border: #e0e0e0;
+    --boxShadow: 0 0 3px 3px #f5f5f5;
+    --dashboard-background : #e0f2f1;
+    --dashboard-color : #060717;
+    --dashboard-background2 : #fff;          
+    --dashboard-color2 : #000;  
+    --disabled-background : #f5f5f5;
+    --disabled-color : #424242;
   }
   html{
     width : 100vw;
     overflow-x :hidden;
   }
   body{    
-    background-color : ${({theme}) => theme.body}  !important  ;
-    color : ${({theme}) => theme.text} !important;
+    background-color : ${({theme}) => theme ? theme.body : "var(--body)"}  !important  ;
+    color : ${({theme}) => theme ? theme.text : "var(--text)"} !important;
     margin : 0; 
     padding : 0 ;
     width : 100vw;

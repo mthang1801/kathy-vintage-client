@@ -1,7 +1,7 @@
 import styled from "styled-components"
 export const Wrapper =styled.div`
   padding : 0.5rem;
-  background : ${({theme}) => theme.card}; 
+  background : ${({theme}) => theme ? theme.card : "var(--card)"}; 
   border : 2px solid var(--green-2);
   border-radius : 0.5rem;
   & > p{

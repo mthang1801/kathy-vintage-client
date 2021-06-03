@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa"
 import { useTheme } from "../../theme"
 const Search = () => {
   const [openSearchInput, setOpenSearchInput] = useState(
-    window.innerWidth < 500 ? false : true
+    typeof window !== "undefined" && window.innerWidth < 500 ? false : true
   )
   const { i18n, lang } = useLanguage()
   const { search } = i18n.store.data[lang].translation
