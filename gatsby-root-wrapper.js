@@ -12,6 +12,7 @@ import "whatwg-fetch"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import "./src/fonts/index.css"
+import "./src/styles/preloader.scss"
 export const wrapRootElement = ({ element }) => {
   if (typeof window === "undefined") {
     return (      
