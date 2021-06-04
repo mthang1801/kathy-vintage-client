@@ -60,8 +60,7 @@ export const query = graphql`
           unitPrice
           isRecommended
           isDiscount
-          discountPercentage
-          shippingFee
+          discountPercentage          
           manufactor
         	origin
           images {

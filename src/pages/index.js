@@ -6,21 +6,37 @@ import Categories from "../components/Carousel/Categories"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
 import useLanguage from "../components/Global/useLanguage"
-
-function Home() {
+import {createStructuredSelector} from "reselect";
+import {selectBestSellProducts, selectProductsLoading, selectFetchedProducts} from "../redux/products/products.selector"
+import {fetchBestSellProducts} from "../redux/products/products.actions"
+import {connect} from "react-redux"
+import HomeProductsList from "../components/UI/Lab/Skeleton/HomeProductsList"
+function Home({fetchBestSellProducts, productsLoading, bestSellProducts, productsFetched}) {
   let { newProducts, recommendedProducts } = useStaticQuery(query)
   const { i18n, lang } = useLanguage()
   const { product, seo } = i18n.store.data[lang].translation
   //format static data
   const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
   const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
+
+  useEffect(()=>{
+    if(!productsFetched){
+      fetchBestSellProducts();
+    }
+  },[fetchBestSellProducts, productsFetched])
   
-  return (
-    <>        
+  return (    
     <Layout>
-      <Seo title="Hello World"  description="New world"/>
+      <Seo title={seo.home}  description={seo.home}/>
       <Banners />
-      <Categories />
+      <Categories />      
+      {productsLoading ? <HomeProductsList/> :bestSellProducts?.length ? (
+        <ProductsList
+          header={product.bestSellProducts}
+          products={bestSellProducts}          
+          isAllProducts
+        />
+      ) : null}
       {newProductsEdges?.length ? (
         <ProductsList
           header={product.newProducts}
@@ -35,8 +51,7 @@ function Home() {
           isAllProducts
         />
       ) : null}
-    </Layout>
-    </>
+    </Layout>    
   )
 }
 
@@ -53,8 +68,7 @@ const query = graphql`
           slug
           unitPrice
           isDiscount
-          discountPercentage
-          shippingFee
+          discountPercentage          
           images {
             fluid {
               ...GatsbyContentfulFluid
@@ -92,8 +106,7 @@ const query = graphql`
           slug
           unitPrice
           isDiscount
-          discountPercentage
-          shippingFee
+          discountPercentage          
           images {
             fluid {
               src
@@ -122,4 +135,13 @@ const query = graphql`
   
 `
 
-export default Home
+const mapStateToProps = createStructuredSelector({
+  bestSellProducts : selectBestSellProducts,
+  productsLoading : selectProductsLoading,
+  productsFetched : selectFetchedProducts
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchBestSellProducts : () => dispatch(fetchBestSellProducts())
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

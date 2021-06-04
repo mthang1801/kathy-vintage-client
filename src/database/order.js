@@ -1,5 +1,5 @@
 import firebase from "gatsby-plugin-firebase"
-
+import {ORDER_PER_FETCH} from "../constants/client"
 export const addNewOrder = (user, newOrderItem) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -16,8 +16,7 @@ export const addNewOrder = (user, newOrderItem) => {
 
 export const fetchOrders = (userId, lastVisibleOrder) => {
   return new Promise(async (resolve, reject) => {
-    try {      
-      const LIMIT = 11 ; 
+    try {            
 
       let ordersList ;
       if(Object.entries(lastVisibleOrder).length){
@@ -27,7 +26,7 @@ export const fetchOrders = (userId, lastVisibleOrder) => {
         .where("userId","==",userId)
         .orderBy("createdAt","desc")
         .startAfter(lastVisibleOrder)
-        .limit(LIMIT)
+        .limit(ORDER_PER_FETCH)
         .get()
       }else{
         ordersList = await firebase
@@ -35,13 +34,13 @@ export const fetchOrders = (userId, lastVisibleOrder) => {
         .collection("orders")               
         .where("userId","==",userId)
         .orderBy("createdAt","desc")                 
-        .limit(LIMIT)
+        .limit(ORDER_PER_FETCH)
         .get()
       }
       let orders = [] ; 
       
       ordersList.docs.forEach((doc,idx) => {
-        if(idx < LIMIT -1){
+        if(idx < ORDER_PER_FETCH -1){
           orders.push({id: doc.id, ...doc.data()})
         }        
       })      
@@ -61,7 +60,21 @@ export const fetchOrders = (userId, lastVisibleOrder) => {
 export const cancelOrder = orderId => {
   return new Promise(async (resolve, reject) => {
     try {
-      await firebase.firestore().doc(`orders/${orderId}`).update({order_status : "canceled"});
+      //update sold_number from products
+      const orderRef = firebase.firestore().doc(`orders/${orderId}`);
+      const orderSnap = await orderRef.get();
+      if(orderSnap.data()?.products_line?.length){
+        for(let productItem of orderSnap.data().products_line){
+          const productRef = firebase.firestore().doc(`products/${productItem.id}`);
+          const productSnap = await productRef.get();          
+          if(productSnap.exists){
+            console.log(productSnap);
+            await productRef.update({sold_number : productSnap.data().sold_number - productItem.quantity });
+          }
+        }
+      }
+      //update order status
+      await orderRef.update({order_status : "canceled"});
       resolve(true);
     } catch (error) {
       reject(error);

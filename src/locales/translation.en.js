@@ -395,6 +395,14 @@ export const en = {
       },
     },
     product: {
+
+      bestSellProducts: {
+        id: "best-sell-products",
+        styledTitle: "Top",
+        title: "Best Sell Products",
+        path: "/best-sell-products",
+        pathIcon: <BsArrowRepeat />,
+      },
       newProducts: {
         id: "new-products",
         styledTitle: "Top",

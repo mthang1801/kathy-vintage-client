@@ -70,7 +70,6 @@ export const query = graphql`
       quantity
       unitPrice
       isRecommended
-      shippingFee
       origin
       manufactor
       sizes
@@ -139,7 +138,6 @@ export const query = graphql`
           unitPrice
           isDiscount
           discountPercentage
-          shippingFee
           images {
             fluid {
               src
@@ -180,7 +178,6 @@ export const query = graphql`
           unitPrice
           isDiscount
           discountPercentage
-          shippingFee
           images {
             fluid {
               src

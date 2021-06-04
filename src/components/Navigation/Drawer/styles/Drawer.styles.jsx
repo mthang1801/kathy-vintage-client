@@ -76,8 +76,7 @@ export const Auth = styled.div`
 `
 
 export const LogoContainer = styled.span`
-  svg{
-    width : 3rem;
-    height : 2rem;
+  svg, img{
+    width : 80px;
   }
 `

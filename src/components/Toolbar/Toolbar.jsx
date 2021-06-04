@@ -7,8 +7,9 @@ import {
   Flex,
   MobileResponsive,
 } from "./styles/Toolbar.styles"
-import Logo from "../../images/svgs/logo.svg"
+import Logo from "../../images/logo-text-icon.png"
 import { useLocation } from "@reach/router"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Link } from "gatsby"
 import {
   selectCurrentUser,
@@ -97,7 +98,9 @@ const Header = ({ userLoading, userFetched, user }) => {
               navigate("/auth", { state: { from: pathname } })
             }}
           >
-            <BrandLogo><Logo/></BrandLogo>
+            <BrandLogo>
+              <LazyLoadImage src={Logo} effect="blur" alt="Logo" />
+            </BrandLogo>
           </Link>
           <SearchContainer>
             <Search />

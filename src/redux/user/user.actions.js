@@ -192,7 +192,7 @@ export const updateUserPaymentAndShippingType = (paymentMethod) => dispatch => {
       dispatch(updateUserPaymentAndShippingTypeSuccess(paymentMethod))
       resolve(true)
     } catch (error) {
-      dispatch(updateUserPaymentAndShippingTypeFail());
+      dispatch(updateUserPaymentAndShippingTypeFail(error.message));
       reject(false);
     }
   })

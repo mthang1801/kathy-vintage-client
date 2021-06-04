@@ -405,6 +405,13 @@ export const vi = {
       },
     },
     product: {
+      bestSellProducts: {
+        id: "best-sell-products",
+        styledTitle: "Top",
+        title: "Sản phẩm bán chạy",
+        path: "/best-sell-products",
+        pathIcon: <BsArrowRepeat />,
+      },
       newProducts: {
         id: "new-products",
         styledTitle: "TOP",

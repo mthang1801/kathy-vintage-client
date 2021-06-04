@@ -40,8 +40,7 @@ const query = graphql`
           slug
           unitPrice
           isDiscount
-          discountPercentage
-          shippingFee
+          discountPercentage          
           images {
             fluid {
               src

@@ -31,12 +31,13 @@ const Cart = ({
       category : "cart",
       label : "Click cart"
     })
+        
+    toggleCart()
+    removeAlertCart();
     if (typeof window !== "undefined" &&  window.innerWidth < 768) {
       return navigate("/checkout")
     }
-    
-    toggleCart()
-    removeAlertCart();
+
   }
 
   const cartRef = useRef(false)

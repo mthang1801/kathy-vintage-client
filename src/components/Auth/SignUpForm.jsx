@@ -258,22 +258,7 @@ class SignUpForm extends React.Component {
     this.setState({ captcha_value: value, disabled: false })
     if (value === null) this.setState({ disabled: true })
   }
-  onSignInWithGoogle = () => {
-    trackCustomEvent({
-      action : "Click",
-      category : "auth",
-      label : "Sign in with Google"
-    })
-    this.props.signInWithGoogle();
-  }
-  onSignInWithFacebook = () => {
-    trackCustomEvent({
-      action : "Click",
-      category : "auth",
-      label : "Sign in with Facebook"
-    })
-    this.props.signInWithFacebook();
-  }
+  
   render() {
     const { formIsValid, loaded, disabled } = this.state
     let formInputArray = []
@@ -289,8 +274,8 @@ class SignUpForm extends React.Component {
         </FormHeader>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <SocialLoginButtons>
-          <GoogleLoginButton onClick={this.onSignInWithGoogle} />
-          <FacebookLoginButton onClick={this.onSignInWithFacebook} />
+          <GoogleLoginButton onClick={this.props.signInWithGoogle} />
+          <FacebookLoginButton onClick={this.props.signInWithFacebook} />
         </SocialLoginButtons>
         <FormGroups>
           {formInputArray.map(

@@ -8,7 +8,7 @@ const App = ({ children, user, checkUserSession }) => {
   const {theme} = useTheme()
   useEffect(() => {
     checkUserSession();
-  })
+  },[])
   
   return (
     <>

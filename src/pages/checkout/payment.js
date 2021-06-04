@@ -5,6 +5,7 @@ import {
   Wrapper,
   Title,
 } from "../../styles/checkout.payment.styles"
+import { increaseSoldNumberProduct } from "../../database/products"
 import { selectCurrentUser } from "../../redux/user/user.selectors"
 import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
@@ -65,6 +66,7 @@ const Payment = ({
   const [shippingMethod, setShippingMethod] = useState(
     payment.typeOfShipping.standard
   )
+  const [error, setError] = useState(undefined);
   const [paymentMethod, setPaymentMethod] = useState(
     user?.information?.paymentMethod
       ? payment.typeOfPayment[user.information.paymentMethod]
@@ -105,10 +107,12 @@ const Payment = ({
         paymentMethod.key,
         shippingMethod.key
       )
+      await increaseSoldNumberProduct(cartItems);
       navigate("/checkout/complete", { state: { from: "/checkout/payment" } })
       setLoading(false)
     } catch (error) {
       setLoading(false)
+      setError(error.message || error)
     }
   }
 
@@ -129,7 +133,7 @@ const Payment = ({
     <Layout>
       <LoadingDialog open={loading || !userFetched} />
       <ErrorDialog
-        content={orderError || userError}
+        content={orderError || userError || error}
         onClickCloseError={handleClearError}
       />
       {user && (

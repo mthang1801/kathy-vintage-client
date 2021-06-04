@@ -6,7 +6,7 @@ module.exports = {
     description: `Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ`,
     author: "@MVT",
     keywords : ["Quần áo si", "quần áo nam", "quần áo nữ", "si tuyển", "phụ kiện thời trang"],
-    image: "/images/logo.jpg",
+    image: "/images/logo-text-icon.png",
     twitterUsername: "@mthang1801",
     siteUrl: "https://kathy-vintage-demo.netlify.app",
   },
@@ -19,15 +19,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Kathy Vintage clothes shop`,
-        short_name: `Kathy Vintage`,
+        name: `Kathy Vintage`,
+        short_name: `KV clothes`,
         description:
           "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
         start_url: `/`,
         background_color: `#f0f0f0`,
-        theme_color: `#ffc400`,
+        theme_color: "#27135c",
         display: `minimal-ui`,
-        icon: `src/images/svgs/kathy-vintage.svg`,      
+        icon: `src/images/logo.png`,      
       },
     },      
     `gatsby-remark-images-contentful`,

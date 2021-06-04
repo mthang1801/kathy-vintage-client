@@ -41,8 +41,8 @@ const ProductItem = ({ product }) => {
         <DiscountBrand>{-product.discountPercentage}%</DiscountBrand>
       )}
       <ImageContainer
-        imageHover={`https:${product.images[0].fluid.src}`}
-        imageMouseout={`https:${product.images[1].fluid.src}`}
+        imageHover={`https:${product?.images[0]?.fluid?.src || product?.images[0]?.file?.url}` }
+        imageMouseout={`https:${product?.images[1]?.fluid?.src || product?.images[1]?.file?.url}`}
       />       
       <ProductText>
         <ProductName>{productName}</ProductName>

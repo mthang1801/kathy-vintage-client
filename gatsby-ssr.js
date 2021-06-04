@@ -19,7 +19,7 @@ export const onRenderBody = ({
       <div className="preloader_animation"></div>
     </div>,
     <div id="fb-root" />,
-    <div id="fb-customer-chat" class="fb-customerchat" />
+    <div id="fb-customer-chat" className="fb-customerchat" />
   ])
   setHtmlAttributes(helmet.htmlAttributes.toComponent())
   setBodyAttributes(helmet.bodyAttributes.toComponent())

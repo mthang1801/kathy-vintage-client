@@ -10,27 +10,39 @@ import {
   Option,
   SocialLoginButtons,
   ErrorMessage,
-  ButtonSubmit
+  ButtonSubmit,
 } from "./styles/AuthForm.styles"
 import Input from "./Input"
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
 import {
   selectUserError,
-  selectUserLoading,  
+  selectUserLoading,
 } from "../../redux/user/user.selectors"
-import { signIn, signInWithGoogle, signInWithFacebook, clearUserError } from "../../redux/user/user.actions"
+import {
+  signIn,
+  signInWithGoogle,
+  signInWithFacebook,
+  clearUserError,
+} from "../../redux/user/user.actions"
 import GoogleRecaptcha from "./GoogleRecaptcha"
 import useLanguage from "../Global/useLanguage"
 import GoogleLoginButton from "./GoogleLoginButton"
 import FacebookLoginButton from "./FacebookLoginButton"
-import {useTheme} from "../../theme"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
-const SignInFormWrapper = ({ error, signIn, loading, signInWithGoogle, signInWithFacebook, clearUserError }) => {
+import { useTheme } from "../../theme"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+const SignInFormWrapper = ({
+  error,
+  signIn,
+  loading,
+  signInWithGoogle,
+  signInWithFacebook,
+  clearUserError,
+}) => {
   const { i18n, lang } = useLanguage()
-  const { loginForm } = i18n.store.data[lang].translation.auth  
-  const {theme} = useTheme()
+  const { loginForm } = i18n.store.data[lang].translation.auth
+  const { theme } = useTheme()
   return (
     <SignInForm
       theme={theme}
@@ -59,22 +71,21 @@ class SignInForm extends React.Component {
   }
 
   timer = null
-  componentDidMount() {   
-    if(typeof window !== "undefined"){
+  componentDidMount() {
+    if (typeof window !== "undefined") {
       window.scrollTo({
-        top:0,
+        top: 0,
         behavior: "smooth",
       })
     }
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if(prevProps.error !== this.props.error){
-      clearTimeout(this.timer);
-      this.timer = setTimeout(()=>{
-        this.props.clearUserError();
-      },5000)
-      
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.error !== this.props.error) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.props.clearUserError()
+      }, 5000)
     }
   }
   componentWillUnmount() {
@@ -95,27 +106,12 @@ class SignInForm extends React.Component {
     this.setState({ captcha_value: value, disabled: false })
     if (value === null) this.setState({ disabled: true })
   }
-  onSignInWithGoogle = () => {
+
+  onSubmitSigninForm = async () => {
     trackCustomEvent({
-      action : "Click",
-      category : "auth",
-      label : "Sign in with Google"
-    })
-    this.props.signInWithGoogle();
-  }
-  onSignInWithFacebook = () => {
-    trackCustomEvent({
-      action : "Click",
-      category : "auth",
-      label : "Sign in with Facebook"
-    })
-    this.props.signInWithFacebook();
-  }
-  onSubmitSigninForm = async () => {    
-    trackCustomEvent({
-      action : "Click", 
-      category : "auth",
-      label : "Submit sign in form"
+      action: "Click",
+      category: "auth",
+      label: "Submit sign in form",
     })
     const { email, password } = this.state
     if (!email || !password) {
@@ -123,9 +119,7 @@ class SignInForm extends React.Component {
       return
     }
     this.setState({ error: null })
-    console.log(email, password)
     this.props.signIn(email, password)
-    
   }
   render() {
     const { email, password, disabled, loaded } = this.state
@@ -143,8 +137,13 @@ class SignInForm extends React.Component {
         {loading && <div>Loading...</div>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <SocialLoginButtons>
-          <GoogleLoginButton onClick={this.onSignInWithGoogle}/>
-          <FacebookLoginButton onClick={this.onSignInWithFacebook}/>
+          <GoogleLoginButton
+            onClick={e => {
+              e.preventDefault()
+              this.props.signInWithGoogle()
+            }}
+          />
+          <FacebookLoginButton onClick={this.props.signInWithFacebook} />
         </SocialLoginButtons>
         <FormGroups>
           <Input
@@ -170,12 +169,12 @@ class SignInForm extends React.Component {
           )}
           <ButtonSubmit
             onClick={this.onSubmitSigninForm}
-            type="button"            
+            type="button"
             disabled={disabled || loading}
             style={{ marginTop: "1rem" }}
           >
             <span>{locales.button}</span>
-            {loading && <CircularProgress/>}
+            {loading && <CircularProgress />}
           </ButtonSubmit>
         </FormGroups>
         <FormActions>
@@ -204,9 +203,9 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   signIn: (email, password) => dispatch(signIn(email, password)),
-  signInWithGoogle : () => dispatch(signInWithGoogle()),
-  signInWithFacebook : () => dispatch(signInWithFacebook()),
-  clearUserError : () => dispatch(clearUserError())
+  signInWithGoogle: () => dispatch(signInWithGoogle()),
+  signInWithFacebook: () => dispatch(signInWithFacebook()),
+  clearUserError: () => dispatch(clearUserError()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInFormWrapper)

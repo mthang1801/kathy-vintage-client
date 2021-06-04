@@ -32,6 +32,7 @@ export const addNewOrder = (
         userId : user.uid, 
         userInformation : user.information,
         products_line: products.map(product => ({
+          id : product.contentful_id,
           name_en: product.name_en,
           name_vi: product.name_vi,
           unitPrice: product.unitPrice,
