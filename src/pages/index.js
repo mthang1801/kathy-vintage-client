@@ -13,6 +13,7 @@ import {
   selectFetchedProducts,
 } from "../redux/products/products.selector"
 import { fetchBestSellProducts } from "../redux/products/products.actions"
+import { closeCart } from "../redux/cart/cart.actions"
 import { connect } from "react-redux"
 import HomeProductsList from "../components/UI/Lab/Skeleton/HomeProductsList"
 function Home({
@@ -20,6 +21,7 @@ function Home({
   productsLoading,
   bestSellProducts,
   productsFetched,
+  closeCart
 }) {
   let { newProducts, recommendedProducts } = useStaticQuery(query)
   const {
@@ -36,7 +38,9 @@ function Home({
       fetchBestSellProducts()
     }
   }, [fetchBestSellProducts, productsFetched])
-
+  useEffect(() => {
+    closeCart();
+  },[])
   return (
     <Layout>
       <Seo title={seo.home} description={seo.home} />
@@ -156,5 +160,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   fetchBestSellProducts: () => dispatch(fetchBestSellProducts()),
+  closeCart : () => dispatch(closeCart())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

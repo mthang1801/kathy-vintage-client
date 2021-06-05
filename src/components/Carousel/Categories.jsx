@@ -50,16 +50,13 @@ const CategoriesSlider = () => {
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToShow: 4,          
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 2,          
         },
       },
     ],
