@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Wrapper, List, ListItem, Title } from "./styles/Invoice.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme";
 
 
-const Invoice = ({ cartItems, isPayment, totalPriceBeforeTax, totalPriceAfterTax, totalPrice, tax, shippingFee = 0 }) => {
-  const { i18n, lang } = useLanguage()
+const Invoice = ({isPayment, totalPriceBeforeTax, totalPriceAfterTax, totalPrice, tax, shippingFee = 0 }) => {
+  const { translation : {checkout} } = useLanguage()
   const { theme } = useTheme()
-  const { checkout } = i18n.store.data[lang].translation
-  
-
   return (
     <Wrapper>
       <List theme={theme}>

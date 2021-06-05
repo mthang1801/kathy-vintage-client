@@ -4,12 +4,13 @@ import Dialog from "@material-ui/core/Dialog"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
 import LoadingSpinner from "../../Spinners/LoadingSpinner"
-import useLanguage from "../../../Global/useLanguage"
-import {ContentContainer} from "./styles/LoadingDialog.styles"
+import { useLanguage } from "../../../../locales"
+import { ContentContainer } from "./styles/LoadingDialog.styles"
 
 export default function LoadingDialog({ open }) {
-  const {i18n, lang} = useLanguage();
-  const {dialog} = i18n.store.data[lang].translation;
+  const {
+    translation: { dialog },
+  } = useLanguage()
   return (
     <>
       <Dialog
@@ -20,10 +21,9 @@ export default function LoadingDialog({ open }) {
         <DialogContent>
           <DialogContentText id="loading-dialog-description">
             <ContentContainer>
-            <LoadingSpinner/>
-            <h4>{dialog.loading}</h4>
+              <LoadingSpinner />
+              <h4>{dialog.loading}</h4>
             </ContentContainer>
-            
           </DialogContentText>
         </DialogContent>
       </Dialog>

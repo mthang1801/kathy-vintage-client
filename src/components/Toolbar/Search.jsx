@@ -1,14 +1,13 @@
 import React, { useState } from "react"
 import { SearchForm } from "./styles/Search.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { FaSearch } from "react-icons/fa"
 import { useTheme } from "../../theme"
 const Search = () => {
   const [openSearchInput, setOpenSearchInput] = useState(
     typeof window !== "undefined" && window.innerWidth < 500 ? false : true
   )
-  const { i18n, lang } = useLanguage()
-  const { search } = i18n.store.data[lang].translation
+  const { translation : {search} } = useLanguage()
   const {theme } = useTheme()
   return (
     <SearchForm

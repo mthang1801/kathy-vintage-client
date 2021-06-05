@@ -9,27 +9,22 @@ import {
   ProductShippingOverview,
   ShippingTime,
 } from "./styles/CheckoutOrderedProductItem.Payment.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 import Moment from "react-moment"
 import "moment/locale/vi"
 import "moment/locale/es-us"
 
 const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
-  const { i18n, lang } = useLanguage()
+  const { translation : {checkout : {payment}}, lang } = useLanguage()
   const { theme } = useTheme()
-  const { payment } = i18n.store.data[lang].translation.checkout
   const productPrice =
     product.isDiscount && product.discountPercentage
       ? (product.quantity *
           product.unitPrice *
           (100 - +product.discountPercentage)) /
         100
-      : product.quantity * product.unitPrice
-  const unitPriceAfterDiscount =
-    product.isDiscount && product.discountPercentage
-      ? (product.unitPrice * (100 - +product.discountPercentage)) / 100
-      : product.unitPrice
+      : product.quantity * product.unitPrice  
   return (
     <Wrapper theme={theme}>
       <ImageContainer>

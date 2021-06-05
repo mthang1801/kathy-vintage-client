@@ -11,7 +11,7 @@ import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
 import { connect } from "react-redux"
 import CheckoutPaymentTypeOfShipping from "../../components/Checkout/CheckoutTypeOfShipping.Payment"
-import useLanguage from "../../components/Global/useLanguage"
+import { useLanguage } from "../../locales"
 import Invoice from "../../components/Checkout/Invoice"
 import EmptyProductInCart from "../../components/Checkout/EmptyProductInCart"
 import { useTheme } from "../../theme"
@@ -19,7 +19,7 @@ import OrderedProductItemPayment from "../../components/Checkout/OrderedProductI
 import UserInformationPayment from "../../components/Checkout/UserInformation.Payment"
 import TypeOfPayment from "../../components/Checkout/TypeOfPayment"
 import { selectOrdersError } from "../../redux/orders/orders.selectors"
-import {useLocation} from "@reach/router"
+import { useLocation } from "@reach/router"
 import {
   selectUserError,
   selectUserFetched,
@@ -43,7 +43,7 @@ import {
 } from "../../utils/calculateOrderPrice"
 import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
 import ErrorDialog from "../../components/UI/FeedBacks/Dialog/ErrorDialog"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const tax = POLICY.tax
 
 const Payment = ({
@@ -57,16 +57,17 @@ const Payment = ({
   userClearError,
   ordersClearError,
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { checkout } = i18n.store.data[lang].translation
+  const {
+    translation: { checkout },
+  } = useLanguage()
   const { payment } = checkout
   const { theme } = useTheme()
   const [loading, setLoading] = useState(false)
-  const {pathname} = useLocation();
+  const { pathname } = useLocation()
   const [shippingMethod, setShippingMethod] = useState(
     payment.typeOfShipping.standard
   )
-  const [error, setError] = useState(undefined);
+  const [error, setError] = useState(undefined)
   const [paymentMethod, setPaymentMethod] = useState(
     user?.information?.paymentMethod
       ? payment.typeOfPayment[user.information.paymentMethod]
@@ -78,8 +79,7 @@ const Payment = ({
 
   useEffect(() => {
     setShippingFee(shippingMethod === "standard" ? 15000 : 30000)
-  }, [shippingMethod]);
-
+  }, [shippingMethod])
 
   useEffect(() => {
     if (!user && userFetched) {
@@ -89,9 +89,9 @@ const Payment = ({
 
   const onClickProceedOrder = async (tokenId = null) => {
     trackCustomEvent({
-      action : "Click",
-      category : "checkout",
-      label : "proceed order payment"
+      action: "Click",
+      category: "checkout",
+      label: "proceed order payment",
     })
     setLoading(true)
     try {
@@ -107,7 +107,7 @@ const Payment = ({
         paymentMethod.key,
         shippingMethod.key
       )
-      await increaseSoldNumberProduct(cartItems);
+      await increaseSoldNumberProduct(cartItems)
       navigate("/checkout/complete", { state: { from: "/checkout/payment" } })
       setLoading(false)
     } catch (error) {
@@ -128,7 +128,8 @@ const Payment = ({
     ordersClearError()
   }
 
-  if (userFetched && user &&  !user?.information) return navigate("/checkout/shipping")
+  if (userFetched && user && !user?.information)
+    return navigate("/checkout/shipping")
   return (
     <Layout>
       <LoadingDialog open={loading || !userFetched} />

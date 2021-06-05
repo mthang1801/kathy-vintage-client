@@ -10,7 +10,7 @@ import {
 } from "../styles/layout.template.styles"
 import SidebarNavigations from "../components/Sidebar/SidebarNavigations"
 import SidebarFilter from "../components/Sidebar/SidebarFilter"
-import useLanguage from "../components/Global/useLanguage"
+import { useLanguage } from "../locales"
 import { useTheme } from "../theme"
 import TabProductsList from "../components/UI/Tabs/TabProductsList"
 import ProductItem from "../components/Product/ProductItem"
@@ -44,8 +44,12 @@ export const LayoutTemplateContext = createContext({})
 
 const LayoutTemplate = ({ data, pageLocation }) => {
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { template } = i18n.store.data[lang].translation.page
+  const {
+    translation: {
+      page: { template },
+    },
+    lang
+  } = useLanguage()
   const location = useLocation()
 
   const sidebarNavigations =

@@ -13,7 +13,7 @@ import {
 } from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import ChevronRight from "@material-ui/icons/ChevronRight"
 import ChevronLeft from "@material-ui/icons/ChevronLeft"
 import Accordion from "@material-ui/core/Accordion"

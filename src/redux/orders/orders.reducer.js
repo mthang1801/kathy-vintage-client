@@ -3,6 +3,7 @@ import _ from "lodash"
 import {cancelOrderUtils} from "./orders.utils"
 const INITIAL_STATE = {
   orders : [], 
+  fetched : false,
   newOrder : null, 
   loading : true, 
   lastVisibleOrder : {}, 
@@ -16,7 +17,7 @@ export default (state=INITIAL_STATE, action) => {
     case orderActionTypes.FETCH_ORDERS_START : 
     case orderActionTypes.CANCEL_ORDER_START : 
       return {
-        ...state, 
+        ...state,         
         loading : true, 
         error : undefined
       }
@@ -28,7 +29,7 @@ export default (state=INITIAL_STATE, action) => {
     case orderActionTypes.ADD_NEW_ORDER_SUCCESS : 
       return {
         ...state, 
-        loading : false , 
+        loading : false ,         
         orders : state.orders.length ?  [{...action.payload}, ...state.orders] : [...state.orders],
         newOrder : action.payload,        
       }
@@ -36,6 +37,7 @@ export default (state=INITIAL_STATE, action) => {
       return {
         ...state, 
         loading : false, 
+        fetched : true,
         orders : _.unionBy([...state.orders, ...action.payload.orders], "id"),
         lastVisibleOrder : {...action.payload.lastVisibleOrder},
         hasMoreOrders : action.payload.hasMoreOrders
@@ -51,11 +53,17 @@ export default (state=INITIAL_STATE, action) => {
       ...state, 
       error : undefined
     };
-    case orderActionTypes.ADD_NEW_ORDER_FAIL : 
-    case orderActionTypes.FETCH_ORDERS_FAIL : 
+    case orderActionTypes.ADD_NEW_ORDER_FAIL :     
     case orderActionTypes.CANCEL_ORDER_FAIL : 
       return {
         ...state, 
+        loading : false,
+        error : action.payload
+      };
+    case orderActionTypes.FETCH_ORDERS_FAIL : 
+      return {
+        ...state, 
+        fetched : true, 
         loading : false,
         error : action.payload
       }

@@ -9,15 +9,14 @@ import {
   CategoriesContainer,
 } from "./styles/NavigationBar.styles"
 import { useTheme } from "../../theme"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useStaticQuery, graphql } from "gatsby"
 import { useLocation } from "@reach/router"
 import SettingDialog from "../Setting/SettingDialog"
 import CategoriesDropdown from "../Dropdown/CategoriesDropdown"
 const NavigationBar = () => {
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { navigations, portfolioIcons } = i18n.store.data[lang].translation
+  const { translation : {navigations, portfolioIcons}, lang } = useLanguage();
   const [activeItem, setActiveItem] = useState(null)
   const { pathname } = useLocation()
   const portfolioPath = pathname.split("/")[1]

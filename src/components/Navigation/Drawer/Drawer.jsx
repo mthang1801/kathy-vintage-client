@@ -18,7 +18,7 @@ import { useStyles, Auth, LogoContainer } from "./styles/Drawer.styles"
 import { Link } from "gatsby"
 import Logo from "../../../images/logo-text-icon.png"
 import {LazyLoadImage} from "react-lazy-load-image-component"
-import useLanguage from "../../Global/useLanguage"
+import {useLanguage} from "../../../locales"
 import DrawerPortfoliosDropdown from "../../Dropdown/DrawerPortfoliosDropdown"
 import { Scrollbars } from "react-custom-scrollbars"
 import { navigate } from "gatsby"
@@ -42,8 +42,7 @@ function PersistentDrawerLeft({
     setOpen(false)
     setOpenPortfolio(false)
   }
-  const { i18n, lang } = useLanguage()
-  const { auth, navigations } = i18n.store.data[lang].translation
+  const { translation : {auth , navigations}} = useLanguage()
   const navigationsArr = Object.keys(navigations).map(
     navigation => navigations[navigation]
   )

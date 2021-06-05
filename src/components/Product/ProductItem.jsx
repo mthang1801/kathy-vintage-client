@@ -9,7 +9,7 @@ import {
 } from "./styles/ProductItem.styles"
 import _ from "lodash"
 import {StaticImage} from "gatsby-plugin-image"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 const ProductItem = ({ product }) => {
   const [imageFluid, setImageFluid] = useState(product.images[0].fluid)

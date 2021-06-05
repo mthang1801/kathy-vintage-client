@@ -5,30 +5,22 @@ import {
   ProductContent,
   ProductName,
   ProductInfo,
-  ProductQuantityControl,
-  ButtonQuantity,
   PruductDetail,
   DeleteProduct,
 } from "./styles/CartItem.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 import { connect } from "react-redux"
 import {
-  increaseProductQuantity,
-  decreaseProductQuantity,
   removeProductFromCart,
 } from "../../redux/cart/cart.actions"
 import { BsTrash } from "react-icons/bs"
-import QuantityControl from "../Controls/QuantityControl"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const CartItem = ({
   product,
-  increaseProductQuantity,
-  decreaseProductQuantity,
   removeProductFromCart,
 }) => {
-  const { i18n, lang } = useLanguage()
-  const {cart} = i18n.store.data[lang].translation;
+  const { translation : {cart},lang } = useLanguage()
   const { theme } = useTheme()
   const productPrice =
     product.isDiscount && product.discountPercentage
@@ -74,11 +66,7 @@ const CartItem = ({
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  increaseProductQuantity: product =>
-    dispatch(increaseProductQuantity(product)),
-  decreaseProductQuantity: product =>
-    dispatch(decreaseProductQuantity(product)),
+const mapDispatchToProps = dispatch => ({  
   removeProductFromCart: product => dispatch(removeProductFromCart(product)),
 })
 

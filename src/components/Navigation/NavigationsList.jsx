@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import {
   List,
   ListItem,
@@ -12,8 +12,7 @@ import { useTheme } from "../../theme"
 const NavigationsList = () => {
   const [formatNavigations, setFormatNavigations] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const { i18n, lang } = useLanguage()
-  const { navigations } = i18n.store.data[lang].translation
+  const { translation : {navigations}} = useLanguage()
   const { theme } = useTheme()
   useEffect(() => {
     if (Object.entries(navigations).length) {

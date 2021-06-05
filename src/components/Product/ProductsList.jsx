@@ -9,16 +9,13 @@ import {
   Footer
 } from "./styles/ProductsList.styles"
 import { useTheme } from "../../theme"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import ProductItem from "./ProductItem"
 import { v4 as uuidv4 } from 'uuid';
 
 const ProductsList = ({ header, products, isAllProducts = true, currentPage, numPage }) => {
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const {
-    others: { seeAll },
-  } = i18n.store.data[lang].translation
+  const { translation : {others : {seeAll}} } = useLanguage()  
   products =
     typeof window!=="undefined" && window.innerWidth < 500
       ? products.filter((_, idx) => idx < 10).map(product => product)

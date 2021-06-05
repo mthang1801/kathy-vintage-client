@@ -1,10 +1,9 @@
 import React from 'react'
 import {FacebookLoginButtonWrapper, ButtonIcon, ButtonText} from "./styles/LoginButton.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import {RiFacebookFill} from "react-icons/ri"
 const FacebookLoginButtonComponent = (props) => {
-  const {i18n, lang} = useLanguage();
-  const {auth} = i18n.store.data[lang].translation;
+  const {translation : {auth}} = useLanguage();  
  
   return (
     <FacebookLoginButtonWrapper {...props}>

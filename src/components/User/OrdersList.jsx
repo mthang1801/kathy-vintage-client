@@ -10,8 +10,8 @@ import {
   selectOrdersLoading,
   selectOrdersError,
   selectLastVisibleOrder,
+  selectOrdersFetched
 } from "../../redux/orders/orders.selectors"
-import { Header, Title } from "./styles/DashBoard.styles"
 import { fetchOrders } from "../../redux/orders/orders.actions"
 import { connect } from "react-redux"
 import { createStructuredSelector } from "reselect"
@@ -20,7 +20,7 @@ import {
   ReadMoreContainer,
   ReadMoreText,
 } from "./styles/OrdersList.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import OrderItem from "../Order/OrderItem"
 import EmptyOrder from "../Order/EmptyOrder"
 import OrderPageSkeleton from "../UI/Lab/Skeleton/OrderPage"
@@ -38,18 +38,18 @@ const Orders = ({
   lastVisibleOrder,
   userLoading,
   userIsFetched,
+  ordersFetched
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { orders: ordersTranslation } = i18n.store.data[lang].translation
+  const { translation : {orders : ordersTranslation} } = useLanguage();
   const { pathname } = useLocation()
   useEffect(() => {
-    if (user) {
+    if (user && !ordersFetched) {
       fetchOrders(user.uid)
     }
     if (!user && !userLoading && userIsFetched) {
       navigate("/auth", { state: { from: pathname } })
     }
-  }, [user, userLoading, userIsFetched])
+  }, [user, userLoading, userIsFetched, ordersFetched])
 
   const onFetchMoreOrders = () => {
     trackCustomEvent({
@@ -102,6 +102,7 @@ const mapStateToProps = createStructuredSelector({
   lastVisibleOrder: selectLastVisibleOrder,
   userLoading: selectUserLoading,
   userIsFetched: selectUserFetched,
+  ordersFetched : selectOrdersFetched
 })
 
 const mapDispatchToProps = dispatch => ({

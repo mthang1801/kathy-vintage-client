@@ -2,14 +2,11 @@ import React, { useEffect, useState, useRef } from "react"
 import TextField from "@material-ui/core/TextField"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
-import Divider from "@material-ui/core/Divider"
 import InputLabel from "@material-ui/core/InputLabel"
 import Button from "@material-ui/core/Button"
 import { Form, ErrorAlert, Flex } from "./styles/GeneralInformation.styles"
-import useLanguage from "../Global/useLanguage"
 import { useTheme } from "../../theme"
 import localData from "../../database/local.json"
-import { Header, Title } from "./styles/DashBoard.styles"
 import { connect } from "react-redux"
 import { updateUserInformation } from "../../redux/user/user.actions"
 import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
@@ -20,7 +17,6 @@ const WrapperUserGeneralInformationForm = ({
   information,
   title,
 }) => {
-  const { i18n, lang } = useLanguage()
   const { theme } = useTheme()
   const formRef = useRef(null)
   return (

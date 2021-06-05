@@ -4,15 +4,19 @@ import {
   UserName,
   UserInfomationControls,
 } from "./styles/UserInformation.Shipping.styles"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
-import {navigate} from "gatsby"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { navigate } from "gatsby"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
-  const { i18n, lang } = useLanguage()
+  const {
+    translation: {
+      checkout: { userInformation },
+    },
+    lang,
+  } = useLanguage()
   const { theme } = useTheme()
-  const { userInformation } = i18n.store.data[lang].translation.checkout
   const userAddress =
     lang === "en"
       ? `${user.information?.address}  
@@ -23,18 +27,18 @@ const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
   ${user.information?.city}`
   const navigateToPayment = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "checkout", 
-      label : "Shipping to payment"
-    });
+      action: "Click",
+      category: "checkout",
+      label: "Shipping to payment",
+    })
     navigate("/checkout/payment")
   }
-  const onUpdateInfo= () => {
+  const onUpdateInfo = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "checkout", 
-      label : "update user information"
-    });
+      action: "Click",
+      category: "checkout",
+      label: "update user information",
+    })
     setUpdateInfo(true)
   }
   return (
@@ -47,16 +51,19 @@ const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
         {userInformation.address} : {userAddress}
       </p>
       <UserInfomationControls>
-        <Button size="small" color="primary" variant="contained" onClick={navigateToPayment}>
+        <Button
+          size="small"
+          color="primary"
+          variant="contained"
+          onClick={navigateToPayment}
+        >
           {userInformation.button_proceed_order}
         </Button>
-        {!openUpdateForm && <Button
-          size="small"
-          variant="contained"
-          onClick={onUpdateInfo}
-        >
-          {userInformation.button_change_information}
-        </Button>}
+        {!openUpdateForm && (
+          <Button size="small" variant="contained" onClick={onUpdateInfo}>
+            {userInformation.button_change_information}
+          </Button>
+        )}
       </UserInfomationControls>
     </Wrapper>
   )

@@ -2,19 +2,20 @@ import React from "react"
 import Layout from "../containers/Layout"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
-import useLanguage from "../components/Global/useLanguage"
+import { useLanguage } from "../locales"
 import { ProductsWrapper } from "../styles/new-products.styles"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 function NewProductsPage() {
-  let { newProducts } = useStaticQuery(query)  
-  const { i18n, lang } = useLanguage()
-  const { product } = i18n.store.data[lang].translation
+  let { newProducts } = useStaticQuery(query)
+  const {
+    translation: { product },
+  } = useLanguage()
   //format static data
   const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
-  const newProductsTotalCount = newProducts?.totalCount  
+  const newProductsTotalCount = newProducts?.totalCount
   return (
     <Layout>
-      <BreadcrumbNavigation staticData={[product.newProducts]}/>
+      <BreadcrumbNavigation staticData={[product.newProducts]} />
       <ProductsWrapper>
         {newProductsEdges?.length ? (
           <ProductsList
@@ -40,23 +41,23 @@ const query = graphql`
           slug
           unitPrice
           isDiscount
-          discountPercentage          
+          discountPercentage
           images {
             fluid {
               src
             }
           }
-          portfolio{
+          portfolio {
             name_en
             name_vi
             slug
           }
-          category{
+          category {
             name_en
             name_vi
             slug
           }
-          productGroup{
+          productGroup {
             name_en
             name_vi
             slug

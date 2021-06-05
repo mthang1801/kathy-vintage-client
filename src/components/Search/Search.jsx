@@ -5,14 +5,12 @@ import {
   SearchBox,
   Hits,
   connectStateResults,
-  Pagination,
-  PoweredBy,
   Configure,
 } from "react-instantsearch-dom"
 import Hit from "./Hit"
 import { Wrapper } from "./styles/Search.styles"
-import useLanguage from "../Global/useLanguage"
-import {useTheme} from "../../theme"
+import { useLanguage } from "../../locales"
+import { useTheme } from "../../theme"
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_SEARCH_KEY
@@ -20,11 +18,12 @@ const searchClient = algoliasearch(
 const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME
 
 const Search = () => {
-  const {i18n, lang} = useLanguage();
-  const {theme} = useTheme();
-  const {search} = i18n.store.data[lang].translation;
+  const {
+    translation: { search },
+  } = useLanguage()
+  const { theme } = useTheme()
   useEffect(() => {
-    if(typeof window !== "undefined"){
+    if (typeof window !== "undefined") {
       window.addEventListener("click", e => {
         const searchResults = document.getElementById("search-results")
         if (
@@ -37,13 +36,14 @@ const Search = () => {
             .getElementById("search-results")
             ?.classList?.remove("d-none")
         }
-        return document.getElementById("search-results")?.classList?.add("d-none")
+        return document
+          .getElementById("search-results")
+          ?.classList?.add("d-none")
       })
     }
-   
 
     return () => {
-      if(typeof window !== "undefined"){
+      if (typeof window !== "undefined") {
         window.removeEventListener("click", e => {
           const searchResults = document.getElementById("search-results")
           if (
@@ -56,10 +56,11 @@ const Search = () => {
               .getElementById("search-results")
               ?.classList?.remove("d-none")
           }
-          return document.getElementById("search-results")?.classList?.add("d-none")
+          return document
+            .getElementById("search-results")
+            ?.classList?.add("d-none")
         })
       }
-      
     }
   })
 
@@ -94,7 +95,7 @@ const Search = () => {
         <Configure />
         <div id="search-results">
           <Results className="search-results" searchTranslation={search}>
-            <Hits hitComponent={Hit} />          
+            <Hits hitComponent={Hit} />
           </Results>
         </div>
       </InstantSearch>

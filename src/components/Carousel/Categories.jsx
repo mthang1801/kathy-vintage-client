@@ -7,7 +7,7 @@ import {
   CategoryItemText,
 } from "./styles/Categories.styles"
 import Slider from "react-slick"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 import {
   CustomPortfoliosArrowNext,
   CustomPortfoliosArrowPrev,
@@ -15,20 +15,23 @@ import {
 import { useStaticQuery, graphql, navigate } from "gatsby"
 import Image from "gatsby-image"
 import { useTheme } from "../../theme"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 let dragging = false
 const CategoriesSlider = () => {
-  const { i18n, lang } = useLanguage()
-  const { categoryCarouselTitle } = i18n.store.data[lang].translation.page.home
-  const [slide, setSlide] = useState(null)
+  const {
+    translation: {
+      page: {
+        home: { categoryCarouselTitle },
+      },
+    },
+    lang,
+  } = useLanguage()
+
   const { fetchAllCategories } = useStaticQuery(CATEGORIES_QUERY)
   // const { theme, colorMode } = useThemeUI()
   const categories = fetchAllCategories.edges.map(({ node }) => node)
   const { theme } = useTheme()
-  const slideRef = useRef(null)
-  useEffect(() => {
-    setSlide(slideRef.current)
-  }, [slideRef])
+
   const settings = {
     infinite: true,
     autoplay: true,
@@ -43,31 +46,31 @@ const CategoriesSlider = () => {
     focusOnSelect: false,
     pauseOnHover: true,
     autoplaySpeed: 4000,
-    responsive: [    
+    responsive: [
       {
         breakpoint: 992,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,         
-        }
+          slidesToScroll: 4,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
-      },      
+          initialSlide: 2,
+        },
+      },
     ],
     beforeChange: () => (dragging = true),
     afterChange: () => (dragging = false),
   }
   const onClickCategoryItem = category => {
     trackCustomEvent({
-      action : "Click",
-      category : "category", 
-      label : "Click Category item"
+      action: "Click",
+      category: "category",
+      label: "Click Category item",
     })
     if (!dragging) {
       navigate(`/${category.portfolio.slug}/${category.slug}`)
@@ -86,9 +89,7 @@ const CategoriesSlider = () => {
             <ImageContainer>
               <Image fluid={category.image.fluid} alt={category.image.title} />
             </ImageContainer>
-            <CategoryItemText
-              title={category[`name_${lang}`]}
-            >
+            <CategoryItemText title={category[`name_${lang}`]}>
               {category[`name_${lang}`]}
             </CategoryItemText>
           </CategoryItem>

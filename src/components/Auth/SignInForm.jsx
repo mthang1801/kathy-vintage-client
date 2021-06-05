@@ -27,7 +27,7 @@ import {
   clearUserError,
 } from "../../redux/user/user.actions"
 import GoogleRecaptcha from "./GoogleRecaptcha"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 import GoogleLoginButton from "./GoogleLoginButton"
 import FacebookLoginButton from "./FacebookLoginButton"
 import { useTheme } from "../../theme"
@@ -40,8 +40,11 @@ const SignInFormWrapper = ({
   signInWithFacebook,
   clearUserError,
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { loginForm } = i18n.store.data[lang].translation.auth
+  const {
+    translation: {
+      auth: { loginForm },
+    },
+  } = useLanguage()
   const { theme } = useTheme()
   return (
     <SignInForm

@@ -13,3 +13,5 @@ export const selectNewOrder = createSelector(selectOrdersState, orders => orders
 export const selectHasMoreOrders = createSelector(selectOrdersState, orders => orders.hasMoreOrders);
 
 export const selectLastVisibleOrder = createSelector(selectOrdersState, orders => orders.lastVisibleOrder)
+
+export const selectOrdersFetched = createSelector(selectOrdersState , orders => orders.fetched)

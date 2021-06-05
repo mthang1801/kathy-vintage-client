@@ -11,7 +11,7 @@ import {
   ProductPriceAfterDiscount,
   ProductPriceOrigin,
 } from "./styles/CheckoutProductItem.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 import { BsTrash } from "react-icons/bs"
 import QuantityControl from "../Controls/QuantityControl"
@@ -22,8 +22,7 @@ const CheckoutProductItem = ({
   decreaseProductQuantity,
   removeProductFromCart,  
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { dialog } = i18n.store.data[lang].translation;
+  const { translation : {dialog}, lang} = useLanguage()
   const { theme } = useTheme()
   const [ openDialog, setOpenDialog ] = useState(false)
   const productPrice =

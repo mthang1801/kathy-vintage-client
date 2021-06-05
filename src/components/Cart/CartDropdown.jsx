@@ -9,13 +9,12 @@ import {
 } from "./styles/CartDropdown.styles"
 import { ButtonCheckout } from "./styles/CartAlert.styles"
 import { useTheme } from "../../theme"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import CartItem from "./CartItem"
 import {totalPriceBeforeTax} from "../../utils/calculateOrderPrice"
 const CartDropdown = ({ cartItems }) => {
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { cart } = i18n.store.data[lang].translation
+  const { translation : {cart} } = useLanguage()
   
   return (
     <Wrapper theme={theme}>

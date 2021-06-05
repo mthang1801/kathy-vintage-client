@@ -5,7 +5,7 @@ import SpeedDial from "@material-ui/lab/SpeedDial"
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon"
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction"
 import AccountBoxIcon from "@material-ui/icons/AccountBox"
-import useLanguage from "../../../Global/useLanguage"
+import {useLanguage} from "../../../../locales"
 import { Wrapper } from "./styles/ContactSpeedDial.styles"
 import { navigate } from "gatsby"
 import { useTheme } from "../../../../theme"
@@ -14,9 +14,9 @@ import { trackCustomEvent, OutboundLink } from "gatsby-plugin-google-analytics"
 const ContactSpeedDial = () => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
-  const [hidden, setHidden] = React.useState(false)
-  const { i18n, lang } = useLanguage()
-  const  contacts  = i18n?.store?.data[lang]?.translation?.contacts;
+  
+  const { translation : {contacts}, lang } = useLanguage()
+  
   const { theme } = useTheme()
   
   const handleOpen = () => {
@@ -56,8 +56,7 @@ const ContactSpeedDial = () => {
       <Wrapper theme={theme}>
         <SpeedDial
           ariaLabel="Contact SpeedDial"
-          className={classes.speedDial}
-          hidden={hidden}
+          className={classes.speedDial}          
           icon={
             <SpeedDialIcon
               openIcon={<AccountBoxIcon />}

@@ -1,18 +1,21 @@
 import React from "react"
 import { Wrapper, Link } from "./styles/UserInformation.Payment.styles"
 import { useTheme } from "../../theme"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 import { navigate } from "gatsby"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const UserInformation = ({ user }) => {
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { userInformation } = i18n.store.data[lang].translation.checkout
+  const {
+    translation: {
+      checkout: { userInformation },
+    },
+  } = useLanguage()
   const onGoBackShipping = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "checkout",
-      label : "go Back shipping from payment"
+      action: "Click",
+      category: "checkout",
+      label: "go Back shipping from payment",
     })
     navigate("/checkout/shipping", {
       state: { from: "/checkout/payment" },
@@ -35,11 +38,7 @@ const UserInformation = ({ user }) => {
         </strong>
       </p>
       <p>
-        <Link
-          type="button"
-          tabIndex={0}
-          onClick={onGoBackShipping}
-        >
+        <Link type="button" tabIndex={0} onClick={onGoBackShipping}>
           {userInformation.link_change_information}
         </Link>
       </p>

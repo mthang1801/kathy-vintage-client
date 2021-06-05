@@ -10,11 +10,11 @@ import {
   SubTitle,
   ErrorMessage,
   SocialLoginButtons,
-  ButtonSubmit
+  ButtonSubmit,
 } from "./styles/AuthForm.styles"
 import Input from "./Input"
-import CircularProgress from '@material-ui/core/CircularProgress';
-import useLanguage from "../Global/useLanguage"
+import CircularProgress from "@material-ui/core/CircularProgress"
+import { useLanguage } from "../../locales"
 import { connect } from "react-redux"
 import {
   signUpUser,
@@ -23,12 +23,15 @@ import {
   clearUserError,
 } from "../../redux/user/user.actions"
 import { createStructuredSelector } from "reselect"
-import { selectUserError, selectUserLoading } from "../../redux/user/user.selectors"
+import {
+  selectUserError,
+  selectUserLoading,
+} from "../../redux/user/user.selectors"
 import GoogleRecaptcha from "./GoogleRecaptcha"
 import FacebookLoginButton from "./FacebookLoginButton"
 import GoogleLoginButton from "./GoogleLoginButton"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
-import {useTheme} from "../../theme"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+import { useTheme } from "../../theme"
 import POLICY from "../../constants/policy"
 const SignUpFormWrapper = ({
   error,
@@ -36,11 +39,14 @@ const SignUpFormWrapper = ({
   signInWithGoogle,
   signInWithFacebook,
   clearUserError,
-  userLoading
+  userLoading,
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { signupForm } = i18n.store.data[lang].translation.auth
-  const {theme} = useTheme()
+  const {
+    translation: {
+      auth: { signupForm },
+    },
+  } = useLanguage()
+  const { theme } = useTheme()
   const INITIAL_STATE = {
     controls: {
       name: {
@@ -94,7 +100,7 @@ const SignUpFormWrapper = ({
         validation: {
           required: true,
           minLength: 6,
-          passwordPolicy : true
+          passwordPolicy: true,
         },
         value: "",
         touched: false,
@@ -136,27 +142,26 @@ const SignUpFormWrapper = ({
 
 class SignUpForm extends React.Component {
   state = { ...this.props.initialState }
-  timer;
+  timer
   signUpRef = React.createRef()
   componentDidMount() {
     clearTimeout(this.timer)
-    this.timer = setTimeout(() => {    
-      if(typeof window !== "undefined"){
+    this.timer = setTimeout(() => {
+      if (typeof window !== "undefined") {
         window.scrollTo({
           top: 0,
           behavior: "smooth",
         })
       }
     }, 66)
-
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.error !== this.props.error) {
-      this.resetForm();
+      this.resetForm()
       clearTimeout(this.timer)
       this.timer = setTimeout(() => {
-        this.props.clearUserError()        
+        this.props.clearUserError()
       }, 5000)
     }
   }
@@ -164,9 +169,7 @@ class SignUpForm extends React.Component {
     clearTimeout(this.timer)
   }
   resetForm = () => {
-    this.setState(
-      this.props.initialState
-    )
+    this.setState(this.props.initialState)
   }
 
   checkValidity = (value, rules) => {
@@ -197,9 +200,9 @@ class SignUpForm extends React.Component {
         errorsMessage.push(this.props.locales.invalidMaxLength(rules.maxLength))
       }
     }
-    if(rules.passwordPolicy){
-      isValid = POLICY.authenticate.password.test(value) && isValid ; 
-      if(!isValid){
+    if (rules.passwordPolicy) {
+      isValid = POLICY.authenticate.password.test(value) && isValid
+      if (!isValid) {
         errorsMessage.push(this.props.locales.invalidPassword)
       }
     }
@@ -241,9 +244,9 @@ class SignUpForm extends React.Component {
 
   handleSubmitSignUpForm = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "auth",
-      label : "Sign up with email and password"
+      action: "Click",
+      category: "auth",
+      label: "Sign up with email and password",
     })
     if (!this.state.formIsValid) {
       this.setState({ ...this.props.initialState })
@@ -258,7 +261,7 @@ class SignUpForm extends React.Component {
     this.setState({ captcha_value: value, disabled: false })
     if (value === null) this.setState({ disabled: true })
   }
-  
+
   render() {
     const { formIsValid, loaded, disabled } = this.state
     let formInputArray = []
@@ -267,7 +270,11 @@ class SignUpForm extends React.Component {
     })
     const { error, locales, theme, userLoading } = this.props
     return (
-      <AuthFormContainer onSubmit={this.handleSubmitSignUpForm} ref={this.signUpRef} theme={theme}>
+      <AuthFormContainer
+        onSubmit={this.handleSubmitSignUpForm}
+        ref={this.signUpRef}
+        theme={theme}
+      >
         <FormHeader>
           <Title>{locales.title}</Title>
           <SubTitle>{locales.subTitle}</SubTitle>
@@ -310,8 +317,8 @@ class SignUpForm extends React.Component {
         {loaded && (
           <GoogleRecaptcha onChange={this.handleChangeGoogleRecaptcha} />
         )}
-        <ButtonSubmit    
-          type="button"      
+        <ButtonSubmit
+          type="button"
           onClick={this.handleSubmitSignUpForm}
           disabled={!formIsValid || userLoading}
         >
@@ -339,7 +346,7 @@ class SignUpForm extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   error: selectUserError,
-  userLoading : selectUserLoading
+  userLoading: selectUserLoading,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -347,7 +354,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(signUpUser(name, gender, email, password)),
   signInWithGoogle: () => dispatch(signInWithGoogle()),
   clearUserError: () => dispatch(clearUserError()),
-  signInWithFacebook : () => dispatch(signInWithFacebook())
+  signInWithFacebook: () => dispatch(signInWithFacebook()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpFormWrapper)

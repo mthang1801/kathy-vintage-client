@@ -1,13 +1,14 @@
 import React from "react"
 import Button from "@material-ui/core/Button"
 import ShoppingCart from "@material-ui/icons/ShoppingCart"
-import {useStyles} from "./styles/CartButton.styles"
-import useLanguage from "../Global/useLanguage"
+import { useStyles } from "./styles/CartButton.styles"
+import { useLanguage } from "../../locales"
 const CartButton = () => {
   const classes = useStyles()
-  const {i18n, lang}= useLanguage();
-  const {cart} = i18n.store.data[lang].translation
-  
+  const {
+    translation: { cart },
+  } = useLanguage()
+
   return (
     <Button
       variant="outlined"
@@ -15,7 +16,7 @@ const CartButton = () => {
       className={classes.button}
       startIcon={<ShoppingCart />}
     >
-      {cart.name} : 5 
+      {cart.name} : 5
     </Button>
   )
 }

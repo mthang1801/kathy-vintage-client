@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react'
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import {useTheme} from "../../theme"
 import {Wrapper, ButtonCheckout} from "./styles/CartAlert.styles"
 
 const CartAlert = ({alertCart,removeAlertCart }) => {
-  const {i18n, lang} = useLanguage();
-  const {theme} = useTheme();
-  const {cart} = i18n.store.data[lang].translation;
+  const {translation : {cart}} = useLanguage();
+  const {theme} = useTheme();  
   
   useEffect(() => {
     let timing ; 

@@ -8,36 +8,45 @@ import { useTheme } from "../../theme"
 import axios from "axios"
 import STRIPE_PUBLISHABLE from "../../constants/stripe"
 import PAYMENT_SERVER_URL from "../../constants/server"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 
-const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children, onClickProceedOrder }) => {
+const StripeCheckoutButton = ({
+  totalPrice,
+  clearCartItems,
+  user,
+  children,
+  onClickProceedOrder,
+}) => {
   const amount = totalPrice
   const CURRENCY = "VND"
-  const {i18n, lang} = useLanguage();
-  const {typeOfPayment} = i18n.store.data[lang].translation.checkout.payment;
+  const {
+    translation: {
+      checkout: {
+        payment: { typeOfPayment },
+      },
+    },
+  } = useLanguage()
   const { theme } = useTheme()
-  let _token ;
-  const onToken = amount => token => {    
-    _token = token ;
-    axios
-      .post(PAYMENT_SERVER_URL, {
-        source: token.id,
-        currency: CURRENCY,
-        amount,
-      })    
-      
+  let _token
+  const onToken = amount => token => {
+    _token = token
+    axios.post(PAYMENT_SERVER_URL, {
+      source: token.id,
+      currency: CURRENCY,
+      amount,
+    })
   }
 
-  const onClosed = () => {    
-    if(_token){
-      onClickProceedOrder(_token.id);
-    }    
+  const onClosed = () => {
+    if (_token) {
+      onClickProceedOrder(_token.id)
+    }
   }
   return (
     <StripeCheckout
       label={typeOfPayment.payment_in_card_button}
-      name="Vintage Clothes Shop" 
-      allowRememberMe               
+      name="Vintage Clothes Shop"
+      allowRememberMe
       currency={CURRENCY}
       email={user.email}
       image="https://svgshare.com/i/CUz.svg"
@@ -49,9 +58,9 @@ const StripeCheckoutButton = ({ totalPrice, clearCartItems, user, children, onCl
       panelLabel={typeOfPayment.payment_in_card_button}
       token={onToken(amount)}
       stripeKey={STRIPE_PUBLISHABLE}
-      closed={onClosed}      
+      closed={onClosed}
     >
-     {children}
+      {children}
     </StripeCheckout>
   )
 }

@@ -1,46 +1,60 @@
-import React, {useEffect} from "react"
+import React, { useEffect } from "react"
 import Seo from "../components/Seo/Seo"
 import Layout from "../containers/Layout"
 import Banners from "../components/Carousel/Banners"
 import Categories from "../components/Carousel/Categories"
 import { graphql, useStaticQuery } from "gatsby"
 import ProductsList from "../components/Product/ProductsList"
-import useLanguage from "../components/Global/useLanguage"
-import {createStructuredSelector} from "reselect";
-import {selectBestSellProducts, selectProductsLoading, selectFetchedProducts} from "../redux/products/products.selector"
-import {fetchBestSellProducts} from "../redux/products/products.actions"
-import {connect} from "react-redux"
+import { useLanguage } from "../locales"
+import { createStructuredSelector } from "reselect"
+import {
+  selectBestSellProducts,
+  selectProductsLoading,
+  selectFetchedProducts,
+} from "../redux/products/products.selector"
+import { fetchBestSellProducts } from "../redux/products/products.actions"
+import { connect } from "react-redux"
 import HomeProductsList from "../components/UI/Lab/Skeleton/HomeProductsList"
-function Home({fetchBestSellProducts, productsLoading, bestSellProducts, productsFetched}) {
+function Home({
+  fetchBestSellProducts,
+  productsLoading,
+  bestSellProducts,
+  productsFetched,
+}) {
   let { newProducts, recommendedProducts } = useStaticQuery(query)
-  const { i18n, lang } = useLanguage()
-  const { product, seo } = i18n.store.data[lang].translation
+  const {
+    translation: { product, seo },
+  } = useLanguage()
   //format static data
   const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
-  const recommendedProductsEdges = recommendedProducts?.edges?.map(({node}) => node)
+  const recommendedProductsEdges = recommendedProducts?.edges?.map(
+    ({ node }) => node
+  )
 
-  useEffect(()=>{
-    if(!productsFetched){
-      fetchBestSellProducts();
+  useEffect(() => {
+    if (!productsFetched) {
+      fetchBestSellProducts()
     }
-  },[fetchBestSellProducts, productsFetched])
-  
-  return (    
+  }, [fetchBestSellProducts, productsFetched])
+
+  return (
     <Layout>
-      <Seo title={seo.home}  description={seo.home}/>
+      <Seo title={seo.home} description={seo.home} />
       <Banners />
-      <Categories />      
-      {productsLoading ? <HomeProductsList/> :bestSellProducts?.length ? (
+      <Categories />
+      {productsLoading ? (
+        <HomeProductsList />
+      ) : bestSellProducts?.length ? (
         <ProductsList
           header={product.bestSellProducts}
-          products={bestSellProducts}          
+          products={bestSellProducts}
           isAllProducts
         />
       ) : null}
       {newProductsEdges?.length ? (
         <ProductsList
           header={product.newProducts}
-          products={newProductsEdges}          
+          products={newProductsEdges}
           isAllProducts
         />
       ) : null}
@@ -51,7 +65,7 @@ function Home({fetchBestSellProducts, productsLoading, bestSellProducts, product
           isAllProducts
         />
       ) : null}
-    </Layout>    
+    </Layout>
   )
 }
 
@@ -68,23 +82,23 @@ const query = graphql`
           slug
           unitPrice
           isDiscount
-          discountPercentage          
+          discountPercentage
           images {
             fluid {
               ...GatsbyContentfulFluid
             }
           }
-          portfolio{
+          portfolio {
             name_en
             name_vi
             slug
           }
-          category{
+          category {
             name_en
             name_vi
             slug
           }
-          productGroup{
+          productGroup {
             name_en
             name_vi
             slug
@@ -95,7 +109,7 @@ const query = graphql`
       totalCount
     }
     recommendedProducts: allContentfulProduct(
-    	filter :{isRecommended :{eq : true}}
+      filter: { isRecommended: { eq: true } }
       sort: { fields: updatedAt, order: DESC }
       limit: 30
     ) {
@@ -106,23 +120,23 @@ const query = graphql`
           slug
           unitPrice
           isDiscount
-          discountPercentage          
+          discountPercentage
           images {
             fluid {
               src
             }
           }
-          portfolio{
+          portfolio {
             name_en
             name_vi
             slug
           }
-          category{
+          category {
             name_en
             name_vi
             slug
           }
-          productGroup{
+          productGroup {
             name_en
             name_vi
             slug
@@ -132,16 +146,15 @@ const query = graphql`
       }
     }
   }
-  
 `
 
 const mapStateToProps = createStructuredSelector({
-  bestSellProducts : selectBestSellProducts,
-  productsLoading : selectProductsLoading,
-  productsFetched : selectFetchedProducts
+  bestSellProducts: selectBestSellProducts,
+  productsLoading: selectProductsLoading,
+  productsFetched: selectFetchedProducts,
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchBestSellProducts : () => dispatch(fetchBestSellProducts())
+  fetchBestSellProducts: () => dispatch(fetchBestSellProducts()),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

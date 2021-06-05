@@ -1,11 +1,16 @@
 import React, { useEffect } from "react"
-import { selectCurrentUser, selectUserFetched, selectUserLoading } from "../redux/user/user.selectors"
+import {
+  selectCurrentUser,
+  selectUserFetched,
+  selectUserLoading,
+} from "../redux/user/user.selectors"
 import {
   selectOrders,
   selectHasMoreOrders,
   selectOrdersLoading,
   selectOrdersError,
   selectLastVisibleOrder,
+  selectOrdersFetched
 } from "../redux/orders/orders.selectors"
 import { fetchOrders } from "../redux/orders/orders.actions"
 import { connect } from "react-redux"
@@ -17,13 +22,13 @@ import {
   ReadMoreContainer,
   ReadMoreText,
 } from "../styles/orders.styles"
-import useLanguage from "../components/Global/useLanguage"
+import { useLanguage } from "../locales"
 import OrderItem from "../components/Order/OrderItem"
 import EmptyOrder from "../components/Order/EmptyOrder"
 import OrderPageSkeleton from "../components/UI/Lab/Skeleton/OrderPage"
 import { navigate } from "gatsby-link"
-import {useLocation} from "@reach/router"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { useLocation } from "@reach/router"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import Seo from "../components/Seo/Seo"
 const Orders = ({
   user,
@@ -33,65 +38,66 @@ const Orders = ({
   hasMoreOrders,
   fetchOrders,
   lastVisibleOrder,
-  userLoading, userIsFetched
+  userLoading,
+  userIsFetched,
+  ordersFetched
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { orders: ordersTranslation, seo } = i18n.store.data[lang].translation;
-  const {pathname} = useLocation();
+  const {
+    translation: { orders: ordersTranslation, seo },
+  } = useLanguage()
+  const { pathname } = useLocation()
   useEffect(() => {
-    if (user) {
+    if (user && !ordersFetched) {
       fetchOrders(user.uid)
     }
-    if(!user && !userLoading && userIsFetched){
-      navigate("/auth", {state : {from : pathname}})
+    if (!user && !userLoading && userIsFetched) {
+      navigate("/auth", { state: { from: pathname } })
     }
-  }, [user, userLoading, userIsFetched])
-
-  
+  }, [user, userLoading, userIsFetched,ordersFetched])
 
   const onFetchMoreOrders = () => {
     trackCustomEvent({
-      action : "Click",
-      category : "orders",
-      label : "Fetch more orders"
+      action: "Click",
+      category: "orders",
+      label: "Fetch more orders",
     })
     fetchOrders(user.uid, lastVisibleOrder)
   }
   return (
     <>
-    <Seo title={seo.orders} description="Danh sách đơn hàng đã thực hiện"/>
-    <Layout>
-      <ContentContainer>
-        <Title>{ordersTranslation.title}</Title>        
-        {loading && !orders.length? (
-          <OrderPageSkeleton fullScreen/>
-        ) : (
-          <>            
-            {orders.length ? (
-              <div>
-                {orders.map(order => (
-                  <OrderItem
-                    key={order.id}
-                    order={order}
-                    ordersTranslation={ordersTranslation}
-                  />
-                ))}
-                {loading && <OrderPageSkeleton /> }
-                {hasMoreOrders && (
-                  <ReadMoreContainer onClick={onFetchMoreOrders}>
-                    <ReadMoreText>
-                      {ordersTranslation.readMoreOrders}
-                    </ReadMoreText>
-                  </ReadMoreContainer>
-                )}
-              </div>
-            ) : (
-              <EmptyOrder />
-            )}
-          </>
-        )}
-      </ContentContainer>
-    </Layout>
+      <Seo title={seo.orders} description="Danh sách đơn hàng đã thực hiện" />
+      <Layout>
+        <ContentContainer>
+          <Title>{ordersTranslation.title}</Title>
+          {loading && !orders.length ? (
+            <OrderPageSkeleton fullScreen />
+          ) : (
+            <>
+              {orders.length ? (
+                <div>
+                  {orders.map(order => (
+                    <OrderItem
+                      key={order.id}
+                      order={order}
+                      ordersTranslation={ordersTranslation}
+                    />
+                  ))}
+                  {loading && <OrderPageSkeleton />}
+                  {hasMoreOrders && (
+                    <ReadMoreContainer onClick={onFetchMoreOrders}>
+                      <ReadMoreText>
+                        {ordersTranslation.readMoreOrders}
+                      </ReadMoreText>
+                    </ReadMoreContainer>
+                  )}
+                </div>
+              ) : (
+                <EmptyOrder />
+              )}
+            </>
+          )}
+        </ContentContainer>
+      </Layout>
     </>
   )
 }
@@ -103,8 +109,9 @@ const mapStateToProps = createStructuredSelector({
   error: selectOrdersError,
   hasMoreOrders: selectHasMoreOrders,
   lastVisibleOrder: selectLastVisibleOrder,
-  userLoading : selectUserLoading,
-  userIsFetched : selectUserFetched
+  userLoading: selectUserLoading,
+  userIsFetched: selectUserFetched,
+  ordersFetched : selectOrdersFetched
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -8,7 +8,6 @@ import {
 import { connect } from "react-redux"
 import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
-import { useTheme } from "../../theme"
 import CheckoutProductItem from "../../components/Checkout/CheckoutProductItem"
 import Invoice from "../../components/Checkout/Invoice"
 import EmptyProductInCart from "../../components/Checkout/EmptyProductInCart"
@@ -25,8 +24,8 @@ import {
 } from "../../redux/cart/cart.actions"
 import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
-import useLanguage from "../../components/Global/useLanguage"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { useLanguage } from "../../locales"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const tax = POLICY.tax
 const CheckoutPage = ({
   cartItems,
@@ -34,16 +33,16 @@ const CheckoutPage = ({
   decreaseProductQuantity,
   removeProductFromCart,
 }) => {
-  const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { checkout } = i18n.store.data[lang].translation
+  const {
+    translation: { checkout },
+  } = useLanguage()
   const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems)
   const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
   const onClickProceedOrder = () => {
     trackCustomEvent({
-      action : "Click",
-      category : "checkout", 
-      label : "Go to checkout shipping"
+      action: "Click",
+      category: "checkout",
+      label: "Go to checkout shipping",
     })
     navigate("/checkout/shipping")
   }

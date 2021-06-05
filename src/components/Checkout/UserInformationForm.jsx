@@ -10,7 +10,7 @@ import {
   ErrorAlert,
   Flex,
 } from "./styles/UserInformationForm.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 import localData from "../../database/local.json"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
@@ -20,8 +20,7 @@ const WrapperUserInformationForm = ({
   isUpdate,
   setUpdateInfo,
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { information } = i18n.store.data[lang].translation.user
+  const { translation : {user : {information}} } = useLanguage()
   const { theme } = useTheme()
   const formRef= useRef(null)
  

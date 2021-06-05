@@ -8,21 +8,28 @@ import Layout from "../../containers/Layout"
 import { useLocation } from "@reach/router"
 import EmptyOrderProduct from "../../components/Checkout/EmptyOrderProduct"
 import { ContentContainer } from "../../styles/checkout.payment.styles"
-import { Wrapper, ImageContainer, ButtonGroup } from "../../styles/checkout.complete.styles"
+import {
+  Wrapper,
+  ImageContainer,
+  ButtonGroup,
+} from "../../styles/checkout.complete.styles"
 import { BiCheckCircle } from "react-icons/bi"
 import { useTheme } from "../../theme"
-import useLanguage from "../../components/Global/useLanguage"
+import { useLanguage } from "../../locales"
 import POLICY from "../../constants/policy"
 import calculateEstimateTimeDilivery from "../../utils/calculateEstimateTimeDilivery"
 import Button from "@material-ui/core/Button"
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined"
 import { navigate } from "gatsby"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const CheckoutComplete = ({ order, clearCartItems, user }) => {
   const { state } = useLocation()
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { complete } = i18n.store.data[lang].translation.checkout
+  const {
+    translation: {
+      checkout: { complete },
+    },
+  } = useLanguage()
   useEffect(() => {
     if (state?.from === "/checkout/payment") {
       clearCartItems()
@@ -61,13 +68,14 @@ const CheckoutComplete = ({ order, clearCartItems, user }) => {
                 variant="contained"
                 onClick={() => {
                   trackCustomEvent({
-                    action : "Click",
-                    category : "navigate",
-                    label : "Complete, go home"
+                    action: "Click",
+                    category: "navigate",
+                    label: "Complete, go home",
                   })
-                  navigate("/")}}
+                  navigate("/")
+                }}
               >
-                <HomeOutlinedIcon/>
+                <HomeOutlinedIcon />
                 {complete.backHomeButton}
               </Button>
             </ButtonGroup>

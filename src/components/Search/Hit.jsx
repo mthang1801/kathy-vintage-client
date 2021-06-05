@@ -1,7 +1,7 @@
 import React from "react"
 import { Highlight } from "react-instantsearch-dom"
 import { Link } from "gatsby"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const Hit = ({ ...props }) => {
   const { lang } = useLanguage()

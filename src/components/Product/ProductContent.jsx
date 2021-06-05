@@ -12,7 +12,7 @@ import {
   ButtonGroup,
 } from "./styles/ProductContent.styles"
 import Button from "@material-ui/core/Button"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import QuantityControl from "../Controls/QuantityControl"
 import { useTheme } from "../../theme"
 import { addProductItemToCart,removeAlertCart } from "../../redux/cart/cart.actions"
@@ -34,8 +34,7 @@ const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCa
     colors,
   } = product
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { productPage } = i18n.store.data[lang].translation.product
+  const { translation : {product : {productPage}}, lang} = useLanguage()
   const [selectedSize, setSelectedSize] = useState(sizes[0])
   const [selectedColor, setSelectedColor] = useState(
     colors ? colors[0].color : null

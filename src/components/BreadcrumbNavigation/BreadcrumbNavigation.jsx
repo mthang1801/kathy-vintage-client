@@ -4,25 +4,27 @@ import {
   BreadcrumbItemLink,
 } from "./styles/BreadcrumbNavigation.styles"
 import { useTheme } from "../../theme"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 const BreadcrumbNavigation = ({ contenfulData, staticData }) => {
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { breadcrumbs } = i18n.store.data[lang].translation
+  const {
+    translation: { breadcrumbs }, lang
+  } = useLanguage()
 
-  const accumulativePath = index => {    
+  const accumulativePath = index => {
     let path = ""
     if (contenfulData?.length) {
       for (let i = 0; i <= index; i++) {
         path += `/${contenfulData[i].slug}`
       }
-    }    
+    }
     return path
   }
-  const formatBreadcrumbLinkName = (dataItem) => {
+  const formatBreadcrumbLinkName = dataItem => {
     const fullName = dataItem[`name_${lang}`]
-    const shortName = fullName.length > 60 ? fullName.slice(0,60) + "..." : fullName;
-    return {fullName, shortName}
+    const shortName =
+      fullName.length > 60 ? fullName.slice(0, 60) + "..." : fullName
+    return { fullName, shortName }
   }
   return (
     <Wrapper theme={theme}>

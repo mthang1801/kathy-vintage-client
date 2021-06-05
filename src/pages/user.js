@@ -9,7 +9,7 @@ import {
   AvatarContainer,
   ButtonHomePage,
 } from "../styles/user.index.styles"
-import useLanguage from "../components/Global/useLanguage"
+import { useLanguage } from "../locales"
 import Divider from "@material-ui/core/Divider"
 import DashBoard from "../components/User/Dashboard"
 import GeneralInformation from "../components/User/GeneralInformation"
@@ -30,16 +30,21 @@ import UserDashboardSkeleton from "../components/UI/Lab/Skeleton/UserDashboard"
 import UserDashBoardDialog from "../components/User/UserDashBoardDialog"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { AiOutlineHome } from "react-icons/ai"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 
 const UserPage = ({ user, loading, isFetched }) => {
-  const { i18n, lang } = useLanguage()
-  const { theme } = useTheme()
   const {
-    dashboard: { options },
-    information,
-    password,
-  } = i18n.store.data[lang].translation.user
+    translation: {
+      user: {
+        dashboard: { options },
+        information,
+        password,
+      },
+    },
+    lang
+  } = useLanguage()
+  const { theme } = useTheme()
+
   const [selectedOption, setSelectedOption] = useState(options[0].key)
   const [openDashboardDialog, setOpenDashboardDialog] = useState(false)
   let title
@@ -79,13 +84,18 @@ const UserPage = ({ user, loading, isFetched }) => {
       <MobileToolbar>
         {user && (
           <Header justify="space-between">
-            <ButtonHomePage theme={theme} rounded onClick={() => {
-              trackCustomEvent({
-                action : "Click",
-                category : "navigate" ,
-                label : "Go Home page"
-              })
-              navigate("/")}}>
+            <ButtonHomePage
+              theme={theme}
+              rounded
+              onClick={() => {
+                trackCustomEvent({
+                  action: "Click",
+                  category: "navigate",
+                  label: "Go Home page",
+                })
+                navigate("/")
+              }}
+            >
               <AiOutlineHome />
             </ButtonHomePage>
             <AvatarContainer

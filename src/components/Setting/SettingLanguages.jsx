@@ -1,5 +1,5 @@
 import React from "react"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { configLang } from "../../locales"
 import ReactCountryFlag from "react-country-flag"
 import Button from "@material-ui/core/Button"

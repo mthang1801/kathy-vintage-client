@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 import {
   AuthFormContainer,
   FormHeader,
@@ -8,21 +8,24 @@ import {
   FormGroups,
   ErrorMessage,
   SuccessMessage,
-  ButtonSubmit
+  ButtonSubmit,
 } from "./styles/AuthForm.styles"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import GoogleRecaptcha from "./GoogleRecaptcha"
 import { restoreAccount } from "../../redux/user/user.actions"
-import {FcCheckmark} from "react-icons/fc"
-import {useTheme} from "../../theme"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { FcCheckmark } from "react-icons/fc"
+import { useTheme } from "../../theme"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import { CircularProgress } from "@material-ui/core"
 const emailPattern = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const RestoreAccount = () => {
-  const { i18n, lang } = useLanguage()
-  const {theme} = useTheme()
-  const { restoreAccountForm } = i18n.store.data[lang].translation.auth
+  const {
+    translation: {
+      auth: { restoreAccountForm },
+    },
+  } = useLanguage()
+  const { theme } = useTheme()
   const [emailValue, setEmailValue] = useState("")
   const [disabled, setDisabled] = useState(true)
   const [success, setSuccess] = useState(false)
@@ -50,16 +53,16 @@ const RestoreAccount = () => {
 
   const onRestoreAccount = async () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "auth",
-      label : "Restore Account"
+      action: "Click",
+      category: "auth",
+      label: "Restore Account",
     })
     if (emailPattern.test(emailValue)) {
       try {
         setLoading(true)
         await restoreAccount(emailValue)
         setSuccess(true)
-        setLoading(false)        
+        setLoading(false)
       } catch (error) {
         setError(error)
         setLoading(false)
@@ -72,9 +75,13 @@ const RestoreAccount = () => {
       {success ? (
         <>
           <FormHeader>
-            <Title><FcCheckmark/></Title>
+            <Title>
+              <FcCheckmark />
+            </Title>
           </FormHeader>
-          <SuccessMessage>{restoreAccountForm.restoreSuccessText}</SuccessMessage>
+          <SuccessMessage>
+            {restoreAccountForm.restoreSuccessText}
+          </SuccessMessage>
         </>
       ) : (
         <>
@@ -99,10 +106,10 @@ const RestoreAccount = () => {
             <ButtonSubmit
               onClick={onRestoreAccount}
               type="button"
-              disabled={disabled || loading}              
+              disabled={disabled || loading}
             >
               <span>{restoreAccountForm.restoreButton}</span>
-              {loading && <CircularProgress/>}
+              {loading && <CircularProgress />}
             </ButtonSubmit>
           </FormGroups>
         </>

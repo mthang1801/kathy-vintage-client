@@ -9,7 +9,6 @@ import {
 } from "./styles/Toolbar.styles"
 import Logo from "../../images/logo-text-icon.png"
 import { useLocation } from "@reach/router"
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Link } from "gatsby"
 import {
   selectCurrentUser,
@@ -21,7 +20,7 @@ import { connect } from "react-redux"
 import Search from "../Search/Search"
 import { useTheme } from "../../theme"
 import { Button } from "@material-ui/core"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 import ButtonMenu from "../Controls/ButtonMenu"
 import Cart from "../Cart/Cart"
 import Drawer from "../Navigation/Drawer/Drawer"
@@ -31,8 +30,9 @@ import { signInPattern, signUpPattern } from "../../utils/auth"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const Header = ({ userLoading, userFetched, user }) => {
   const [openDrawer, setOpenDrawer] = useState(false)
-  const { i18n, lang } = useLanguage()
-  const { auth } = i18n.store.data[lang].translation
+  const {
+    translation: { auth },
+  } = useLanguage()
   const { theme } = useTheme()
   const { pathname } = useLocation()
   const onOpenMenu = useCallback(() => {
@@ -95,11 +95,10 @@ const Header = ({ userLoading, userFetched, user }) => {
                 category: "navigate",
                 label: "Go To Home page",
               })
-              navigate("/auth", { state: { from: pathname } })
             }}
           >
             <BrandLogo>
-              <LazyLoadImage src={Logo} effect="blur" alt="Logo" />
+              <img src={Logo} alt="Logo" />
             </BrandLogo>
           </Link>
           <SearchContainer>

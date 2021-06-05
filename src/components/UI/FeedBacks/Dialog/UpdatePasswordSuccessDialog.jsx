@@ -1,30 +1,33 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import Dialog from "@material-ui/core/Dialog"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import useLanguage from "../../../Global/useLanguage"
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline"
+import { useLanguage } from "../../../../locales"
 import { ContentContainer } from "./styles/UpdatePasswordSuccessDialog.styles"
-import {connect} from "react-redux"
-import {signOutUser} from "../../../../redux/user/user.actions"
+import { connect } from "react-redux"
+import { signOutUser } from "../../../../redux/user/user.actions"
 
 const UpdatePasswordSuccessDialog = ({ open, signOutUser }) => {
-  const { i18n, lang } = useLanguage()
-  const { password } = i18n.store.data[lang].translation.user; 
-  const [counter, setCounter] = useState(3);
-  useEffect(()=>{
-    let timer ;
-    if(open){
-      timer = setInterval(()=>{
-        setCounter(prevCounter => prevCounter-1);        
-      },1000)
-      if(counter === 0){
-        clearInterval(timer);
-        signOutUser();
+  const {
+    translation: {
+      user: { password },
+    },
+  } = useLanguage()
+  const [counter, setCounter] = useState(3)
+  useEffect(() => {
+    let timer
+    if (open) {
+      timer = setInterval(() => {
+        setCounter(prevCounter => prevCounter - 1)
+      }, 1000)
+      if (counter === 0) {
+        clearInterval(timer)
+        signOutUser()
       }
     }
-    return () => clearInterval(timer);
-  },[open, counter])
+    return () => clearInterval(timer)
+  }, [open, counter])
   return (
     <>
       <Dialog
@@ -41,16 +44,19 @@ const UpdatePasswordSuccessDialog = ({ open, signOutUser }) => {
                 <CheckCircleOutlineIcon />
               </span>
               <span>{password.updatePasswordSuccess}</span>
-              <span dangerouslySetInnerHTML={{__html : password.countTimeToLogout(counter)}}></span>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: password.countTimeToLogout(counter),
+                }}
+              ></span>
             </ContentContainer>
-            
           </DialogContentText>
-        </DialogContent>        
+        </DialogContent>
       </Dialog>
     </>
   )
 }
 const mapDispatchToProps = dispatch => ({
-  signOutUser : () => dispatch(signOutUser())
+  signOutUser: () => dispatch(signOutUser()),
 })
 export default connect(null, mapDispatchToProps)(UpdatePasswordSuccessDialog)

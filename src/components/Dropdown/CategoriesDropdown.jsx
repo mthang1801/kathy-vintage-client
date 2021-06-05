@@ -7,7 +7,7 @@ import {
 } from "./styles/DropdownList.styles"
 import ProductGroupsDropdown from "./ProductGroupsDropdown"
 import { useTheme } from "../../theme"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 const CategoriesDropdown = ({ parentSlug, categories }) => {
   const { theme } = useTheme()
   const initialCategory = { id: null, x: 0, y: 0 }

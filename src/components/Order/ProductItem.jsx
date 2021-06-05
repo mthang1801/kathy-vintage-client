@@ -11,12 +11,12 @@ import {
   ProductQuantity,
   ProductTotalPrice,
 } from "./styles/ProductItem.styles"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 import { navigate } from "gatsby"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const CheckoutProductItem = ({ product, ordersTranslation }) => {
-  const { i18n, lang } = useLanguage()
+  const { lang } = useLanguage()
   const { theme } = useTheme()
   const productPrice =
     product.isDiscount && product.discountPercentage

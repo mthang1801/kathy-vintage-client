@@ -1,12 +1,11 @@
 import React from 'react'
 import {Wrapper, Icon , Title, Button} from "./styles/EmptyProductInCart.styles"
 import {AiOutlineShoppingCart} from "react-icons/ai"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import {useTheme} from "../../theme"
 import {navigate} from  "gatsby"
 const EmptyProductInCart = () => {
-  const {i18n, lang} = useLanguage();
-  const {checkout} = i18n.store.data[lang].translation;
+  const {translation : {checkout}} = useLanguage();
   const {theme} = useTheme()
   return (
     <Wrapper theme={theme}>   

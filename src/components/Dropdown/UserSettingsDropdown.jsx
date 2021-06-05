@@ -1,5 +1,5 @@
 import React from "react"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 import {
   Wrapper,
   ManageAccount,
@@ -20,8 +20,9 @@ import { connect } from "react-redux"
 import { signOutUser } from "../../redux/user/user.actions"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const UserSettingsDropdown = ({ user, signOut }) => {
-  const { i18n, lang } = useLanguage()
-  const { user: userTranslation } = i18n.store.data[lang].translation
+  const {
+    translation: { user: userTranslation },
+  } = useLanguage()
   const { theme } = useTheme()
 
   const onLogout = e => {

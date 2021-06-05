@@ -1,16 +1,22 @@
 import React from "react"
 import _ from "lodash"
-import { Title , RelevantProductsContainer} from "./styles/RelevantProducts.styles"
+import {
+  Title,
+  RelevantProductsContainer,
+} from "./styles/RelevantProducts.styles"
 import ProductItem from "./ProductItem"
-import useLanguage from "../Global/useLanguage"
+import { useLanguage } from "../../locales"
 
 const RelevantProducts = ({
   currentProduct,
   productsByCategory,
   productsByProductGroup,
 }) => {
-  const { i18n, lang } = useLanguage()
-  const { productPage } = i18n.store.data[lang].translation.product
+  const {
+    translation: {
+      product: { productPage },
+    },
+  } = useLanguage()
   const relevantProducts = _.uniqBy(
     [...productsByProductGroup.edges, ...productsByCategory.edges].map(
       ({ node }) => node
@@ -25,7 +31,7 @@ const RelevantProducts = ({
           <Title>{productPage.relevantProducts}</Title>
           <RelevantProductsContainer>
             {relevantProducts.map(product => (
-              <ProductItem key={product.contentful_id} product={product}/>
+              <ProductItem key={product.contentful_id} product={product} />
             ))}
           </RelevantProductsContainer>
         </>

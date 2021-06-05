@@ -11,7 +11,7 @@ import {
 } from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
 import { useTheme } from "../../theme"
-import useLanguage from "../Global/useLanguage"
+import {useLanguage} from "../../locales"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 const DrawerCategoriesDropdown = ({ portfolio, categories, onNavigate }) => {
   const { theme } = useTheme()

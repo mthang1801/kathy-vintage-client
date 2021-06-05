@@ -10,7 +10,7 @@ import { useTheme } from "../../../theme"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
-import useLanguage from "../../Global/useLanguage"
+import { useLanguage } from "../../../locales"
 import {
   SettingItem,
   SettingItemIcon,
@@ -24,8 +24,9 @@ import { navigate } from "gatsby"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const UserOverview = ({ user, signOutUser }) => {
   const { theme } = useTheme()
-  const { i18n, lang } = useLanguage()
-  const { user: userTranslation } = i18n.store.data[lang].translation
+  const {
+    translation: { user: userTranslation },
+  } = useLanguage()
 
   const onNavigateToUserPage = (path, state) => {
     trackCustomEvent({
