@@ -9,7 +9,7 @@ import {
 import {
   toggleCart,
   closeCart,
-  removeAlertCart,
+  removeAlertCart,  
 } from "../../redux/cart/cart.actions"
 import { createStructuredSelector } from "reselect"
 import { connect } from "react-redux"
@@ -17,6 +17,7 @@ import CartDropdown from "./CartDropdown"
 import { navigate } from "gatsby"
 import CartAlert from "./CartAlert"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { useLocation} from "@reach/router"
 const Cart = ({
   cartItems,
   showCartDropdown,
@@ -25,6 +26,7 @@ const Cart = ({
   alertCart,
   removeAlertCart,
 }) => {
+  const {pathname} = useLocation()
   const onClickCart = () => {    
     trackCustomEvent({
       action : "Click",
@@ -37,9 +39,11 @@ const Cart = ({
     if (typeof window !== "undefined" &&  window.innerWidth < 768) {
       return navigate("/checkout")
     }
-
   }
 
+  useEffect(() => {
+    closeCart();
+  },[pathname])
   const cartRef = useRef(false)
   useEffect(() => {
     function trackingUserClick(e) {     

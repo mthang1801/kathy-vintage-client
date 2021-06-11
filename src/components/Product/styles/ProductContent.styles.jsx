@@ -112,6 +112,7 @@ export const CustomButton = styled.button`
 export const ProductColorItem = styled.div`
     display : flex;
     align-items : center;
+    max-width : 10rem;
     border:  1px solid ${({theme}) => theme ? theme.border : "var(--border)"};
     background-color : ${({theme}) => theme ? theme.background : "var(--background)"};
     border-radius : 0.5rem;

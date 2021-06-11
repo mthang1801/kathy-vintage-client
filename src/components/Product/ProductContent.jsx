@@ -33,11 +33,12 @@ const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCa
     discountPercentage,
     colors,
   } = product
+  console.log(product)
   const { theme } = useTheme()
   const { translation : {product : {productPage}}, lang} = useLanguage()
-  const [selectedSize, setSelectedSize] = useState(sizes[0])
+  const [selectedSize, setSelectedSize] = useState(sizes?.length ? sizes[0] : null )
   const [selectedColor, setSelectedColor] = useState(
-    colors ? colors[0].color : null
+    colors?.length ? colors[0].color : null
   )
   const [productQuantity, setProductQuantity] = useState(
     cartItems.find(item => item.contentful_id === product.contentful_id)
@@ -62,7 +63,16 @@ const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCa
       category : "cart",
       label : "Add Product To Cart"
     })
-    addProductItemToCart(product, productQuantity)
+    const cloneProduct = {...product}; 
+    if(selectedColor){
+      cloneProduct.selectedColor = selectedColor
+    }
+    if(selectedSize){
+      cloneProduct.selectedSize = selectedSize
+    }
+    cloneProduct.quantity = Math.max(1, productQuantity);
+    console.log(cloneProduct)
+    addProductItemToCart(cloneProduct)
   }
 
   const onClickPurchase = () => {
@@ -176,8 +186,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addProductItemToCart: (product, quantity) =>
-    dispatch(addProductItemToCart(product, quantity)),
+  addProductItemToCart: (product) =>
+    dispatch(addProductItemToCart(product)),
     removeAlertCart : () => dispatch(removeAlertCart())
 })
 

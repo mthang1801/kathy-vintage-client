@@ -44,6 +44,7 @@ import {
 import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
 import ErrorDialog from "../../components/UI/FeedBacks/Dialog/ErrorDialog"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+import {mergeDuplicateProductsInCart} from "../../redux/cart/cart.utils"
 const tax = POLICY.tax
 
 const Payment = ({
@@ -86,7 +87,12 @@ const Payment = ({
       navigate("/auth", { state: { from: pathname } })
     }
   }, [user, userFetched])
-
+  const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems)
+  const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
+  const _totalPrice = totalPriceWithShippingFee(
+    _totalPriceAfterTax,
+    shippingFee
+  )
   const onClickProceedOrder = async (tokenId = null) => {
     trackCustomEvent({
       action: "Click",
@@ -97,8 +103,9 @@ const Payment = ({
     try {
       await addNewOrder(
         user,
-        cartItems,
-        shippingFee,
+        mergeDuplicateProductsInCart(cartItems),       
+        shippingFee,        
+        _totalPrice,
         paymentMethod.key,
         shippingMethod.key,
         tokenId
@@ -116,12 +123,7 @@ const Payment = ({
     }
   }
 
-  const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems)
-  const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
-  const _totalPrice = totalPriceWithShippingFee(
-    _totalPriceAfterTax,
-    shippingFee
-  )
+  
 
   const handleClearError = () => {
     userClearError()
@@ -152,7 +154,7 @@ const Payment = ({
                     setShippingMethod={setShippingMethod}
                   />
                   <p>{payment.listOfOrderedProducts}</p>
-                  {cartItems.map(product => (
+                  {mergeDuplicateProductsInCart(cartItems).map(product => (
                     <OrderedProductItemPayment
                       key={product.contentful_id}
                       shippingMethod={shippingMethod}
@@ -232,6 +234,7 @@ const mapDispatchToProps = dispatch => ({
     user,
     products_line,
     shipping_fee,
+    totalPrice,
     payment_method,
     shipping_method,
     tokenId
@@ -241,6 +244,7 @@ const mapDispatchToProps = dispatch => ({
         user,
         products_line,
         shipping_fee,
+        totalPrice,
         payment_method,
         shipping_method,
         tokenId

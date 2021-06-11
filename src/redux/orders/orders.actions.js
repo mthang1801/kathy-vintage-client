@@ -20,6 +20,7 @@ export const addNewOrder = (
   user,
   products,
   shipping_fee,
+  totalPrice,
   payment_method,
   shipping_method,
   tokenId
@@ -27,7 +28,7 @@ export const addNewOrder = (
   return new Promise(async (resolve, reject) => {
     try {
       dispatch(addNewOrderStart())
-      console.log(user)
+      console.log(products)
       const newOrderItem = {        
         userId : user.uid, 
         userInformation : user.information,
@@ -46,6 +47,7 @@ export const addNewOrder = (
         })),        
         tax, 
         shipping_fee, 
+        totalPrice,
         payment_method,
         shipping_method,                
         shipping_status : {

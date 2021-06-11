@@ -43,7 +43,7 @@ export const ProductInformationOverview  = styled.div`
   }
   
 `
-export const ProductName = styled.h4`
+export const ProductContent = styled.h4`
   flex : 1; 
   margin : 0;
   font-weight : 400;
@@ -52,9 +52,36 @@ export const ProductName = styled.h4`
     margin-bottom : 0;
     max-width : 80%;
   }
-  
 `
 
+export const Grid = styled.div`
+    display : grid; 
+    margin : 0.5rem 0;    
+    grid-gap : 0.5rem;
+    grid-template-columns : repeat(4, 1fr);       
+    @media screen and (min-width: 992px){
+      grid-template-columns : repeat(auto-fit, minmax(40px,1fr));      
+    }
+    
+`
+
+export const ProductColorItem = styled.div`
+
+    border:  1px solid ${({theme}) => theme ? theme.border : "var(--border)"};
+    background : ${({theme}) => theme ? theme.background : "var(--background)"};
+    border-radius : 0.2rem;
+    overflow : hidden;    
+    transition : all 0.5s linear;
+    cursor : pointer;
+    ${({active}) => active && `
+      background : linear-gradient(to right bottom, var(--blue-1) , var(--blue-2) , var(--blue-3));      
+      border:  1px solid transparent;
+      color : white;
+    `}
+    padding : 0.5rem;    
+    text-align: center;
+    text-transform : capitalize ; 
+`
 
 export const ProductPriceAndQuantity = styled.div`
   display  :flex;

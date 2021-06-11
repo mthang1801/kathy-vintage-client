@@ -3,7 +3,7 @@ import {
   Wrapper,
   ImageContainer,
   ProductInformationOverview,
-  ProductName,
+  ProductContent,
   ProductPriceAndQuantity,
   ProductShippingInformation,
   ProductShippingOverview,
@@ -16,6 +16,7 @@ import "moment/locale/vi"
 import "moment/locale/es-us"
 
 const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
+  console.log(product)
   const { translation : {checkout : {payment}}, lang } = useLanguage()
   const { theme } = useTheme()
   const productPrice =
@@ -35,7 +36,11 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
       </ImageContainer>
       <ProductShippingInformation>
         <ProductInformationOverview>
-          <ProductName>{product[`name_${lang}`]}</ProductName>
+          <ProductContent>
+            {product[`name_${lang}`]}
+            {product.selectedColor && <p><strong>{payment.product.color}:</strong> {product.selectedColor}</p>}
+            {product.selectedSize && <p><strong>{payment.product.size}:</strong> {product.selectedSize}</p>}
+          </ProductContent>
           <ProductPriceAndQuantity>
             <span>
               {payment.quantity} : <strong>{product.quantity}</strong>
@@ -47,9 +52,9 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
           </ProductPriceAndQuantity>
         </ProductInformationOverview>
         <ProductShippingOverview>
-          <span>
+          <p>
             {payment.shipping} {shippingMethod.value}
-          </span>
+          </p>
           <ShippingTime theme={theme}>
             <span style={{ color: "" }}>Dự kiến: </span>
             {shippingMethod.key === "fast" ? (

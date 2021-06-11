@@ -3,7 +3,8 @@ import {
   addProductToCart,
   increaseProductQuantity,
   decreaseProductQuantity,
-  removeProductFromCart
+  removeProductFromCart,
+  changeProductInfo
 } from "./cart.utils"
 const INITIAL_STATE = {
   cartItems: [],
@@ -29,7 +30,6 @@ export default (state = INITIAL_STATE, action) => {
         cartItems: addProductToCart(
           state.cartItems,
           action.payload.product,
-          action.payload.quantity
         ),
         alertCart: true,
       }
@@ -54,6 +54,11 @@ export default (state = INITIAL_STATE, action) => {
         cartItems : [],
         alertCart : false 
       };
+    case cartActionTypes.CHANGE_PRODUCT_CART_INFO : 
+      return {
+        ...state, 
+        cartItems : changeProductInfo(state.cartItems, action.payload)
+      }
     case cartActionTypes.REMOVE_PRODUCT_FROM_CART : 
       return {        
         cartItems : removeProductFromCart(state.cartItems, action.payload),        

@@ -582,6 +582,10 @@ export const vi = {
         price: "Tổng tiền",
         totalPrice: "Thành tiền",
         shipping: "Giao hàng",
+        product :{
+          color : "Màu sắc",
+          size : "Size"
+        }
       },
       complete: {
         header_letter: "Cám ơn bạn đã mua hàng tại tnshop",

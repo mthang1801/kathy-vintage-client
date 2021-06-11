@@ -8,9 +8,9 @@ export const closeCart =  () => ({
   type : cartActionTypes.CLOSE_CART_DROPDOWN
 })
 
-export const addProductItemToCart = (product, quantity) => ({
+export const addProductItemToCart = (product) => ({
   type : cartActionTypes.ADD_PRODUCT_ITEM_TO_CART, 
-  payload : {product, quantity}
+  payload : {product}
 })
 
 export const removeAlertCart = () => ({
@@ -34,4 +34,9 @@ export const removeProductFromCart = (product) => ({
 
 export const clearCartItems = () => ({
   type : cartActionTypes.CLEAR_CART_ITEMS
+})
+
+export const changeProductInfo = (product) => ({
+  type : cartActionTypes.CHANGE_PRODUCT_CART_INFO, 
+  payload : product
 })

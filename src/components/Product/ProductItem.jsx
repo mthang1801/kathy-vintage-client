@@ -12,7 +12,6 @@ import {StaticImage} from "gatsby-plugin-image"
 import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 const ProductItem = ({ product }) => {
-  const [imageFluid, setImageFluid] = useState(product.images[0].fluid)
   const { lang } = useLanguage()
   const { theme } = useTheme()
   const productPrice =

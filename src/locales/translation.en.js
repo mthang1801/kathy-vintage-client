@@ -573,6 +573,10 @@ export const en = {
         price: "Price",
         totalPrice: "Total price",
         shipping: "Shipping",
+        product :{
+          color : "Color",
+          size : "Size"
+        }
       },
       complete: {
         header_letter: "Thank you for buying product from tnshop",

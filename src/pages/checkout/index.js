@@ -21,17 +21,20 @@ import {
   increaseProductQuantity,
   decreaseProductQuantity,
   removeProductFromCart,
+  changeProductInfo
 } from "../../redux/cart/cart.actions"
 import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
 import { useLanguage } from "../../locales"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+import {mergeDuplicateProductsInCart} from "../../redux/cart/cart.utils"
 const tax = POLICY.tax
 const CheckoutPage = ({
   cartItems,
   increaseProductQuantity,
   decreaseProductQuantity,
   removeProductFromCart,
+  changeProductInfo
 }) => {
   const {
     translation: { checkout },
@@ -44,6 +47,7 @@ const CheckoutPage = ({
       category: "checkout",
       label: "Go to checkout shipping",
     })
+    mergeDuplicateProductsInCart(cartItems)
     navigate("/checkout/shipping")
   }
   return (
@@ -58,6 +62,7 @@ const CheckoutPage = ({
                 increaseProductQuantity={increaseProductQuantity}
                 decreaseProductQuantity={decreaseProductQuantity}
                 removeProductFromCart={removeProductFromCart}
+                changeProductInfo={changeProductInfo}
               />
             ))}
           </div>
@@ -95,6 +100,7 @@ const mapDispatchToProps = dispatch => ({
   decreaseProductQuantity: product =>
     dispatch(decreaseProductQuantity(product)),
   removeProductFromCart: product => dispatch(removeProductFromCart(product)),
+  changeProductInfo : product => dispatch(changeProductInfo(product))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage)
