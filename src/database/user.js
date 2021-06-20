@@ -17,6 +17,7 @@ const addUserToProfileDocument = (userAuth, data) => {
       try {
         await userRef.set({
           ...data,
+          user_type : "normal",
           photoURL: data.photoURL
             ? data.photoURL
             : data?.gender === "male"
@@ -55,6 +56,7 @@ export const createUserWithEmailAndPassword = (
         gender,
         email,
         password,
+        providerId : "email-password"
       })
       const user = await userRef.get()
       resolve(user.data())

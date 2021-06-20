@@ -6,6 +6,7 @@ import StepLabel from "@material-ui/core/StepLabel"
 import { convertSecondsTimeToDate } from "../../utils/firebase.utils"
 import { Wrapper, Processed, Processing } from "./styles/OrderStatusStepper.styles"
 import { useTheme } from "../../theme"
+import {getDeviceType} from "../../utils/getDeviceType"
 const OrderStatusStepper = ({ status, ordersTranslation }) => {
   const stepsList = ["sent", "received", "shipping", "complete"]
   const { theme } = useTheme()
@@ -21,8 +22,8 @@ const OrderStatusStepper = ({ status, ordersTranslation }) => {
     <Wrapper theme={theme}>
       <Stepper
         activeStep={activeStep}
-        alternativeLabel={typeof window!== "undefined" && window.innerWidth >= 768}
-        orientation={typeof window!== "undefined" && window.innerWidth < 768 ? "vertical" : "horizontal"}
+        alternativeLabel={getDeviceType() !== "mobile"}
+        orientation={getDeviceType() === "mobile" ? "vertical" : "horizontal"}
       >
         {stepsList.map(label => (
           <Step key={label}>

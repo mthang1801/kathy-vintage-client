@@ -12,6 +12,7 @@ import {
   ReadMore,
   ReadMoreLink,
 } from "./styles/ProductDescription.styles"
+import {getDeviceType} from "../../utils/getDeviceType"
 
 const ProductDescription = ({ product }) => {
   const { translation : {product : {productPage}}, lang } = useLanguage()
@@ -35,8 +36,8 @@ const ProductDescription = ({ product }) => {
         <ReactPlayer
           url={uri}
           controls
-          width={typeof window !== "undefined" && window.innerWidth < 600 ? "100%" : "650px"}
-          height={typeof window !== "undefined" && window.innerWidth < 600 ? "300px" : "450px"}
+          width={getDeviceType() === "mobile" ? "100%" : "650px"}
+          height={getDeviceType() === "mobile" ? "300px" : "450px"}
         />
       )
     }

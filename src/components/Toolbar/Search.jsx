@@ -3,9 +3,10 @@ import { SearchForm } from "./styles/Search.styles"
 import {useLanguage} from "../../locales"
 import { FaSearch } from "react-icons/fa"
 import { useTheme } from "../../theme"
+import {getDeviceType} from "../../utils/getDeviceType"
 const Search = () => {
   const [openSearchInput, setOpenSearchInput] = useState(
-    typeof window !== "undefined" && window.innerWidth < 500 ? false : true
+    getDeviceType() === "mobile" ? false : true
   )
   const { translation : {search} } = useLanguage()
   const {theme } = useTheme()

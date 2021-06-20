@@ -29,6 +29,14 @@ export const ImageContainer = styled.div`
  
 `
 
+export const ImageMobileTablet = styled.div`
+  img{
+    width : 100%; 
+    height : 10rem;
+    overflow : hidden;
+  }
+`
+
 export const ProductText = styled.div`
   height : 6rem;
   display : grid; 

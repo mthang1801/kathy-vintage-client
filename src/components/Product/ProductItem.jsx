@@ -6,11 +6,13 @@ import {
   ProductName,
   ProductPrice,
   DiscountBrand,
+  ImageMobileTablet
 } from "./styles/ProductItem.styles"
 import _ from "lodash"
-import {StaticImage} from "gatsby-plugin-image"
+import {LazyLoadImage} from "react-lazy-load-image-component"
 import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
+import {getDeviceType} from "../../utils/getDeviceType"
 const ProductItem = ({ product }) => {
   const { lang } = useLanguage()
   const { theme } = useTheme()
@@ -39,10 +41,11 @@ const ProductItem = ({ product }) => {
       {product.isDiscount && product.discountPercentage && (
         <DiscountBrand>{-product.discountPercentage}%</DiscountBrand>
       )}
-      <ImageContainer
+      {getDeviceType() === "desktop" ?  <ImageContainer
         imageHover={`https:${product?.images[0]?.fluid?.src || product?.images[0]?.file?.url}` }
         imageMouseout={`https:${product?.images[1]?.fluid?.src || product?.images[1]?.file?.url}`}
-      />       
+      />  : <ImageMobileTablet><LazyLoadImage src={`https:${product?.images[0]?.fluid?.src || product?.images[0]?.file?.url}`} effect="blur" /> </ImageMobileTablet>}
+          
       <ProductText>
         <ProductName>{productName}</ProductName>
         <ProductPrice>

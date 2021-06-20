@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Layout from "../containers/Layout"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 import { ProductOverviewContainer, Box } from "./styles/product.template.styles"
@@ -11,6 +11,7 @@ import ProductDescription from "../components/Product/ProductDescription"
 import RelevantProducts from "../components/Product/RelevantProducts"
 import Seo from "../components/Seo/Seo"
 import {Disqus} from "gatsby-plugin-disqus"
+import {increaseProductViews} from "../database/product"
 const ProductProduct = props => {
   const { product, productsByCategory, productsByProductGroup, site } = props.data
   const { theme } = useTheme()  
@@ -21,10 +22,17 @@ const ProductProduct = props => {
       url : `${site.siteMetadata.siteUrl}/products/${product.slug}`,
       identifier : product.contentful_id,
       title : product.name_vi
-    }
-    
+    } 
   }
   
+  useEffect(() => {
+    let timer ; 
+    timer = setTimeout(() => {
+      increaseProductViews(product)
+    },6000)
+    return () => clearTimeout(timer);
+  }, [])
+
   return (
     <>
     <Seo title={product.name_vi} description={`${product.description_vi.description_vi.slice(0,150)} ...`}/>

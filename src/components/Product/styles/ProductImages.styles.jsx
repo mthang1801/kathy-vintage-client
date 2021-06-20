@@ -12,3 +12,11 @@ export const CarouselImages = styled.div`
 width : 25rem;
 margin : 1.5rem auto;
 `
+
+
+export const ImageContainer = styled.div`
+  & img{
+    width : 100%;
+    max-height : 25rem;
+  }
+`

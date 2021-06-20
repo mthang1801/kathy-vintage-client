@@ -18,6 +18,7 @@ import { navigate } from "gatsby"
 import CartAlert from "./CartAlert"
 import {trackCustomEvent} from "gatsby-plugin-google-analytics"
 import { useLocation} from "@reach/router"
+import {getDeviceType} from "../../utils/getDeviceType"
 const Cart = ({
   cartItems,
   showCartDropdown,
@@ -36,7 +37,7 @@ const Cart = ({
         
     toggleCart()
     removeAlertCart();
-    if (typeof window !== "undefined" &&  window.innerWidth < 768) {
+    if (getDeviceType() === "mobile") {
       return navigate("/checkout")
     }
   }

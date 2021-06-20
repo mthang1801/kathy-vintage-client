@@ -15,14 +15,14 @@ import {useLanguage} from "../../locales"
 import { useTheme } from "../../theme"
 import { navigate } from "gatsby"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+import {getDeviceType} from "../../utils/getDeviceType"
 const CheckoutProductItem = ({ product, ordersTranslation }) => {
   const { lang } = useLanguage()
   const { theme } = useTheme()
   const productPrice =
     product.isDiscount && product.discountPercentage
       ? (product.unitPrice * (100 - +product.discountPercentage)) / 100
-      : product.unitPrice
-
+      : product.unitPrice  
   return (
     <Wrapper
       theme={theme}
@@ -36,7 +36,7 @@ const CheckoutProductItem = ({ product, ordersTranslation }) => {
         navigate(`/products/${product.slug}`)
       }}
     >
-      {typeof window !== "undefined" && window.innerWidth >= 768 && (
+      {getDeviceType() !== "mobile" && (
         <ProductQuantity>{product.quantity} x</ProductQuantity>
       )}
       <ImageContainer>
@@ -47,7 +47,7 @@ const CheckoutProductItem = ({ product, ordersTranslation }) => {
         <ProductPriceAndQuantity>
           <ProductPrice>
             <ProductPriceAfterDiscount>
-              {typeof window !== "undefined" && window.innerWidth < 768 && (
+              {getDeviceType() === "mobile" && (
                 <span>{ordersTranslation.product.unitPrice}:</span>
               )}{" "}
               {productPrice.toLocaleString("de-DE")}
@@ -60,14 +60,14 @@ const CheckoutProductItem = ({ product, ordersTranslation }) => {
             )}
           </ProductPrice>
         </ProductPriceAndQuantity>
-        {typeof window!=="undefined" && window.innerWidth < 768 && (
+        {getDeviceType() === "mobile" && (
           <ProductQuantity>
             {ordersTranslation.product.quantity}: {product.quantity}
           </ProductQuantity>
         )}
         <ProductTotalPrice>
           {" "}
-          {typeof window!=="undefined" && window.innerWidth < 768 && (
+          {getDeviceType() === "mobile" && (
             <span>{ordersTranslation.product.totalPrice}:</span>
           )}{" "}
           {(product.quantity * productPrice).toLocaleString("de-DE", {
