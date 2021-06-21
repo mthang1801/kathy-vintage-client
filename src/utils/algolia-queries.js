@@ -14,10 +14,10 @@ const pageQuery = `
 `
 
 function pageToAlgoliaRecord({
-  node: { contentful_id,name_en, name_vi, slug},
+  node: { contentful_id, name_en, name_vi, slug },
 }) {
   return {
-    objectID: contentful_id,    
+    objectID: contentful_id,
     name_en,
     name_vi,
     slug,
@@ -29,7 +29,7 @@ const queries = [
     indexName: "CLOTHES",
     query: pageQuery,
     transformer: ({ data }) => data.products.edges.map(pageToAlgoliaRecord),
-  }
+  },
 ]
 
-module.exports = queries;
+module.exports = queries

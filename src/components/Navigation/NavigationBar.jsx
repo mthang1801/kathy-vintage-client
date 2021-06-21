@@ -9,14 +9,17 @@ import {
   CategoriesContainer,
 } from "./styles/NavigationBar.styles"
 import { useTheme } from "../../theme"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import { useStaticQuery, graphql } from "gatsby"
 import { useLocation } from "@reach/router"
 import SettingDialog from "../Setting/SettingDialog"
 import CategoriesDropdown from "../Dropdown/CategoriesDropdown"
 const NavigationBar = () => {
   const { theme } = useTheme()
-  const { translation : {navigations, portfolioIcons}, lang } = useLanguage();
+  const {
+    translation: { navigations, portfolioIcons },
+    lang,
+  } = useLanguage()
   const [activeItem, setActiveItem] = useState(null)
   const { pathname } = useLocation()
   const portfolioPath = pathname.split("/")[1]
@@ -24,7 +27,7 @@ const NavigationBar = () => {
   const [openSetting, setOpenSetting] = useState(false)
   const initialPortfolio = { id: null, x: 0, y: 0 }
   const [selectedPortfolio, setSelectedPortfolio] = useState(initialPortfolio)
-  const onMouseEnterPortfolioItem = id => {    
+  const onMouseEnterPortfolioItem = id => {
     setSelectedPortfolio(prevState => ({ ...prevState, id }))
     setActiveItem(id)
   }
@@ -34,7 +37,6 @@ const NavigationBar = () => {
   }
 
   const onMouseEnterStaticNavigation = path => {
-    console.log(path)
     setActiveItem(path)
   }
 
@@ -91,7 +93,7 @@ const NavigationBar = () => {
               )}
             </ListItem>
           )
-        })}        
+        })}
         {/* Setting */}
         <Setting
           theme={theme}

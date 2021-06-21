@@ -1,19 +1,25 @@
 import React from "react"
 import { Wrapper, List, ListItem, Title } from "./styles/Invoice.styles"
-import {useLanguage} from "../../locales"
-import { useTheme } from "../../theme";
+import { useLanguage } from "../../locales"
+import { useTheme } from "../../theme"
 
-
-const Invoice = ({isPayment, totalPriceBeforeTax, totalPriceAfterTax, totalPrice, tax, shippingFee = 0 }) => {
-  const { translation : {checkout} } = useLanguage()
+const Invoice = ({
+  isPayment,
+  totalPriceBeforeTax,
+  totalPriceAfterTax,
+  totalPrice,
+  tax,
+  shippingFee = 0,
+}) => {
+  const {
+    translation: { checkout },
+  } = useLanguage()
   const { theme } = useTheme()
   return (
     <Wrapper>
       <List theme={theme}>
-        {!isPayment && <Title>
-         {checkout.invoice.temporaryTitle}
-        </Title>}
-        
+        {!isPayment && <Title>{checkout.invoice.temporaryTitle}</Title>}
+
         <ListItem>
           <span>{checkout.invoice.totalBeforeTax}</span>
           <span>{totalPriceBeforeTax.toLocaleString("de-DE")}</span>
@@ -34,13 +40,13 @@ const Invoice = ({isPayment, totalPriceBeforeTax, totalPriceAfterTax, totalPrice
         )}
         {isPayment && (
           <ListItem total>
-            <span><strong>{checkout.invoice.totalPrice}</strong></span>
+            <span>
+              <strong>{checkout.invoice.totalPrice}</strong>
+            </span>
             <span>{totalPrice.toLocaleString("de-DE")}</span>
           </ListItem>
         )}
       </List>
-
-     
     </Wrapper>
   )
 }

@@ -1,27 +1,27 @@
 import React, { useState } from "react"
 import Button from "@material-ui/core/Button"
 import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
-import {connect} from "react-redux"
-import {cancelOrder} from "../../redux/orders/orders.actions"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { connect } from "react-redux"
+import { cancelOrder } from "../../redux/orders/orders.actions"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const OrderControl = ({ order, ordersTranslation, cancelOrder }) => {
   const [openDialog, setOpenDialog] = useState(false)
-  
+
   const onCancelOrder = () => {
     trackCustomEvent({
-      action : "Click",
-      category : "checkout",
-      label : "Cancel Order"
+      action: "Click",
+      category: "checkout",
+      label: "Cancel Order",
     })
-    setOpenDialog(true);
-  }  
+    setOpenDialog(true)
+  }
   const onAgreeDialog = () => {
     trackCustomEvent({
-      action : "Click",
-      category : "checkout",
-      label : "Agree Order"
+      action: "Click",
+      category: "checkout",
+      label: "Agree Order",
     })
-    cancelOrder(order.id) ;
+    cancelOrder(order.id)
   }
   return (
     <>
@@ -47,7 +47,7 @@ const OrderControl = ({ order, ordersTranslation, cancelOrder }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  cancelOrder : (orderId) => dispatch(cancelOrder(orderId))
+  cancelOrder: orderId => dispatch(cancelOrder(orderId)),
 })
 
 export default connect(null, mapDispatchToProps)(OrderControl)

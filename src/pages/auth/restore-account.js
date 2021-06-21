@@ -1,4 +1,4 @@
-import React,{useEffect} from "react"
+import React, { useEffect } from "react"
 import Layout from "../../containers/Layout"
 import RestoreAccountComponent from "../../components/Auth/RestoreAccount"
 import {
@@ -14,11 +14,7 @@ const RestoreAccountPage = ({ user, isFetched, ...props }) => {
       navigate(props?.location?.state?.from || "/")
     }
   }, [user, isFetched])
-  return (
-    <Layout>
-      {!user &&isFetched && <RestoreAccountComponent />}
-    </Layout>
-  )
+  return <Layout>{!user && isFetched && <RestoreAccountComponent />}</Layout>
 }
 
 const mapStateToProps = createStructuredSelector({

@@ -3,19 +3,19 @@ const path = require("path")
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html" || stage === "develop-html") {
     actions.setWebpackConfig({
-      externals: ['react-helmet'],
+      externals: ["react-helmet"],
       module: {
         rules: [
           {
             test: /firebase/,
-            use: loaders.null(),            
-          },          
+            use: loaders.null(),
+          },
           {
             test: /bad-module/,
             use: loaders.null(),
           },
         ],
-      },     
+      },
     })
   }
 }
@@ -47,19 +47,19 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       products: allContentfulProduct {
-        edges{
-          node{
+        edges {
+          node {
             contentful_id
-            slug            
-            portfolio{
+            slug
+            portfolio {
               contentful_id
               slug
             }
-            category{
+            category {
               contentful_id
               slug
             }
-            productGroup{
+            productGroup {
               contentful_id
               slug
             }
@@ -78,7 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve("./src/templates/portfolio.template.jsx"),
       context: {
         portfolio,
-        portfolioId : portfolio.contentful_id
+        portfolioId: portfolio.contentful_id,
       },
     })
     //create category page
@@ -86,8 +86,8 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: `/${portfolio.slug}/${category.slug}`,
         component: path.resolve("./src/templates/category.template.jsx"),
-        context: {        
-          categoryId : category.contentful_id
+        context: {
+          categoryId: category.contentful_id,
         },
       })
       //create product Groups page
@@ -99,41 +99,43 @@ exports.createPages = async ({ graphql, actions }) => {
             portfolio,
             category,
             productGroup,
-            productGroupId : productGroup.contentful_id
+            productGroupId: productGroup.contentful_id,
           },
         })
       })
     })
   })
-  
+
   /**
    * @desc create products page
    * @route1 /product/:params
    * @route2 /[portfolio-slug]/[category-slug]/[product-group-slug]/[product-slug]
    */
 
-  data.products.edges.forEach(({node : product}) => {   
+  data.products.edges.forEach(({ node: product }) => {
     createPage({
-      path : `/products/${product.slug}`,
-      component : path.resolve("./src/templates/product.template.jsx"),
-      context : {
-        contentful_id : product.contentful_id,
-        category_contentful_id : product.category.contentful_id, 
-        productGroup_contentful_id : product.productGroup.contentful_id
-      }
+      path: `/products/${product.slug}`,
+      component: path.resolve("./src/templates/product.template.jsx"),
+      context: {
+        contentful_id: product.contentful_id,
+        category_contentful_id: product.category.contentful_id,
+        productGroup_contentful_id: product.productGroup.contentful_id,
+      },
     })
-    if(product.portfolio.slug && product.category.slug && product.productGroup.slug){
+    if (
+      product.portfolio.slug &&
+      product.category.slug &&
+      product.productGroup.slug
+    ) {
       createPage({
-        path : `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`, 
-        component : path.resolve("./src/templates/product.template.jsx"), 
-        context : {          
-          contentful_id : product.contentful_id,
-          category_contentful_id : product.category.contentful_id, 
-          productGroup_contentful_id : product.productGroup.contentful_id
-        },       
+        path: `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`,
+        component: path.resolve("./src/templates/product.template.jsx"),
+        context: {
+          contentful_id: product.contentful_id,
+          category_contentful_id: product.category.contentful_id,
+          productGroup_contentful_id: product.productGroup.contentful_id,
+        },
       })
     }
-   
   })
-
 }

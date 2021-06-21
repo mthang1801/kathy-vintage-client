@@ -1,26 +1,36 @@
-import React from 'react'
+import React from "react"
 import Layout from "../containers/Layout"
-import {graphql} from "gatsby";
+import { graphql } from "gatsby"
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
 import LayoutTemplate from "./layout.template"
 import Seo from "../components/Seo/Seo"
-const ProductGroupTemplate = (props) => {  
-  const {productGroup} = props.data;
-  
+const ProductGroupTemplate = props => {
+  const { productGroup } = props.data
+
   return (
     <>
-    <Seo title={props.data.productGroup.name_vi} description={`Danh mục sản phẩm từ ${props.data.productGroup.name_vi}`}/>
-    <Layout>
-      <BreadcrumbNavigation contenfulData={[productGroup.portfolio, productGroup.category, productGroup]}/>      
-      <LayoutTemplate data={props.data} pageLocation="productGroup"/>
-    </Layout>
+      <Seo
+        title={props.data.productGroup.name_vi}
+        description={`Danh mục sản phẩm từ ${props.data.productGroup.name_vi}`}
+      />
+      <Layout>
+        <BreadcrumbNavigation
+          contenfulData={[
+            productGroup.portfolio,
+            productGroup.category,
+            productGroup,
+          ]}
+        />
+        <LayoutTemplate data={props.data} pageLocation="productGroup" />
+      </Layout>
     </>
   )
 }
 export const query = graphql`
-  query($productGroupId: String!) {  
-
-    productGroup: contentfulProductGroup(contentful_id: { eq: $productGroupId }) {
+  query($productGroupId: String!) {
+    productGroup: contentfulProductGroup(
+      contentful_id: { eq: $productGroupId }
+    ) {
       contentful_id
       name_vi
       name_en
@@ -31,7 +41,7 @@ export const query = graphql`
         name_en
         slug
       }
-      portfolio{
+      portfolio {
         contentful_id
         name_vi
         name_en
@@ -53,7 +63,7 @@ export const query = graphql`
           isDiscount
           discountPercentage
           manufactor
-        	origin
+          origin
           images {
             fluid {
               ...GatsbyContentfulFluid

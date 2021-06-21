@@ -71,16 +71,16 @@ export const ListItem = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   cursor: pointer;
-  position : relative;
+  position: relative;
   &:hover {
     background-color: var(--light-gray-1);
   }
 `
 
 export const ListItemContainer = styled.div`
-  flex:  1;
-  display : flex;
-  align-items : center;
+  flex: 1;
+  display: flex;
+  align-items: center;
 `
 
 export const ListItemImage = styled.div`
@@ -89,7 +89,7 @@ export const ListItemImage = styled.div`
 `
 
 export const ListItemText = styled.div`
-  margin-left: 0.5rem;  
+  margin-left: 0.5rem;
 `
 
 export const ListItemIcon = styled.div`
@@ -109,9 +109,11 @@ export const CategoriesList = styled.div`
   position: fixed;
   left: ${drawerWidth}px;
   top: ${({ y, numberOfItems }) =>
-   typeof window !=="undefined" && window.innerHeight - y - numberOfItems * 16 < 0 && y < numberOfItems * 16
+    typeof window !== "undefined" &&
+    window.innerHeight - y - numberOfItems * 16 < 0 &&
+    y < numberOfItems * 16
       ? 0
-      : `${y - ((numberOfItems)* 16)}px`};
+      : `${y - numberOfItems * 16}px`};
   width: ${drawerWidth}px;
   background-color: white;
   overflow: auto;

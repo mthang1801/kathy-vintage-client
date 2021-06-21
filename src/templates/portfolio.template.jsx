@@ -7,11 +7,14 @@ import Seo from "../components/Seo/Seo"
 const PortfolioTemplate = props => {
   return (
     <>
-    <Seo title={props.data.portfolio.name_vi} description={`Danh mục sản phẩm từ ${props.data.portfolio.name_vi}`}/>
-    <Layout>
-      <BreadcrumbNavigation contenfulData={[props.data.portfolio]} />
-      <LayoutTemplate data={props.data} pageLocation="portfolio"/>      
-    </Layout>
+      <Seo
+        title={props.data.portfolio.name_vi}
+        description={`Danh mục sản phẩm từ ${props.data.portfolio.name_vi}`}
+      />
+      <Layout>
+        <BreadcrumbNavigation contenfulData={[props.data.portfolio]} />
+        <LayoutTemplate data={props.data} pageLocation="portfolio" />
+      </Layout>
     </>
   )
 }
@@ -43,8 +46,8 @@ export const query = graphql`
       }
     }
     products: allContentfulProduct(
-      filter: { portfolio: { contentful_id: { eq: $portfolioId } } },
-      sort :{fields :[isRecommended, updatedAt], order :[DESC, DESC]}
+      filter: { portfolio: { contentful_id: { eq: $portfolioId } } }
+      sort: { fields: [isRecommended, updatedAt], order: [DESC, DESC] }
     ) {
       edges {
         node {
@@ -56,7 +59,7 @@ export const query = graphql`
           isDiscount
           discountPercentage
           manufactor
-        	origin
+          origin
           images {
             fluid {
               ...GatsbyContentfulFluid
@@ -81,14 +84,17 @@ export const query = graphql`
         }
       }
     }
-    productsPrice :  allContentfulProduct(filter :{portfolio :{contentful_id :{eq : $portfolioId}}}){
-      min(field : unitPrice) 
-      max(field : unitPrice)
+    productsPrice: allContentfulProduct(
+      filter: { portfolio: { contentful_id: { eq: $portfolioId } } }
+    ) {
+      min(field: unitPrice)
+      max(field: unitPrice)
     }
-    manufactors : allContentfulProduct(filter :{portfolio :{contentful_id :{eq : $portfolioId}}}){
-      distinct(field :manufactor)
+    manufactors: allContentfulProduct(
+      filter: { portfolio: { contentful_id: { eq: $portfolioId } } }
+    ) {
+      distinct(field: manufactor)
     }
-    
   }
 `
 

@@ -1,9 +1,9 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
-import {Wrapper} from "./styles/PostImageItem.styles"
+import { Wrapper } from "./styles/PostImageItem.styles"
 const PostImageItem = ({ src, title }) => {
-  const [isOpen, setIsOpen] = useState(false)  
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <Wrapper>
       <img src={src} alt={title} onClick={() => setIsOpen(true)} />

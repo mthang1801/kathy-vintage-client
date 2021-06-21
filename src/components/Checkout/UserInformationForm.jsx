@@ -1,4 +1,4 @@
-import React , {useEffect, useRef} from "react"
+import React, { useEffect, useRef } from "react"
 import TextField from "@material-ui/core/TextField"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
@@ -10,20 +10,24 @@ import {
   ErrorAlert,
   Flex,
 } from "./styles/UserInformationForm.styles"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import localData from "../../database/local.json"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const WrapperUserInformationForm = ({
   user,
   updateUserInformation,
   isUpdate,
   setUpdateInfo,
 }) => {
-  const { translation : {user : {information}} } = useLanguage()
+  const {
+    translation: {
+      user: { information },
+    },
+  } = useLanguage()
   const { theme } = useTheme()
-  const formRef= useRef(null)
- 
+  const formRef = useRef(null)
+
   return (
     <UserInformationForm
       ref={formRef}
@@ -237,9 +241,9 @@ class UserInformationForm extends React.Component {
 
   onSubmitForm = async () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "checkout",
-      label : "Update User information"
+      action: "Click",
+      category: "checkout",
+      label: "Update User information",
     })
     const {
       fullname,
@@ -279,9 +283,9 @@ class UserInformationForm extends React.Component {
 
   closeUpdateInfo = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "checkout", 
-      label : "Update user information"
+      action: "Click",
+      category: "checkout",
+      label: "Update user information",
     })
     this.props.setUpdateInfo(false)
   }
@@ -417,10 +421,7 @@ class UserInformationForm extends React.Component {
 
         <Flex isUpdate={this.props.isUpdate}>
           {this.props.isUpdate && (
-            <Button
-              variant="contained"
-              onClick={this.closeUpdateInfo}
-            >
+            <Button variant="contained" onClick={this.closeUpdateInfo}>
               {information.button_close_information_form}
             </Button>
           )}

@@ -19,13 +19,13 @@ import POLICY from "../../constants/policy"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
 import UpdatePasswordSuccessDialog from "../UI/FeedBacks/Dialog/UpdatePasswordSuccessDialog"
-import {updatePassword} from "../../database/user"
-import { trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { updatePassword } from "../../database/user"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const ChangePassword = ({ lang, title, user, passwordTranslation }) => {
   const [loading, setLoading] = useState(false)
-  const [openAlertDialog, setOpenAlertDialog] = useState(false);
-  const [openChangeSuccess, setOpenChangeSuccess] = useState(false);
-  
+  const [openAlertDialog, setOpenAlertDialog] = useState(false)
+  const [openChangeSuccess, setOpenChangeSuccess] = useState(false)
+
   const isProvider =
     user?.providerId === "google.com" || user?.providerId === "facebook.com"
   const [errorMessage, setErrorMessage] = useState(
@@ -61,35 +61,35 @@ const ChangePassword = ({ lang, title, user, passwordTranslation }) => {
     return () => clearTimeout(timer)
   }, [errorMessage, loading])
 
-  const onCheckPasswordValidation = e => {    
+  const onCheckPasswordValidation = e => {
     if (values.newPassword !== values.confirmNewPassword) {
       return setErrorMessage(passwordTranslation.errorConfirmPassword)
     }
     if (!POLICY.authenticate.password.test(values.newPassword)) {
       return setErrorMessage(passwordTranslation.errorInvalidPassword)
     }
-    
+
     setLoading(true)
     setOpenAlertDialog(true)
   }
-  const onSubmitForm = async () => {    
+  const onSubmitForm = async () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "auth", 
-      label : "Change password"
+      action: "Click",
+      category: "auth",
+      label: "Change password",
     })
     try {
       await updatePassword(values.oldPassword, values.newPassword)
-      setLoading(false);
-      setOpenChangeSuccess(true);
-    } catch (error) {      
-      if(error.code === "auth/wrong-password"){
-        setErrorMessage(passwordTranslation.errorOldPassword);
-      }else{
-        setErrorMessage(passwordTranslation.errorServer);
+      setLoading(false)
+      setOpenChangeSuccess(true)
+    } catch (error) {
+      if (error.code === "auth/wrong-password") {
+        setErrorMessage(passwordTranslation.errorOldPassword)
+      } else {
+        setErrorMessage(passwordTranslation.errorServer)
       }
-      
-      setLoading(false);
+
+      setLoading(false)
     }
   }
   return (
@@ -101,7 +101,7 @@ const ChangePassword = ({ lang, title, user, passwordTranslation }) => {
         content={passwordTranslation.confirmDialog.content}
         onAgree={onSubmitForm}
       />
-      <UpdatePasswordSuccessDialog open={openChangeSuccess}/>     
+      <UpdatePasswordSuccessDialog open={openChangeSuccess} />
       <Form onSubmit={e => e.preventDefault()}>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         {!isProvider && (
@@ -193,7 +193,7 @@ const ChangePassword = ({ lang, title, user, passwordTranslation }) => {
                 readOnly={loading}
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton                      
+                    <IconButton
                       aria-label="toggle password visibility"
                       name="oldPassword"
                       onClick={() =>

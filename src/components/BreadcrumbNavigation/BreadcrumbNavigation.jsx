@@ -4,11 +4,12 @@ import {
   BreadcrumbItemLink,
 } from "./styles/BreadcrumbNavigation.styles"
 import { useTheme } from "../../theme"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 const BreadcrumbNavigation = ({ contenfulData, staticData }) => {
   const { theme } = useTheme()
   const {
-    translation: { breadcrumbs }, lang
+    translation: { breadcrumbs },
+    lang,
   } = useLanguage()
 
   const accumulativePath = index => {

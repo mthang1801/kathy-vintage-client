@@ -7,12 +7,12 @@ import {
 } from "./styles/DropdownList.styles"
 import ProductGroupsDropdown from "./ProductGroupsDropdown"
 import { useTheme } from "../../theme"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 const CategoriesDropdown = ({ parentSlug, categories }) => {
   const { theme } = useTheme()
   const initialCategory = { id: null, x: 0, y: 0 }
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
-  const {lang} = useLanguage()  
+  const { lang } = useLanguage()
   const onMouseEnterCategory = id => {
     setSelectedCategory(prevState => ({ ...prevState, id }))
   }
@@ -27,7 +27,7 @@ const CategoriesDropdown = ({ parentSlug, categories }) => {
         <ListItem
           key={category.contentful_id}
           to={`/${parentSlug}/${category.slug}`}
-          theme={theme}          
+          theme={theme}
           onMouseEnter={() => onMouseEnterCategory(category.contentful_id)}
         >
           <ListItemText>{category[`name_${lang}`]}</ListItemText>

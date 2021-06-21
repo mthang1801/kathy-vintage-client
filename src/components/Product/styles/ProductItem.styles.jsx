@@ -1,69 +1,69 @@
 import styled from "styled-components"
-import {Link} from "gatsby"
+import { Link } from "gatsby"
 export const Wrapper = styled(Link)`
-  position :relative;
-  border: 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};  
-  border-radius : 5px;  
-  text-decoration : none;
-  color : inherit;  
-  transition : var(--mainTransition);
-  &:hover{
-    transform : translateY(-3px);
-    box-shadow : ${({theme}) => theme ? theme.boxShadow : "var(--boxShadow)"};
+  position: relative;
+  border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
+  border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
+  transition: var(--mainTransition);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: ${({ theme }) =>
+      theme ? theme.boxShadow : "var(--boxShadow)"};
   }
 `
 
 export const ImageContainer = styled.div`
-  position :relative;
-  width : 100% ;
+  position: relative;
+  width: 100%;
   height: 10rem;
-  overflow : hidden;
-  flex: 1 ;
-  background : url(${({imageHover}) => imageHover}) no-repeat center;  
-  background-size : 100% 100%;
-  &:hover{
-    background : url(${({imageMouseout}) => imageMouseout}) no-repeat center;  
-    background-size : 100% 100%;
+  overflow: hidden;
+  flex: 1;
+  background: url(${({ imageHover }) => imageHover}) no-repeat center;
+  background-size: 100% 100%;
+  &:hover {
+    background: url(${({ imageMouseout }) => imageMouseout}) no-repeat center;
+    background-size: 100% 100%;
   }
-  transition : 0.4s all; 
- 
+  transition: 0.4s all;
 `
 
 export const ImageMobileTablet = styled.div`
-  img{
-    width : 100%; 
-    height : 10rem;
-    overflow : hidden;
+  img {
+    width: 100%;
+    height: 10rem;
+    overflow: hidden;
   }
 `
 
 export const ProductText = styled.div`
-  height : 6rem;
-  display : grid; 
-  grid-template-rows: 3fr; 
-  grid-template-columns : 1fr;  
-  padding : 0.3rem;
+  height: 6rem;
+  display: grid;
+  grid-template-rows: 3fr;
+  grid-template-columns: 1fr;
+  padding: 0.3rem;
 `
 
 export const ProductName = styled.div`
-  grid-row : 1 / span 2 ; 
+  grid-row: 1 / span 2;
   overflow: hidden;
   text-overflow: ellipsis;
 `
 
 export const ProductPrice = styled.div`
-  grid-row : 3 / span 1 ;
-  font-weight : 600;
-  font-size : 1.2rem;
+  grid-row: 3 / span 1;
+  font-weight: 600;
+  font-size: 1.2rem;
 `
 
 export const DiscountBrand = styled.span`
-  z-index : 1;
-  top : 0;
-  right : 0;  
-  position : absolute;  
-  text-align : center;
-  background-color : red;
-  color : #ffea00 ;
-  padding : 0.25rem 0.5rem;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  position: absolute;
+  text-align: center;
+  background-color: red;
+  color: #ffea00;
+  padding: 0.25rem 0.5rem;
 `

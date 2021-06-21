@@ -1,5 +1,5 @@
-import React from 'react'
-import {Wrapper,Grid} from "./styles/Footer.styles"
+import React from "react"
+import { Wrapper, Grid } from "./styles/Footer.styles"
 import Brand from "./Brand"
 import About from "./About"
 import LiscencePolicy from "./LiscencePolicy"
@@ -8,16 +8,16 @@ const Footer = () => {
   return (
     <Wrapper>
       <Grid brand>
-        <Brand/>
+        <Brand />
       </Grid>
       <Grid>
-        <About/>
+        <About />
       </Grid>
       <Grid>
-        <LiscencePolicy/>
+        <LiscencePolicy />
       </Grid>
       <Grid>
-        <Contact/>
+        <Contact />
       </Grid>
     </Wrapper>
   )

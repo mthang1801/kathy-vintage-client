@@ -13,7 +13,8 @@ export const ListItem = styled(Link)`
   align-items: center;
   color: inherit;
   &:hover {
-    color: ${({ theme }) => theme ? theme?.hover?.background : "var(--hover-background)"};
+    color: ${({ theme }) =>
+      theme ? theme?.hover?.background : "var(--hover-background)"};
   }
 `
 
@@ -24,7 +25,8 @@ export const Setting = styled.div`
   cursor: pointer;
   color: inherit;
   &:hover {
-    color: ${({ theme }) =>theme ? theme?.hover?.background : "var(--hover-background)"};
+    color: ${({ theme }) =>
+      theme ? theme?.hover?.background : "var(--hover-background)"};
   }
 `
 

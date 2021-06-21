@@ -13,6 +13,6 @@ export const selectShowCartDropdown = createSelector(
 )
 
 export const selectAlertCart = createSelector(
-  selectCart, 
+  selectCart,
   cart => cart.alertCart
 )

@@ -4,7 +4,7 @@ import {
   increaseProductQuantity,
   decreaseProductQuantity,
   removeProductFromCart,
-  changeProductInfo
+  changeProductInfo,
 } from "./cart.utils"
 const INITIAL_STATE = {
   cartItems: [],
@@ -27,10 +27,7 @@ export default (state = INITIAL_STATE, action) => {
     case cartActionTypes.ADD_PRODUCT_ITEM_TO_CART:
       return {
         ...state,
-        cartItems: addProductToCart(
-          state.cartItems,
-          action.payload.product,
-        ),
+        cartItems: addProductToCart(state.cartItems, action.payload.product),
         alertCart: true,
       }
     case cartActionTypes.REMOVE_ALERT_CART:
@@ -48,20 +45,20 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: decreaseProductQuantity(state.cartItems, action.payload),
       }
-    case cartActionTypes.CLEAR_CART_ITEMS : 
+    case cartActionTypes.CLEAR_CART_ITEMS:
       return {
-        ...state, 
-        cartItems : [],
-        alertCart : false 
-      };
-    case cartActionTypes.CHANGE_PRODUCT_CART_INFO : 
-      return {
-        ...state, 
-        cartItems : changeProductInfo(state.cartItems, action.payload)
+        ...state,
+        cartItems: [],
+        alertCart: false,
       }
-    case cartActionTypes.REMOVE_PRODUCT_FROM_CART : 
-      return {        
-        cartItems : removeProductFromCart(state.cartItems, action.payload),        
+    case cartActionTypes.CHANGE_PRODUCT_CART_INFO:
+      return {
+        ...state,
+        cartItems: changeProductInfo(state.cartItems, action.payload),
+      }
+    case cartActionTypes.REMOVE_PRODUCT_FROM_CART:
+      return {
+        cartItems: removeProductFromCart(state.cartItems, action.payload),
       }
     default:
       return state

@@ -5,12 +5,18 @@ module.exports = {
     title: `Kathy Vintage`,
     description: `Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ`,
     author: "@MVT",
-    keywords : ["Quần áo si", "quần áo nam", "quần áo nữ", "si tuyển", "phụ kiện thời trang"],
+    keywords: [
+      "Quần áo si",
+      "quần áo nam",
+      "quần áo nữ",
+      "si tuyển",
+      "phụ kiện thời trang",
+    ],
     image: "/images/logo-text-icon.png",
     twitterUsername: "@mthang1801",
     siteUrl: "https://kathy-vintage-demo.netlify.app",
   },
-  plugins: [      
+  plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -21,15 +27,14 @@ module.exports = {
       options: {
         name: `Kathy Vintage`,
         short_name: `KV clothes`,
-        description:
-          "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
+        description: "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
         start_url: `/`,
         background_color: `#f0f0f0`,
         theme_color: "#27135c",
         display: `minimal-ui`,
-        icon: `src/images/logo.png`,      
+        icon: `src/images/logo.png`,
       },
-    },      
+    },
     `gatsby-remark-images-contentful`,
     {
       resolve: `gatsby-source-contentful`,
@@ -68,9 +73,9 @@ module.exports = {
           storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
           messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
           appId: process.env.GATSBY_FIREBASE_APP_ID,
-          measurementId: process.env.GATSBY_FIREBASE_MEASUREMENT_ID
-        }
-      }
+          measurementId: process.env.GATSBY_FIREBASE_MEASUREMENT_ID,
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-nprogress`,
@@ -91,12 +96,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-react-svg',
+      resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /svgs/
-        }
-      }
+          include: /svgs/,
+        },
+      },
     },
     `gatsby-plugin-sitemap`,
     {
@@ -121,9 +126,8 @@ module.exports = {
       options: {
         disableAutoprefixing: true,
       },
-    },   
+    },
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-gatsby-cloud`,          
+    `gatsby-plugin-gatsby-cloud`,
   ],
-
 }

@@ -48,7 +48,7 @@ const LayoutTemplate = ({ data, pageLocation }) => {
     translation: {
       page: { template },
     },
-    lang
+    lang,
   } = useLanguage()
   const location = useLocation()
 

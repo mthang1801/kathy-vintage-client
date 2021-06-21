@@ -9,8 +9,8 @@ import {
   RadioTitle,
   RadioLabel,
 } from "./styles/Input.styles"
-import {BiCheckCircle} from "react-icons/bi"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { BiCheckCircle } from "react-icons/bi"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const CustomInput = ({
   type,
   onChange,
@@ -29,11 +29,11 @@ const CustomInput = ({
       : ""
   const border = touched ? (transformedErrors ? "error" : "success") : null
   const inputRef = useRef(null)
-  const handleClick = () => {    
+  const handleClick = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "Focus check box",
-      label : "Radio check box"
+      action: "Click",
+      category: "Focus check box",
+      label: "Radio check box",
     })
     inputRef.current.focus()
   }
@@ -74,7 +74,9 @@ const CustomInput = ({
         transformedErrors ? (
           <TextError>{transformedErrors}</TextError>
         ) : (
-          <TextSuccess><BiCheckCircle/></TextSuccess>
+          <TextSuccess>
+            <BiCheckCircle />
+          </TextSuccess>
         )
       ) : null}
     </InputGroup>

@@ -18,7 +18,7 @@ import OrderControl from "./OrderControl"
 import { useTheme } from "../../theme"
 
 const OrderItem = ({ order, ordersTranslation, userPage }) => {
-  const { theme } = useTheme()  
+  const { theme } = useTheme()
   return (
     <Wrapper theme={theme} userPage={userPage}>
       <Accordion>

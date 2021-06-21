@@ -1,4 +1,4 @@
 export const config = {
-  headerHeight : 80, 
-  navigationHeight : 40
+  headerHeight: 80,
+  navigationHeight: 40,
 }

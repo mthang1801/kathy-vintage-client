@@ -2,17 +2,23 @@ import React, { useState } from "react"
 import { Wrapper, Label } from "./styles/TypeOfPayment.styles"
 import Radio from "@material-ui/core/Radio"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import PaymentInCashImage from "../../images/payment-in-cash.png"
 import CreaditCardImage from "../../images/credit-card.png"
 import RadioGroup from "@material-ui/core/RadioGroup"
 import { useTheme } from "../../theme"
 const TypeOfPayment = ({ user, paymentMethod, setPaymentMethod }) => {
-  const { translation : {checkout : {payment : {typeOfPayment}}} } = useLanguage()
-  const { theme } = useTheme();
- 
+  const {
+    translation: {
+      checkout: {
+        payment: { typeOfPayment },
+      },
+    },
+  } = useLanguage()
+  const { theme } = useTheme()
+
   const handleChange = e => {
-    const {value} = e.target; 
+    const { value } = e.target
     setPaymentMethod(typeOfPayment[value])
   }
 
@@ -51,7 +57,7 @@ const TypeOfPayment = ({ user, paymentMethod, setPaymentMethod }) => {
             </Label>
           }
         />
-      </RadioGroup>      
+      </RadioGroup>
     </Wrapper>
   )
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import Slider from "react-slick"
 import ProductItem from "../Product/ProductItem"
-import {Wrapper, ProductContainer} from "./styles/RelevantPosts.styles"
+import { Wrapper, ProductContainer } from "./styles/RelevantPosts.styles"
 let dragging = false
 
 const RelevantProductsCarousel = ({ products }) => {
@@ -14,7 +14,7 @@ const RelevantProductsCarousel = ({ products }) => {
     speed: 2000,
     autoplaySpeed: 5000,
     cssEase: "ease-out",
-    arrows : false,
+    arrows: false,
     beforeChange: () => (dragging = true),
     afterChange: () => (dragging = false),
     responsive: [
@@ -53,7 +53,7 @@ const RelevantProductsCarousel = ({ products }) => {
     <Wrapper>
       <Slider {...settings}>
         {products.map(product => (
-          <ProductContainer  key={product.contentful_id} >
+          <ProductContainer key={product.contentful_id}>
             <ProductItem product={product} />
           </ProductContainer>
         ))}

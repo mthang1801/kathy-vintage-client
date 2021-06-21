@@ -9,9 +9,9 @@ export const Wrapper = styled.section`
   display: flex;
   align-items: flex-start;
   border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
-  p:not(:first-child){
-    margin-top : 0;
-    margin-bottom : 0.5rem;
+  p:not(:first-child) {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
   }
 `
 
@@ -49,7 +49,7 @@ export const ProductContent = styled.h4`
 export const ProductPriceAndQuantity = styled.div`
   display: flex;
   justify-content: space-between;
-  @media screen and (min-width :992px){
+  @media screen and (min-width: 992px) {
     margin-top: 1rem;
   }
 `

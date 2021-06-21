@@ -18,14 +18,14 @@ import { useTheme } from "../../theme"
 import { BsTrash } from "react-icons/bs"
 import QuantityControl from "../Controls/QuantityControl"
 import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
-import Button  from "@material-ui/core/Button";
+import Button from "@material-ui/core/Button"
 
 const CheckoutProductItem = ({
   product,
   increaseProductQuantity,
   decreaseProductQuantity,
   removeProductFromCart,
-  changeProductInfo
+  changeProductInfo,
 }) => {
   const {
     translation: { dialog },
@@ -42,13 +42,13 @@ const CheckoutProductItem = ({
     setOpenDialog(true)
   }
   const onChangeColor = color => {
-    const cloneProduct = {...product} ; 
-    cloneProduct.selectedColor = color;
-    changeProductInfo(cloneProduct);
+    const cloneProduct = { ...product }
+    cloneProduct.selectedColor = color
+    changeProductInfo(cloneProduct)
   }
   const onChangeSize = size => {
-    const cloneProduct = {...product} ; 
-    cloneProduct.selectedSize = size;
+    const cloneProduct = { ...product }
+    cloneProduct.selectedSize = size
     changeProductInfo(cloneProduct)
   }
   return (
@@ -64,7 +64,8 @@ const CheckoutProductItem = ({
           <ProductContent>
             <div>{product[`name_${lang}`]}</div>
             <Grid>
-              {product.selectedColor && product?.colors?.length &&
+              {product.selectedColor &&
+                product?.colors?.length &&
                 product.colors.map(({ color, image }) => (
                   <ProductColorItem
                     theme={theme}
@@ -76,15 +77,19 @@ const CheckoutProductItem = ({
                 ))}
             </Grid>
             <Grid>
-              {product.selectedSize && product?.sizes?.length && product.sizes.map(size => (
-                <Button
-                  color="primary"
-                  variant={product.selectedSize === size ? "contained" : "outlined"}
-                  onClick={() => onChangeSize(size)}
-                >
-                  {size}
-                </Button>
-              ))}
+              {product.selectedSize &&
+                product?.sizes?.length &&
+                product.sizes.map(size => (
+                  <Button
+                    color="primary"
+                    variant={
+                      product.selectedSize === size ? "contained" : "outlined"
+                    }
+                    onClick={() => onChangeSize(size)}
+                  >
+                    {size}
+                  </Button>
+                ))}
             </Grid>
           </ProductContent>
           <ProductPriceAndQuantity>

@@ -16,7 +16,7 @@ const UserDashboard = () => {
       <Divider />
       <List>
         {Array.from({ length: 4 }).map((_, idx) => (
-          <ListItem key={`user-dashboard-skeleton-${idx}`} >
+          <ListItem key={`user-dashboard-skeleton-${idx}`}>
             <Skeleton variant="text" animation="wave" />
           </ListItem>
         ))}

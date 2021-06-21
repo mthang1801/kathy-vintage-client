@@ -15,11 +15,11 @@ export const Wrapper = styled.footer`
   }
   @media screen and (min-width: 992px) {
     grid-template-columns: repeat(3, auto);
-    grid-gap : 1rem;
+    grid-gap: 1rem;
   }
   @media screen and (min-width: 1200px) {
     grid-template-columns: repeat(4, auto);
-    grid-gap : 1.25rem;
+    grid-gap: 1.25rem;
   }
 `
 
@@ -41,13 +41,12 @@ export const ImageContainer = styled.h3`
   padding: 0;
   margin: 0;
   a {
-
     color: #ffc400;
     text-decoration: none;
     display: flex;
-    flex-direction : column ; 
-    & > span:last-child{
-      margin-left :auto;
+    flex-direction: column;
+    & > span:last-child {
+      margin-left: auto;
     }
   }
 `
@@ -59,9 +58,8 @@ export const Policies = styled.div`
     color: inherit;
     text-decoration: none;
     margin: 0.5rem 0;
-    text-transform: capitalize;    
+    text-transform: capitalize;
   }
-  
 `
 
 export const List = styled.div`

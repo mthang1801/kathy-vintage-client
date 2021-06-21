@@ -1,22 +1,22 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.div`  
-  width: 100%;  
-  max-width : 600px;
-  position : relative;
-  background-color : ${({theme}) => theme ? theme.card : "var(--card)"};
-  & *{
-    color : ${({theme}) => theme ? theme.text : "var(--text)"};
+export const Wrapper = styled.div`
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  & * {
+    color: ${({ theme }) => (theme ? theme.text : "var(--text)")};
   }
   .ais-SearchBox-form {
     width: 100%;
-    max-width : 600px;
-    display : flex;
-    flex-direction : row-reverse;
-    align-items : center;
-    border : 1px solid var(--gray-1);
-    font-size : 0.9rem;
-    overflow : hidden ;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    border: 1px solid var(--gray-1);
+    font-size: 0.9rem;
+    overflow: hidden;
     border-radius: 0.3rem;
   }
   .ais-SearchBox-input {
@@ -24,58 +24,59 @@ export const Wrapper = styled.div`
     padding: 0.5rem;
     outline: none;
     border: 1px solid var(--gray);
-    background : transparent;
-    font-size: 1em;    
+    background: transparent;
+    font-size: 1em;
     &:focus {
       border: 1px solid var(--primary);
     }
   }
   .ais-SearchBox-submit {
-    font-size : 1.5rem;    
-    outline : none;
-    border: none; 
-    background-color :transparent;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
   }
-  .ais-SearchBox-reset{
-    display : none ; 
+  .ais-SearchBox-reset {
+    display: none;
   }
   #search-results {
-    position : absolute;
-    width : 100%;
+    position: absolute;
+    width: 100%;
     z-index: 3100;
-    bottom : 4px;    
+    bottom: 4px;
   }
-  .search-results, .empty-result {
+  .search-results,
+  .empty-result {
     margin-top: 0.3rem;
     background-color: var(--white);
     box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--gray-1);
     border-top: none;
     height: calc(100vh - 60px);
-    top : 60px;
-    border-radius : 0.3rem;
+    top: 60px;
+    border-radius: 0.3rem;
     left: 0;
-    width : 100vw;
-    position : fixed;    
-    overflow : auto;
-    @media screen and (min-width: 768px){
-      width : 100%;
+    width: 100vw;
+    position: fixed;
+    overflow: auto;
+    @media screen and (min-width: 768px) {
+      width: 100%;
       height: auto;
       max-height: 70vh;
-      position : absolute;
-      top : 0;
-      min-width : 400px;
+      position: absolute;
+      top: 0;
+      min-width: 400px;
     }
   }
   .ais-Hits {
     height: 100%;
     overflow: auto;
   }
-  ul.ais-Hits-list{
-    list-style: none ; 
-    padding : 0; 
+  ul.ais-Hits-list {
+    list-style: none;
+    padding: 0;
     margin: 0;
-    background-color : ${({theme}) => theme ? theme.card : "var(--card)" };
+    background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
   }
   .ais-Pagination {
     height: 12%;
@@ -103,29 +104,32 @@ export const Wrapper = styled.div`
   }
   li.ais-Hits-item {
     padding: 0.4rem 0.75rem;
-    width: 100%;       
+    width: 100%;
     &:not(:last-child) {
-      border-bottom: 1px solid ${({theme}) =>theme ? theme?.border : "var(--border)"};
+      border-bottom: 1px solid
+        ${({ theme }) => (theme ? theme?.border : "var(--border)")};
     }
     transition: var(--mainTransition);
     &:hover {
-      background-color: ${({theme})=> theme ? theme?.hover?.background : "var(--hover-background)"};
-      color: ${({theme}) => theme ? theme?.hover?.text : "var(--hover-text)"};
+      background-color: ${({ theme }) =>
+        theme ? theme?.hover?.background : "var(--hover-background)"};
+      color: ${({ theme }) =>
+        theme ? theme?.hover?.text : "var(--hover-text)"};
     }
-    a{
-      display : block;
-      color : inherit;
+    a {
+      display: block;
+      color: inherit;
     }
   }
-  h4.hit-title{
-    width : 100%; 
-    overflow : hidden ;
-    text-overflow : ellipsis; 
-    white-space:nowrap;
-    margin: 0; 
+  h4.hit-title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
     padding: 0;
   }
-  .ais-Highlight{
+  .ais-Highlight {
     font-weight: normal;
   }
   .ais-Pagination-link {
@@ -138,18 +142,18 @@ export const Wrapper = styled.div`
       color: var(--indigo);
     }
   }
-  .empty-result{
-    height : 3rem;
-    display : flex;
-    justify-content : center;
-    align-items : center;
-    background : ${({theme}) => theme ? theme.backgroun : "var(--card)"}
+  .empty-result {
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: ${({ theme }) => (theme ? theme.backgroun : "var(--card)")};
   }
   .ais-Highlight-highlighted {
-    font-weight :bold;
-    font-style : normal;
+    font-weight: bold;
+    font-style: normal;
   }
-  .d-none{
-    display : none;
+  .d-none {
+    display: none;
   }
 `

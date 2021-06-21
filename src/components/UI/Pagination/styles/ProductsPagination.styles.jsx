@@ -1,16 +1,15 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.div` 
+export const Wrapper = styled.div`
   .pagination {
     display: flex;
     justify-content: center;
     margin: 2rem 0;
     padding: 0;
-    @media screen and (min-width : 992px){
+    @media screen and (min-width: 992px) {
       flex-wrap: wrap;
       justify-content: flex-end;
     }
-    
   }
   .disabled {
     display: none !important;
@@ -27,7 +26,7 @@ export const Wrapper = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border: 1px solid ${({ theme }) => theme.border};
-    background-color : var(--light-gray-1);
+    background-color: var(--light-gray-1);
     border-radius: 0.5rem;
     outline: none;
     cursor: pointer;
@@ -37,12 +36,12 @@ export const Wrapper = styled.div`
       color: var(--white);
     }
   }
-  .active {    
+  .active {
     a {
       color: inherit;
       border: 1px solid var(--blue-1);
       background-color: var(--blue-1);
-      color : var(--white);
+      color: var(--white);
     }
   }
 `

@@ -8,7 +8,7 @@ import {
   AiOutlineInstagram,
   AiOutlineFileSearch,
   AiOutlineUnorderedList,
-  AiOutlineMail
+  AiOutlineMail,
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -21,7 +21,13 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoIosGlasses, IoMdSettings } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle, FiSettings } from "react-icons/fi"
+import {
+  FiTwitter,
+  FiFacebook,
+  FiLogOut,
+  FiCheckCircle,
+  FiSettings,
+} from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat, BsShieldLock } from "react-icons/bs"
 import { BiGlasses, BiPurchaseTag, BiUserPin, BiPhone } from "react-icons/bi"
@@ -100,17 +106,18 @@ export const en = {
         restoreSuccessText:
           "Your request to restore account successfully, please check your email to activate new password",
       },
-      restoreAccountDone : " We have received your suggestion about restoring your email account. You need to check your email to activate restore password feature and update new password.."
+      restoreAccountDone:
+        " We have received your suggestion about restoring your email account. You need to check your email to activate restore password feature and update new password..",
     },
     user: {
       settingAccount: {
-        key : "general-information",
+        key: "general-information",
         name: "Setting your account",
         icon: <IoIosSettings />,
         path: "/user",
       },
       ordersHistory: {
-        key : "orders-history",
+        key: "orders-history",
         name: "Orders History",
         icon: <RiBillLine />,
         path: `/orders`,
@@ -121,8 +128,8 @@ export const en = {
       },
       information: {
         title: "Form Information",
-        id : "Account ID",
-        email : "Email",
+        id: "Account ID",
+        email: "Email",
         fullname: "Full Name",
         phone: "Phone Number",
         city: "Select City",
@@ -134,63 +141,65 @@ export const en = {
           fullName: "You need to type first name and last name",
           invalidPhone: "Invalid phone number",
         },
-        confirm_submit_change_information : {
-          title : "Confirm Your Change Information",
-          content : `
+        confirm_submit_change_information: {
+          title: "Confirm Your Change Information",
+          content: `
             <p>Are your sure to change your information?</p>
             <p style="color:red; font-weight:bold">You will be unable to change this within next 7 days.</p>
-          `
+          `,
         },
-        null_information_field : "Not Updated Yet",
+        null_information_field: "Not Updated Yet",
         buttonSubmit: "Complete",
         buttonUpdate: "Update",
-        buttonSaveChange : "Save Change",
+        buttonSaveChange: "Save Change",
         button_close_information_form: "Close",
       },
-      
-      dashboard : {
-        options : [
+
+      dashboard: {
+        options: [
           {
-            key : "general-information", 
-            name : "General Information", 
-            icon : <BiUserPin/>
+            key: "general-information",
+            name: "General Information",
+            icon: <BiUserPin />,
           },
           {
-            key : "change-password", 
-            name : "Change Password", 
-            icon : <BsShieldLock/>
+            key: "change-password",
+            name: "Change Password",
+            icon: <BsShieldLock />,
           },
           {
-            key : "orders-history",
-            name : "Orders History",
-            icon : <AiOutlineUnorderedList/>
+            key: "orders-history",
+            name: "Orders History",
+            icon: <AiOutlineUnorderedList />,
           },
           {
-            key : "setting-mode",
-            name : "Setting",
+            key: "setting-mode",
+            name: "Setting",
             icon: <FiSettings />,
-          }
+          },
         ],
       },
-      password : {
-        oldPassword : "Old Password",
-        newPassword : "New Password",
-        confirmNewPassword : "Confirm New Password",
-        errorProvider : "This Account can't be changed password",
-        buttonConfirm : "Save Change",
-        errorOldPassword : "Old Password is not correct",
-        errorConfirmPassword : "Confirm Password is not correct",
-        errorInvalidPassword : "Password is not valid, minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
-        errorServer : "Something went wrong, try again",
-        updatePasswordSuccess : "Update Password success",
-        countTimeToLogout : counter => `<small style="color: #616161">Your account will be logged out automatically after <span style="color:#e53935">${counter}</span> seconds..</small>`,
-        confirmDialog : {
-          title: "Confirm change password", 
-          content : `
+      password: {
+        oldPassword: "Old Password",
+        newPassword: "New Password",
+        confirmNewPassword: "Confirm New Password",
+        errorProvider: "This Account can't be changed password",
+        buttonConfirm: "Save Change",
+        errorOldPassword: "Old Password is not correct",
+        errorConfirmPassword: "Confirm Password is not correct",
+        errorInvalidPassword:
+          "Password is not valid, minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
+        errorServer: "Something went wrong, try again",
+        updatePasswordSuccess: "Update Password success",
+        countTimeToLogout: counter =>
+          `<small style="color: #616161">Your account will be logged out automatically after <span style="color:#e53935">${counter}</span> seconds..</small>`,
+        confirmDialog: {
+          title: "Confirm change password",
+          content: `
             <p>Are you sure to change password?</p>
-          `
-        }
-      }
+          `,
+        },
+      },
     },
     portfolioIcons: {
       portfolioId_1: {
@@ -242,7 +251,7 @@ export const en = {
         path: "/recommended-products",
         icon: <RiVipDiamondLine />,
         activeIcon: <RiVipDiamondFill />,
-      },     
+      },
       setting: {
         id: "setting",
         name: "Setting",
@@ -286,41 +295,46 @@ export const en = {
       home: {
         categoryCarouselTitle: "Products Category",
       },
-      template: {    
-        dialog : {
-          title : "Products Filter",
-          closeButton : "Close"
+      template: {
+        dialog: {
+          title: "Products Filter",
+          closeButton: "Close",
         },
         sidebar: {
           navigation: {
-            title: (pageLocation) => pageLocation === "portfolio" ? "Product Categories" : pageLocation === "category" ? "Product Group List" : null,
+            title: pageLocation =>
+              pageLocation === "portfolio"
+                ? "Product Categories"
+                : pageLocation === "category"
+                ? "Product Group List"
+                : null,
           },
-          sort : {
-            title : "Sorting",
-            fields : [
+          sort: {
+            title: "Sorting",
+            fields: [
               {
-                key : "price_asc",
-                value : "Price Ascending"
+                key: "price_asc",
+                value: "Price Ascending",
               },
               {
-                key : "price_desc",
-                value : "Price Descending"
+                key: "price_desc",
+                value: "Price Descending",
               },
               {
-                key : "discount_asc",
-                value : "Discount Ascending"
+                key: "discount_asc",
+                value: "Discount Ascending",
               },
               {
-                key : "discount_desc",
-                value : "Discount Descending"
+                key: "discount_desc",
+                value: "Discount Descending",
               },
-            ]
+            ],
           },
           prices: {
             title: "Prices",
-            from : "From" , 
-            To : "To",
-            buttonFilter : "Filter",
+            from: "From",
+            To: "To",
+            buttonFilter: "Filter",
             range: (from, to = null) =>
               to
                 ? `From ${from.toLocaleString("de-DE")} to ${to.toLocaleString(
@@ -330,7 +344,7 @@ export const en = {
           },
           discount: {
             title: "Discount",
-            fields :[
+            fields: [
               {
                 key: "all",
                 value: "All",
@@ -339,63 +353,60 @@ export const en = {
                 key: "isDiscount",
                 value: "Discounting",
               },
-               {
+              {
                 key: "isNotDiscount",
                 value: "Not Discounting",
               },
-              
-            ]
+            ],
           },
-          manufactors : {
-            title : "Manufactors",
-            all : {
-              key : "all",
-              value : "All"
-            }
+          manufactors: {
+            title: "Manufactors",
+            all: {
+              key: "all",
+              value: "All",
+            },
           },
-          recommend : {
-            title : "Recommend",
-            fields : {
-              recommend : {
-                key : "recommend",
-                value : "Recommend"
+          recommend: {
+            title: "Recommend",
+            fields: {
+              recommend: {
+                key: "recommend",
+                value: "Recommend",
               },
-              all : {
-                key : "all", 
-                value : "all"
-              }
-            }
-          }
-        },
-        content : {
-          tabs : [
-            {
-              key: "all", 
-              value : "All"
+              all: {
+                key: "all",
+                value: "all",
+              },
             },
-            {
-              key : "recommended",
-              value : "Recommended Products"
-            },
-            {
-              key : "latest",
-              value : "Latest products"
-            },
-            {
-              key : "bestSell",
-              value : "Best Sell Products"
-            }
-            
-          ],
-          productCount : {
-            name : (num) => `<span>Find <strong>${num}</strong> products</span>`,
-            icon : <AiOutlineFileSearch/>
           },
-        }
+        },
+        content: {
+          tabs: [
+            {
+              key: "all",
+              value: "All",
+            },
+            {
+              key: "recommended",
+              value: "Recommended Products",
+            },
+            {
+              key: "latest",
+              value: "Latest products",
+            },
+            {
+              key: "bestSell",
+              value: "Best Sell Products",
+            },
+          ],
+          productCount: {
+            name: num => `<span>Find <strong>${num}</strong> products</span>`,
+            icon: <AiOutlineFileSearch />,
+          },
+        },
       },
     },
     product: {
-
       bestSellProducts: {
         id: "best-sell-products",
         styledTitle: "Top",
@@ -573,10 +584,10 @@ export const en = {
         price: "Price",
         totalPrice: "Total price",
         shipping: "Shipping",
-        product :{
-          color : "Color",
-          size : "Size"
-        }
+        product: {
+          color: "Color",
+          size: "Size",
+        },
       },
       complete: {
         header_letter: "Thank you for buying product from tnshop",
@@ -630,19 +641,19 @@ export const en = {
       cancelOrderHTML: `<p>Are you sure to cancel this order?</p>`,
       readMoreOrders: "Read More",
     },
-    search : {
-      emptyResult : (key) => `No results have been found for ${key}`,
-      placeholder : "Search..."
+    search: {
+      emptyResult: key => `No results have been found for ${key}`,
+      placeholder: "Search...",
     },
-    contacts:[      
-      { key : "facebook", icon: <FaFacebookF />, name: 'Facebook' },      
-      { key : "zalo", icon: <ZaloIcon />, name: 'Zalo' },      
-      { key : "phone", icon: <BiPhone />, name: '0973594645' },
-      { key: "email", icon: <AiOutlineMail />, name: 'Email' },       
+    contacts: [
+      { key: "facebook", icon: <FaFacebookF />, name: "Facebook" },
+      { key: "zalo", icon: <ZaloIcon />, name: "Zalo" },
+      { key: "phone", icon: <BiPhone />, name: "0973594645" },
+      { key: "email", icon: <AiOutlineMail />, name: "Email" },
     ],
-    seo : {
+    seo: {
       home: "Home Page",
-      orders : "Orders history"
-    }
+      orders: "Orders history",
+    },
   },
 }

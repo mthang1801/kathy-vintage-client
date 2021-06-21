@@ -10,16 +10,16 @@ export const onRenderBody = ({
 }) => {
   const helmet = Helmet.renderStatic()
   setPreBodyComponents([
-    <div id="preloader">     
+    <div id="preloader">
       <img
         src="/images/logo.jpg"
         alt="logo"
-        style={{ width : "5rem", height : "5rem", borderRadius:"50%"}}
+        style={{ width: "5rem", height: "5rem", borderRadius: "50%" }}
       />
       <div className="preloader_animation"></div>
     </div>,
     <div id="fb-root" />,
-    <div id="fb-customer-chat" className="fb-customerchat" />
+    <div id="fb-customer-chat" className="fb-customerchat" />,
   ])
   setHtmlAttributes(helmet.htmlAttributes.toComponent())
   setBodyAttributes(helmet.bodyAttributes.toComponent())
@@ -39,7 +39,10 @@ export const onRenderBody = ({
       <link rel="stylesheet" href="/styles/noscript.css" />
     </noscript>,
   ])
-  setPostBodyComponents([<script src="/scripts/preloader.js" />, <script src="/scripts/facebook-messenger.js"/>])
+  setPostBodyComponents([
+    <script src="/scripts/preloader.js" />,
+    <script src="/scripts/facebook-messenger.js" />,
+  ])
 }
 
 export const onPreRenderHTML = ({

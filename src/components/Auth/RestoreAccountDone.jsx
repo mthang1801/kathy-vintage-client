@@ -10,7 +10,7 @@ import { withRouter } from "react-router-dom"
 import { FaRegCheckCircle } from "react-icons/fa"
 import { useTheme } from "../../theme"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
-const ForgotPasswordDone = ({ history}) => {
+const ForgotPasswordDone = ({ history }) => {
   const { theme } = useTheme()
   const {
     translation: {

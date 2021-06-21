@@ -35,14 +35,15 @@ const CheckoutPaymentTypeOfShipping = ({
             label={types.standard.value}
           />
         )}
-        {user?.information?.city?.toLowerCase() === "hồ chí minh" && types.fast && (
-          <FormControlLabel
-            name={types.fast.key}
-            value={types.fast.value}
-            control={<Radio size="small" color="primary" />}
-            label={types.fast.value}
-          />
-        )}
+        {user?.information?.city?.toLowerCase() === "hồ chí minh" &&
+          types.fast && (
+            <FormControlLabel
+              name={types.fast.key}
+              value={types.fast.value}
+              control={<Radio size="small" color="primary" />}
+              label={types.fast.value}
+            />
+          )}
       </RadioGroup>
     </TypeOfShipping>
   )

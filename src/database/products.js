@@ -44,12 +44,14 @@ export const fetchBestSellProducts = () => {
         .orderBy("sold_number", "desc")
         .limit(PRODUCTS_BEST_SELLER_HOME_PAGE)
         .get()
-      let productsList = [];
+      let productsList = []
       productsRef.forEach(productSnap => {
-        productsList = [...productsList, {id : productSnap.id, ...productSnap.data()}]
+        productsList = [
+          ...productsList,
+          { id: productSnap.id, ...productSnap.data() },
+        ]
       })
-      console.log(productsList)
-      resolve(productsList);
+      resolve(productsList)
     } catch (error) {
       reject(error.message)
     }

@@ -15,10 +15,10 @@ import "./src/fonts/index.css"
 import "./src/styles/preloader.scss"
 export const wrapRootElement = ({ element }) => {
   if (typeof window === "undefined") {
-    return (      
-        <Provider store={store}>
-          <App>{element}</App>
-        </Provider>      
+    return (
+      <Provider store={store}>
+        <App>{element}</App>
+      </Provider>
     )
   }
   return (
@@ -31,4 +31,3 @@ export const wrapRootElement = ({ element }) => {
     </ThemeProvider>
   )
 }
-

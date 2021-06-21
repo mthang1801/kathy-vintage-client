@@ -10,7 +10,7 @@ import {
   selectOrdersLoading,
   selectOrdersError,
   selectLastVisibleOrder,
-  selectOrdersFetched
+  selectOrdersFetched,
 } from "../../redux/orders/orders.selectors"
 import { fetchOrders } from "../../redux/orders/orders.actions"
 import { connect } from "react-redux"
@@ -20,13 +20,13 @@ import {
   ReadMoreContainer,
   ReadMoreText,
 } from "./styles/OrdersList.styles"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import OrderItem from "../Order/OrderItem"
 import EmptyOrder from "../Order/EmptyOrder"
 import OrderPageSkeleton from "../UI/Lab/Skeleton/OrderPage"
 import { navigate } from "gatsby-link"
 import { useLocation } from "@reach/router"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const Orders = ({
   title,
   user,
@@ -38,9 +38,11 @@ const Orders = ({
   lastVisibleOrder,
   userLoading,
   userIsFetched,
-  ordersFetched
+  ordersFetched,
 }) => {
-  const { translation : {orders : ordersTranslation} } = useLanguage();
+  const {
+    translation: { orders: ordersTranslation },
+  } = useLanguage()
   const { pathname } = useLocation()
   useEffect(() => {
     if (user && !ordersFetched) {
@@ -53,9 +55,9 @@ const Orders = ({
 
   const onFetchMoreOrders = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "orders",
-      label : "Fetch more orders"
+      action: "Click",
+      category: "orders",
+      label: "Fetch more orders",
     })
     fetchOrders(user.uid, lastVisibleOrder)
   }
@@ -102,7 +104,7 @@ const mapStateToProps = createStructuredSelector({
   lastVisibleOrder: selectLastVisibleOrder,
   userLoading: selectUserLoading,
   userIsFetched: selectUserFetched,
-  ordersFetched : selectOrdersFetched
+  ordersFetched: selectOrdersFetched,
 })
 
 const mapDispatchToProps = dispatch => ({

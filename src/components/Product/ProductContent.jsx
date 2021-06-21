@@ -12,16 +12,24 @@ import {
   ButtonGroup,
 } from "./styles/ProductContent.styles"
 import Button from "@material-ui/core/Button"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import QuantityControl from "../Controls/QuantityControl"
 import { useTheme } from "../../theme"
-import { addProductItemToCart,removeAlertCart } from "../../redux/cart/cart.actions"
+import {
+  addProductItemToCart,
+  removeAlertCart,
+} from "../../redux/cart/cart.actions"
 import { connect } from "react-redux"
 import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
 import { navigate } from "gatsby"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
-const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCart }) => {
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+const ProductContent = ({
+  product,
+  addProductItemToCart,
+  cartItems,
+  removeAlertCart,
+}) => {
   const {
     name_vi,
     name_en,
@@ -33,10 +41,16 @@ const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCa
     discountPercentage,
     colors,
   } = product
-  console.log(product)
   const { theme } = useTheme()
-  const { translation : {product : {productPage}}, lang} = useLanguage()
-  const [selectedSize, setSelectedSize] = useState(sizes?.length ? sizes[0] : null )
+  const {
+    translation: {
+      product: { productPage },
+    },
+    lang,
+  } = useLanguage()
+  const [selectedSize, setSelectedSize] = useState(
+    sizes?.length ? sizes[0] : null
+  )
   const [selectedColor, setSelectedColor] = useState(
     colors?.length ? colors[0].color : null
   )
@@ -48,41 +62,40 @@ const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCa
     isDiscount && discountPercentage
       ? (unitPrice * (100 - parseFloat(discountPercentage))) / 100
       : unitPrice
-  const onChangeColor = color => {    
+  const onChangeColor = color => {
     trackCustomEvent({
-      action : "Click",
-      category : "cart",
-      label : "Change product color"
+      action: "Click",
+      category: "cart",
+      label: "Change product color",
     })
     setSelectedColor(color)
   }
 
   const onAddProductItemToCart = () => {
     trackCustomEvent({
-      action : "Click",
-      category : "cart",
-      label : "Add Product To Cart"
+      action: "Click",
+      category: "cart",
+      label: "Add Product To Cart",
     })
-    const cloneProduct = {...product}; 
-    if(selectedColor){
+    const cloneProduct = { ...product }
+    if (selectedColor) {
       cloneProduct.selectedColor = selectedColor
     }
-    if(selectedSize){
+    if (selectedSize) {
       cloneProduct.selectedSize = selectedSize
     }
-    cloneProduct.quantity = Math.max(1, productQuantity);
-    console.log(cloneProduct)
+    cloneProduct.quantity = Math.max(1, productQuantity)
     addProductItemToCart(cloneProduct)
   }
 
   const onClickPurchase = () => {
     trackCustomEvent({
-      action : "Click",
-      category : "navigate",
-      label : "Go To Checkout"
-    })    
-    onAddProductItemToCart();
-    removeAlertCart();
+      action: "Click",
+      category: "navigate",
+      label: "Go To Checkout",
+    })
+    onAddProductItemToCart()
+    removeAlertCart()
     navigate("/checkout")
   }
 
@@ -168,11 +181,21 @@ const ProductContent = ({ product, addProductItemToCart, cartItems,removeAlertCa
         setQuantity={setProductQuantity}
       />
       <ButtonGroup>
-        <CustomButton color="primary" variant="contained" size="large" onClick={onAddProductItemToCart}>
+        <CustomButton
+          color="primary"
+          variant="contained"
+          size="large"
+          onClick={onAddProductItemToCart}
+        >
           <span>{productPage.buttonAddToCart.icon}</span>
           <span>{productPage.buttonAddToCart.name}</span>
         </CustomButton>
-        <CustomButton color="secondary" variant="contained" size="large" onClick={onClickPurchase}>
+        <CustomButton
+          color="secondary"
+          variant="contained"
+          size="large"
+          onClick={onClickPurchase}
+        >
           <span>{productPage.buttonPurchase.icon}</span>
           <span>{productPage.buttonPurchase.name}</span>
         </CustomButton>
@@ -186,9 +209,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addProductItemToCart: (product) =>
-    dispatch(addProductItemToCart(product)),
-    removeAlertCart : () => dispatch(removeAlertCart())
+  addProductItemToCart: product => dispatch(addProductItemToCart(product)),
+  removeAlertCart: () => dispatch(removeAlertCart()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductContent)

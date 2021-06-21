@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import utils from "./utils";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import utils from "./utils"
 import ReactInputPosition, {
   TOUCH_ACTIVATION,
-  MOUSE_ACTIVATION
-} from "react-input-position";
-import PictureInPictureRenderer from "./PictureInPictureRenderer";
+  MOUSE_ACTIVATION,
+} from "react-input-position"
+import PictureInPictureRenderer from "./PictureInPictureRenderer"
 
 class PictureInPictureMagnifier extends Component {
-  containerRef = React.createRef();
+  containerRef = React.createRef()
 
   static propTypes = {
     imageSrc: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string)
+      PropTypes.arrayOf(PropTypes.string),
     ]),
     largeImageSrc: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string)
+      PropTypes.arrayOf(PropTypes.string),
     ]),
     imageAlt: PropTypes.string,
     previewSizePercentage: PropTypes.number,
@@ -40,8 +40,8 @@ class PictureInPictureMagnifier extends Component {
     onImageLoad: PropTypes.func,
     onLargeImageLoad: PropTypes.func,
     onZoomStart: PropTypes.func,
-    onZoomEnd: PropTypes.func
-  };
+    onZoomEnd: PropTypes.func,
+  }
 
   static defaultProps = {
     imageSrc: "",
@@ -61,8 +61,8 @@ class PictureInPictureMagnifier extends Component {
     cursorStyleActive: "",
     shadowColor: "rgba(0,0,0,.4)",
     onImageLoad: utils.noop,
-    onLargeImageLoad: utils.noop
-  };
+    onLargeImageLoad: utils.noop,
+  }
 
   render() {
     const {
@@ -89,8 +89,8 @@ class PictureInPictureMagnifier extends Component {
       onImageLoad,
       onLargeImageLoad,
       onZoomStart,
-      onZoomEnd
-    } = this.props;
+      onZoomEnd,
+    } = this.props
 
     return (
       <div
@@ -99,7 +99,7 @@ class PictureInPictureMagnifier extends Component {
           ...style,
           textAlign: previewHorizontalPos,
           overflow: "hidden",
-          fontSize: "0"
+          fontSize: "0",
         }}
         className={className}
       >
@@ -107,7 +107,7 @@ class PictureInPictureMagnifier extends Component {
           style={{
             width: `${previewSizePercentage}%`,
             display: "inline-block",
-            boxShadow: shadow ? `1px -1px 1px ${shadowColor}` : "none"
+            boxShadow: shadow ? `1px -1px 1px ${shadowColor}` : "none",
           }}
           touchActivationMethod={TOUCH_ACTIVATION.TOUCH}
           mouseActivationMethod={MOUSE_ACTIVATION.MOUSE_DOWN}
@@ -143,8 +143,8 @@ class PictureInPictureMagnifier extends Component {
           />
         </ReactInputPosition>
       </div>
-    );
+    )
   }
 }
 
-export default PictureInPictureMagnifier;
+export default PictureInPictureMagnifier

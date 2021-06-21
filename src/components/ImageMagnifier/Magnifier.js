@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import utils from "./utils";
+import React from "react"
+import PropTypes from "prop-types"
+import utils from "./utils"
 import ReactInputPosition, {
   TOUCH_ACTIVATION,
-  MOUSE_ACTIVATION
-} from "react-input-position";
-import MagnifierRenderer from "./MagnifierRenderer";
+  MOUSE_ACTIVATION,
+} from "react-input-position"
+import MagnifierRenderer from "./MagnifierRenderer"
 
 const Magnifier = props => {
   const {
@@ -26,11 +26,11 @@ const Magnifier = props => {
     onImageError,
     onLargeImageError,
     onZoomStart,
-    onZoomEnd
-  } = props;
+    onZoomEnd,
+  } = props
 
   const finalActiveCursorStyle =
-    cursorStyleActive || dragToMove ? "move" : "zoom-out";
+    cursorStyleActive || dragToMove ? "move" : "zoom-out"
 
   return (
     <ReactInputPosition
@@ -59,17 +59,17 @@ const Magnifier = props => {
         onLargeImageError={onLargeImageError}
       />
     </ReactInputPosition>
-  );
-};
+  )
+}
 
 Magnifier.propTypes = {
   imageSrc: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   largeImageSrc: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   imageAlt: PropTypes.string,
   cursorStyle: PropTypes.string,
@@ -85,11 +85,11 @@ Magnifier.propTypes = {
     doubleTapDurationInMs: PropTypes.number,
     longTouchDurationInMs: PropTypes.number,
     longTouchMoveLimit: PropTypes.number,
-    clickMoveLimit: PropTypes.number
+    clickMoveLimit: PropTypes.number,
   }),
   onImageLoad: PropTypes.func,
-  onLargeImageLoad: PropTypes.func
-};
+  onLargeImageLoad: PropTypes.func,
+}
 
 Magnifier.defaultProps = {
   imageSrc: "",
@@ -102,7 +102,7 @@ Magnifier.defaultProps = {
   touchActivation: TOUCH_ACTIVATION.TAP,
   interactionSettings: {},
   onImageLoad: utils.noop,
-  onLargeImageLoad: utils.noop
-};
+  onLargeImageLoad: utils.noop,
+}
 
-export default Magnifier;
+export default Magnifier

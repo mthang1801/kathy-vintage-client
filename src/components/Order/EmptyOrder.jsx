@@ -13,7 +13,7 @@ import { navigate } from "gatsby"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const EmptyOrder = () => {
   const {
-    translation: { orders }
+    translation: { orders },
   } = useLanguage()
 
   const { theme } = useTheme()

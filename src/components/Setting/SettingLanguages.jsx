@@ -1,5 +1,5 @@
 import React from "react"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import { configLang } from "../../locales"
 import ReactCountryFlag from "react-country-flag"
 import Button from "@material-ui/core/Button"
@@ -28,10 +28,10 @@ const SettingLanguages = () => {
   }
 
   const onChangeLang = selectedLang => {
-    if(selectedLang !== lang){
-      i18n.changeLanguage(selectedLang);      
+    if (selectedLang !== lang) {
+      i18n.changeLanguage(selectedLang)
     }
-    setOpen(false);
+    setOpen(false)
   }
 
   function handleListKeyDown(event) {
@@ -63,7 +63,9 @@ const SettingLanguages = () => {
           svg
           style={{ fontSize: "24px", marginRight: "10px" }}
         />
-        <span style={{textTransform:"capitalize"}}>{configLang[lang].text}</span>
+        <span style={{ textTransform: "capitalize" }}>
+          {configLang[lang].text}
+        </span>
       </Button>
       <Popper
         open={open}
@@ -71,7 +73,7 @@ const SettingLanguages = () => {
         role={undefined}
         transition
         disablePortal
-        style={{zIndex: 1500}}
+        style={{ zIndex: 1500 }}
       >
         {({ TransitionProps, placement }) => (
           <Grow

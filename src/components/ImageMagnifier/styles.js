@@ -8,8 +8,8 @@ function getLargeImageStyle(positionX, positionY, active) {
     transform: `translate(${positionX}px, ${positionY}px)`,
     zIndex: "1",
     visibility: !active ? "hidden" : "visible",
-    width: "auto"
-  };
+    width: "auto",
+  }
 }
 
 function getZoomContainerStyle(width, height, inPlace, switchSides) {
@@ -20,18 +20,18 @@ function getZoomContainerStyle(width, height, inPlace, switchSides) {
     width: `${width}px`,
     height: `${height}px`,
     top: "0",
-    overflow: "hidden"
-  };
-
-  if (inPlace) {
-    style.left = "0px";
-  } else if (switchSides) {
-    style.right = `${width}px`;
-  } else {
-    style.left = `${width}px`;
+    overflow: "hidden",
   }
 
-  return style;
+  if (inPlace) {
+    style.left = "0px"
+  } else if (switchSides) {
+    style.right = `${width}px`
+  } else {
+    style.left = `${width}px`
+  }
+
+  return style
 }
 
 function getOverlayCenterStyle(
@@ -45,14 +45,14 @@ function getOverlayCenterStyle(
   backgroundImage,
   backgroundImageSize
 ) {
-  const backgroundStyle = {};
+  const backgroundStyle = {}
 
   if (backgroundImage) {
-    backgroundStyle.backgroundImage = `url("${backgroundImage}")`;
+    backgroundStyle.backgroundImage = `url("${backgroundImage}")`
   }
 
   if (backgroundImageSize) {
-    backgroundStyle.backgroundSize = backgroundImageSize;
+    backgroundStyle.backgroundSize = backgroundImageSize
   }
 
   return {
@@ -68,8 +68,8 @@ function getOverlayCenterStyle(
     transition: `opacity ${transitionSpeed}s ease`,
     zIndex: "15",
     pointerEvents: "none",
-    ...backgroundStyle
-  };
+    ...backgroundStyle,
+  }
 }
 
 function getOverlayTopStyle(
@@ -91,8 +91,8 @@ function getOverlayTopStyle(
     transition: `opacity ${transitionSpeed}s ease`,
     opacity: opacity,
     transform: "scale3d(1,1,1)",
-    pointerEvents: "none"
-  };
+    pointerEvents: "none",
+  }
 }
 
 function getOverlayLeftStyle(
@@ -115,8 +115,8 @@ function getOverlayLeftStyle(
     transition: `opacity ${transitionSpeed}s ease`,
     opacity: opacity,
     transform: "scale3d(1,1,1)",
-    pointerEvents: "none"
-  };
+    pointerEvents: "none",
+  }
 }
 
 function getOverlayRightStyle(
@@ -139,8 +139,8 @@ function getOverlayRightStyle(
     transition: `opacity ${transitionSpeed}s ease`,
     opacity: opacity,
     transform: "scale3d(1,1,1)",
-    pointerEvents: "none"
-  };
+    pointerEvents: "none",
+  }
 }
 
 function getOverlayBottomStyle(
@@ -162,16 +162,16 @@ function getOverlayBottomStyle(
     transition: `opacity ${transitionSpeed}s ease`,
     opacity: opacity,
     transform: "scale3d(1,1,1)",
-    pointerEvents: "none"
-  };
+    pointerEvents: "none",
+  }
 }
 
 function getMagnifierZoomStyle(active, transitionSpeed) {
   return {
     position: "relative",
     opacity: active ? 1 : 0,
-    transition: `opacity ${transitionSpeed}s ease`
-  };
+    transition: `opacity ${transitionSpeed}s ease`,
+  }
 }
 
 export default {
@@ -182,5 +182,5 @@ export default {
   getOverlayLeftStyle,
   getOverlayRightStyle,
   getOverlayBottomStyle,
-  getMagnifierZoomStyle
-};
+  getMagnifierZoomStyle,
+}

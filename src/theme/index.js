@@ -3,7 +3,7 @@ import { getFromLS, setToLS } from "../utils/storage"
 
 const defaultState = { theme: {}, colorMode: "", setColorMode: () => {} }
 export const ThemeContext = createContext(defaultState)
-export const ThemeProvider = ({ theme, children }) => { 
+export const ThemeProvider = ({ theme, children }) => {
   const [currentTheme, setCurrentTheme] = useState(
     theme.modes[theme.initialColorModeName]
   )
@@ -17,7 +17,7 @@ export const ThemeProvider = ({ theme, children }) => {
       setMode(localTheme.name)
     }
     setThemeLoaded(true)
-  },[])
+  }, [])
 
   const setColorMode = mode => {
     //mode in here is light or dark or other colors name

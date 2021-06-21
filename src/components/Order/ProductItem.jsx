@@ -11,23 +11,23 @@ import {
   ProductQuantity,
   ProductTotalPrice,
 } from "./styles/ProductItem.styles"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import { navigate } from "gatsby"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
-import {getDeviceType} from "../../utils/getDeviceType"
+import { getDeviceType } from "../../utils/getDeviceType"
 const CheckoutProductItem = ({ product, ordersTranslation }) => {
   const { lang } = useLanguage()
   const { theme } = useTheme()
   const productPrice =
     product.isDiscount && product.discountPercentage
       ? (product.unitPrice * (100 - +product.discountPercentage)) / 100
-      : product.unitPrice  
+      : product.unitPrice
   return (
     <Wrapper
       theme={theme}
-      onClick={(e) => {
-        e.preventDefault();
+      onClick={e => {
+        e.preventDefault()
         trackCustomEvent({
           action: "Click",
           category: "navigate",

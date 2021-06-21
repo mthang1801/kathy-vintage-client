@@ -17,15 +17,15 @@ import ListItemText from "@material-ui/core/ListItemText"
 import { useStyles, Auth, LogoContainer } from "./styles/Drawer.styles"
 import { Link } from "gatsby"
 import Logo from "../../../images/logo-text-icon.png"
-import {LazyLoadImage} from "react-lazy-load-image-component"
-import {useLanguage} from "../../../locales"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import { useLanguage } from "../../../locales"
 import DrawerPortfoliosDropdown from "../../Dropdown/DrawerPortfoliosDropdown"
 import { Scrollbars } from "react-custom-scrollbars"
 import { navigate } from "gatsby"
 import UserOverview from "./UserOverview"
 import { signInPattern, signUpPattern } from "../../../utils/auth"
 import { useLocation } from "@reach/router"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 function PersistentDrawerLeft({
   open,
   setOpen,
@@ -42,15 +42,17 @@ function PersistentDrawerLeft({
     setOpen(false)
     setOpenPortfolio(false)
   }
-  const { translation : {auth , navigations}} = useLanguage()
+  const {
+    translation: { auth, navigations },
+  } = useLanguage()
   const navigationsArr = Object.keys(navigations).map(
     navigation => navigations[navigation]
   )
   const onClickMenu = navigation => {
     trackCustomEvent({
-      action : "Click", 
-      category : "drawer",
-      label : navigation.id
+      action: "Click",
+      category: "drawer",
+      label: navigation.id,
     })
     switch (navigation.id.toLowerCase()) {
       case "setting":
@@ -64,9 +66,9 @@ function PersistentDrawerLeft({
 
   const onNavigate = path => {
     trackCustomEvent({
-      action : "Click", 
-      category : "navigate",
-      label : path
+      action: "Click",
+      category: "navigate",
+      label: path,
     })
     navigate(path)
     handleDrawerClose()
@@ -135,8 +137,8 @@ function PersistentDrawerLeft({
           >
             <div className={classes.drawerHeader}>
               <Link to="/" onClick={handleDrawerClose}>
-                <LogoContainer style={{width:"3rem",height:"2rem"}}>
-                  <LazyLoadImage src={Logo} effect="blur" alt="logo"/>
+                <LogoContainer style={{ width: "3rem", height: "2rem" }}>
+                  <LazyLoadImage src={Logo} effect="blur" alt="logo" />
                 </LogoContainer>
               </Link>
               <IconButton onClick={handleDrawerClose}>
@@ -147,7 +149,7 @@ function PersistentDrawerLeft({
                 )}
               </IconButton>
             </div>
-            <Divider />            
+            <Divider />
             {user ? RenderUserOverview() : RenderUserAuth()}
 
             <List>

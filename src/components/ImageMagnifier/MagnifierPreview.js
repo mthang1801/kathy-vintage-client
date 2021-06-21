@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import utils from "./utils";
+import React from "react"
+import PropTypes from "prop-types"
+import utils from "./utils"
 import ReactInputPosition, {
   MOUSE_ACTIVATION,
-  TOUCH_ACTIVATION
-} from "react-input-position";
-import MagnifierPreviewRenderer from "./MagnifierPreviewRenderer";
-import { MagnifierContext } from "./MagnifierContainer";
+  TOUCH_ACTIVATION,
+} from "react-input-position"
+import MagnifierPreviewRenderer from "./MagnifierPreviewRenderer"
+import { MagnifierContext } from "./MagnifierContainer"
 
 function MagnifierPreview(props) {
   const {
@@ -29,8 +29,8 @@ function MagnifierPreview(props) {
     onZoomStart,
     onZoomEnd,
     mouseActivation,
-    touchActivation
-  } = props;
+    touchActivation,
+  } = props
 
   const {
     stateOverride,
@@ -39,8 +39,8 @@ function MagnifierPreview(props) {
     previewSize,
     smallImageSize,
     position,
-    inPlace
-  } = React.useContext(MagnifierContext);
+    inPlace,
+  } = React.useContext(MagnifierContext)
 
   return (
     <ReactInputPosition
@@ -77,7 +77,7 @@ function MagnifierPreview(props) {
         position={position}
       />
     </ReactInputPosition>
-  );
+  )
 }
 
 MagnifierPreview.propTypes = {
@@ -86,11 +86,11 @@ MagnifierPreview.propTypes = {
   cursorStyle: PropTypes.string,
   imageSrc: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   largeImageSrc: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   imageAlt: PropTypes.string,
   onImageLoad: PropTypes.func,
@@ -104,8 +104,8 @@ MagnifierPreview.propTypes = {
   overlayBoxImageSize: PropTypes.string,
   transitionSpeed: PropTypes.number,
   mouseActivation: PropTypes.string,
-  touchActivation: PropTypes.string
-};
+  touchActivation: PropTypes.string,
+}
 
 MagnifierPreview.defaultProps = {
   cursorStyle: "crosshair",
@@ -121,7 +121,7 @@ MagnifierPreview.defaultProps = {
   onImageLoad: utils.noop,
   onLargeImageLoad: utils.noop,
   mouseActivation: MOUSE_ACTIVATION.HOVER,
-  touchActivation: TOUCH_ACTIVATION.TOUCH
-};
+  touchActivation: TOUCH_ACTIVATION.TOUCH,
+}
 
-export default MagnifierPreview;
+export default MagnifierPreview

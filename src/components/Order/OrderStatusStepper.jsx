@@ -4,9 +4,13 @@ import Stepper from "@material-ui/core/Stepper"
 import Step from "@material-ui/core/Step"
 import StepLabel from "@material-ui/core/StepLabel"
 import { convertSecondsTimeToDate } from "../../utils/firebase.utils"
-import { Wrapper, Processed, Processing } from "./styles/OrderStatusStepper.styles"
+import {
+  Wrapper,
+  Processed,
+  Processing,
+} from "./styles/OrderStatusStepper.styles"
 import { useTheme } from "../../theme"
-import {getDeviceType} from "../../utils/getDeviceType"
+import { getDeviceType } from "../../utils/getDeviceType"
 const OrderStatusStepper = ({ status, ordersTranslation }) => {
   const stepsList = ["sent", "received", "shipping", "complete"]
   const { theme } = useTheme()

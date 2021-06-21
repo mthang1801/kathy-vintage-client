@@ -1,16 +1,17 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const SampleMode = styled.span`
-  display : inline-block;
+  display: inline-block;
   width: 1.5rem;
   height: 1rem;
-  background-color: ${({theme}) => theme ? theme.background : "var(--background)"};
+  background-color: ${({ theme }) =>
+    theme ? theme.background : "var(--background)"};
   margin-right: 0.5rem;
   border: 1px solid gray;
-  border-radius : 0.25rem;
+  border-radius: 0.25rem;
 `
 
 export const TextMode = styled.span`
-  color : black;
-  text-transform : capitalize;
+  color: black;
+  text-transform: capitalize;
 `

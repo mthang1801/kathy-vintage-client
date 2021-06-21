@@ -6,21 +6,31 @@ import {
   Header,
   ReadMoreLink,
   Body,
-  Footer
+  Footer,
 } from "./styles/ProductsList.styles"
 import { useTheme } from "../../theme"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import ProductItem from "./ProductItem"
-import { v4 as uuidv4 } from 'uuid';
-import {getDeviceType} from "../../utils/getDeviceType"
-const ProductsList = ({ header, products, isAllProducts = true, currentPage, numPage }) => {
+import { v4 as uuidv4 } from "uuid"
+import { getDeviceType } from "../../utils/getDeviceType"
+const ProductsList = ({
+  header,
+  products,
+  isAllProducts = true,
+  currentPage,
+  numPage,
+}) => {
   const { theme } = useTheme()
-  const { translation : {others : {seeAll}} } = useLanguage()  
+  const {
+    translation: {
+      others: { seeAll },
+    },
+  } = useLanguage()
   products =
-  getDeviceType() === "mobile"
+    getDeviceType() === "mobile"
       ? products.filter((_, idx) => idx < 10).map(product => product)
       : products
-  
+
   return (
     <Wrapper theme={theme}>
       {header && (
@@ -42,13 +52,10 @@ const ProductsList = ({ header, products, isAllProducts = true, currentPage, num
         <Body>
           {" "}
           {products.map(product => (
-            <ProductItem
-              key={`${uuidv4()}`}
-              product={product}
-            />
+            <ProductItem key={`${uuidv4()}`} product={product} />
           ))}
         </Body>
-      ) : null}      
+      ) : null}
     </Wrapper>
   )
 }

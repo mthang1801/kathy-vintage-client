@@ -8,11 +8,14 @@ const CategoryTemplate = props => {
   const { portfolio, category } = props.data
   return (
     <>
-    <Seo title={props.data.category.name_vi} description={`Danh mục sản phẩm từ ${props.data.category.name_vi}`}/>
-    <Layout>
-      <BreadcrumbNavigation contenfulData={[portfolio, category]} />
-      <LayoutTemplate data={props.data} pageLocation="category" />
-    </Layout>
+      <Seo
+        title={props.data.category.name_vi}
+        description={`Danh mục sản phẩm từ ${props.data.category.name_vi}`}
+      />
+      <Layout>
+        <BreadcrumbNavigation contenfulData={[portfolio, category]} />
+        <LayoutTemplate data={props.data} pageLocation="category" />
+      </Layout>
     </>
   )
 }
@@ -60,9 +63,9 @@ export const query = graphql`
           unitPrice
           isRecommended
           isDiscount
-          discountPercentage          
+          discountPercentage
           manufactor
-        	origin
+          origin
           images {
             fluid {
               ...GatsbyContentfulFluid

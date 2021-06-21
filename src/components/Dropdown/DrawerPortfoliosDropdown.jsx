@@ -13,7 +13,7 @@ import {
 } from "./styles/DrawerPortfoliosDropdown.styles"
 import Image from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import ChevronRight from "@material-ui/icons/ChevronRight"
 import ChevronLeft from "@material-ui/icons/ChevronLeft"
 import Accordion from "@material-ui/core/Accordion"
@@ -150,7 +150,7 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                     <ListItemText>{portfolio[`name_${lang}`]}</ListItemText>
                   </ListItemContainer>
                   <ListItemIcon
-                    onClick={ (e) => {
+                    onClick={e => {
                       trackCustomEvent({
                         action: "Click",
                         category: "navigate",

@@ -1,9 +1,9 @@
 import React from "react"
 import ReactPaginate from "react-paginate"
-import {Wrapper} from "./styles/ProductsPagination.styles"
-import {useTheme} from "../../../theme"
+import { Wrapper } from "./styles/ProductsPagination.styles"
+import { useTheme } from "../../../theme"
 const ProductsPagination = ({ numPages, currentPage, handlePageClick }) => {
-  const {theme} = useTheme();
+  const { theme } = useTheme()
   return (
     <Wrapper theme={theme}>
       <ReactPaginate
@@ -11,15 +11,15 @@ const ProductsPagination = ({ numPages, currentPage, handlePageClick }) => {
         nextLabel={">"}
         breakLabel={"..."}
         breakClassName={"break-me"}
-        forcePage={currentPage-1}
-        initialPage={currentPage-1}
+        forcePage={currentPage - 1}
+        initialPage={currentPage - 1}
         pageCount={numPages}
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         onPageChange={handlePageClick}
         containerClassName={"pagination"}
         subContainerClassName={"pages pagination"}
-        activeClassName={"active"}       
+        activeClassName={"active"}
       />
     </Wrapper>
   )

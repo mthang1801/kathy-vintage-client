@@ -10,7 +10,7 @@ import {
   selectOrdersLoading,
   selectOrdersError,
   selectLastVisibleOrder,
-  selectOrdersFetched
+  selectOrdersFetched,
 } from "../redux/orders/orders.selectors"
 import { fetchOrders } from "../redux/orders/orders.actions"
 import { connect } from "react-redux"
@@ -40,7 +40,7 @@ const Orders = ({
   lastVisibleOrder,
   userLoading,
   userIsFetched,
-  ordersFetched
+  ordersFetched,
 }) => {
   const {
     translation: { orders: ordersTranslation, seo },
@@ -53,7 +53,7 @@ const Orders = ({
     if (!user && !userLoading && userIsFetched) {
       navigate("/auth", { state: { from: pathname } })
     }
-  }, [user, userLoading, userIsFetched,ordersFetched])
+  }, [user, userLoading, userIsFetched, ordersFetched])
 
   const onFetchMoreOrders = () => {
     trackCustomEvent({
@@ -111,7 +111,7 @@ const mapStateToProps = createStructuredSelector({
   lastVisibleOrder: selectLastVisibleOrder,
   userLoading: selectUserLoading,
   userIsFetched: selectUserFetched,
-  ordersFetched : selectOrdersFetched
+  ordersFetched: selectOrdersFetched,
 })
 
 const mapDispatchToProps = dispatch => ({

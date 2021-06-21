@@ -3,7 +3,7 @@ import { Title } from "./styles/ProductDescription.styles"
 import { validateYouTubeUrl, checkImageUrl } from "../../utils/checkUrl"
 import ReactPlayer from "react-player"
 import { useTheme } from "../../theme"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import Markdown from "markdown-to-jsx"
 import PostImageItem from "./PostImageItem"
 import {
@@ -12,10 +12,15 @@ import {
   ReadMore,
   ReadMoreLink,
 } from "./styles/ProductDescription.styles"
-import {getDeviceType} from "../../utils/getDeviceType"
+import { getDeviceType } from "../../utils/getDeviceType"
 
 const ProductDescription = ({ product }) => {
-  const { translation : {product : {productPage}}, lang } = useLanguage()
+  const {
+    translation: {
+      product: { productPage },
+    },
+    lang,
+  } = useLanguage()
   const { theme } = useTheme()
   const description =
     lang === "en"
@@ -83,16 +88,22 @@ const ProductDescription = ({ product }) => {
   return (
     <>
       <Title>{productPage.description}</Title>
-      {description && (<><MarkdownContainer readMore={isReadMore}>
-        {!isReadMore && <BlurSection theme={theme} />}
-        <Markdown options={options}>{description}</Markdown>
-      </MarkdownContainer>
-        <ReadMore>
-          <ReadMoreLink onClick={() => setIsReadMore(prevState => !prevState)} theme={theme}>
-            {isReadMore ? productPage.shortenText : productPage.readMore}
-          </ReadMoreLink>
-        </ReadMore></>)}
-
+      {description && (
+        <>
+          <MarkdownContainer readMore={isReadMore}>
+            {!isReadMore && <BlurSection theme={theme} />}
+            <Markdown options={options}>{description}</Markdown>
+          </MarkdownContainer>
+          <ReadMore>
+            <ReadMoreLink
+              onClick={() => setIsReadMore(prevState => !prevState)}
+              theme={theme}
+            >
+              {isReadMore ? productPage.shortenText : productPage.readMore}
+            </ReadMoreLink>
+          </ReadMore>
+        </>
+      )}
     </>
   )
 }

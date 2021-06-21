@@ -8,19 +8,17 @@ import {
   PruductDetail,
   DeleteProduct,
 } from "./styles/CartItem.styles"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import { connect } from "react-redux"
-import {
-  removeProductFromCart,
-} from "../../redux/cart/cart.actions"
+import { removeProductFromCart } from "../../redux/cart/cart.actions"
 import { BsTrash } from "react-icons/bs"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
-const CartItem = ({
-  product,
-  removeProductFromCart,
-}) => {
-  const { translation : {cart},lang } = useLanguage()
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+const CartItem = ({ product, removeProductFromCart }) => {
+  const {
+    translation: { cart },
+    lang,
+  } = useLanguage()
   const { theme } = useTheme()
   const productPrice =
     product.isDiscount && product.discountPercentage
@@ -30,9 +28,9 @@ const CartItem = ({
     e.preventDefault()
     e.stopPropagation()
     trackCustomEvent({
-      action : "Click",
+      action: "Click",
       category: "cart",
-      label : "Remove product in cart"
+      label: "Remove product in cart",
     })
     removeProductFromCart(product)
   }
@@ -51,14 +49,16 @@ const CartItem = ({
             <BsTrash />
           </DeleteProduct>
         </ProductContent>
-        <ProductInfo>        
-          <div>{cart.quantity}: <strong>{product.quantity}</strong></div>
+        <ProductInfo>
+          <div>
+            {cart.quantity}: <strong>{product.quantity}</strong>
+          </div>
 
           <div>
-            {cart.totalPrice}: <strong>
+            {cart.totalPrice}:{" "}
+            <strong>
               {(productPrice * product.quantity).toLocaleString("de-DE")}
             </strong>
-            
           </div>
         </ProductInfo>
       </PruductDetail>
@@ -66,7 +66,7 @@ const CartItem = ({
   )
 }
 
-const mapDispatchToProps = dispatch => ({  
+const mapDispatchToProps = dispatch => ({
   removeProductFromCart: product => dispatch(removeProductFromCart(product)),
 })
 

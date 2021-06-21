@@ -15,8 +15,8 @@ export const CustomArrowPrev = props => {
         opacity: "0.9",
         position: "absolute",
         left: "3%",
-        display : "flex",
-        alignItems : "center",
+        display: "flex",
+        alignItems: "center",
         zIndex: 1,
       }}
       onClick={onClick}
@@ -32,10 +32,10 @@ export const CustomArrowNext = props => {
         ...style,
         display: "block",
         background: "transparent",
-        opacity: "0.9",        
+        opacity: "0.9",
         position: "absolute",
-        display : "flex",
-        alignItems : "center",
+        display: "flex",
+        alignItems: "center",
         right: "3%",
         zIndex: 1,
       }}

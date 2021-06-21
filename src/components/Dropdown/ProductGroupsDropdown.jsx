@@ -1,10 +1,10 @@
 import React from "react"
 import { List, ListItem, ListItemText } from "./styles/DropdownList.styles"
 import { useTheme } from "../../theme"
-import {useLanguage} from "../../locales"
-const ProductGroupsDropdown = ({ parentSlug, productGroups }) => {  
+import { useLanguage } from "../../locales"
+const ProductGroupsDropdown = ({ parentSlug, productGroups }) => {
   const { theme } = useTheme()
-  const  {lang} = useLanguage()  
+  const { lang } = useLanguage()
   if (!parentSlug || !productGroups?.length) return null
   return (
     <List theme={theme}>

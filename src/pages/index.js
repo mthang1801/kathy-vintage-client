@@ -21,7 +21,7 @@ function Home({
   productsLoading,
   bestSellProducts,
   productsFetched,
-  closeCart
+  closeCart,
 }) {
   let { newProducts, recommendedProducts } = useStaticQuery(query)
   const {
@@ -39,8 +39,8 @@ function Home({
     }
   }, [fetchBestSellProducts, productsFetched])
   useEffect(() => {
-    closeCart();
-  },[])
+    closeCart()
+  }, [])
   return (
     <Layout>
       <Seo title={seo.home} description={seo.home} />
@@ -160,6 +160,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   fetchBestSellProducts: () => dispatch(fetchBestSellProducts()),
-  closeCart : () => dispatch(closeCart())
+  closeCart: () => dispatch(closeCart()),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

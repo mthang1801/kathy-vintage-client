@@ -1,8 +1,8 @@
-import React from "react";
-import utils from "./utils";
-import styles from "./styles";
-import Image from "./Image";
-import ImagePreviewOverlay from "./ImagePreviewOverlay";
+import React from "react"
+import utils from "./utils"
+import styles from "./styles"
+import Image from "./Image"
+import ImagePreviewOverlay from "./ImagePreviewOverlay"
 
 const PictureInPictureRenderer = props => {
   const {
@@ -29,35 +29,36 @@ const PictureInPictureRenderer = props => {
     cursorStyleActive,
     onLoadRefresh,
     onImageLoad,
-    onLargeImageLoad
-  } = props;
+    onLargeImageLoad,
+  } = props
 
-  const sizeMult = 100 / previewSizePercentage;
+  const sizeMult = 100 / previewSizePercentage
 
-  let containerTop = 0;
-  let containerLeft = 0;
-  let containerWidth = 0;
+  let containerTop = 0
+  let containerLeft = 0
+  let containerWidth = 0
 
   if (containerRef.current) {
-    containerWidth = containerRef.current.getBoundingClientRect().width;
+    containerWidth = containerRef.current.getBoundingClientRect().width
 
     if (previewVerticalPos === "bottom") {
-      containerTop = elementDimensions.height * (sizeMult - 1);
-      containerRef.current.style.paddingTop = `${containerTop}px`;
+      containerTop = elementDimensions.height * (sizeMult - 1)
+      containerRef.current.style.paddingTop = `${containerTop}px`
     } else {
-      containerRef.current.style.paddingBottom = `${elementDimensions.height *
-        (sizeMult - 1)}px`;
+      containerRef.current.style.paddingBottom = `${
+        elementDimensions.height * (sizeMult - 1)
+      }px`
     }
 
     if (containerRef.current.style.textAlign === "right") {
-      containerLeft = elementDimensions.width * (sizeMult - 1);
+      containerLeft = elementDimensions.width * (sizeMult - 1)
     }
   }
 
   const smallImageSize = {
     width: elementDimensions.width,
-    height: elementDimensions.height
-  };
+    height: elementDimensions.height,
+  }
 
   const previewSize = {
     width: Math.floor(
@@ -69,34 +70,34 @@ const PictureInPictureRenderer = props => {
       smallImageSize.height *
         (smallImageSize.height / itemDimensions.height) *
         sizeMult
-    )
-  };
-
-  if (isNaN(previewSize.width)) {
-    previewSize.width = 0;
-    previewSize.height = 0;
+    ),
   }
 
-  let position = { x: 0, y: 0 };
-  const itemPositionAdj = { ...itemPosition };
+  if (isNaN(previewSize.width)) {
+    previewSize.width = 0
+    previewSize.height = 0
+  }
+
+  let position = { x: 0, y: 0 }
+  const itemPositionAdj = { ...itemPosition }
 
   const previewOffset = {
     x: previewSize.width / 2,
-    y: previewSize.height / 2
-  };
+    y: previewSize.height / 2,
+  }
 
-  itemPositionAdj.x = Math.max(previewOffset.x, itemPositionAdj.x);
+  itemPositionAdj.x = Math.max(previewOffset.x, itemPositionAdj.x)
   itemPositionAdj.x = Math.min(
     smallImageSize.width - previewOffset.x,
     itemPositionAdj.x
-  );
-  itemPositionAdj.y = Math.max(previewOffset.y, itemPositionAdj.y);
+  )
+  itemPositionAdj.y = Math.max(previewOffset.y, itemPositionAdj.y)
   itemPositionAdj.y = Math.min(
     smallImageSize.height - previewOffset.y,
     itemPositionAdj.y
-  );
+  )
 
-  position = { ...itemPositionAdj };
+  position = { ...itemPositionAdj }
 
   position.x = utils.convertRange(
     previewOffset.x,
@@ -104,39 +105,39 @@ const PictureInPictureRenderer = props => {
     itemDimensions.width * -1 + containerWidth,
     0,
     position.x
-  );
+  )
   position.y = utils.convertRange(
     previewOffset.y,
     smallImageSize.height - previewOffset.y,
     itemDimensions.height * -1 + smallImageSize.height * sizeMult,
     0,
     position.y
-  );
+  )
 
   position.x = utils.invertNumber(
     itemDimensions.width * -1 + containerWidth,
     0,
     position.x
-  );
+  )
   position.y = utils.invertNumber(
     itemDimensions.height * -1 + smallImageSize.height * sizeMult,
     0,
     position.y
-  );
+  )
 
-  previewSize.left = Math.floor(itemPositionAdj.x - previewOffset.x) || 0;
-  previewSize.right = Math.floor(itemPositionAdj.x + previewOffset.x) || 0;
-  previewSize.top = Math.floor(itemPositionAdj.y - previewOffset.y) || 0;
-  previewSize.bottom = Math.floor(itemPositionAdj.y + previewOffset.y) || 0;
+  previewSize.left = Math.floor(itemPositionAdj.x - previewOffset.x) || 0
+  previewSize.right = Math.floor(itemPositionAdj.x + previewOffset.x) || 0
+  previewSize.top = Math.floor(itemPositionAdj.y - previewOffset.y) || 0
+  previewSize.bottom = Math.floor(itemPositionAdj.y + previewOffset.y) || 0
 
-  const legalSize = previewSize.width < smallImageSize.width;
-  const finalCursorStyle = active ? cursorStyleActive : cursorStyle;
+  const legalSize = previewSize.width < smallImageSize.width
+  const finalCursorStyle = active ? cursorStyleActive : cursorStyle
 
   return (
     <div
       style={{
         position: "relative",
-        cursor: legalSize ? finalCursorStyle : "default"
+        cursor: legalSize ? finalCursorStyle : "default",
       }}
     >
       <Image
@@ -144,13 +145,13 @@ const PictureInPictureRenderer = props => {
           width: "100%",
           display: "block",
           opacity: previewOpacity,
-          visibility: legalSize ? "visible" : "hidden"
+          visibility: legalSize ? "visible" : "hidden",
         }}
         src={imageSrc}
         alt={imageAlt}
         onImageLoad={e => {
-          onLoadRefresh();
-          onImageLoad(e);
+          onLoadRefresh()
+          onImageLoad(e)
         }}
         onLoadRefresh={onLoadRefresh}
       />
@@ -166,14 +167,14 @@ const PictureInPictureRenderer = props => {
           position: "absolute",
           left: -containerLeft,
           top: -containerTop,
-          fontSize: "1rem"
+          fontSize: "1rem",
         }}
       >
         <Image
           style={{
             ...styles.getLargeImageStyle(position.x, position.y, true),
             visibility: legalSize ? "visible" : "hidden",
-            zIndex: "-1"
+            zIndex: "-1",
           }}
           src={largeImageSrc || imageSrc}
           alt={imageAlt}
@@ -186,7 +187,7 @@ const PictureInPictureRenderer = props => {
           alt={imageAlt}
           style={{
             display: legalSize ? "none" : "block",
-            width: "100%"
+            width: "100%",
           }}
         />
         {renderOverlay ? renderOverlay(active) : null}
@@ -209,7 +210,7 @@ const PictureInPictureRenderer = props => {
         active={legalSize}
       />
     </div>
-  );
-};
+  )
+}
 
-export default PictureInPictureRenderer;
+export default PictureInPictureRenderer

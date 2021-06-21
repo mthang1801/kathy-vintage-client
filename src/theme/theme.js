@@ -2,7 +2,7 @@ export const theme = {
   initialColorModeName: "light",
   modes: {
     light: {
-      name : "light",
+      name: "light",
       body: "#ededed",
       text: "#000000",
       button: {
@@ -15,7 +15,7 @@ export const theme = {
       },
       header: {
         background: "#fff",
-        color : "#000"
+        color: "#000",
       },
       navigation: {
         background: "#f5f5f5",
@@ -25,36 +25,36 @@ export const theme = {
         },
       },
       background: "#f0f0f0",
-      card: "#fff",      
-      form : {
-        background : "#e0e0e0"
+      card: "#fff",
+      form: {
+        background: "#e0e0e0",
       },
-      hover : {
-        background : "#f5f5f5",
-        text : "#ffc107"
-      },      
-      breadcrumb : {
-        background : "#dedede",
-        link : {
-          background : "#f0f0f0",                    
-          color : "#757575",
-        }
-      },     
+      hover: {
+        background: "#f5f5f5",
+        text: "#ffc107",
+      },
+      breadcrumb: {
+        background: "#dedede",
+        link: {
+          background: "#f0f0f0",
+          color: "#757575",
+        },
+      },
       border: "#e0e0e0",
-      boxShadow: "0 0 3px 3px #f5f5f5",     
-      dashboard : {
-        background : "#e0f2f1",
-        color : "#060717",     
-        background2 : "#fff", 
-        color2 : "#000"   
+      boxShadow: "0 0 3px 3px #f5f5f5",
+      dashboard: {
+        background: "#e0f2f1",
+        color: "#060717",
+        background2: "#fff",
+        color2: "#000",
       },
       disabled: {
-        background : "#f5f5f5",
-        color : "#424242"
-      }
+        background: "#f5f5f5",
+        color: "#424242",
+      },
     },
     dark: {
-      name : "dark",
+      name: "dark",
       body: "#202020",
       text: "#fff",
       button: {
@@ -67,7 +67,7 @@ export const theme = {
       },
       header: {
         background: "linear-gradient(to right bottom,#202020, #212121)",
-        color : "#f0f0f0"
+        color: "#f0f0f0",
       },
       navigation: {
         background: "#424242",
@@ -78,32 +78,32 @@ export const theme = {
       },
       background: "#2c2c2c",
       card: "#2d2f31",
-      form : {
-        background : "#242424"
+      form: {
+        background: "#242424",
       },
       hover: {
-        background : "#343a40",
-        text: "#ffc107"
-      },      
-      breadcrumb : {
-        background : "#363636",
-        link : {
-          background : "#2c2c2c",   
-          color : "#f5f5f5",                    
-        }
+        background: "#343a40",
+        text: "#ffc107",
+      },
+      breadcrumb: {
+        background: "#363636",
+        link: {
+          background: "#2c2c2c",
+          color: "#f5f5f5",
+        },
       },
       border: "#616161",
       boxShadow: "0 0 3px 3px #302f2f",
-      dashboard : {
-        background : "#242444",
-        color : "#e9e9ec",
-        background2 : "#20203d", 
-        color2 : "#d3d3da"
+      dashboard: {
+        background: "#242444",
+        color: "#e9e9ec",
+        background2: "#20203d",
+        color2: "#d3d3da",
       },
       disabled: {
-        background : "#2d2d2d",
-        color : "#bdbdbd"
-      }
+        background: "#2d2d2d",
+        color: "#bdbdbd",
+      },
     },
   },
 }

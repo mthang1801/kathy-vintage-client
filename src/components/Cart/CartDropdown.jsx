@@ -5,17 +5,19 @@ import {
   CartItems,
   EmptyItem,
   TotalPrice,
-  FooterDropdown
+  FooterDropdown,
 } from "./styles/CartDropdown.styles"
 import { ButtonCheckout } from "./styles/CartAlert.styles"
 import { useTheme } from "../../theme"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import CartItem from "./CartItem"
-import {totalPriceBeforeTax} from "../../utils/calculateOrderPrice"
+import { totalPriceBeforeTax } from "../../utils/calculateOrderPrice"
 const CartDropdown = ({ cartItems }) => {
   const { theme } = useTheme()
-  const { translation : {cart} } = useLanguage()
-  
+  const {
+    translation: { cart },
+  } = useLanguage()
+
   return (
     <Wrapper theme={theme}>
       <Title theme={theme}>{cart.cartPreview}</Title>
@@ -33,7 +35,12 @@ const CartDropdown = ({ cartItems }) => {
       )}
       {cartItems.length ? (
         <FooterDropdown theme={theme}>
-          <TotalPrice>{cart.completePrice} : <strong>{totalPriceBeforeTax(cartItems).toLocaleString("de-DE")}</strong></TotalPrice>
+          <TotalPrice>
+            {cart.completePrice} :{" "}
+            <strong>
+              {totalPriceBeforeTax(cartItems).toLocaleString("de-DE")}
+            </strong>
+          </TotalPrice>
           <ButtonCheckout to="/checkout">{cart.checkoutButton}</ButtonCheckout>{" "}
         </FooterDropdown>
       ) : null}

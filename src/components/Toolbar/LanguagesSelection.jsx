@@ -7,7 +7,7 @@ import {
   RowInline,
 } from "./styles/LanguagesSelection.styles"
 import { setLanguage } from "../../locales"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import { configLang } from "../../locales"
 

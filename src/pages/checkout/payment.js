@@ -44,7 +44,7 @@ import {
 import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
 import ErrorDialog from "../../components/UI/FeedBacks/Dialog/ErrorDialog"
 import { trackCustomEvent } from "gatsby-plugin-google-analytics"
-import {mergeDuplicateProductsInCart} from "../../redux/cart/cart.utils"
+import { mergeDuplicateProductsInCart } from "../../redux/cart/cart.utils"
 const tax = POLICY.tax
 
 const Payment = ({
@@ -103,8 +103,8 @@ const Payment = ({
     try {
       await addNewOrder(
         user,
-        mergeDuplicateProductsInCart(cartItems),       
-        shippingFee,        
+        mergeDuplicateProductsInCart(cartItems),
+        shippingFee,
         _totalPrice,
         paymentMethod.key,
         shippingMethod.key,
@@ -122,8 +122,6 @@ const Payment = ({
       setError(error.message || error)
     }
   }
-
-  
 
   const handleClearError = () => {
     userClearError()

@@ -38,7 +38,7 @@ const SidebarManufactors = ({ templateTranslation, manufactors }) => {
     ])
   }
 
-  const onChangeManufactor = (index, value) => {    
+  const onChangeManufactor = (index, value) => {
     if (index === 0) {
       return setManufactor({ index, value: "all" })
     }

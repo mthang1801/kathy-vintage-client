@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import utils from "./utils";
-import styles from "./styles";
-import { MagnifierContext } from "./MagnifierContainer";
-import Image from "./Image";
+import React from "react"
+import PropTypes from "prop-types"
+import utils from "./utils"
+import styles from "./styles"
+import { MagnifierContext } from "./MagnifierContainer"
+import Image from "./Image"
 
 function MagnifierZoom(props) {
   const {
@@ -12,8 +12,8 @@ function MagnifierZoom(props) {
     className,
     style,
     onImageLoad,
-    transitionSpeed
-  } = props;
+    transitionSpeed,
+  } = props
 
   const {
     zoomImageDimensions,
@@ -23,13 +23,13 @@ function MagnifierZoom(props) {
     zoomRef,
     zoomImageRef,
     isActive,
-    inPlace
-  } = React.useContext(MagnifierContext);
+    inPlace,
+  } = React.useContext(MagnifierContext)
 
   let invalidVertical =
-    zoomImageDimensions.height <= zoomContainerDimensions.height;
+    zoomImageDimensions.height <= zoomContainerDimensions.height
   let invalidHorizontal =
-    zoomImageDimensions.width <= zoomContainerDimensions.width;
+    zoomImageDimensions.width <= zoomContainerDimensions.width
 
   return (
     <div
@@ -38,7 +38,7 @@ function MagnifierZoom(props) {
         ...styles.getMagnifierZoomStyle(isActive && !inPlace, transitionSpeed),
         ...style,
         overflow: "hidden",
-        pointerEvents: "none"
+        pointerEvents: "none",
       }}
       ref={zoomRef}
     >
@@ -49,17 +49,17 @@ function MagnifierZoom(props) {
             invalidHorizontal ? 0 : position.x,
             invalidVertical ? 0 : position.y,
             true
-          )
+          ),
         }}
         src={imageSrc}
         alt={imageAlt}
         onImageLoad={e => {
-          onZoomImageLoad(e);
-          onImageLoad(e);
+          onZoomImageLoad(e)
+          onImageLoad(e)
         }}
       />
     </div>
-  );
+  )
 }
 
 MagnifierZoom.propTypes = {
@@ -67,19 +67,19 @@ MagnifierZoom.propTypes = {
   style: PropTypes.object,
   imageSrc: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   imageAlt: PropTypes.string,
   onImageLoad: PropTypes.func,
-  transitionSpeed: PropTypes.number
-};
+  transitionSpeed: PropTypes.number,
+}
 
 MagnifierZoom.defaultProps = {
   style: {},
   imageSrc: "",
   imageAlt: "",
   onImageLoad: utils.noop,
-  transitionSpeed: 0.4
-};
+  transitionSpeed: 0.4,
+}
 
-export default MagnifierZoom;
+export default MagnifierZoom

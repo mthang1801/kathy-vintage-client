@@ -15,17 +15,13 @@ const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
   const { priceIndex } = useLayoutTemplateStates()
   const { theme } = useTheme()
 
-  let pricesQuantiles= [];
-  const priceDiff = maxPrice - minPrice;
-  if(priceDiff === 0 ){
-    return  null; 
-  }else if (priceDiff < 1000000 ){
-    pricesQuantiles = [
-      minPrice, 
-      0.5 * priceDiff + minPrice,
-      maxPrice
-    ]
-  }else{
+  let pricesQuantiles = []
+  const priceDiff = maxPrice - minPrice
+  if (priceDiff === 0) {
+    return null
+  } else if (priceDiff < 1000000) {
+    pricesQuantiles = [minPrice, 0.5 * priceDiff + minPrice, maxPrice]
+  } else {
     pricesQuantiles = [
       minPrice,
       0.25 * priceDiff + minPrice,
@@ -34,21 +30,21 @@ const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
       maxPrice,
     ]
   }
- 
+
   const onHandleChangePrice = e => {
     const index = +e.target.value
     setPriceIndex(index)
     setSelectedPriceScope([pricesQuantiles[index], pricesQuantiles[index + 1]])
   }
   const onClickFilterPrice = () => {
-    if(from && !to){
+    if (from && !to) {
       setSelectedPriceScope([from, Infinity])
-    }else if(!from && to){
-      setSelectedPriceScope([-Infinity, to]);
-    }else if(!from && !to){
-      setSelectedPriceScope([-Infinity, Infinity]);
-    }else{
-      setSelectedPriceScope([from, to]);
+    } else if (!from && to) {
+      setSelectedPriceScope([-Infinity, to])
+    } else if (!from && !to) {
+      setSelectedPriceScope([-Infinity, Infinity])
+    } else {
+      setSelectedPriceScope([from, to])
     }
     setPriceIndex(-1)
   }
@@ -98,7 +94,12 @@ const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
             onChange={e => setTo(e.target.value)}
           />
         </div>
-        <Button color="primary" variant="contained" size="small" onClick={onClickFilterPrice}>
+        <Button
+          color="primary"
+          variant="contained"
+          size="small"
+          onClick={onClickFilterPrice}
+        >
           {buttonFilter}
         </Button>
       </InputGroup>

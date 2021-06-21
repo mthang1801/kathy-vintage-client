@@ -1,29 +1,36 @@
-import React from 'react'
-import {Wrapper, ImageContainer , Title, Button} from "./styles/EmptyProductInCart.styles"
+import React from "react"
+import {
+  Wrapper,
+  ImageContainer,
+  Title,
+  Button,
+} from "./styles/EmptyProductInCart.styles"
 
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import EmptyFolder from "../../images/empty-folder.jpg"
-import {useTheme} from "../../theme"
-import {navigate} from  "gatsby"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { useTheme } from "../../theme"
+import { navigate } from "gatsby"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 
 const EmptyOrder = () => {
-  const {translation : {checkout}} = useLanguage();
-  const {theme} = useTheme()
+  const {
+    translation: { checkout },
+  } = useLanguage()
+  const { theme } = useTheme()
   const onBackHome = () => {
     trackCustomEvent({
-      action : "Click", 
-      category : "button",
-      label : "Back home"
+      action: "Click",
+      category: "button",
+      label: "Back home",
     })
-    navigate("/");
+    navigate("/")
   }
   return (
-    <Wrapper theme={theme}>   
+    <Wrapper theme={theme}>
       <ImageContainer>
-        <img src={EmptyFolder} alt="empty order"/>
-      </ImageContainer>   
-      
+        <img src={EmptyFolder} alt="empty order" />
+      </ImageContainer>
+
       <Title>{checkout.orderEmpty}</Title>
       <Button onClick={onBackHome}>{checkout.buttonBackHome}</Button>
     </Wrapper>

@@ -3,11 +3,12 @@ import { config } from "../../../config"
 import { Link } from "gatsby"
 export const Wrapper = styled.nav`
   width: 100%;
-  background: ${({ theme }) => theme ? theme?.navigation?.background : "var(--navigation-background)"};
+  background: ${({ theme }) =>
+    theme ? theme?.navigation?.background : "var(--navigation-background)"};
   padding: 0 5rem;
-  display : none; 
-  @media screen and (min-width: 992px){
-    display : block;
+  display: none;
+  @media screen and (min-width: 992px) {
+    display: block;
   }
   z-index: 2;
 `
@@ -32,7 +33,7 @@ export const Setting = styled.div`
   cursor: pointer;
   z-index: 1;
   // &:hover {
-   
+
   //   color: var(--blue-1);
   //   & img {
   //     filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg)
@@ -67,10 +68,8 @@ export const ListItem = styled(Link)`
   color: inherit;
   position: relative;
   padding: 0.4rem 1rem;
-  z-index: 1;  
+  z-index: 1;
 `
-
-
 
 export const CategoriesContainer = styled.div`
   position: absolute;

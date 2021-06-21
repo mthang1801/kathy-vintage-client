@@ -2,7 +2,7 @@ import React from "react"
 import { InputGroup, Button, Input } from "./styles/QuantityControl.styles"
 import { IoMdAdd, IoMdRemove } from "react-icons/io"
 import { useTheme } from "../../theme"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const QuantityControl = ({
   quantity,
   setQuantity,
@@ -13,36 +13,36 @@ const QuantityControl = ({
   const { theme } = useTheme()
   const onDecreaseQuantity = () => {
     trackCustomEvent({
-      action : "Click" ,
-      category : "cart", 
-      label : "Decrease product quantity"
+      action: "Click",
+      category: "cart",
+      label: "Decrease product quantity",
     })
     if (quantity <= 0) return
-    if(setQuantity){
+    if (setQuantity) {
       setQuantity(prevQuantity => prevQuantity - 1)
-    }    
+    }
     if (product) {
       decreaseProductQuantity(product)
     }
   }
   const onIncreaseQuantity = () => {
     trackCustomEvent({
-      action : "Click" ,
-      category : "cart", 
-      label : "Increase product quantity"
+      action: "Click",
+      category: "cart",
+      label: "Increase product quantity",
     })
-    if(setQuantity){
+    if (setQuantity) {
       setQuantity(prevQuantity => prevQuantity + 1)
-    }    
+    }
     if (product) {
       increaseProductQuantity(product)
     }
   }
   const onChangeQuantity = e => {
     trackCustomEvent({
-      action : "Click" ,
-      category : "cart", 
-      label : "Change product quantity"
+      action: "Click",
+      category: "cart",
+      label: "Change product quantity",
     })
     if (e.target.value < 0) return
     setQuantity(e.target.value)

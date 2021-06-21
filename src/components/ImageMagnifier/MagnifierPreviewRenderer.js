@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "./Image";
-import ImagePreviewOverlay from "./ImagePreviewOverlay";
-import styles from "./styles";
+import React from "react"
+import Image from "./Image"
+import ImagePreviewOverlay from "./ImagePreviewOverlay"
+import styles from "./styles"
 
 function MagnifierPreviewRenderer(props) {
   const {
@@ -22,14 +22,14 @@ function MagnifierPreviewRenderer(props) {
     renderOverlay,
     transitionSpeed,
     inPlace: shouldBeInPlace,
-    position
-  } = props;
+    position,
+  } = props
 
   // Ensures that client and server dom match when using SSR.
-  const [inPlace, setInPlace] = React.useState(false);
+  const [inPlace, setInPlace] = React.useState(false)
   React.useEffect(() => {
-    setInPlace(shouldBeInPlace);
-  }, [shouldBeInPlace]);
+    setInPlace(shouldBeInPlace)
+  }, [shouldBeInPlace])
 
   return (
     <div style={{ position: "relative" }}>
@@ -67,12 +67,12 @@ function MagnifierPreviewRenderer(props) {
               false
             ),
             opacity: active ? "1" : "0",
-            transition: `opacity ${transitionSpeed}s ease`
+            transition: `opacity ${transitionSpeed}s ease`,
           }}
         >
           <Image
             style={{
-              ...styles.getLargeImageStyle(position.x, position.y, inPlace)
+              ...styles.getLargeImageStyle(position.x, position.y, inPlace),
             }}
             src={largeImage}
             alt={alt}
@@ -82,7 +82,7 @@ function MagnifierPreviewRenderer(props) {
       ) : null}
       {renderOverlay ? renderOverlay(active) : null}
     </div>
-  );
+  )
 }
 
-export default MagnifierPreviewRenderer;
+export default MagnifierPreviewRenderer

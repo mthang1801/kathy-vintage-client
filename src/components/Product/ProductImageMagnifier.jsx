@@ -1,7 +1,7 @@
 import React from "react"
 import { SideBySideMagnifier } from "react-image-magnifiers"
 import { Wrapper } from "./styles/ProductImageMagnifier.styles"
-import {getDeviceType} from "../../utils/getDeviceType"
+import { getDeviceType } from "../../utils/getDeviceType"
 const ProductImageMagnifier = ({ image, width }) => {
   return (
     <Wrapper>
@@ -9,7 +9,9 @@ const ProductImageMagnifier = ({ image, width }) => {
         style={{
           display: "flex",
           justifyContent:
-            width < 800 || getDeviceType() !== "desktop" ? "center" : "space-between",
+            width < 800 || getDeviceType() !== "desktop"
+              ? "center"
+              : "space-between",
         }}
       >
         <SideBySideMagnifier
@@ -30,7 +32,7 @@ const ProductImageMagnifier = ({ image, width }) => {
           fillGapLeft={0}
           zoomContainerBorder="1px solid #ccc"
           zoomContainerBoxShadow="0 4px 8px rgba(0,0,0,.5)"
-        />        
+        />
       </div>
     </Wrapper>
   )

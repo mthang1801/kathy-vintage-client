@@ -8,7 +8,7 @@ import {
   AiOutlineInstagram,
   AiOutlineFileSearch,
   AiOutlineUnorderedList,
-  AiOutlineMail
+  AiOutlineMail,
 } from "react-icons/ai"
 import {
   RiPercentFill,
@@ -21,7 +21,13 @@ import {
   RiShirtFill,
 } from "react-icons/ri"
 import { IoIosSettings, IoIosGlasses } from "react-icons/io"
-import { FiTwitter, FiFacebook, FiLogOut, FiCheckCircle, FiSettings } from "react-icons/fi"
+import {
+  FiTwitter,
+  FiFacebook,
+  FiLogOut,
+  FiCheckCircle,
+  FiSettings,
+} from "react-icons/fi"
 import { GiConverseShoe, GiRunningShoe } from "react-icons/gi"
 import { BsBagFill, BsBag, BsArrowRepeat, BsShieldLock } from "react-icons/bs"
 import { BiGlasses, BiPurchaseTag, BiUserPin, BiPhone } from "react-icons/bi"
@@ -249,7 +255,7 @@ export const vi = {
         path: "/recommended-products",
         icon: <RiVipDiamondLine />,
         activeIcon: <RiVipDiamondFill />,
-      },     
+      },
       setting: {
         id: "setting",
         name: "Cài đặt",
@@ -582,10 +588,10 @@ export const vi = {
         price: "Tổng tiền",
         totalPrice: "Thành tiền",
         shipping: "Giao hàng",
-        product :{
-          color : "Màu sắc",
-          size : "Size"
-        }
+        product: {
+          color: "Màu sắc",
+          size: "Size",
+        },
       },
       complete: {
         header_letter: "Cám ơn bạn đã mua hàng tại tnshop",
@@ -643,15 +649,15 @@ export const vi = {
       emptyResult: key => `Không tìm thấy sản phẩm nào có từ khóa ${key}`,
       placeholder: "Nhập tên sp bạn muốn tìm ...",
     },
-    contacts: [      
-      { key: "facebook", icon: <FaFacebookF />, name: "Facebook" },      
-      { key: "zalo", icon: <ZaloIcon />, name: "Zalo" },      
-      { key: "phone", icon: <BiPhone />, name: "0973594645" },      
+    contacts: [
+      { key: "facebook", icon: <FaFacebookF />, name: "Facebook" },
+      { key: "zalo", icon: <ZaloIcon />, name: "Zalo" },
+      { key: "phone", icon: <BiPhone />, name: "0973594645" },
       { key: "email", icon: <AiOutlineMail />, name: "Email" },
     ],
-    seo : {
+    seo: {
       home: "Trang chủ",
-      orders : "Lịch sử đơn hàng"
-    }
+      orders: "Lịch sử đơn hàng",
+    },
   },
 }

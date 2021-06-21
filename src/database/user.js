@@ -17,7 +17,7 @@ const addUserToProfileDocument = (userAuth, data) => {
       try {
         await userRef.set({
           ...data,
-          user_type : "normal",
+          user_type: "normal",
           photoURL: data.photoURL
             ? data.photoURL
             : data?.gender === "male"
@@ -26,7 +26,6 @@ const addUserToProfileDocument = (userAuth, data) => {
           createdAt: new Date(),
         })
       } catch (error) {
-        console.log(error)
         reject(error)
       }
     }
@@ -42,7 +41,8 @@ export const createUserWithEmailAndPassword = (
 ) => {
   return new Promise(async (resolve, reject) => {
     try {
-      firebase.firestore()
+      firebase
+        .firestore()
         .collection("users")
         .where("email", "==", email)
         .get()
@@ -56,7 +56,7 @@ export const createUserWithEmailAndPassword = (
         gender,
         email,
         password,
-        providerId : "email-password"
+        providerId: "email-password",
       })
       const user = await userRef.get()
       resolve(user.data())
@@ -76,9 +76,9 @@ export const getCurrentUser = () => {
         .get()
       if (!user.exists) {
         return resolve(null)
-      }          
-      const userResult = {uid: user.id, ...user.data()};
-      delete userResult.password;
+      }
+      const userResult = { uid: user.id, ...user.data() }
+      delete userResult.password
       resolve(userResult)
     }, reject)
   })
@@ -101,15 +101,16 @@ export const signInUser = (email, password) => {
       const userAuth = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-      
-      const user = await firebase.firestore()
+
+      const user = await firebase
+        .firestore()
         .doc(`users/${userAuth?.user?.uid}`)
         .get()
       if (!user.exists) {
         return resolve(null)
       }
       const userResult = { uid: userAuth.user.uid, ...user.data() }
-      delete userResult.password;      
+      delete userResult.password
       resolve(userResult)
     } catch (error) {
       reject(error)
@@ -125,16 +126,19 @@ export const signInWithGoogle = () => {
         "https://www.googleapis.com/auth/contacts.readonly"
       )
       GoogleProvider.setCustomParameters({ prompt: "select_account" })
-      const { user } =await firebase.auth().signInWithPopup(GoogleProvider)    
-        // getDeviceType() !== "desktop"
-        //   ? await firebase.auth().signInWithRedirect(GoogleProvider)
-        //   :    await firebase.auth().signInWithPopup(GoogleProvider)   
-      const userInfo = { ...user?.providerData[0], uid: user.uid }           
+      const { user } = await firebase.auth().signInWithPopup(GoogleProvider)
+      // getDeviceType() !== "desktop"
+      //   ? await firebase.auth().signInWithRedirect(GoogleProvider)
+      //   :    await firebase.auth().signInWithPopup(GoogleProvider)
+      const userInfo = { ...user?.providerData[0], uid: user.uid }
       if (userInfo) {
-        await addUserToProfileDocument(user, userInfo);
-        const userDatabase = await firebase.firestore().doc(`users/${user.uid}`).get();
-        const userResult = {uid :user.uid , ...userDatabase.data()}
-        return resolve(userResult);
+        await addUserToProfileDocument(user, userInfo)
+        const userDatabase = await firebase
+          .firestore()
+          .doc(`users/${user.uid}`)
+          .get()
+        const userResult = { uid: user.uid, ...userDatabase.data() }
+        return resolve(userResult)
       }
       resolve(null)
     } catch (error) {
@@ -148,16 +152,19 @@ export const signInWithFacebook = () => {
       const FacebookProvider = new firebase.auth.FacebookAuthProvider()
       FacebookProvider.setCustomParameters({ display: "popup" })
 
-      const { user } =await firebase.auth().signInWithPopup(FacebookProvider)
-        // getDeviceType() !== "desktop"
-        //   ? await firebase.auth().signInWithRedirect(FacebookProvider)
-        //   : await firebase.auth().signInWithPopup(FacebookProvider)
+      const { user } = await firebase.auth().signInWithPopup(FacebookProvider)
+      // getDeviceType() !== "desktop"
+      //   ? await firebase.auth().signInWithRedirect(FacebookProvider)
+      //   : await firebase.auth().signInWithPopup(FacebookProvider)
       const userInfo = { ...user?.providerData[0], uid: user.uid }
       if (userInfo) {
-        await addUserToProfileDocument(user, userInfo);
-        const userDatabase = await firebase.firestore().doc(`users/${user.uid}`).get();
-        const userResult = {uid: user.uid, ...userDatabase.data()}
-        return resolve(userResult);       
+        await addUserToProfileDocument(user, userInfo)
+        const userDatabase = await firebase
+          .firestore()
+          .doc(`users/${user.uid}`)
+          .get()
+        const userResult = { uid: user.uid, ...userDatabase.data() }
+        return resolve(userResult)
       }
       resolve(null)
     } catch (error) {
@@ -197,7 +204,7 @@ export const updateUserInformation = information => {
       await firebase
         .firestore()
         .doc(`users/${currentUser.uid}`)
-        .update({ information: information, updatedAt : new Date() })
+        .update({ information: information, updatedAt: new Date() })
       const updatedUser = await firebase
         .firestore()
         .doc(`users/${currentUser.uid}`)
@@ -209,9 +216,7 @@ export const updateUserInformation = information => {
   })
 }
 
-export const updateUserPaymentAndShippingMethod = (
-  paymentMethod,
-) => {
+export const updateUserPaymentAndShippingMethod = paymentMethod => {
   return new Promise(async (resolve, reject) => {
     try {
       const { currentUser } = firebase.auth()
@@ -221,10 +226,7 @@ export const updateUserPaymentAndShippingMethod = (
       await firebase
         .firestore()
         .doc(`users/${currentUser.uid}`)
-        .set(
-          { information: { paymentMethod } },
-          { merge: true }
-        )    
+        .set({ information: { paymentMethod } }, { merge: true })
       resolve(true)
     } catch (error) {
       reject(error)
@@ -237,14 +239,17 @@ export const updatePassword = (oldPassword, newPassword) => {
     try {
       //check old password if correct
       const userAuth = await firebase.auth().currentUser
-      const credential = firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, oldPassword)
-      await userAuth.reauthenticateWithCredential(credential);
+      const credential = firebase.auth.EmailAuthProvider.credential(
+        firebase.auth().currentUser.email,
+        oldPassword
+      )
+      await userAuth.reauthenticateWithCredential(credential)
       //after checking password correctly, proceed to update new password
-      firebase.auth().currentUser.updatePassword(newPassword);
-      
+      firebase.auth().currentUser.updatePassword(newPassword)
+
       resolve(true)
     } catch (error) {
-      reject(error);
+      reject(error)
     }
   })
 }

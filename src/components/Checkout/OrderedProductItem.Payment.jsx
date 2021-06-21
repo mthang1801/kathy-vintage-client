@@ -9,15 +9,19 @@ import {
   ProductShippingOverview,
   ShippingTime,
 } from "./styles/CheckoutOrderedProductItem.Payment.styles"
-import {useLanguage} from "../../locales"
+import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import Moment from "react-moment"
 import "moment/locale/vi"
 import "moment/locale/es-us"
 
 const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
-  console.log(product)
-  const { translation : {checkout : {payment}}, lang } = useLanguage()
+  const {
+    translation: {
+      checkout: { payment },
+    },
+    lang,
+  } = useLanguage()
   const { theme } = useTheme()
   const productPrice =
     product.isDiscount && product.discountPercentage
@@ -25,7 +29,7 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
           product.unitPrice *
           (100 - +product.discountPercentage)) /
         100
-      : product.quantity * product.unitPrice  
+      : product.quantity * product.unitPrice
   return (
     <Wrapper theme={theme}>
       <ImageContainer>
@@ -38,8 +42,17 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
         <ProductInformationOverview>
           <ProductContent>
             {product[`name_${lang}`]}
-            {product.selectedColor && <p><strong>{payment.product.color}:</strong> {product.selectedColor}</p>}
-            {product.selectedSize && <p><strong>{payment.product.size}:</strong> {product.selectedSize}</p>}
+            {product.selectedColor && (
+              <p>
+                <strong>{payment.product.color}:</strong>{" "}
+                {product.selectedColor}
+              </p>
+            )}
+            {product.selectedSize && (
+              <p>
+                <strong>{payment.product.size}:</strong> {product.selectedSize}
+              </p>
+            )}
           </ProductContent>
           <ProductPriceAndQuantity>
             <span>

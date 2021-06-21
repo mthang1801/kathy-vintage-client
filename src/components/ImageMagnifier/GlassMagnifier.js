@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import utils from "./utils";
+import React from "react"
+import PropTypes from "prop-types"
+import utils from "./utils"
 import ReactInputPosition, {
   TOUCH_ACTIVATION,
-  MOUSE_ACTIVATION
-} from "react-input-position";
-import GlassRenderer from "./GlassRenderer";
+  MOUSE_ACTIVATION,
+} from "react-input-position"
+import GlassRenderer from "./GlassRenderer"
 
 const GlassMagnifier = props => {
   const {
@@ -27,15 +27,15 @@ const GlassMagnifier = props => {
     onImageLoad,
     onLargeImageLoad,
     onZoomStart,
-    onZoomEnd
-  } = props;
+    onZoomEnd,
+  } = props
 
   return (
     <ReactInputPosition
       style={{
         ...style,
         position: "relative",
-        overflow: allowOverflow ? "visible" : "hidden"
+        overflow: allowOverflow ? "visible" : "hidden",
       }}
       className={className}
       touchActivationMethod={TOUCH_ACTIVATION.TOUCH}
@@ -63,17 +63,17 @@ const GlassMagnifier = props => {
         onLargeImageLoad={onLargeImageLoad}
       />
     </ReactInputPosition>
-  );
-};
+  )
+}
 
 GlassMagnifier.propTypes = {
   imageSrc: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   largeImageSrc: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   imageAlt: PropTypes.string,
   allowOverflow: PropTypes.bool,
@@ -89,8 +89,8 @@ GlassMagnifier.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   onImageLoad: PropTypes.func,
-  onLargeImageLoad: PropTypes.func
-};
+  onLargeImageLoad: PropTypes.func,
+}
 
 GlassMagnifier.defaultProps = {
   imageSrc: "",
@@ -106,7 +106,7 @@ GlassMagnifier.defaultProps = {
   square: false,
   cursorStyle: "none",
   onImageLoad: utils.noop,
-  onLargeImageLoad: utils.noop
-};
+  onLargeImageLoad: utils.noop,
+}
 
-export default GlassMagnifier;
+export default GlassMagnifier

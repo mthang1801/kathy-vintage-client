@@ -31,14 +31,14 @@ const Seo = ({ title, description, image, pathname, lang }) => {
     description: description || siteDesc,
     image: `${siteUrl}${image || siteImage}`,
     url: pathname ? `${siteUrl}${pathname}` : `${siteUrl}`,
-  }  
+  }
   return (
     <Helmet
       title={seo.title}
       titleTemplate={`${seo.title}`}
       htmlAttributes={{ lang }}
       defer={false}
-    >       
+    >
       <link rel="canonical" href={seo.url} />
       <meta name="description" content={seo.description} />
       <meta image="image" content={seo.image} />

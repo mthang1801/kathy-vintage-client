@@ -1,15 +1,15 @@
 import { makeStyles } from "@material-ui/core/styles"
-import styled from "styled-components";
+import styled from "styled-components"
 export const drawerWidth = 280
 export const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
-    overflow : "unset"
+    overflow: "unset",
   },
   backdrop: {
     zIndex: theme.zIndex.drawer - 1,
-    color: '#fff',
-  },  
+    color: "#fff",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -47,36 +47,35 @@ export const useStyles = makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
-  itemIcon : {
-    transform : "scale(1.75)",
-    marginRight : "0.75rem",
-    width : "auto"    ,
+  itemIcon: {
+    transform: "scale(1.75)",
+    marginRight: "0.75rem",
+    width: "auto",
     minWidth: "unset",
   },
-  dropdownButton : {
-    transform : "scale(1.2)",
-    marginLeft : "auto",
+  dropdownButton: {
+    transform: "scale(1.2)",
+    marginLeft: "auto",
   },
- 
 }))
 
-
 export const Image = styled.img`
-  width : auto;
-  max-width : 6rem;
-  max-height : 50px;
+  width: auto;
+  max-width: 6rem;
+  max-height: 50px;
 `
 
 export const Auth = styled.div`
-  display : flex;
-  justify-content : space-around;  
+  display: flex;
+  justify-content: space-around;
   & * {
     font-weight: bold;
   }
 `
 
 export const LogoContainer = styled.span`
-  svg, img{
-    width : 80px;
+  svg,
+  img {
+    width: 80px;
   }
 `

@@ -5,15 +5,15 @@ export const Wrapper = styled.div`
     & > * {
       margin: 0 0.25rem;
     }
-    height : 18rem;
+    height: 18rem;
   }
 `
 
 export const ProductContainer = styled.div`
-  position :relative;
-  border : 1px solid black;
+  position: relative;
+  border: 1px solid black;
   & a {
-    position : unset;
-    border:  none ;    
+    position: unset;
+    border: none;
   }
 `

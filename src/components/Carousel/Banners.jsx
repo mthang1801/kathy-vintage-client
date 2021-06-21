@@ -5,11 +5,10 @@ import Slider from "react-slick"
 import { CustomArrowNext, CustomArrowPrev } from "./CustomArrowSlider"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const CarouselBanner = () => {
-  
-  const carouselRef = useRef(null)  
-  
+  const carouselRef = useRef(null)
+
   const { imagesCarousel } = useStaticQuery(QUERY_IMAGES_CAROUSEL)
   const images = imagesCarousel.edges.map(({ node }) => node)
   const settings = {
@@ -22,8 +21,8 @@ const CarouselBanner = () => {
     prevArrow: <CustomArrowPrev />,
     autoplaySpeed: 4000,
     autoplay: true,
-    dots : false , 
-    fade : true ,    
+    dots: false,
+    fade: true,
   }
 
   return (
@@ -31,7 +30,7 @@ const CarouselBanner = () => {
       <Slider {...settings}>
         {images.map(image => (
           <Link to={"/"} key={image.name}>
-            <Image fluid={image.childImageSharp.fluid} alt={image.name}/>
+            <Image fluid={image.childImageSharp.fluid} alt={image.name} />
           </Link>
         ))}
       </Slider>
@@ -48,7 +47,7 @@ const QUERY_IMAGES_CAROUSEL = graphql`
         node {
           name
           childImageSharp {
-            fluid (quality : 90){
+            fluid(quality: 90) {
               ...GatsbyImageSharpFluid
             }
           }

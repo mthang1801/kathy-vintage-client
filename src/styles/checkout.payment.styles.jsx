@@ -5,9 +5,9 @@ export const ContentContainer = styled.div`
   margin: 2rem auto;
   display: block;
   & > * {
-    margin-bottom : 1rem;
-    & > *:not(:last-child){
-      margin-bottom : 1rem;
+    margin-bottom: 1rem;
+    & > *:not(:last-child) {
+      margin-bottom: 1rem;
     }
   }
   @media screen and (min-width: 768px) {
@@ -22,16 +22,16 @@ export const ContentContainer = styled.div`
   }
 `
 export const Wrapper = styled.div`
-  padding : 0.75rem;
-  border : 1px solid ${({theme}) => theme ? theme.border : "var(--border)"};
-  border-radius : 0.5rem;
-  background : ${({theme}) => theme ? theme.card : "var(--card)"};
-  & > *:not(:last-child){
-    margin-bottom : 1rem;
+  padding: 0.75rem;
+  border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
+  border-radius: 0.5rem;
+  background: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
   }
 `
 export const Title = styled.h3`
-  margin : 0;
-  font-size : 1.25rem;
-  margin-bottom : 1rem;
+  margin: 0;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
 `

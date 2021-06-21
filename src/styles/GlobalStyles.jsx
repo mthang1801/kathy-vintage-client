@@ -84,8 +84,9 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x :hidden;
   }
   body{    
-    background-color : ${({theme}) => theme ? theme.body : "var(--body)"}  !important  ;
-    color : ${({theme}) => theme ? theme.text : "var(--text)"} !important;
+    background-color : ${({ theme }) =>
+      theme ? theme.body : "var(--body)"}  !important  ;
+    color : ${({ theme }) => (theme ? theme.text : "var(--text)")} !important;
     margin : 0; 
     padding : 0 ;
     width : 100vw;

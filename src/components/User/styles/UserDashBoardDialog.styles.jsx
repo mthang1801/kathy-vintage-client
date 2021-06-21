@@ -10,17 +10,18 @@ export const useStyles = makeStyles(theme => ({
   },
 }))
 export const Wrapper = styled.div`
-  .MuiButtonBase-root{
-    margin-left : auto;
+  .MuiButtonBase-root {
+    margin-left: auto;
   }
-  .MuiToolbar-root{
-    background : ${({theme}) => theme ? theme?.dashboard?.background : "var(--dashboard-background)"} !important;
+  .MuiToolbar-root {
+    background: ${({ theme }) =>
+      theme
+        ? theme?.dashboard?.background
+        : "var(--dashboard-background)"} !important;
   }
-  @media screen and (min-width: 768px){
-    display : none;
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `
 
-export const DashBoardContainer = styled.div`
-  
-`
+export const DashBoardContainer = styled.div``

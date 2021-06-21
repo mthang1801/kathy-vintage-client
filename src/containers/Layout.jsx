@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
   const { theme } = useTheme()
   const { pathname } = useLocation()
   const stepperMatchPattern = /^\/checkout/
-  
+
   return (
     <div>
       <ContactSpeedDial />

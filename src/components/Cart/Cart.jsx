@@ -9,16 +9,16 @@ import {
 import {
   toggleCart,
   closeCart,
-  removeAlertCart,  
+  removeAlertCart,
 } from "../../redux/cart/cart.actions"
 import { createStructuredSelector } from "reselect"
 import { connect } from "react-redux"
 import CartDropdown from "./CartDropdown"
 import { navigate } from "gatsby"
 import CartAlert from "./CartAlert"
-import {trackCustomEvent} from "gatsby-plugin-google-analytics"
-import { useLocation} from "@reach/router"
-import {getDeviceType} from "../../utils/getDeviceType"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+import { useLocation } from "@reach/router"
+import { getDeviceType } from "../../utils/getDeviceType"
 const Cart = ({
   cartItems,
   showCartDropdown,
@@ -27,42 +27,45 @@ const Cart = ({
   alertCart,
   removeAlertCart,
 }) => {
-  const {pathname} = useLocation()
-  const onClickCart = () => {    
+  const { pathname } = useLocation()
+  const onClickCart = () => {
     trackCustomEvent({
-      action : "Click",
-      category : "cart",
-      label : "Click cart"
+      action: "Click",
+      category: "cart",
+      label: "Click cart",
     })
-        
+
     toggleCart()
-    removeAlertCart();
+    removeAlertCart()
     if (getDeviceType() === "mobile") {
       return navigate("/checkout")
     }
   }
 
   useEffect(() => {
-    closeCart();
-  },[pathname])
+    closeCart()
+  }, [pathname])
   const cartRef = useRef(false)
   useEffect(() => {
-    function trackingUserClick(e) {     
+    function trackingUserClick(e) {
       if (!cartRef?.current?.contains(e.target) && showCartDropdown) {
         closeCart()
       }
     }
-    if(typeof window !== "undefined"){
+    if (typeof window !== "undefined") {
       window.addEventListener("click", trackingUserClick)
     }
     return () => {
-      if(typeof window !== "undefined"){
+      if (typeof window !== "undefined") {
         window.removeEventListener("click", trackingUserClick)
       }
     }
   })
 
-  const cartItemsQuantity = cartItems.reduce((acc,item) => acc + item.quantity, 0);
+  const cartItemsQuantity = cartItems.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  )
   return (
     <Wrapper
       type="button"
@@ -78,7 +81,7 @@ const Cart = ({
       ) : null}
       {showCartDropdown && (
         <Dropdown>
-          <CartDropdown cartItems={cartItems}/>
+          <CartDropdown cartItems={cartItems} />
         </Dropdown>
       )}
       {alertCart && (

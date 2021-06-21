@@ -6,13 +6,13 @@ import {
   ProductName,
   ProductPrice,
   DiscountBrand,
-  ImageMobileTablet
+  ImageMobileTablet,
 } from "./styles/ProductItem.styles"
 import _ from "lodash"
-import {LazyLoadImage} from "react-lazy-load-image-component"
-import {useLanguage} from "../../locales"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
-import {getDeviceType} from "../../utils/getDeviceType"
+import { getDeviceType } from "../../utils/getDeviceType"
 const ProductItem = ({ product }) => {
   const { lang } = useLanguage()
   const { theme } = useTheme()
@@ -35,17 +35,32 @@ const ProductItem = ({ product }) => {
     product?.productGroup?.slug
       ? `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`
       : `/products/${product.slug}`
-  
+
   return (
     <Wrapper theme={theme} to={path}>
       {product.isDiscount && product.discountPercentage && (
         <DiscountBrand>{-product.discountPercentage}%</DiscountBrand>
       )}
-      {getDeviceType() === "desktop" ?  <ImageContainer
-        imageHover={`https:${product?.images[0]?.fluid?.src || product?.images[0]?.file?.url}` }
-        imageMouseout={`https:${product?.images[1]?.fluid?.src || product?.images[1]?.file?.url}`}
-      />  : <ImageMobileTablet><LazyLoadImage src={`https:${product?.images[0]?.fluid?.src || product?.images[0]?.file?.url}`} effect="blur" /> </ImageMobileTablet>}
-          
+      {getDeviceType() === "desktop" ? (
+        <ImageContainer
+          imageHover={`https:${
+            product?.images[0]?.fluid?.src || product?.images[0]?.file?.url
+          }`}
+          imageMouseout={`https:${
+            product?.images[1]?.fluid?.src || product?.images[1]?.file?.url
+          }`}
+        />
+      ) : (
+        <ImageMobileTablet>
+          <LazyLoadImage
+            src={`https:${
+              product?.images[0]?.fluid?.src || product?.images[0]?.file?.url
+            }`}
+            effect="blur"
+          />{" "}
+        </ImageMobileTablet>
+      )}
+
       <ProductText>
         <ProductName>{productName}</ProductName>
         <ProductPrice>

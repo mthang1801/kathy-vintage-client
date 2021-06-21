@@ -41,7 +41,7 @@ const UserPage = ({ user, loading, isFetched }) => {
         password,
       },
     },
-    lang
+    lang,
   } = useLanguage()
   const { theme } = useTheme()
 
