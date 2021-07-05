@@ -3,7 +3,6 @@ import Slider from "react-slick"
 import Image from "gatsby-image"
 import { Wrapper, ImageContainer } from "./styles/ProductImages.styles"
 import { v4 as uuidv4 } from "uuid"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const ProductImages = ({ images, setActiveImage, activeImage }) => {
   const settings = {
     dots: false,
@@ -23,11 +22,7 @@ const ProductImages = ({ images, setActiveImage, activeImage }) => {
         behavior: "auto",
       })
     }
-    trackCustomEvent({
-      action: "Click",
-      category: "product",
-      label: "Click set image active",
-    })
+
     setActiveImage(idx)
   }
   return (

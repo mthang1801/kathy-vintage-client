@@ -31,7 +31,6 @@ import { useLanguage } from "../../locales"
 import GoogleLoginButton from "./GoogleLoginButton"
 import FacebookLoginButton from "./FacebookLoginButton"
 import { useTheme } from "../../theme"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const SignInFormWrapper = ({
   error,
   signIn,
@@ -111,11 +110,6 @@ class SignInForm extends React.Component {
   }
 
   onSubmitSigninForm = async () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "auth",
-      label: "Submit sign in form",
-    })
     const { email, password } = this.state
     if (!email || !password) {
       this.setState({ error: this.props.locales.requireEmailAndPassword })

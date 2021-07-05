@@ -10,7 +10,6 @@ import {
   RadioLabel,
 } from "./styles/Input.styles"
 import { BiCheckCircle } from "react-icons/bi"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const CustomInput = ({
   type,
   onChange,
@@ -30,11 +29,6 @@ const CustomInput = ({
   const border = touched ? (transformedErrors ? "error" : "success") : null
   const inputRef = useRef(null)
   const handleClick = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "Focus check box",
-      label: "Radio check box",
-    })
     inputRef.current.focus()
   }
   if (type === "radio")

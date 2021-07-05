@@ -2,7 +2,6 @@ import React from "react"
 import { useLanguage } from "../../locales"
 import { Title, Policies } from "./styles/Footer.styles"
 import { Link } from "gatsby"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const AddressContact = () => {
   const {
     translation: {
@@ -18,16 +17,7 @@ const AddressContact = () => {
       <Title>{title}</Title>
       <Policies>
         {policies.map(policy => (
-          <Link
-            key={policy.name}
-            to={policy.path}
-            onClick={() => {
-              trackCustomEvent({
-                action: "Click",
-                category: "navigate",
-              })
-            }}
-          >
+          <Link key={policy.name} to={policy.path}>
             {policy.name}
           </Link>
         ))}

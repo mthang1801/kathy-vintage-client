@@ -16,7 +16,6 @@ import { connect } from "react-redux"
 import CartDropdown from "./CartDropdown"
 import { navigate } from "gatsby"
 import CartAlert from "./CartAlert"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import { useLocation } from "@reach/router"
 import { getDeviceType } from "../../utils/getDeviceType"
 const Cart = ({
@@ -29,12 +28,6 @@ const Cart = ({
 }) => {
   const { pathname } = useLocation()
   const onClickCart = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "cart",
-      label: "Click cart",
-    })
-
     toggleCart()
     removeAlertCart()
     if (getDeviceType() === "mobile") {

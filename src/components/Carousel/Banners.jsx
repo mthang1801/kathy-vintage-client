@@ -5,7 +5,6 @@ import Slider from "react-slick"
 import { CustomArrowNext, CustomArrowPrev } from "./CustomArrowSlider"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const CarouselBanner = () => {
   const carouselRef = useRef(null)
 

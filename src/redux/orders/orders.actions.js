@@ -48,6 +48,10 @@ export const addNewOrder = (
         shipping_fee,
         totalPrice,
         payment_method,
+        shipper: {
+          id: null,
+          name: null,
+        },
         shipping_method,
         shipping_status: {
           sent: new Date(),

@@ -27,7 +27,6 @@ import Drawer from "../Navigation/Drawer/Drawer"
 import { navigate } from "gatsby"
 import UserSettings from "./UserSettings"
 import { signInPattern, signUpPattern } from "../../utils/auth"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const Header = ({ userLoading, userFetched, user }) => {
   const [openDrawer, setOpenDrawer] = useState(false)
   const {
@@ -53,11 +52,6 @@ const Header = ({ userLoading, userFetched, user }) => {
             <Button
               color="primary"
               onClick={() => {
-                trackCustomEvent({
-                  action: "Click",
-                  category: "navigate",
-                  label: "Go To Auth",
-                })
                 navigate("/auth", { state: { from: pathname } })
               }}
             >
@@ -68,11 +62,6 @@ const Header = ({ userLoading, userFetched, user }) => {
             <Button
               color="secondary"
               onClick={() => {
-                trackCustomEvent({
-                  action: "Click",
-                  category: "navigate",
-                  label: "Go To Auth",
-                })
                 navigate("/auth/signup", { state: { from: pathname } })
               }}
             >
@@ -87,16 +76,7 @@ const Header = ({ userLoading, userFetched, user }) => {
     <>
       <Wrapper theme={theme}>
         <Flex>
-          <Link
-            to="/"
-            onClick={() => {
-              trackCustomEvent({
-                action: "Click",
-                category: "navigate",
-                label: "Go To Home page",
-              })
-            }}
-          >
+          <Link to="/">
             <BrandLogo>
               <img src={Logo} alt="Logo" />
             </BrandLogo>

@@ -13,7 +13,6 @@ import {
 import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import localData from "../../database/local.json"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const WrapperUserInformationForm = ({
   user,
   updateUserInformation,
@@ -240,11 +239,6 @@ class UserInformationForm extends React.Component {
   }
 
   onSubmitForm = async () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "checkout",
-      label: "Update User information",
-    })
     const {
       fullname,
       phone,
@@ -282,11 +276,6 @@ class UserInformationForm extends React.Component {
   }
 
   closeUpdateInfo = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "checkout",
-      label: "Update user information",
-    })
     this.props.setUpdateInfo(false)
   }
 

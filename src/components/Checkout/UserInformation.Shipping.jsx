@@ -8,7 +8,6 @@ import { useLanguage } from "../../locales"
 import { useTheme } from "../../theme"
 import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
   const {
     translation: {
@@ -26,19 +25,9 @@ const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
   Phường ${user.information?.ward}, Quận ${user.information?.district}, Thành phố
   ${user.information?.city}`
   const navigateToPayment = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "checkout",
-      label: "Shipping to payment",
-    })
     navigate("/checkout/payment")
   }
   const onUpdateInfo = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "checkout",
-      label: "update user information",
-    })
     setUpdateInfo(true)
   }
   return (

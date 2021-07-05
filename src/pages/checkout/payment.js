@@ -43,7 +43,6 @@ import {
 } from "../../utils/calculateOrderPrice"
 import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
 import ErrorDialog from "../../components/UI/FeedBacks/Dialog/ErrorDialog"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import { mergeDuplicateProductsInCart } from "../../redux/cart/cart.utils"
 const tax = POLICY.tax
 
@@ -94,11 +93,6 @@ const Payment = ({
     shippingFee
   )
   const onClickProceedOrder = async (tokenId = null) => {
-    trackCustomEvent({
-      action: "Click",
-      category: "checkout",
-      label: "proceed order payment",
-    })
     setLoading(true)
     try {
       await addNewOrder(

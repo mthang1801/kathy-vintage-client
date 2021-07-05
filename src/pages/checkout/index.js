@@ -26,7 +26,6 @@ import {
 import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
 import { useLanguage } from "../../locales"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import { mergeDuplicateProductsInCart } from "../../redux/cart/cart.utils"
 const tax = POLICY.tax
 const CheckoutPage = ({
@@ -42,11 +41,6 @@ const CheckoutPage = ({
   const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems)
   const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
   const onClickProceedOrder = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "checkout",
-      label: "Go to checkout shipping",
-    })
     mergeDuplicateProductsInCart(cartItems)
     navigate("/checkout/shipping")
   }

@@ -16,7 +16,6 @@ import GoogleRecaptcha from "./GoogleRecaptcha"
 import { restoreAccount } from "../../redux/user/user.actions"
 import { FcCheckmark } from "react-icons/fc"
 import { useTheme } from "../../theme"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import { CircularProgress } from "@material-ui/core"
 const emailPattern = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const RestoreAccount = () => {
@@ -52,11 +51,6 @@ const RestoreAccount = () => {
   }, [emailValue, captchaValue])
 
   const onRestoreAccount = async () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "auth",
-      label: "Restore Account",
-    })
     if (emailPattern.test(emailValue)) {
       try {
         setLoading(true)

@@ -12,16 +12,10 @@ import {
 import Image from "gatsby-image"
 import { useTheme } from "../../theme"
 import { useLanguage } from "../../locales"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const DrawerCategoriesDropdown = ({ portfolio, categories, onNavigate }) => {
   const { theme } = useTheme()
   const { lang } = useLanguage()
   const onNavigateToCategory = (portfolio, category) => {
-    trackCustomEvent({
-      action: "Click",
-      category: "navigate",
-      label: "Navigate to specific category",
-    })
     onNavigate(`/${portfolio.slug}/${category.slug}`)
   }
   return (

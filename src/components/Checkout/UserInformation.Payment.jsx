@@ -3,7 +3,6 @@ import { Wrapper, Link } from "./styles/UserInformation.Payment.styles"
 import { useTheme } from "../../theme"
 import { useLanguage } from "../../locales"
 import { navigate } from "gatsby"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const UserInformation = ({ user }) => {
   const { theme } = useTheme()
   const {
@@ -12,11 +11,6 @@ const UserInformation = ({ user }) => {
     },
   } = useLanguage()
   const onGoBackShipping = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "checkout",
-      label: "go Back shipping from payment",
-    })
     navigate("/checkout/shipping", {
       state: { from: "/checkout/payment" },
     })

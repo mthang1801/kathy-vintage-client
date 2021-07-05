@@ -23,7 +23,6 @@ import { connect } from "react-redux"
 import { selectCartItems } from "../../redux/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
 import { navigate } from "gatsby"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const ProductContent = ({
   product,
   addProductItemToCart,
@@ -63,20 +62,10 @@ const ProductContent = ({
       ? (unitPrice * (100 - parseFloat(discountPercentage))) / 100
       : unitPrice
   const onChangeColor = color => {
-    trackCustomEvent({
-      action: "Click",
-      category: "cart",
-      label: "Change product color",
-    })
     setSelectedColor(color)
   }
 
   const onAddProductItemToCart = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "cart",
-      label: "Add Product To Cart",
-    })
     const cloneProduct = { ...product }
     if (selectedColor) {
       cloneProduct.selectedColor = selectedColor
@@ -89,11 +78,6 @@ const ProductContent = ({
   }
 
   const onClickPurchase = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "navigate",
-      label: "Go To Checkout",
-    })
     onAddProductItemToCart()
     removeAlertCart()
     navigate("/checkout")

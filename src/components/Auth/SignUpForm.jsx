@@ -30,7 +30,6 @@ import {
 import GoogleRecaptcha from "./GoogleRecaptcha"
 import FacebookLoginButton from "./FacebookLoginButton"
 import GoogleLoginButton from "./GoogleLoginButton"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 import { useTheme } from "../../theme"
 import POLICY from "../../constants/policy"
 const SignUpFormWrapper = ({
@@ -243,11 +242,6 @@ class SignUpForm extends React.Component {
   }
 
   handleSubmitSignUpForm = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "auth",
-      label: "Sign up with email and password",
-    })
     if (!this.state.formIsValid) {
       this.setState({ ...this.props.initialState })
       return

@@ -10,7 +10,6 @@ import { useLanguage } from "../../locales"
 import EmptyFolder from "../../images/empty-folder.jpg"
 import { useTheme } from "../../theme"
 import { navigate } from "gatsby"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 
 const EmptyOrder = () => {
   const {
@@ -18,11 +17,6 @@ const EmptyOrder = () => {
   } = useLanguage()
   const { theme } = useTheme()
   const onBackHome = () => {
-    trackCustomEvent({
-      action: "Click",
-      category: "button",
-      label: "Back home",
-    })
     navigate("/")
   }
   return (

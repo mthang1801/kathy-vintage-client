@@ -22,7 +22,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary"
 import DrawerCategoriesDropdown from "./DrawerCategoriesDropdown"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import { navigate } from "gatsby"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 
 const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
   const query = useStaticQuery(QUERY_PORTFOLIOS)
@@ -72,11 +71,6 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                     <ListItem>
                       <ListItemContainer
                         onClick={() => {
-                          trackCustomEvent({
-                            action: "Click",
-                            category: "navigate",
-                            label: "Navigate to portfolio",
-                          })
                           onNavigate(`/${portfolio.slug}`)
                         }}
                       >
@@ -100,11 +94,6 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                           <ListItem
                             key={category.contentful_id}
                             onClick={() => {
-                              trackCustomEvent({
-                                action: "Click",
-                                category: "navigate",
-                                label: "Navigate to specific category",
-                              })
                               onNavigate(`/${portfolio.slug}/${category.slug}`)
                             }}
                           >
@@ -133,11 +122,6 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                 <ListItem>
                   <ListItemContainer
                     onClick={() => {
-                      trackCustomEvent({
-                        action: "Click",
-                        category: "navigate",
-                        label: "Navigate to portfolio",
-                      })
                       onNavigate(`/${portfolio.slug}`)
                     }}
                   >
@@ -151,11 +135,6 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                   </ListItemContainer>
                   <ListItemIcon
                     onClick={e => {
-                      trackCustomEvent({
-                        action: "Click",
-                        category: "navigate",
-                        label: "Navigate to portfolio",
-                      })
                       onSelectedPortfolio(e, portfolio.contentful_id)
                     }}
                   >

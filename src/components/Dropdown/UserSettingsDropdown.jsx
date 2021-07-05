@@ -18,7 +18,6 @@ import { navigate } from "gatsby"
 import { useTheme } from "../../theme"
 import { connect } from "react-redux"
 import { signOutUser } from "../../redux/user/user.actions"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 const UserSettingsDropdown = ({ user, signOut }) => {
   const {
     translation: { user: userTranslation },
@@ -31,11 +30,6 @@ const UserSettingsDropdown = ({ user, signOut }) => {
   }
 
   const onNavigateToUserPage = (path, state) => {
-    trackCustomEvent({
-      action: "Click",
-      category: "navigate",
-      label: path,
-    })
     navigate(path, { state: { from: state } })
   }
   return (

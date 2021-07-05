@@ -13,7 +13,7 @@ import { useTheme } from "../../theme"
 import { connect } from "react-redux"
 import { removeProductFromCart } from "../../redux/cart/cart.actions"
 import { BsTrash } from "react-icons/bs"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+
 const CartItem = ({ product, removeProductFromCart }) => {
   const {
     translation: { cart },
@@ -27,11 +27,6 @@ const CartItem = ({ product, removeProductFromCart }) => {
   const onRemoveProduct = e => {
     e.preventDefault()
     e.stopPropagation()
-    trackCustomEvent({
-      action: "Click",
-      category: "cart",
-      label: "Remove product in cart",
-    })
     removeProductFromCart(product)
   }
   return (

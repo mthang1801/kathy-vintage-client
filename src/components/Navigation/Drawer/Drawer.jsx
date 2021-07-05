@@ -25,7 +25,6 @@ import { navigate } from "gatsby"
 import UserOverview from "./UserOverview"
 import { signInPattern, signUpPattern } from "../../../utils/auth"
 import { useLocation } from "@reach/router"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 function PersistentDrawerLeft({
   open,
   setOpen,
@@ -49,11 +48,6 @@ function PersistentDrawerLeft({
     navigation => navigations[navigation]
   )
   const onClickMenu = navigation => {
-    trackCustomEvent({
-      action: "Click",
-      category: "drawer",
-      label: navigation.id,
-    })
     switch (navigation.id.toLowerCase()) {
       case "setting":
         return setOpenDialog(true)
@@ -65,11 +59,6 @@ function PersistentDrawerLeft({
   }
 
   const onNavigate = path => {
-    trackCustomEvent({
-      action: "Click",
-      category: "navigate",
-      label: path,
-    })
     navigate(path)
     handleDrawerClose()
   }
