@@ -86,6 +86,7 @@ const CheckoutProductItem = ({
                       product.selectedSize === size ? "contained" : "outlined"
                     }
                     onClick={() => onChangeSize(size)}
+                    size="small"
                   >
                     {size}
                   </Button>

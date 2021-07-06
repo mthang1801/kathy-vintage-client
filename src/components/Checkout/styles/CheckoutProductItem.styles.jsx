@@ -5,42 +5,42 @@ export const Wrapper = styled.section`
   background: ${({ theme }) => (theme ? theme.card : "var(--card)")};
   border-radius: 0.5rem;
   margin-bottom: 2rem;
-  padding: 0.75rem;
+  padding: 0.5rem;
   display: flex;
   align-items: flex-start;
 `
 
 export const ImageContainer = styled.div`
-  width: 4rem;
+  width: 3rem;
   & img {
-    width: 4rem;
+    width: 3rem;
   }
   @media screen and (min-width: 768px) {
-    width: 5rem;
+    width: 4rem;
     & img {
-      width: 5rem;
+      width: 4rem;
     }
   }
   @media screen and (min-width: 992px) {
-    width: 7rem;
+    width: 6rem;
     & img {
-      width: 7rem;
+      width: 6rem;
     }
   }
 `
 
 export const ProductInformationOverview = styled.div`
-  display: flex;
-  flex: 1;
+  display: flex;  
   flex-direction: column;
   justify-content: space-between;
   padding: 0 1rem;
   @media screen and (min-width: 992px) {
     flex-direction: row;
     align-items: flex-start;
+    flex : 1;
   }
 `
-export const ProductContent = styled.h4`
+export const ProductContent = styled.p`
   flex: 1;
   margin: 0;
   font-weight: 400;
@@ -55,9 +55,9 @@ export const Grid = styled.div`
   display: grid;
   margin: 0.5rem 0;
   grid-gap: 0.5rem;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   @media screen and (min-width: 992px) {
-    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   }
 `
 
@@ -76,7 +76,7 @@ export const ProductColorItem = styled.div`
       border:  1px solid transparent;
       color : white;
     `}
-  padding : 0.5rem;
+  padding : 0.2rem 0.5rem;
   text-align: center;
   text-transform: capitalize;
 `

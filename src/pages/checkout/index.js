@@ -13,9 +13,7 @@ import Invoice from "../../components/Checkout/Invoice"
 import EmptyProductInCart from "../../components/Checkout/EmptyProductInCart"
 import POLICY from "../../constants/policy"
 import {
-  totalPriceBeforeTax,
-  totalPriceAfterTax,
-  totalPriceWithShippingFee,
+  orderTotalPrice
 } from "../../utils/calculateOrderPrice"
 import {
   increaseProductQuantity,
@@ -27,7 +25,6 @@ import Button from "@material-ui/core/Button"
 import { navigate } from "gatsby"
 import { useLanguage } from "../../locales"
 import { mergeDuplicateProductsInCart } from "../../redux/cart/cart.utils"
-const tax = POLICY.tax
 const CheckoutPage = ({
   cartItems,
   increaseProductQuantity,
@@ -38,8 +35,8 @@ const CheckoutPage = ({
   const {
     translation: { checkout },
   } = useLanguage()
-  const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems)
-  const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
+  const _orderTotalPrice = orderTotalPrice(cartItems)
+  
   const onClickProceedOrder = () => {
     mergeDuplicateProductsInCart(cartItems)
     navigate("/checkout/shipping")
@@ -63,9 +60,7 @@ const CheckoutPage = ({
           <div>
             <Invoice
               cartItems={cartItems}
-              totalPriceBeforeTax={_totalPriceBeforeTax}
-              totalPriceAfterTax={_totalPriceAfterTax}
-              tax={tax}
+              orderTotalPrice={_orderTotalPrice}             
             />
             <Button
               color="secondary"

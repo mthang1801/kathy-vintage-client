@@ -1,4 +1,4 @@
-export const totalPriceBeforeTax = productsList =>
+export const orderTotalPrice = productsList =>
   productsList.reduce(
     (acc, item) =>
       item.isDiscount && item.discountPercentage
@@ -8,8 +8,6 @@ export const totalPriceBeforeTax = productsList =>
         : acc + item.unitPrice * item.quantity,
     0
   )
-export const totalPriceAfterTax = (totalPriceBeforeTax, tax) =>
-  (totalPriceBeforeTax * (100 + tax)) / 100
 
-export const totalPriceWithShippingFee = (totalPriceAfterTax, shippingFee) =>
-  totalPriceAfterTax + shippingFee
+
+export const totalPriceWithShippingFee = (orderTotalPrice, shippingFee) => orderTotalPrice + shippingFee

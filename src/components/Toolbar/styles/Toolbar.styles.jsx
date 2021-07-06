@@ -4,7 +4,7 @@ export const Wrapper = styled.header`
   width: 100%;
   height: 65px;
   display: grid;
-  grid-template-columns: 2.5fr 1fr;
+  grid-template-columns: 3fr 1fr;
   background-color: ${({ theme }) =>
     theme ? theme.card : "var(--card)"} !important;
   border-bottom: 1px solid
@@ -33,7 +33,13 @@ export const Flex = styled.div`
     justify-content: flex-end;
   }
   align-items: center;
-  padding: 0 1rem;
+  padding : 0; 
+  &:first-child{
+    padding-left : 0.5rem;
+  }
+  &:last-child{
+    padding-right : 0.5rem;
+  }
   @media screen and (min-width: 768px) {
     & > *:not(:first-child) {
       margin-left: 2rem;

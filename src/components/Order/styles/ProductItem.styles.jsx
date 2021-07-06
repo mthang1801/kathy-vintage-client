@@ -53,15 +53,16 @@ export const ProductInformationOverview = styled.div`
     }
   }
 `
-export const ProductName = styled.h4`
+export const ProductName = styled.p`
   flex: 1;
-  margin: 0;
-
-  font-weight: 400;
-  margin-bottom: 1rem;
+  margin : 0;
+  margin-bottom : 0.5rem;
+  font-size : 0.85rem;
+  font-weight: 400;  
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     max-width: 60%;
+    font-size : 1rem;
   }
 `
 
@@ -79,8 +80,8 @@ export const ProductPrice = styled.div`
   }
 `
 
-export const ProductPriceAfterDiscount = styled.h4`
-  font-size: 1rem;
+export const ProductPriceAfterDiscount = styled.p`
+  font-size: 0.85rem;
   font-weight: 600;
   margin: 0;
   color: var(--blue-3);
@@ -93,7 +94,10 @@ export const ProductPriceOrigin = styled.div`
     opacity: 0.6;
     text-decoration: line-through;
     border-right: 1px solid;
-    font-size: 1rem;
+    font-size: 0.85rem;
+    @media screen and (min-width : 768px){
+      font-size : 1rem;
+    }
     padding-right: 0.5rem;
   }
   & span:last-child {
@@ -101,18 +105,23 @@ export const ProductPriceOrigin = styled.div`
     font-size: 0.85rem;
     padding-left: 0.5rem;
     color: var(--red-3);
+    @media screen and (min-width : 768px){
+      font-size : 1rem;
+    }
   }
   @media screen and (min-width: 768px) {
     display: flex;
+    font-size : 1rem;
   }
 `
 
 export const ProductQuantity = styled.div`
   color: var(--cyan-3);
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.85rem;
   @media screen and (min-width: 768px) {
     margin-right: 1rem;
+    font-size : 1rem;
   }
   text-align: center;
 `
@@ -120,9 +129,10 @@ export const ProductQuantity = styled.div`
 export const ProductTotalPrice = styled.div`
   color: var(--red-3);
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.85rem;
   @media screen and (min-width: 768px) {
     margin-left: 1rem;
+    font-size : 1rem;
   }
 
   text-align: center;

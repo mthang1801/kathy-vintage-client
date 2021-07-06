@@ -531,6 +531,7 @@ export const en = {
       buttonContinueShopping: "Continue Shopping",
       buttonBackHome: "Back Home",
       invoice: {
+        orderTotalPrice : "Tổng tiền đơn hàng",
         temporaryTitle: "Temporary Invoice",
         title: "Invoice",
         totalBeforeTax: "Total Before Tax",
@@ -590,14 +591,14 @@ export const en = {
         },
       },
       complete: {
-        header_letter: "Thank you for buying product from tnshop",
+        header_letter: "Thank you for buying product of Kathy Vintage",
         body_letter: (orderId, estimatedTime, email) => `
           <p>Your Order Id: <strong>${orderId}</strong></p>
           <p>You can see this order at <a href="/orders">My Orders</a></p>
           <p>Estimated delivery time is <i>${estimatedTime}</i></p>
           <p>The information detail about this order will be sent to your email <strong>${email}</strong>, please check your mail. If you don't see, you can check at <strong>Span</strong> or <strong>Junk Folder</strong></p> or report to administrator to solve your problem.
         `,
-        body_footer: "Best regards, from tnshop team.",
+        body_footer: "Best regards, from Kathy Vintage team.",
         backHomeButton: "Back Home",
       },
     },
@@ -619,6 +620,7 @@ export const en = {
         productsList: "Products List",
         orderStatus: "Order Status",
         orderPrice: "Order Price",
+        orderTotalPrice : "Order Total Price"
       },
       status: {
         active: {

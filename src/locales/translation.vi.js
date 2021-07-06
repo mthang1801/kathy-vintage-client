@@ -535,6 +535,7 @@ export const vi = {
       buttonContinueShopping: "Tiếp tục mua sắm",
       buttonBackHome: "Trở về trang chủ",
       invoice: {
+        orderTotalPrice : "Tổng tiền đơn hàng",
         temporaryTitle: "Hóa đơn tạm tính",
         title: "Hóa đơn Thanh toán",
         totalBeforeTax: "Tổng tiền trước thuế",
@@ -594,20 +595,21 @@ export const vi = {
         },
       },
       complete: {
-        header_letter: "Cám ơn bạn đã mua hàng tại tnshop",
+        header_letter: "Cám ơn bạn đã mua hàng tại Kathy Vintage",
         body_letter: (orderId, estimatedTime, email) => `          
           <p>Mã đơn hàng của bạn là: <strong>${orderId}</strong></p>
           <p>Bạn có thể xem lại toàn bộ đơn hàng tại <a href="/orders">Đây</a></p>
           <p>Thời gian dự kiến giao hàng <i>${estimatedTime}</i> (có thể thời gian sẽ trễ hơn do tình hình dịch COVID-19 đang diễn ra phức tạp)</p>
           <p>Thông tin chi tiết đơn hàng sẽ được gửi về email <strong>${email}</strong>. Bạn vui lòng check email để kiểm tra lại đơn hàng. Trong trường hợp không thấy email, bạn vui lòng kiểm trong hộp thư <strong>Spam</strong> hoặc <strong>Junk Folder</strong> hoặc báo cáo với quản trị viên.</p>          
         `,
-        body_footer: "Trân trọng cám ơn, đội ngũ tnshop",
+        body_footer: "Trân trọng cám ơn, đội ngũ Kathy Vintage",
         backHomeButton: "Trở lại trang chủ",
       },
     },
     orders: {
       title: "Lịch sử Đơn đặt hàng",
       product: {
+        orderTotalPrice : "Tổng tiền đơn hàng",
         unitPrice: "Đơn giá",
         quantity: "Số lượng",
         shipping_fee: "Phí vận chuyển",

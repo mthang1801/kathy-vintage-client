@@ -11,7 +11,7 @@ import { ButtonCheckout } from "./styles/CartAlert.styles"
 import { useTheme } from "../../theme"
 import { useLanguage } from "../../locales"
 import CartItem from "./CartItem"
-import { totalPriceBeforeTax } from "../../utils/calculateOrderPrice"
+import { orderTotalPrice } from "../../utils/calculateOrderPrice"
 const CartDropdown = ({ cartItems }) => {
   const { theme } = useTheme()
   const {
@@ -38,7 +38,7 @@ const CartDropdown = ({ cartItems }) => {
           <TotalPrice>
             {cart.completePrice} :{" "}
             <strong>
-              {totalPriceBeforeTax(cartItems).toLocaleString("de-DE")}
+              {orderTotalPrice(cartItems).toLocaleString("de-DE")}
             </strong>
           </TotalPrice>
           <ButtonCheckout to="/checkout">{cart.checkoutButton}</ButtonCheckout>{" "}

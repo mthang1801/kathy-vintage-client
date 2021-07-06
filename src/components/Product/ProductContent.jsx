@@ -151,6 +151,7 @@ const ProductContent = ({
             color="primary"
             variant={selectedSize === size ? "contained" : "outlined"}
             onClick={() => setSelectedSize(size)}
+            size="small"
           >
             {size}
           </Button>

@@ -64,7 +64,7 @@ const OrderItem = ({ order, ordersTranslation, userPage }) => {
           <Title>{ordersTranslation.product.orderPrice}</Title>
           <OrderPriceItem order={order} ordersTranslation={ordersTranslation} />
 
-          {order.order_status === "active" &&
+          {order.order_status === "sent" &&
             !order.shipping_status.received &&
             !order.shipping_status.shipping &&
             !order.shipping_status.complete && (

@@ -37,8 +37,7 @@ import StripeButton from "../../components/Controls/StripeButton"
 import Button from "@material-ui/core/Button"
 import POLICY from "../../constants/policy"
 import {
-  totalPriceBeforeTax,
-  totalPriceAfterTax,
+  orderTotalPrice,
   totalPriceWithShippingFee,
 } from "../../utils/calculateOrderPrice"
 import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
@@ -86,10 +85,9 @@ const Payment = ({
       navigate("/auth", { state: { from: pathname } })
     }
   }, [user, userFetched])
-  const _totalPriceBeforeTax = totalPriceBeforeTax(cartItems)
-  const _totalPriceAfterTax = totalPriceAfterTax(_totalPriceBeforeTax, tax)
-  const _totalPrice = totalPriceWithShippingFee(
-    _totalPriceAfterTax,
+  const _orderTotalPrice = orderTotalPrice(cartItems)  
+  const totalPrice = totalPriceWithShippingFee(
+    _orderTotalPrice,
     shippingFee
   )
   const onClickProceedOrder = async (tokenId = null) => {
@@ -99,7 +97,7 @@ const Payment = ({
         user,
         mergeDuplicateProductsInCart(cartItems),
         shippingFee,
-        _totalPrice,
+        totalPrice,
         paymentMethod.key,
         shippingMethod.key,
         tokenId
@@ -169,16 +167,15 @@ const Payment = ({
                   cartItems={cartItems}
                   isPayment
                   shippingFee={shippingFee}
-                  totalPriceBeforeTax={_totalPriceBeforeTax}
-                  totalPriceAfterTax={_totalPriceAfterTax}
-                  totalPrice={_totalPrice}
+                  orderTotalPrice={_orderTotalPrice}                 
+                  totalPrice={totalPrice}
                   tax={tax}
                 />
                 {paymentMethod.key ===
                 payment.typeOfPayment.payment_in_card.key ? (
                   <StripeButton
                     user={user}
-                    totalPrice={_totalPrice}
+                    totalPrice={totalPrice}
                     onClickProceedOrder={tokenId =>
                       onClickProceedOrder(tokenId)
                     }

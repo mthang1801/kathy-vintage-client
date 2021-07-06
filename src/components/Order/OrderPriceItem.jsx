@@ -2,19 +2,15 @@ import React from "react"
 import Grid from "@material-ui/core/Grid"
 import Divider from "@material-ui/core/Divider"
 import {
-  totalPriceBeforeTax,
-  totalPriceAfterTax,
+  orderTotalPrice,
   totalPriceWithShippingFee,
 } from "../../utils/calculateOrderPrice"
 import { OrderValue } from "./styles/OrderPriceItem.styles"
 const OrderPriceItem = ({ order, ordersTranslation }) => {
-  const _totalPriceBeforeTax = totalPriceBeforeTax(order.products_line)
-  const _totalPriceAfterTax = totalPriceAfterTax(
-    _totalPriceBeforeTax,
-    order.tax
-  )
+  const _orderTotalPrice = orderTotalPrice(order.products_line)
+ 
   const _totalPriceWithShippingFee = totalPriceWithShippingFee(
-    _totalPriceAfterTax,
+    _orderTotalPrice,
     order.shipping_fee
   )
   return (
@@ -25,27 +21,9 @@ const OrderPriceItem = ({ order, ordersTranslation }) => {
         justify="space-between"
         alignItems="center"
       >
-        <span>{ordersTranslation.product.totalBeforeTax}</span>
-        <OrderValue>{_totalPriceBeforeTax.toLocaleString("de-DE")}</OrderValue>
-      </Grid>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-        <span>{ordersTranslation.product.tax}</span>
-        <OrderValue>{order.tax}%</OrderValue>
-      </Grid>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-        <span>{ordersTranslation.product.totalAfterTax}</span>
-        <OrderValue>{_totalPriceAfterTax.toLocaleString("de-DE")}</OrderValue>
-      </Grid>
+        <span>{ordersTranslation.product.orderTotalPrice}</span>
+        <OrderValue>{_orderTotalPrice.toLocaleString("de-DE")}</OrderValue>
+      </Grid>     
       <Grid
         container
         direction="row"

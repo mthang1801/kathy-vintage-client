@@ -14,10 +14,11 @@ export const Header = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem 2.5rem 1.5rem 2.5rem;
+  margin : 0.25rem 0.5rem 1.5rem 0.5rem ;
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
+    margin: 1rem 2.5rem 1.5rem 2.5rem;
   }
 `
 

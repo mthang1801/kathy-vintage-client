@@ -59,7 +59,7 @@ export const addNewOrder = (
           shipping: null,
           complete: null,
         }, //["sent", "received", "shipping", "complete"]
-        order_status: "active", //["active", "canceled","complete"]
+        order_status: "sent", //["canceled", "sent", "received", "shipping", "complete"]
         createdAt: new Date(),
       }
       if (tokenId) {
