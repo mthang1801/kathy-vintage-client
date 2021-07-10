@@ -13,6 +13,7 @@ export const addNewOrder = newOrderItem => {
         message: `Đơn hàng có mã số <strong>${newOrder.id}</strong> gửi đến ${newOrderItem?.userInformation?.district}, ${newOrderItem?.userInformation?.city} đã được tạo.`,
         alert: `Có một đơn hàng mới được tạo.`,
         status: "success",
+        hasSeen : false, 
       }
 
       await firebase
@@ -103,6 +104,7 @@ export const cancelOrder = orderId => {
             message: `Đơn hàng có mã số <strong>${orderSnap.id}</strong> đã hủy.`,
             alert: "Có đơn hàng bị hủy.",
             status: "error",
+            hasSeen : false
           })
       }
 
