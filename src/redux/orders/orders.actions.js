@@ -65,7 +65,7 @@ export const addNewOrder = (
       if (tokenId) {
         newOrderItem.tokenId = tokenId
       }
-      const newOrderResult = await orderDB.addNewOrder(user, newOrderItem)
+      const newOrderResult = await orderDB.addNewOrder(newOrderItem)
       dispatch(addNewOrderSuccess(newOrderResult))
       resolve(true)
     } catch (error) {
@@ -122,7 +122,7 @@ const cancelOrderSuccess = orderId => ({
   payload: orderId,
 })
 const cancelOrderFail = error => ({
-  type: orderActionTypes.CANCEL_ORDER_ERROR,
+  type: orderActionTypes.CANCEL_ORDER_FAIL,
   payload: error,
 })
 
@@ -132,6 +132,6 @@ export const cancelOrder = orderId => async dispatch => {
     await orderDB.cancelOrder(orderId)
     dispatch(cancelOrderSuccess(orderId))
   } catch (error) {
-    dispatch(cancelOrderFail())
+    dispatch(cancelOrderFail(error.message))
   }
 }

@@ -1,12 +1,24 @@
 import firebase from "gatsby-plugin-firebase"
 import { ORDER_PER_FETCH } from "../constants/client"
-export const addNewOrder = (user, newOrderItem) => {
+export const addNewOrder = newOrderItem => {
   return new Promise(async (resolve, reject) => {
     try {
       const newOrder = await (
         await firebase.firestore().collection("orders").add(newOrderItem)
       ).get()
+      // Create notification
+      const notificationItem = {
+        collection: "orders",
+        documentId: newOrder.id,
+        message: `Đơn hàng có mã số <strong>${newOrder.id}</strong> gửi đến ${newOrderItem?.userInformation?.district}, ${newOrderItem?.userInformation?.city} đã được tạo.`,
+        alert: `Có một đơn hàng mới được tạo.`,
+        status: "success",
+      }
 
+      await firebase
+        .firestore()
+        .collection("notifications")
+        .add(notificationItem)
       resolve({ id: newOrder.id, ...newOrder.data() })
     } catch (error) {
       reject(error)
@@ -75,6 +87,25 @@ export const cancelOrder = orderId => {
           }
         }
       }
+      //notification cancel
+      const notificationSnap = await firebase
+        .firestore()
+        .collection("notifications")
+        .where("collection", "==", "orders")
+        .where("documentId", "==", orderSnap.id)
+        .get()
+      if (notificationSnap.docs.length === 1) {
+        const notificationId = notificationSnap.docs[0].id
+        await firebase
+          .firestore()
+          .doc(`notifications/${notificationId}`)
+          .update({
+            message: `Đơn hàng có mã số <strong>${orderSnap.id}</strong> đã hủy.`,
+            alert: "Có đơn hàng bị hủy.",
+            status: "error",
+          })
+      }
+
       //update order status
       await orderRef.update({ order_status: "canceled" })
       resolve(true)
