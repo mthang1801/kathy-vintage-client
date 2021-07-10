@@ -14,6 +14,7 @@ export const addNewOrder = newOrderItem => {
         alert: `Có một đơn hàng mới được tạo.`,
         status: "success",
         hasSeen : false, 
+        createdAt : new Date(),
         updatedAt : new Date()
       }
 
@@ -106,6 +107,7 @@ export const cancelOrder = orderId => {
             alert: "Có đơn hàng bị hủy.",
             status: "error",
             hasSeen : false,
+            createdAt : new Date(),
             updatedAt : new Date()
           })
       }
