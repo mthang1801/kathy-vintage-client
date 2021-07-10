@@ -14,6 +14,7 @@ export const addNewOrder = newOrderItem => {
         alert: `Có một đơn hàng mới được tạo.`,
         status: "success",
         hasSeen : false, 
+        updatedAt : new Date()
       }
 
       await firebase
@@ -104,7 +105,8 @@ export const cancelOrder = orderId => {
             message: `Đơn hàng có mã số <strong>${orderSnap.id}</strong> đã hủy.`,
             alert: "Có đơn hàng bị hủy.",
             status: "error",
-            hasSeen : false
+            hasSeen : false,
+            updatedAt : new Date()
           })
       }
 
