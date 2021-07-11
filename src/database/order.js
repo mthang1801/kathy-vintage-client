@@ -10,7 +10,7 @@ export const addNewOrder = newOrderItem => {
       const notificationItem = {
         collection: "orders",
         documentId: newOrder.id,
-        message: `Đơn hàng có mã số <strong>${newOrder.id}</strong> gửi đến ${newOrderItem?.userInformation?.district}, ${newOrderItem?.userInformation?.city} đã được tạo.`,
+        message: `Đơn hàng có mã số <strong>${newOrder.id}</strong> gửi đến <strong>${newOrderItem?.userInformation?.district}, ${newOrderItem?.userInformation?.city}</strong> đã được tạo.`,
         alert: `Có một đơn hàng mới được tạo.`,
         status: "success",
         hasSeen : false, 
