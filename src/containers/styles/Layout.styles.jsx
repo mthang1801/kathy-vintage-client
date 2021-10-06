@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100vw;
   min-height: 100vh;
+  opacity : 0.97;
 `
 
 export const MainContent = styled.main`

@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Wrapper = styled.div`
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   position: relative;
   background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
   & * {
@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
   }
   .ais-SearchBox-form {
     width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
