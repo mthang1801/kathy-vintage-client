@@ -2,7 +2,7 @@
   "name": "tn-shop",
   "private": true,
   "description": "clothes shop",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
