@@ -13,19 +13,15 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import "./src/fonts/index.css"
 import "./src/styles/preloader.scss"
+import { StylesProvider } from '@material-ui/core/styles'
 export const wrapRootElement = ({ element }) => {
-  if (typeof window === "undefined") {
-    return (
-      <Provider store={store}>
-        <App>{element}</App>
-      </Provider>
-    )
-  }
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+        <StylesProvider injectFirst>
           <App>{element}</App>
+          </StylesProvider>
         </PersistGate>
       </Provider>
     </ThemeProvider>

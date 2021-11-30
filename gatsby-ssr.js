@@ -57,7 +57,7 @@ export const onPreRenderHTML = ({
     .flat()
     .sort((x, y) => {
       return order.indexOf(x.type) - order.indexOf(y.type)
-    })  
+    })
   replaceHeadComponents(sortedHeadComponents)
 }
 

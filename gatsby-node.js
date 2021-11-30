@@ -6,6 +6,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
       externals: ["react-helmet"],
       module: {
         rules: [
+           {
+            test: /offending-module/,
+            use: loaders.null(),
+          },
           {
             test: /firebase/,
             use: loaders.null(),

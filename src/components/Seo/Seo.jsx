@@ -1,69 +1,106 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
+
 const query = graphql`
   query {
     site {
       siteMetadata {
-        siteTitle: title
-        siteDesc: description
+        title
+        description
         siteUrl
         keywords
         author
         twitterUsername
-        siteImage: image
+        image
       }
     }
   }
-`
-const Seo = ({ title, description, image, pathname, lang }) => {
-  const { site } = useStaticQuery(query)
-  const {
-    siteTitle,
-    siteDesc,
-    siteUrl,
-    twitterUsername,
-    siteImage,
-    keywords,
-  } = site.siteMetadata
-  const seo = {
-    title: `${title} | ${siteTitle}`,
-    description: description || siteDesc,
-    image: `${siteUrl}${image || siteImage}`,
-    url: pathname ? `${siteUrl}${pathname}` : `${siteUrl}`,
-  }
+`;
+function Seo({ description, lang, meta, title, image }) {
+  const { site } = useStaticQuery(query);
+
+  const metaDescription = description || site.siteMetadata.description;
+  const defaultTitle = title || site.siteMetadata.title;
+  const metaImage =
+    image || `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
   return (
     <Helmet
-      title={seo.title}
-      titleTemplate={`${seo.title}`}
-      htmlAttributes={{ lang }}
-      defer={false}
-    >
-      <link rel="canonical" href={seo.url} />
-      <meta name="description" content={seo.description} />
-      <meta image="image" content={seo.image} />
-      <meta name="keywords" content={keywords.join(",")} />
-      <meta property="og:url" content={seo.url} />
-      <meta property="og:title" content={seo.title} />
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content={seo.image} />
-      <meta property="og:image:width" content="400" />
-      <meta property="og:image:height" content="300" />
-      <meta property="og:description" content={seo.description} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={twitterUsername} />
-      <meta name="twitter:description" content={seo.description} />
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:image" content={seo.image} />
-    </Helmet>
-  )
+      htmlAttributes={{
+        lang,
+      }}
+      title={title}
+      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      meta={[
+        {
+          name: `description`,
+          content: metaDescription,
+        },
+        {
+          name: 'image',
+          content: metaImage,
+        },
+        {
+          property: `og:title`,
+          content: title,
+        },
+        {
+          property: `og:description`,
+          content: metaDescription,
+        },
+        {
+          property: `og:image`,
+          content: metaImage,
+        },
+        {
+          property: `og:image:width`,
+          content: 400,
+        },
+        {
+          property: `og:image:height`,
+          content: 300,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          name: `twitter:creator`,
+          content: site.siteMetadata?.author || ``,
+        },
+        {
+          name: `twitter:title`,
+          content: title,
+        },
+        {
+          name: `twitter:description`,
+          content: metaDescription,
+        },
+        {
+          name: `twitter:image`,
+          content: metaImage,
+        },
+      ].concat(meta)}
+    />
+  );
 }
 
 Seo.defaultProps = {
-  description: null,
-  title: null,
-  image: null,
-  lang: "vi",
-}
+  lang: `vi`,
+  meta: [],
+  description: ``,
+};
 
-export default Seo
+Seo.propTypes = {
+  description: PropTypes.string,
+  lang: PropTypes.string,
+  meta: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string.isRequired,
+};
+
+export default Seo;
