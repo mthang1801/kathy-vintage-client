@@ -65,8 +65,11 @@ export const query = graphql`
           manufactor
           origin
           images {
-            fluid {
-              ...GatsbyContentfulFluid
+            fixed(width: 360, height: 360) {
+              width
+              height
+              src
+              srcSet
             }
           }
           portfolio {

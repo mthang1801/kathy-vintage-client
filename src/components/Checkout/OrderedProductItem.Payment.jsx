@@ -34,7 +34,7 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
     <Wrapper theme={theme}>
       <ImageContainer>
         <img
-          src={`https:${product.images[0].file.url}`}
+          src={`https:${product.images[0].fixed.src}`}
           alt={product[`name_${lang}`]}
         />
       </ImageContainer>

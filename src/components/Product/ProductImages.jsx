@@ -16,14 +16,14 @@ const ProductImages = ({ images }) => {
       <PresentImage>
         {getDeviceType() === 'desktop' ? (
           <ProductImageMagnifier
-            image={`https:${images[activeImage].file.url}`}
-            width={images[activeImage].file.details.image.width}
+            image={`https:${images[activeImage].fixed.src}`}
+            width={images[activeImage].fixed.width}
           />
         ) : (
           <ImageContainer>
             <LazyLoadImage
-              src={`https:${images[activeImage].file.url}`}
-              alt={`https:${images[activeImage].file.url}`}
+              src={`https:${images[activeImage].fixed.src}`}
+              alt={`https:${images[activeImage].fixed.src}`}
               effect="blur"
             />
           </ImageContainer>

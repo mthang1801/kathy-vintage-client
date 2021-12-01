@@ -42,7 +42,7 @@ export const addNewOrder = (
           discountPercentage: product.discountPercentage
             ? product.discountPercentage
             : 0,
-          image: product.images[0].file.url,
+          image: product.images[0].fixed.src,
         })),
         tax,
         shipping_fee,

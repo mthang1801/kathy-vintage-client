@@ -33,7 +33,7 @@ const CartItem = ({ product, removeProductFromCart }) => {
     <Wrapper to={`/products/${product.slug}`} theme={theme}>
       <AvatarContainer>
         <img
-          src={`https:${product.images[0].file.url}`}
+          src={`https:${product.images[0].fixed.src}`}
           alt={product[`name_${lang}`]}
         />
       </AvatarContainer>

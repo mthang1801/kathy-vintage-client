@@ -31,7 +31,7 @@ const ProductImages = ({ images, setActiveImage, activeImage }) => {
         {images.map((image, idx) => (
           <ImageContainer key={uuidv4()} active={activeImage === idx}>
             <img
-              src={`https:${image.file.url}`}
+              src={`https:${image.fixed.src}`}
               onClick={() => onSetActiveImage(idx)}
             />
           </ImageContainer>

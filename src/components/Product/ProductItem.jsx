@@ -43,19 +43,25 @@ const ProductItem = ({ product }) => {
       )}
       {getDeviceType() === 'desktop' ? (
         <ImageContainer
-          imageHover={`https:${
-            product?.images[0]?.fixed?.src || product?.images[0]?.file?.url
-          }`}
-          imageMouseout={`https:${
-            product?.images[1]?.fixed?.src || product?.images[1]?.file?.url
-          }`}
+          imageHover={
+            product?.images[0]?.fixed?.src
+              ? `https:${product?.images[0]?.fixed?.src}`
+              : `https:${product?.images[0]?.file?.url}`
+          }
+          imageMouseout={
+            product?.images[0]?.fixed?.src
+              ? `https:${product?.images[1]?.fixed?.src}`
+              : `https:${product?.images[1]?.file?.url}`
+          }
         />
       ) : (
         <ImageMobileTablet>
           <LazyLoadImage
-            src={`https:${
-              product?.images[0]?.fixed?.src || product?.images[0]?.file?.url
-            }`}
+            src={
+              product?.images[0]?.fixed?.src
+                ? `https:${product?.images[0]?.fixed?.src}`
+                : `https:${product?.images[0]?.file?.url}`
+            }
             effect="blur"
           />
         </ImageMobileTablet>

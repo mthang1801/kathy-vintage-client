@@ -49,7 +49,7 @@ const ProductProduct = (props) => {
           0,
           150
         )} ...`}
-        image={`https://${images[0].file.url}`}
+        image={`https://${images[0].fixed.src}`}
       />
       <Layout>
         <BreadcrumbNavigation
@@ -122,14 +122,11 @@ export const query = graphql`
         image
       }
       images {
-        file {
-          url
-          details {
-            image {
-              width
-              height
-            }
-          }
+        fixed(width: 360, height: 360) {
+          width
+          height
+          src
+          srcSet
         }
       }
       portfolio {
@@ -165,8 +162,11 @@ export const query = graphql`
           isDiscount
           discountPercentage
           images {
-            fluid {
+            fixed(width: 360, height: 360) {
+              width
+              height
               src
+              srcSet
             }
           }
           portfolio {
@@ -205,8 +205,11 @@ export const query = graphql`
           isDiscount
           discountPercentage
           images {
-            fluid {
+            fixed(width: 360, height: 360) {
+              width
+              height
               src
+              srcSet
             }
           }
           portfolio {

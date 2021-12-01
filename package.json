@@ -2,8 +2,12 @@
   "name": "tn-shop",
   "private": true,
   "description": "clothes shop",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "license": "0BSD",
+  "engines": {
+    "node": "v16.9.1", 
+    "npm" : "7.21.1"
+  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
