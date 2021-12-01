@@ -1,24 +1,24 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   ImageContainer,
   Title,
   Button,
-} from "./styles/EmptyProductInCart.styles"
+} from './styles/EmptyProductInCart.styles';
 
-import { useLanguage } from "../../locales"
-import EmptyFolder from "../../images/empty-folder.jpg"
-import { useTheme } from "../../theme"
-import { navigate } from "gatsby"
+import { useLanguage } from '../../locales';
+import EmptyFolder from '../../images/empty-folder.jpg';
+import { useTheme } from '../../theme';
+import { navigate } from 'gatsby';
 
 const EmptyOrder = () => {
   const {
     translation: { checkout },
-  } = useLanguage()
-  const { theme } = useTheme()
+  } = useLanguage();
+  const { theme } = useTheme();
   const onBackHome = () => {
-    navigate("/")
-  }
+    navigate('/');
+  };
   return (
     <Wrapper theme={theme}>
       <ImageContainer>
@@ -28,7 +28,7 @@ const EmptyOrder = () => {
       <Title>{checkout.orderEmpty}</Title>
       <Button onClick={onBackHome}>{checkout.buttonBackHome}</Button>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default EmptyOrder
+export default EmptyOrder;

@@ -1,20 +1,20 @@
-require("dotenv").config({ path: ".env" })
-const path = require("path")
+require('dotenv').config({ path: '.env' });
+const path = require('path');
 module.exports = {
   siteMetadata: {
     title: `Kathy Vintage`,
     description: `Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ`,
-    author: "@MVT",
+    author: '@MVT',
     keywords: [
-      "Quần áo si",
-      "quần áo nam",
-      "quần áo nữ",
-      "si tuyển",
-      "phụ kiện thời trang",
+      'Quần áo si',
+      'quần áo nam',
+      'quần áo nữ',
+      'si tuyển',
+      'phụ kiện thời trang',
     ],
-    image: "/images/logo-text-icon.png",
-    twitterUsername: "@mthang1801",
-    siteUrl: "https://kathy-vintage-demo.netlify.app",
+    image: '/images/logo-text-icon.png',
+    twitterUsername: '@mthang1801',
+    siteUrl: 'https://kathy-vintage-demo.netlify.app',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -27,10 +27,10 @@ module.exports = {
       options: {
         name: `Kathy Vintage`,
         short_name: `KV clothes`,
-        description: "Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ",
+        description: 'Kathy Vintage Chuyên cung cấp quần áo nam nữ sỉ và lẻ',
         start_url: `/`,
         background_color: `#f0f0f0`,
-        theme_color: "#27135c",
+        theme_color: '#27135c',
         display: `minimal-ui`,
         icon: `src/images/logo.png`,
       },
@@ -46,25 +46,25 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: "images-carousel",
+        name: 'images-carousel',
         path: path.join(__dirname, `src`, `images`, `carousel`),
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: "images",
+        name: 'images',
         path: path.join(__dirname, `src`, `images`),
       },
     },
     {
-      resolve: "gatsby-plugin-disqus",
+      resolve: 'gatsby-plugin-disqus',
       options: {
         shortname: process.env.GATSBY_DISQUS_NAME,
       },
     },
     {
-      resolve: "gatsby-plugin-firebase",
+      resolve: 'gatsby-plugin-firebase',
       options: {
         credentials: {
           apiKey: process.env.GATSBY_FIREBASE_API_KEY,
@@ -91,12 +91,12 @@ module.exports = {
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
         apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
-        queries: require("./src/utils/algolia-queries"),
+        queries: require('./src/utils/algolia-queries'),
         chunkSize: 10000,
       },
     },
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /svgs/,
@@ -105,11 +105,11 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: "https://kathy-vintage-demo.netlify.app",
-        sitemap: "https://kathy-vintage-demo.netlify.app/sitemap.xml",
-        policy: [{ userAgent: "*", allow: "/" }],
+        host: 'https://kathy-vintage-demo.netlify.app',
+        sitemap: 'https://kathy-vintage-demo.netlify.app/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
@@ -127,7 +127,12 @@ module.exports = {
         disableAutoprefixing: true,
       },
     },
-    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: process.env.NODE_ENV === 'production' ? false : true,
+      },
+    },
     `gatsby-plugin-gatsby-cloud`,
   ],
-}
+};

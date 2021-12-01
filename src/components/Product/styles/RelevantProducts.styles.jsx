@@ -1,10 +1,10 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Title = styled.h3`
   font-size: 1.25rem;
   margin: 0.5rem 0 1.25rem 0;
   text-transform: uppercase;
-`
+`;
 
 export const RelevantProductsContainer = styled.div`
   width: 100%;
@@ -23,4 +23,4 @@ export const RelevantProductsContainer = styled.div`
   @media screen and (min-width: 1920px) {
     grid-template-columns: repeat(8, 1fr);
   }
-`
+`;

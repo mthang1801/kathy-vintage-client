@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import { Wrapper, Label } from "./styles/TypeOfPayment.styles"
-import Radio from "@material-ui/core/Radio"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import { useLanguage } from "../../locales"
-import PaymentInCashImage from "../../images/payment-in-cash.png"
-import CreaditCardImage from "../../images/credit-card.png"
-import RadioGroup from "@material-ui/core/RadioGroup"
-import { useTheme } from "../../theme"
+import React, { useState } from 'react';
+import { Wrapper, Label } from './styles/TypeOfPayment.styles';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useLanguage } from '../../locales';
+import PaymentInCashImage from '../../images/payment-in-cash.png';
+import CreaditCardImage from '../../images/credit-card.png';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import { useTheme } from '../../theme';
 const TypeOfPayment = ({ user, paymentMethod, setPaymentMethod }) => {
   const {
     translation: {
@@ -14,13 +14,13 @@ const TypeOfPayment = ({ user, paymentMethod, setPaymentMethod }) => {
         payment: { typeOfPayment },
       },
     },
-  } = useLanguage()
-  const { theme } = useTheme()
+  } = useLanguage();
+  const { theme } = useTheme();
 
-  const handleChange = e => {
-    const { value } = e.target
-    setPaymentMethod(typeOfPayment[value])
-  }
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setPaymentMethod(typeOfPayment[value]);
+  };
 
   return (
     <Wrapper theme={theme}>
@@ -34,11 +34,11 @@ const TypeOfPayment = ({ user, paymentMethod, setPaymentMethod }) => {
           control={<Radio />}
           label={
             <Label>
-              {" "}
+              {' '}
               <img
                 src={PaymentInCashImage}
                 alt={typeOfPayment.payment_in_cash.value}
-              />{" "}
+              />{' '}
               <span>{typeOfPayment.payment_in_cash.value}</span>
             </Label>
           }
@@ -48,18 +48,18 @@ const TypeOfPayment = ({ user, paymentMethod, setPaymentMethod }) => {
           control={<Radio />}
           label={
             <Label>
-              {" "}
+              {' '}
               <img
                 src={CreaditCardImage}
                 alt={typeOfPayment.payment_in_card.value}
-              />{" "}
+              />{' '}
               <span>{typeOfPayment.payment_in_card.value}</span>
             </Label>
           }
         />
       </RadioGroup>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default TypeOfPayment
+export default TypeOfPayment;

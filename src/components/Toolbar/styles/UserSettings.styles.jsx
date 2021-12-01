@@ -1,9 +1,9 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
   z-index: 10;
-`
+`;
 
 export const AvatarContainer = styled.div`
   width: 2rem;
@@ -14,22 +14,22 @@ export const AvatarContainer = styled.div`
     border-radius: 50%;
   }
   cursor: pointer;
-`
+`;
 
 export const UserOverview = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const Dropdown = styled.div`
   width: 320px;
   position: absolute;
   top: 100%;
   right: -1rem;
-  display: ${({ show }) => (show ? "block" : "none")};
-  background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
-  border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
+  display: ${({ show }) => (show ? 'block' : 'none')};
+  background-color: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
+  border: 1px solid ${({ theme }) => (theme ? theme.border : 'var(--border)')};
   border-radius: 0.5rem;
   box-shadow: 0 2px 10px
-    ${({ theme }) => (theme ? theme.border : "var(--border)")};
-`
+    ${({ theme }) => (theme ? theme.border : 'var(--border)')};
+`;

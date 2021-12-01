@@ -1,14 +1,14 @@
-import React from "react"
-import StripeCheckout from "react-stripe-checkout"
-import Button from "@material-ui/core/Button"
-import AddIcon from "@material-ui/icons/Add"
-import { clearCartItems } from "../../redux/cart/cart.actions"
-import { connect } from "react-redux"
-import { useTheme } from "../../theme"
-import axios from "axios"
-import STRIPE_PUBLISHABLE from "../../constants/stripe"
-import PAYMENT_SERVER_URL from "../../constants/server"
-import { useLanguage } from "../../locales"
+import React from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import { clearCartItems } from '../../redux/cart/cart.actions';
+import { connect } from 'react-redux';
+import { useTheme } from '../../theme';
+import axios from 'axios';
+import STRIPE_PUBLISHABLE from '../../constants/stripe';
+import PAYMENT_SERVER_URL from '../../constants/server';
+import { useLanguage } from '../../locales';
 
 const StripeCheckoutButton = ({
   totalPrice,
@@ -17,31 +17,31 @@ const StripeCheckoutButton = ({
   children,
   onClickProceedOrder,
 }) => {
-  const amount = totalPrice
-  const CURRENCY = "VND"
+  const amount = totalPrice;
+  const CURRENCY = 'VND';
   const {
     translation: {
       checkout: {
         payment: { typeOfPayment },
       },
     },
-  } = useLanguage()
-  const { theme } = useTheme()
-  let _token
-  const onToken = amount => token => {
-    _token = token
+  } = useLanguage();
+  const { theme } = useTheme();
+  let _token;
+  const onToken = (amount) => (token) => {
+    _token = token;
     axios.post(PAYMENT_SERVER_URL, {
       source: token.id,
       currency: CURRENCY,
       amount,
-    })
-  }
+    });
+  };
 
   const onClosed = () => {
     if (_token) {
-      onClickProceedOrder(_token.id)
+      onClickProceedOrder(_token.id);
     }
-  }
+  };
   return (
     <StripeCheckout
       label={typeOfPayment.payment_in_card_button}
@@ -50,8 +50,8 @@ const StripeCheckoutButton = ({
       currency={CURRENCY}
       email={user.email}
       image="https://svgshare.com/i/CUz.svg"
-      description={`Your total is ${totalPrice.toLocaleString("de-DE", {
-        style: "currency",
+      description={`Your total is ${totalPrice.toLocaleString('de-DE', {
+        style: 'currency',
         currency: CURRENCY,
       })}`}
       amount={amount}
@@ -62,7 +62,7 @@ const StripeCheckoutButton = ({
     >
       {children}
     </StripeCheckout>
-  )
-}
+  );
+};
 
-export default connect(null, { clearCartItems })(StripeCheckoutButton)
+export default connect(null, { clearCartItems })(StripeCheckoutButton);

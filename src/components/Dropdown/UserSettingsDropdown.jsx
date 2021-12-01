@@ -1,5 +1,5 @@
-import React from "react"
-import { useLanguage } from "../../locales"
+import React from 'react';
+import { useLanguage } from '../../locales';
 import {
   Wrapper,
   ManageAccount,
@@ -12,26 +12,26 @@ import {
   SettingItemLink,
   SettingItemIcon,
   SettingItemText,
-} from "./styles/UserSettingsDropdown.styles"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { navigate } from "gatsby"
-import { useTheme } from "../../theme"
-import { connect } from "react-redux"
-import { signOutUser } from "../../redux/user/user.actions"
+} from './styles/UserSettingsDropdown.styles';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { navigate } from 'gatsby';
+import { useTheme } from '../../theme';
+import { connect } from 'react-redux';
+import { signOutUser } from '../../redux/user/user.actions';
 const UserSettingsDropdown = ({ user, signOut }) => {
   const {
     translation: { user: userTranslation },
-  } = useLanguage()
-  const { theme } = useTheme()
+  } = useLanguage();
+  const { theme } = useTheme();
 
-  const onLogout = e => {
-    e.preventDefault()
-    signOut()
-  }
+  const onLogout = (e) => {
+    e.preventDefault();
+    signOut();
+  };
 
   const onNavigateToUserPage = (path, state) => {
-    navigate(path, { state: { from: state } })
-  }
+    navigate(path, { state: { from: state } });
+  };
   return (
     <Wrapper>
       <ManageAccount>
@@ -42,7 +42,7 @@ const UserSettingsDropdown = ({ user, signOut }) => {
         <UserEmail>{user.email}</UserEmail>
         <SettingButton
           theme={theme}
-          onClick={e =>
+          onClick={(e) =>
             onNavigateToUserPage(
               userTranslation.settingAccount.path,
               userTranslation.settingAccount.key
@@ -70,10 +70,10 @@ const UserSettingsDropdown = ({ user, signOut }) => {
         <SettingItemText>{userTranslation.signout.name}</SettingItemText>
       </SettingItem>
     </Wrapper>
-  )
-}
-const mapDispatchToMap = dispatch => ({
+  );
+};
+const mapDispatchToMap = (dispatch) => ({
   signOut: () => dispatch(signOutUser()),
-})
+});
 
-export default connect(null, mapDispatchToMap)(UserSettingsDropdown)
+export default connect(null, mapDispatchToMap)(UserSettingsDropdown);

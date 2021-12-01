@@ -1,30 +1,30 @@
-import React, { useState, useCallback } from "react"
-import Drawer from "@material-ui/core/Drawer"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import List from "@material-ui/core/List"
-import { useTheme } from "@material-ui/core/styles"
-import Divider from "@material-ui/core/Divider"
-import IconButton from "@material-ui/core/IconButton"
-import Button from "@material-ui/core/Button"
-import Backdrop from "@material-ui/core/Backdrop"
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
-import ExpandMore from "@material-ui/icons/ExpandMore"
-import SettingDialog from "../../Setting/SettingDialog"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import { useStyles, Auth, LogoContainer } from "./styles/Drawer.styles"
-import { Link } from "gatsby"
-import Logo from "../../../images/logo-text-icon.png"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { useLanguage } from "../../../locales"
-import DrawerPortfoliosDropdown from "../../Dropdown/DrawerPortfoliosDropdown"
-import { Scrollbars } from "react-custom-scrollbars"
-import { navigate } from "gatsby"
-import UserOverview from "./UserOverview"
-import { signInPattern, signUpPattern } from "../../../utils/auth"
-import { useLocation } from "@reach/router"
+import React, { useState, useCallback } from 'react';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import List from '@material-ui/core/List';
+import { useTheme } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import Backdrop from '@material-ui/core/Backdrop';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import SettingDialog from '../../Setting/SettingDialog';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import { useStyles, Auth, LogoContainer } from './styles/Drawer.styles';
+import { Link } from 'gatsby';
+import Logo from '../../../images/logo-text-icon.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useLanguage } from '../../../locales';
+import DrawerPortfoliosDropdown from '../../Dropdown/DrawerPortfoliosDropdown';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { navigate } from 'gatsby';
+import UserOverview from './UserOverview';
+import { signInPattern, signUpPattern } from '../../../utils/auth';
+import { useLocation } from '@reach/router';
 function PersistentDrawerLeft({
   open,
   setOpen,
@@ -32,42 +32,42 @@ function PersistentDrawerLeft({
   userFetched,
   user,
 }) {
-  const [openPortfolio, setOpenPortfolio] = useState(false)
-  const [openDialog, setOpenDialog] = useState(false)
-  const classes = useStyles()
-  const theme = useTheme()
-  const { pathname } = useLocation()
+  const [openPortfolio, setOpenPortfolio] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const classes = useStyles();
+  const theme = useTheme();
+  const { pathname } = useLocation();
   const handleDrawerClose = () => {
-    setOpen(false)
-    setOpenPortfolio(false)
-  }
+    setOpen(false);
+    setOpenPortfolio(false);
+  };
   const {
     translation: { auth, navigations },
-  } = useLanguage()
+  } = useLanguage();
   const navigationsArr = Object.keys(navigations).map(
-    navigation => navigations[navigation]
-  )
-  const onClickMenu = navigation => {
+    (navigation) => navigations[navigation]
+  );
+  const onClickMenu = (navigation) => {
     switch (navigation.id.toLowerCase()) {
-      case "setting":
-        return setOpenDialog(true)
-      case "shop":
-        return onTogglePortfolios()
+      case 'setting':
+        return setOpenDialog(true);
+      case 'shop':
+        return onTogglePortfolios();
       default:
-        onNavigate(navigation.path)
+        onNavigate(navigation.path);
     }
-  }
+  };
 
-  const onNavigate = path => {
-    navigate(path)
-    handleDrawerClose()
-  }
+  const onNavigate = (path) => {
+    navigate(path);
+    handleDrawerClose();
+  };
 
   const onTogglePortfolios = () => {
-    setOpenPortfolio(prevState => !prevState)
-  }
+    setOpenPortfolio((prevState) => !prevState);
+  };
 
-  const RenderUserOverview = () => <UserOverview user={user} />
+  const RenderUserOverview = () => <UserOverview user={user} />;
   const RenderUserAuth = () => (
     <>
       {(userFetched || !userLoading) && (
@@ -76,8 +76,8 @@ function PersistentDrawerLeft({
             <Button
               color="primary"
               onClick={() => {
-                navigate("/auth", { state: { from: pathname } })
-                handleDrawerClose()
+                navigate('/auth', { state: { from: pathname } });
+                handleDrawerClose();
               }}
             >
               {auth.login}
@@ -87,8 +87,8 @@ function PersistentDrawerLeft({
             <Button
               color="secondary"
               onClick={() => {
-                navigate("/auth/signup", { state: { from: pathname } })
-                handleDrawerClose()
+                navigate('/auth/signup', { state: { from: pathname } });
+                handleDrawerClose();
               }}
             >
               {auth.register}
@@ -97,7 +97,7 @@ function PersistentDrawerLeft({
         </Auth>
       )}
     </>
-  )
+  );
   return (
     <>
       <SettingDialog open={openDialog} setOpen={setOpenDialog} />
@@ -126,12 +126,12 @@ function PersistentDrawerLeft({
           >
             <div className={classes.drawerHeader}>
               <Link to="/" onClick={handleDrawerClose}>
-                <LogoContainer style={{ width: "3rem", height: "2rem" }}>
+                <LogoContainer style={{ width: '3rem', height: '2rem' }}>
                   <LazyLoadImage src={Logo} effect="blur" alt="logo" />
                 </LogoContainer>
               </Link>
               <IconButton onClick={handleDrawerClose}>
-                {theme.direction === "ltr" ? (
+                {theme.direction === 'ltr' ? (
                   <ChevronLeftIcon />
                 ) : (
                   <ChevronRightIcon />
@@ -142,21 +142,21 @@ function PersistentDrawerLeft({
             {user ? RenderUserOverview() : RenderUserAuth()}
 
             <List>
-              {navigationsArr.map(navigation => (
+              {navigationsArr.map((navigation) => (
                 <>
                   <ListItem
                     className={classes.listItem}
                     button
                     key={navigation.id}
                     onClick={() => {
-                      onClickMenu(navigation)
+                      onClickMenu(navigation);
                     }}
                   >
                     <ListItemIcon className={classes.itemIcon}>
                       {navigation.icon}
                     </ListItemIcon>
                     <ListItemText primary={navigation.name} />
-                    {navigation.name.toLowerCase() === "shop" && (
+                    {navigation.name.toLowerCase() === 'shop' && (
                       <ListItemIcon
                         className={`${classes.itemIcon} ${classes.dropdownButton}`}
                       >
@@ -164,7 +164,7 @@ function PersistentDrawerLeft({
                       </ListItemIcon>
                     )}
                   </ListItem>
-                  {navigation.name.toLowerCase() === "shop" && (
+                  {navigation.name.toLowerCase() === 'shop' && (
                     <DrawerPortfoliosDropdown
                       open={openPortfolio}
                       handleDrawerClose={handleDrawerClose}
@@ -178,7 +178,7 @@ function PersistentDrawerLeft({
         </Drawer>
       </div>
     </>
-  )
+  );
 }
 
-export default PersistentDrawerLeft
+export default PersistentDrawerLeft;

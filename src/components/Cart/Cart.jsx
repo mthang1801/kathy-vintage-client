@@ -1,23 +1,23 @@
-import React, { useRef, useEffect } from "react"
-import { AiOutlineShoppingCart } from "react-icons/ai"
-import { Wrapper, CartIcon, CartNumber, Dropdown } from "./styles/Cart.styles"
+import React, { useRef, useEffect } from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { Wrapper, CartIcon, CartNumber, Dropdown } from './styles/Cart.styles';
 import {
   selectCartItems,
   selectShowCartDropdown,
   selectAlertCart,
-} from "../../redux/cart/cart.selectors"
+} from '../../redux/cart/cart.selectors';
 import {
   toggleCart,
   closeCart,
   removeAlertCart,
-} from "../../redux/cart/cart.actions"
-import { createStructuredSelector } from "reselect"
-import { connect } from "react-redux"
-import CartDropdown from "./CartDropdown"
-import { navigate } from "gatsby"
-import CartAlert from "./CartAlert"
-import { useLocation } from "@reach/router"
-import { getDeviceType } from "../../utils/getDeviceType"
+} from '../../redux/cart/cart.actions';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import CartDropdown from './CartDropdown';
+import { navigate } from 'gatsby';
+import CartAlert from './CartAlert';
+import { useLocation } from '@reach/router';
+import { getDeviceType } from '../../utils/getDeviceType';
 const Cart = ({
   cartItems,
   showCartDropdown,
@@ -26,39 +26,39 @@ const Cart = ({
   alertCart,
   removeAlertCart,
 }) => {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
   const onClickCart = () => {
-    toggleCart()
-    removeAlertCart()
-    if (getDeviceType() === "mobile") {
-      return navigate("/checkout")
+    toggleCart();
+    removeAlertCart();
+    if (getDeviceType() === 'mobile') {
+      return navigate('/checkout');
     }
-  }
+  };
 
   useEffect(() => {
-    closeCart()
-  }, [pathname])
-  const cartRef = useRef(false)
+    closeCart();
+  }, [pathname]);
+  const cartRef = useRef(false);
   useEffect(() => {
     function trackingUserClick(e) {
       if (!cartRef?.current?.contains(e.target) && showCartDropdown) {
-        closeCart()
+        closeCart();
       }
     }
-    if (typeof window !== "undefined") {
-      window.addEventListener("click", trackingUserClick)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('click', trackingUserClick);
     }
     return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("click", trackingUserClick)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('click', trackingUserClick);
       }
-    }
-  })
+    };
+  });
 
   const cartItemsQuantity = cartItems.reduce(
     (acc, item) => acc + item.quantity,
     0
-  )
+  );
   return (
     <Wrapper
       type="button"
@@ -83,19 +83,19 @@ const Cart = ({
         </Dropdown>
       )}
     </Wrapper>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   showCartDropdown: selectShowCartDropdown,
   alertCart: selectAlertCart,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   toggleCart: () => dispatch(toggleCart()),
   closeCart: () => dispatch(closeCart()),
   removeAlertCart: () => dispatch(removeAlertCart()),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -1,15 +1,15 @@
 export const getDeviceType = () => {
-  if (typeof window !== "undefined") {
-    const ua = navigator.userAgent
+  if (typeof window !== 'undefined') {
+    const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua))
-      return "tablet"
+      return 'tablet';
 
     if (
       /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
         ua
       )
     )
-      return "mobile"
+      return 'mobile';
   }
-  return "desktop"
-}
+  return 'mobile';
+};

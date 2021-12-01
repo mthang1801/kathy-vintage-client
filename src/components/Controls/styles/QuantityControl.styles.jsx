@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const InputGroup = styled.div`
   display: flex;
@@ -7,10 +7,10 @@ export const InputGroup = styled.div`
     height: 2rem;
     width: 2rem;
   }
-`
+`;
 
 export const Button = styled.button`
-  background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  background-color: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   outline: none;
   border: none;
   cursor: pointer;
@@ -32,7 +32,7 @@ export const Button = styled.button`
   &:disabled {
     background-color: var(--light-gray-2);
   }
-`
+`;
 
 export const Input = styled.input`
   outline: none;
@@ -43,14 +43,14 @@ export const Input = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
-  &[type="number"] {
+  &[type='number'] {
     -moz-appearance: textfield;
   }
   border: 1px solid var(--light-gray-2);
   &:focus {
     border: 1.5px solid var(--cyan-1);
     box-shadow: ${({ theme }) =>
-      theme ? theme.boxShadow : "var(--boxShadow)"};
+      theme ? theme.boxShadow : 'var(--boxShadow)'};
   }
   transition: all 0.5s linear;
-`
+`;

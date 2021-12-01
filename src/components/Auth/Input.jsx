@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef } from 'react';
 import {
   InputGroup,
   Input,
@@ -8,8 +8,8 @@ import {
   RadioGroup,
   RadioTitle,
   RadioLabel,
-} from "./styles/Input.styles"
-import { BiCheckCircle } from "react-icons/bi"
+} from './styles/Input.styles';
+import { BiCheckCircle } from 'react-icons/bi';
 const CustomInput = ({
   type,
   onChange,
@@ -23,20 +23,20 @@ const CustomInput = ({
   const transformedErrors =
     validationErrors && validationErrors.length
       ? validationErrors.map((error, idx) => {
-          return idx === validationErrors.length - 1 ? error : error + ", "
+          return idx === validationErrors.length - 1 ? error : error + ', ';
         })
-      : ""
-  const border = touched ? (transformedErrors ? "error" : "success") : null
-  const inputRef = useRef(null)
+      : '';
+  const border = touched ? (transformedErrors ? 'error' : 'success') : null;
+  const inputRef = useRef(null);
   const handleClick = () => {
-    inputRef.current.focus()
-  }
-  if (type === "radio")
+    inputRef.current.focus();
+  };
+  if (type === 'radio')
     return (
       <RadioGroup>
         <RadioTitle>{label}</RadioTitle>
         {otherProps.subFields &&
-          otherProps.subFields.map(field => (
+          otherProps.subFields.map((field) => (
             <RadioLabel>
               <input
                 type="radio"
@@ -49,7 +49,7 @@ const CustomInput = ({
             </RadioLabel>
           ))}
       </RadioGroup>
-    )
+    );
   return (
     <InputGroup>
       <Input
@@ -74,7 +74,7 @@ const CustomInput = ({
         )
       ) : null}
     </InputGroup>
-  )
-}
+  );
+};
 
-export default CustomInput
+export default CustomInput;

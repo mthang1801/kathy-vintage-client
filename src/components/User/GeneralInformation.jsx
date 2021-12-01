@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useRef } from "react"
-import TextField from "@material-ui/core/TextField"
-import FormControl from "@material-ui/core/FormControl"
-import Select from "@material-ui/core/Select"
-import InputLabel from "@material-ui/core/InputLabel"
-import Button from "@material-ui/core/Button"
-import { Form, ErrorAlert, Flex } from "./styles/GeneralInformation.styles"
-import { useTheme } from "../../theme"
-import localData from "../../database/local.json"
-import { connect } from "react-redux"
-import { updateUserInformation } from "../../redux/user/user.actions"
-import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
+import React, { useEffect, useState, useRef } from 'react';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import { Form, ErrorAlert, Flex } from './styles/GeneralInformation.styles';
+import { useTheme } from '../../theme';
+import localData from '../../database/local.json';
+import { connect } from 'react-redux';
+import { updateUserInformation } from '../../redux/user/user.actions';
+import AlertDialog from '../UI/FeedBacks/Dialog/AlertDialog';
 
 const WrapperUserGeneralInformationForm = ({
   user,
@@ -17,8 +17,8 @@ const WrapperUserGeneralInformationForm = ({
   information,
   title,
 }) => {
-  const { theme } = useTheme()
-  const formRef = useRef(null)
+  const { theme } = useTheme();
+  const formRef = useRef(null);
   return (
     <UserInformationForm
       ref={formRef}
@@ -27,8 +27,8 @@ const WrapperUserGeneralInformationForm = ({
       updateUserInformation={updateUserInformation}
       user={user}
     />
-  )
-}
+  );
+};
 
 class UserInformationForm extends React.Component {
   INITIAL_STATE = {
@@ -36,173 +36,174 @@ class UserInformationForm extends React.Component {
     districts: [],
     wards: [],
     fullname: {
-      name: "fullname",
+      name: 'fullname',
       nameField: this.props.information.fullname,
-      value: this.props.user?.information?.fullname || "",
+      value: this.props.user?.information?.fullname || '',
       isValid: !!this.props.user?.information?.fullname,
       rules: {
         isFullName: true,
         required: true,
       },
       touched: false,
-      errorMessage: "",
+      errorMessage: '',
     },
     phone: {
-      name: "phone",
+      name: 'phone',
       nameField: this.props.information.phone,
-      value: this.props.user?.information?.phone || "",
+      value: this.props.user?.information?.phone || '',
       isValid: !!this.props.user?.information?.phone,
       rules: {
         isValidPhone: true,
         required: true,
       },
       touched: false,
-      errorMessage: "",
+      errorMessage: '',
     },
     city: {
-      name: "city",
+      name: 'city',
       nameField: this.props.information.city,
-      value: this.props.user?.information?.city || "",
-      errorMessage: "",
+      value: this.props.user?.information?.city || '',
+      errorMessage: '',
     },
     district: {
-      name: "district",
+      name: 'district',
       nameField: this.props.information.district,
-      value: this.props.user?.information?.district || "",
+      value: this.props.user?.information?.district || '',
     },
     ward: {
-      name: "ward",
+      name: 'ward',
       nameField: this.props.information.ward,
-      value: this.props.user?.information?.ward || "",
+      value: this.props.user?.information?.ward || '',
     },
     address: {
-      name: "address",
+      name: 'address',
       nameField: this.props.information.address,
-      value: this.props.user?.information?.address || "",
+      value: this.props.user?.information?.address || '',
       isValid: !!this.props.user?.information?.address,
       rules: {
         required: true,
       },
       touched: false,
-      errorMessage: "",
+      errorMessage: '',
     },
     validation: false,
     error: null,
     allowUpdate: false,
     openAlert: false,
-  }
+  };
   state = {
     ...this.INITIAL_STATE,
-  }
+  };
 
-  timer
+  timer;
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.city.value !== this.state.city.value) {
       if (this.state.city.value) {
         const districtLists = localData.find(
-          city => city.name === this.state.city.value
-        ).districts
+          (city) => city.name === this.state.city.value
+        ).districts;
         if (districtLists) {
-          this.setState({ districts: districtLists, wards: [] })
+          this.setState({ districts: districtLists, wards: [] });
         }
       } else {
-        this.setState({ districts: [], wards: [] })
+        this.setState({ districts: [], wards: [] });
       }
     }
     if (prevState.district.value !== this.state.district.value) {
       if (this.state.district.value && this.state.districts.length) {
         const wardsList = this.state.districts.find(
-          district => district.name === this.state.district.value
-        ).wards
+          (district) => district.name === this.state.district.value
+        ).wards;
         if (wardsList) {
-          this.setState({ wards: wardsList })
+          this.setState({ wards: wardsList });
         }
       } else {
-        this.setState({ wards: [] })
+        this.setState({ wards: [] });
       }
     }
     if (prevState.error !== this.state.error) {
-      clearTimeout(this.timer)
+      clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.setState({ error: null })
-      }, 7000)
+        this.setState({ error: null });
+      }, 7000);
     }
   }
   componentDidMount() {
     if (this.state.city.value) {
       const districtLists = localData.find(
-        city => city.name === this.state.city.value
-      ).districts
+        (city) => city.name === this.state.city.value
+      ).districts;
       if (districtLists) {
-        this.setState({ districts: districtLists })
+        this.setState({ districts: districtLists });
       }
     }
 
     if (this.state.district.value) {
       const wardsList = localData
-        .find(city => city.name === this.state.city.value)
-        .districts.find(district => district.name === this.state.district.value)
-        .wards
+        .find((city) => city.name === this.state.city.value)
+        .districts.find(
+          (district) => district.name === this.state.district.value
+        ).wards;
       if (wardsList) {
-        this.setState({ wards: wardsList })
+        this.setState({ wards: wardsList });
       }
     }
   }
 
   componentWillUnmount() {
     if (this.timer) {
-      clearTimeout(this.timer)
+      clearTimeout(this.timer);
     }
   }
   checkFieldValidation = (value, rules) => {
-    const { errorMessages: errorMessagesTranslation } = this.props.information
-    let isValid = true
-    let errorMessages = []
+    const { errorMessages: errorMessagesTranslation } = this.props.information;
+    let isValid = true;
+    let errorMessages = [];
     if (rules.required) {
-      isValid = value.trim().length && isValid
+      isValid = value.trim().length && isValid;
       if (!isValid) {
-        errorMessages.push(errorMessagesTranslation.required)
+        errorMessages.push(errorMessagesTranslation.required);
       }
     }
     if (rules.isFullName) {
-      isValid = value.trim().split(" ").length > 1 && isValid
+      isValid = value.trim().split(' ').length > 1 && isValid;
       if (!isValid) {
-        errorMessages.push(errorMessagesTranslation.fullName)
+        errorMessages.push(errorMessagesTranslation.fullName);
       }
     }
     if (rules.isValidPhone) {
-      const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
-      isValid = phonePattern.test(value) && isValid
+      const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+      isValid = phonePattern.test(value) && isValid;
       if (!isValid) {
-        errorMessages.push(errorMessagesTranslation.invalidPhone)
+        errorMessages.push(errorMessagesTranslation.invalidPhone);
       }
     }
 
-    return errorMessages.join(", ").toString().trim()
-  }
+    return errorMessages.join(', ').toString().trim();
+  };
 
-  onChangeField = e => {
-    const { name, value } = e.target
+  onChangeField = (e) => {
+    const { name, value } = e.target;
 
-    const updatedState = { ...this.state }
-    let updatedElement = { ...updatedState[name] }
-    updatedElement.value = value
+    const updatedState = { ...this.state };
+    let updatedElement = { ...updatedState[name] };
+    updatedElement.value = value;
     if (updatedElement.rules) {
-      updatedElement.touched = true
+      updatedElement.touched = true;
       updatedElement.errorMessage = this.checkFieldValidation(
         value,
         updatedElement.rules
-      )
+      );
       updatedElement.isValid = !!!this.checkFieldValidation(
         value,
         updatedElement.rules
-      )
+      );
     }
 
-    updatedState[name] = { ...updatedElement }
-    const { fullname, phone, city, district, ward, address } = updatedState
-    let formIsValid = false
+    updatedState[name] = { ...updatedElement };
+    const { fullname, phone, city, district, ward, address } = updatedState;
+    let formIsValid = false;
     if (
       fullname.isValid &&
       phone.isValid &&
@@ -211,14 +212,14 @@ class UserInformationForm extends React.Component {
       ward.value &&
       address.isValid
     ) {
-      formIsValid = true
+      formIsValid = true;
     }
-    return this.setState({ ...updatedState, validation: formIsValid })
-  }
+    return this.setState({ ...updatedState, validation: formIsValid });
+  };
 
   resetForm = () => {
-    this.setState(this.INITIAL_STATE)
-  }
+    this.setState(this.INITIAL_STATE);
+  };
 
   onSubmitForm = async () => {
     const {
@@ -229,7 +230,7 @@ class UserInformationForm extends React.Component {
       ward,
       address,
       validation,
-    } = this.state
+    } = this.state;
 
     if (
       fullname.value &&
@@ -247,15 +248,15 @@ class UserInformationForm extends React.Component {
         district: district.value,
         address: address.value,
         ward: ward.value,
-      }
+      };
       try {
-        await this.props.updateUserInformation(information)
-        this.setState({ allowUpdate: false })
+        await this.props.updateUserInformation(information);
+        this.setState({ allowUpdate: false });
       } catch (error) {
-        this.setState({ error })
+        this.setState({ error });
       }
     }
-  }
+  };
 
   render() {
     const {
@@ -272,18 +273,18 @@ class UserInformationForm extends React.Component {
       error,
       allowUpdate,
       openAlert,
-    } = this.state
-    const { information, user } = this.props
+    } = this.state;
+    const { information, user } = this.props;
     const updatedDateDiffFromNow =
       user?.updatedAt &&
       (new Date() - new Date(user.updatedAt.seconds * 1000)) /
         (24 * 60 * 60 * 1000) <
-        7
+        7;
     return (
       <>
         <AlertDialog
           open={openAlert}
-          setOpen={value => this.setState({ openAlert: value })}
+          setOpen={(value) => this.setState({ openAlert: value })}
           title={information.confirm_submit_change_information.title}
           content={information.confirm_submit_change_information.content}
           onAgree={this.onSubmitForm}
@@ -350,13 +351,13 @@ class UserInformationForm extends React.Component {
               label={city.nameField}
               inputProps={{
                 shrink: true,
-                name: "city",
-                id: "user-information-city",
+                name: 'city',
+                id: 'user-information-city',
               }}
               onChange={this.onChangeField}
             >
               <option aria-label="None" value="" />
-              {cities.map(city => (
+              {cities.map((city) => (
                 <option key={city.code} value={city.name}>
                   {city.name}
                 </option>
@@ -375,13 +376,13 @@ class UserInformationForm extends React.Component {
               label={district.nameField}
               inputProps={{
                 shrink: true,
-                name: "district",
-                id: "user-information-district",
+                name: 'district',
+                id: 'user-information-district',
               }}
               onChange={this.onChangeField}
             >
               <option aria-label="None" value="" />
-              {districts.map(district => (
+              {districts.map((district) => (
                 <option key={district.code} value={district.name}>
                   {district.name}
                 </option>
@@ -399,13 +400,13 @@ class UserInformationForm extends React.Component {
               value={ward.value}
               label={ward.nameField}
               inputProps={{
-                name: "ward",
-                id: "user-information-ward",
+                name: 'ward',
+                id: 'user-information-ward',
               }}
               onChange={this.onChangeField}
             >
-              <option aria-label="None" value={""} />
-              {wards.map(ward => (
+              <option aria-label="None" value={''} />
+              {wards.map((ward) => (
                 <option key={`ward-${ward.id}`} value={ward.name}>
                   {ward.name}
                 </option>
@@ -448,16 +449,16 @@ class UserInformationForm extends React.Component {
           </Flex>
         </Form>
       </>
-    )
+    );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  updateUserInformation: information =>
+const mapDispatchToProps = (dispatch) => ({
+  updateUserInformation: (information) =>
     dispatch(updateUserInformation(information)),
-})
+});
 
 export default connect(
   null,
   mapDispatchToProps
-)(WrapperUserGeneralInformationForm)
+)(WrapperUserGeneralInformationForm);

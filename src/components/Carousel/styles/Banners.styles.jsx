@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const CarouselBannerWrapper = styled.div`
   width: 95vw;
@@ -16,18 +16,18 @@ export const CarouselBannerWrapper = styled.div`
   & * {
     height: 100%;
   }
-`
+`;
 
 export const Image = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${({ img }) => (img ? `url(${img})` : "")};
+  background: ${({ img }) => (img ? `url(${img})` : '')};
   background-color: transparent;
   background-size: cover;
-  height: ${({ height }) => (height ? `${height}px` : "100%")};
+  height: ${({ height }) => (height ? `${height}px` : '100%')};
   align-items: flex-start;
   justify-content: center;
-  // padding : ${({ mobileView }) => (mobileView ? "2rem" : "0")} ;
+  // padding : ${({ mobileView }) => (mobileView ? '2rem' : '0')} ;
   position: relative;
   z-index: 0;
-`
+`;

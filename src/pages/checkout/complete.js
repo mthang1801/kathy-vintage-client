@@ -1,45 +1,45 @@
-import React, { useEffect } from "react"
-import { connect } from "react-redux"
-import { createStructuredSelector } from "reselect"
-import { clearCartItems } from "../../redux/cart/cart.actions"
-import { selectNewOrder } from "../../redux/orders/orders.selectors"
-import { selectCurrentUser } from "../../redux/user/user.selectors"
-import Layout from "../../containers/Layout"
-import { useLocation } from "@reach/router"
-import EmptyOrderProduct from "../../components/Checkout/EmptyOrderProduct"
-import { ContentContainer } from "../../styles/checkout.payment.styles"
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { clearCartItems } from '../../redux/cart/cart.actions';
+import { selectNewOrder } from '../../redux/orders/orders.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import Layout from '../../containers/Layout';
+import { useLocation } from '@reach/router';
+import EmptyOrderProduct from '../../components/Checkout/EmptyOrderProduct';
+import { ContentContainer } from '../../styles/checkout.payment.styles';
 import {
   Wrapper,
   ImageContainer,
   ButtonGroup,
-} from "../../styles/checkout.complete.styles"
-import { BiCheckCircle } from "react-icons/bi"
-import { useTheme } from "../../theme"
-import { useLanguage } from "../../locales"
-import POLICY from "../../constants/policy"
-import calculateEstimateTimeDilivery from "../../utils/calculateEstimateTimeDilivery"
-import Button from "@material-ui/core/Button"
-import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined"
-import { navigate } from "gatsby"
+} from '../../styles/checkout.complete.styles';
+import { BiCheckCircle } from 'react-icons/bi';
+import { useTheme } from '../../theme';
+import { useLanguage } from '../../locales';
+import POLICY from '../../constants/policy';
+import calculateEstimateTimeDilivery from '../../utils/calculateEstimateTimeDilivery';
+import Button from '@material-ui/core/Button';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import { navigate } from 'gatsby';
 
 const CheckoutComplete = ({ order, clearCartItems, user }) => {
-  const { state } = useLocation()
-  const { theme } = useTheme()
+  const { state } = useLocation();
+  const { theme } = useTheme();
   const {
     translation: {
       checkout: { complete },
     },
-  } = useLanguage()
+  } = useLanguage();
   useEffect(() => {
-    if (state?.from === "/checkout/payment") {
-      clearCartItems()
+    if (state?.from === '/checkout/payment') {
+      clearCartItems();
     }
-  }, [state])
-  const { estimateTimeDelivery: estimateTimeDeliveryPolicy } = POLICY
-  let estimateTime
+  }, [state]);
+  const { estimateTimeDelivery: estimateTimeDeliveryPolicy } = POLICY;
+  let estimateTime;
   if (order?.shipping_method) {
-    const { hours, days } = estimateTimeDeliveryPolicy[order?.shipping_method]
-    estimateTime = calculateEstimateTimeDilivery(days, hours)
+    const { hours, days } = estimateTimeDeliveryPolicy[order?.shipping_method];
+    estimateTime = calculateEstimateTimeDilivery(days, hours);
   }
 
   return (
@@ -67,7 +67,7 @@ const CheckoutComplete = ({ order, clearCartItems, user }) => {
                 color="primary"
                 variant="contained"
                 onClick={() => {
-                  navigate("/")
+                  navigate('/');
                 }}
               >
                 <HomeOutlinedIcon />
@@ -80,16 +80,16 @@ const CheckoutComplete = ({ order, clearCartItems, user }) => {
         )}
       </ContentContainer>
     </Layout>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   order: selectNewOrder,
   user: selectCurrentUser,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   clearCartItems: () => dispatch(clearCartItems()),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutComplete)
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutComplete);

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   *, :*, :after, :before, ::after, ::before{
@@ -85,8 +85,8 @@ export const GlobalStyles = createGlobalStyle`
   }
   body{    
     background-color : ${({ theme }) =>
-      theme ? theme.body : "var(--body)"}  !important  ;
-    color : ${({ theme }) => (theme ? theme.text : "var(--text)")} !important;
+      theme ? theme.body : 'var(--body)'}  !important  ;
+    color : ${({ theme }) => (theme ? theme.text : 'var(--text)')} !important;
     margin : 0; 
     padding : 0 ;
     width : 100vw;
@@ -100,4 +100,4 @@ export const GlobalStyles = createGlobalStyle`
   a{
     text-decoration : none ;    
   }
-`
+`;

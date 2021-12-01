@@ -1,12 +1,12 @@
-import { makeStyles } from "@material-ui/core/styles"
-import styled, { keyframes } from "styled-components"
-export const useStyles = makeStyles(theme => ({
+import { makeStyles } from '@material-ui/core/styles';
+import styled, { keyframes } from 'styled-components';
+export const useStyles = makeStyles((theme) => ({
   speedDial: {
-    position: "fixed",
-    bottom: "100px",
+    position: 'fixed',
+    bottom: '100px',
     right: theme.spacing(3),
   },
-}))
+}));
 
 const scale = keyframes`
   from {
@@ -15,7 +15,7 @@ const scale = keyframes`
   to {
     transform : scale(1.3);
   }
-`
+`;
 
 const blur = keyframes`
   from {
@@ -26,11 +26,11 @@ const blur = keyframes`
     opacity : 0;
     transform : scale(1.3);
   }
-`
+`;
 
 export const Wrapper = styled.div`
   .MuiSpeedDialAction-staticTooltip {
-    &[type="phone"] {
+    &[type='phone'] {
       .MuiButtonBase-root {
         background: linear-gradient(
           -135deg,
@@ -55,7 +55,7 @@ export const Wrapper = styled.div`
         box-shadow: ${({ theme }) => theme.boxShadow};
         transform: translateX(-10px);
         &:after {
-          content: "";
+          content: '';
           position: absolute;
           border: 10px solid;
           border-color: yellow yellow transparent transparent;
@@ -77,7 +77,7 @@ export const Wrapper = styled.div`
     &:hover {
       background-color: transparent;
     }
-    &[type="messenger"] {
+    &[type='messenger'] {
       background: linear-gradient(
         -135deg,
         rgb(255, 143, 178) 0%,
@@ -86,11 +86,11 @@ export const Wrapper = styled.div`
       );
       color: var(--white);
     }
-    &[type="facebook"] {
+    &[type='facebook'] {
       background: #3b5998;
       color: var(--white);
     }
-    &[type="phone"] {
+    &[type='phone'] {
       background: linear-gradient(
         -135deg,
         var(--blue-1) 0%,
@@ -99,7 +99,7 @@ export const Wrapper = styled.div`
       );
       color: var(--white);
     }
-    &[type="email"] {
+    &[type='email'] {
       background: linear-gradient(
         -135deg,
         var(--red-1) 0%,
@@ -115,7 +115,7 @@ export const Wrapper = styled.div`
   }
   .MuiSpeedDial-root > .MuiButtonBase-root {
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       width: 100%;
       height: 100%;
@@ -126,7 +126,7 @@ export const Wrapper = styled.div`
       z-index: -1;
     }
   }
-`
+`;
 
 export const Tooltip = styled.span`
   position: absolute;
@@ -134,4 +134,4 @@ export const Tooltip = styled.span`
   width: 120px;
   height: 40px;
   background-color: blue;
-`
+`;

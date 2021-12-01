@@ -1,11 +1,11 @@
-import React from "react"
-import { Wrapper, Title } from "./styles/Sidebar.styles"
-import SidebarFilterPrices from "./SidebarFilterPrices"
-import SidebarFilterDiscount from "./SidebarFilterDiscount"
-import SidebarManufactors from "./SidebarManufactors"
-import SidebarSorting from "./SidebarSorting"
+import React from 'react';
+import { Wrapper, Title } from './styles/Sidebar.styles';
+import SidebarFilterPrices from './SidebarFilterPrices';
+import SidebarFilterDiscount from './SidebarFilterDiscount';
+import SidebarManufactors from './SidebarManufactors';
+import SidebarSorting from './SidebarSorting';
 const SidebarFilter = ({ data, templateTranslation }) => {
-  const { productsPrice, manufactors } = data
+  const { productsPrice, manufactors } = data;
 
   return (
     <>
@@ -25,7 +25,7 @@ const SidebarFilter = ({ data, templateTranslation }) => {
         />
       ) : null}
     </>
-  )
-}
+  );
+};
 
-export default SidebarFilter
+export default SidebarFilter;

@@ -1,12 +1,12 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
   max-width: 500px;
   position: relative;
-  background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  background-color: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   & * {
-    color: ${({ theme }) => (theme ? theme.text : "var(--text)")};
+    color: ${({ theme }) => (theme ? theme.text : 'var(--text)')};
   }
   .ais-SearchBox-form {
     width: 100%;
@@ -75,7 +75,7 @@ export const Wrapper = styled.div`
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+    background-color: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   }
   .ais-Pagination {
     height: 12%;
@@ -106,14 +106,14 @@ export const Wrapper = styled.div`
     width: 100%;
     &:not(:last-child) {
       border-bottom: 1px solid
-        ${({ theme }) => (theme ? theme?.border : "var(--border)")};
+        ${({ theme }) => (theme ? theme?.border : 'var(--border)')};
     }
     transition: var(--mainTransition);
     &:hover {
       background-color: ${({ theme }) =>
-        theme ? theme?.hover?.background : "var(--hover-background)"};
+        theme ? theme?.hover?.background : 'var(--hover-background)'};
       color: ${({ theme }) =>
-        theme ? theme?.hover?.text : "var(--hover-text)"};
+        theme ? theme?.hover?.text : 'var(--hover-text)'};
     }
     a {
       display: block;
@@ -146,7 +146,7 @@ export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${({ theme }) => (theme ? theme.backgroun : "var(--card)")};
+    background: ${({ theme }) => (theme ? theme.backgroun : 'var(--card)')};
   }
   .ais-Highlight-highlighted {
     font-weight: bold;
@@ -155,4 +155,4 @@ export const Wrapper = styled.div`
   .d-none {
     display: none;
   }
-`
+`;

@@ -1,49 +1,49 @@
-import React, { useState, useEffect } from "react"
-import Layout from "../../containers/Layout"
+import React, { useState, useEffect } from 'react';
+import Layout from '../../containers/Layout';
 import {
   ContentContainer,
   Wrapper,
   Title,
-} from "../../styles/checkout.payment.styles"
-import { increaseSoldNumberProduct } from "../../database/products"
-import { selectCurrentUser } from "../../redux/user/user.selectors"
-import { selectCartItems } from "../../redux/cart/cart.selectors"
-import { createStructuredSelector } from "reselect"
-import { connect } from "react-redux"
-import CheckoutPaymentTypeOfShipping from "../../components/Checkout/CheckoutTypeOfShipping.Payment"
-import { useLanguage } from "../../locales"
-import Invoice from "../../components/Checkout/Invoice"
-import EmptyProductInCart from "../../components/Checkout/EmptyProductInCart"
-import { useTheme } from "../../theme"
-import OrderedProductItemPayment from "../../components/Checkout/OrderedProductItem.Payment"
-import UserInformationPayment from "../../components/Checkout/UserInformation.Payment"
-import TypeOfPayment from "../../components/Checkout/TypeOfPayment"
-import { selectOrdersError } from "../../redux/orders/orders.selectors"
-import { useLocation } from "@reach/router"
+} from '../../styles/checkout.payment.styles';
+import { increaseSoldNumberProduct } from '../../database/products';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import CheckoutPaymentTypeOfShipping from '../../components/Checkout/CheckoutTypeOfShipping.Payment';
+import { useLanguage } from '../../locales';
+import Invoice from '../../components/Checkout/Invoice';
+import EmptyProductInCart from '../../components/Checkout/EmptyProductInCart';
+import { useTheme } from '../../theme';
+import OrderedProductItemPayment from '../../components/Checkout/OrderedProductItem.Payment';
+import UserInformationPayment from '../../components/Checkout/UserInformation.Payment';
+import TypeOfPayment from '../../components/Checkout/TypeOfPayment';
+import { selectOrdersError } from '../../redux/orders/orders.selectors';
+import { useLocation } from '@reach/router';
 import {
   selectUserError,
   selectUserFetched,
-} from "../../redux/user/user.selectors"
+} from '../../redux/user/user.selectors';
 import {
   addNewOrder,
   ordersClearError,
-} from "../../redux/orders/orders.actions"
+} from '../../redux/orders/orders.actions';
 import {
   updateUserPaymentAndShippingType,
   userClearError,
-} from "../../redux/user/user.actions"
-import { navigate } from "gatsby"
-import StripeButton from "../../components/Controls/StripeButton"
-import Button from "@material-ui/core/Button"
-import POLICY from "../../constants/policy"
+} from '../../redux/user/user.actions';
+import { navigate } from 'gatsby';
+import StripeButton from '../../components/Controls/StripeButton';
+import Button from '@material-ui/core/Button';
+import POLICY from '../../constants/policy';
 import {
   orderTotalPrice,
   totalPriceWithShippingFee,
-} from "../../utils/calculateOrderPrice"
-import LoadingDialog from "../../components/UI/FeedBacks/Dialog/LoadingDialog"
-import ErrorDialog from "../../components/UI/FeedBacks/Dialog/ErrorDialog"
-import { mergeDuplicateProductsInCart } from "../../redux/cart/cart.utils"
-const tax = POLICY.tax
+} from '../../utils/calculateOrderPrice';
+import LoadingDialog from '../../components/UI/FeedBacks/Dialog/LoadingDialog';
+import ErrorDialog from '../../components/UI/FeedBacks/Dialog/ErrorDialog';
+import { mergeDuplicateProductsInCart } from '../../redux/cart/cart.utils';
+const tax = POLICY.tax;
 
 const Payment = ({
   cartItems,
@@ -58,40 +58,37 @@ const Payment = ({
 }) => {
   const {
     translation: { checkout },
-  } = useLanguage()
-  const { payment } = checkout
-  const { theme } = useTheme()
-  const [loading, setLoading] = useState(false)
-  const { pathname } = useLocation()
+  } = useLanguage();
+  const { payment } = checkout;
+  const { theme } = useTheme();
+  const [loading, setLoading] = useState(false);
+  const { pathname } = useLocation();
   const [shippingMethod, setShippingMethod] = useState(
     payment.typeOfShipping.standard
-  )
-  const [error, setError] = useState(undefined)
+  );
+  const [error, setError] = useState(undefined);
   const [paymentMethod, setPaymentMethod] = useState(
     user?.information?.paymentMethod
       ? payment.typeOfPayment[user.information.paymentMethod]
       : payment.typeOfPayment.payment_in_cash
-  )
+  );
   const [shippingFee, setShippingFee] = useState(
-    shippingMethod === "standard" ? 15000 : 30000
-  )
+    shippingMethod === 'standard' ? 15000 : 30000
+  );
 
   useEffect(() => {
-    setShippingFee(shippingMethod === "standard" ? 15000 : 30000)
-  }, [shippingMethod])
+    setShippingFee(shippingMethod === 'standard' ? 15000 : 30000);
+  }, [shippingMethod]);
 
   useEffect(() => {
     if (!user && userFetched) {
-      navigate("/auth", { state: { from: pathname } })
+      navigate('/auth', { state: { from: pathname } });
     }
-  }, [user, userFetched])
-  const _orderTotalPrice = orderTotalPrice(cartItems)  
-  const totalPrice = totalPriceWithShippingFee(
-    _orderTotalPrice,
-    shippingFee
-  )
+  }, [user, userFetched]);
+  const _orderTotalPrice = orderTotalPrice(cartItems);
+  const totalPrice = totalPriceWithShippingFee(_orderTotalPrice, shippingFee);
   const onClickProceedOrder = async (tokenId = null) => {
-    setLoading(true)
+    setLoading(true);
     try {
       await addNewOrder(
         user,
@@ -101,27 +98,27 @@ const Payment = ({
         paymentMethod.key,
         shippingMethod.key,
         tokenId
-      )
+      );
       await updateUserPaymentAndShippingType(
         paymentMethod.key,
         shippingMethod.key
-      )
-      await increaseSoldNumberProduct(cartItems)
-      navigate("/checkout/complete", { state: { from: "/checkout/payment" } })
-      setLoading(false)
+      );
+      await increaseSoldNumberProduct(cartItems);
+      navigate('/checkout/complete', { state: { from: '/checkout/payment' } });
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
-      setError(error.message || error)
+      setLoading(false);
+      setError(error.message || error);
     }
-  }
+  };
 
   const handleClearError = () => {
-    userClearError()
-    ordersClearError()
-  }
+    userClearError();
+    ordersClearError();
+  };
 
   if (userFetched && user && !user?.information)
-    return navigate("/checkout/shipping")
+    return navigate('/checkout/shipping');
   return (
     <Layout>
       <LoadingDialog open={loading || !userFetched} />
@@ -144,7 +141,7 @@ const Payment = ({
                     setShippingMethod={setShippingMethod}
                   />
                   <p>{payment.listOfOrderedProducts}</p>
-                  {mergeDuplicateProductsInCart(cartItems).map(product => (
+                  {mergeDuplicateProductsInCart(cartItems).map((product) => (
                     <OrderedProductItemPayment
                       key={product.contentful_id}
                       shippingMethod={shippingMethod}
@@ -167,7 +164,7 @@ const Payment = ({
                   cartItems={cartItems}
                   isPayment
                   shippingFee={shippingFee}
-                  orderTotalPrice={_orderTotalPrice}                 
+                  orderTotalPrice={_orderTotalPrice}
                   totalPrice={totalPrice}
                   tax={tax}
                 />
@@ -176,15 +173,15 @@ const Payment = ({
                   <StripeButton
                     user={user}
                     totalPrice={totalPrice}
-                    onClickProceedOrder={tokenId =>
+                    onClickProceedOrder={(tokenId) =>
                       onClickProceedOrder(tokenId)
                     }
                   >
-                    {" "}
+                    {' '}
                     <Button
                       color="secondary"
                       variant="contained"
-                      style={{ display: "block", width: "100%" }}
+                      style={{ display: 'block', width: '100%' }}
                     >
                       {checkout.button_proceed_order}
                     </Button>
@@ -193,7 +190,7 @@ const Payment = ({
                   <Button
                     color="secondary"
                     variant="contained"
-                    style={{ display: "block", width: "100%" }}
+                    style={{ display: 'block', width: '100%' }}
                     onClick={() => onClickProceedOrder()}
                   >
                     {checkout.button_proceed_order}
@@ -207,8 +204,8 @@ const Payment = ({
         </>
       )}
     </Layout>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
@@ -216,9 +213,9 @@ const mapStateToProps = createStructuredSelector({
   orderError: selectOrdersError,
   userError: selectUserError,
   userFetched: selectUserFetched,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addNewOrder: (
     user,
     products_line,
@@ -243,6 +240,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateUserPaymentAndShippingType(paymentMethod, shippingMethod)),
   ordersClearError: () => dispatch(ordersClearError()),
   userClearError: () => dispatch(userClearError()),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Payment)
+export default connect(mapStateToProps, mapDispatchToProps)(Payment);

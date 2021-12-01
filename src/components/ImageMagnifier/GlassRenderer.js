@@ -1,9 +1,9 @@
-import React from "react"
-import utils from "./utils"
-import Image from "./Image"
-import styles from "./styles"
+import React from 'react';
+import utils from './utils';
+import Image from './Image';
+import styles from './styles';
 
-const GlassRenderer = props => {
+const GlassRenderer = (props) => {
   const {
     itemRef,
     itemPosition,
@@ -26,38 +26,38 @@ const GlassRenderer = props => {
     onImageLoad,
     onLargeImageLoad,
     onLoadRefresh,
-  } = props
+  } = props;
 
-  const legalSize = itemDimensions.width > elementDimensions.width
-  const isActive = legalSize && active
+  const legalSize = itemDimensions.width > elementDimensions.width;
+  const isActive = legalSize && active;
 
   const magnifierSizeNum = utils.convertWidthToPx(
     magnifierSize,
     elementDimensions.width
-  )
+  );
 
-  const positionOffset = magnifierSizeNum / 2
+  const positionOffset = magnifierSizeNum / 2;
 
   const position = {
     x: itemPosition.x - activePosition.x + positionOffset - magnifierBorderSize,
     y: itemPosition.y - activePosition.y + positionOffset - magnifierBorderSize,
-  }
+  };
 
   const divPosition = {
     x: activePosition.x - positionOffset + magnifierOffsetX,
     y: activePosition.y - positionOffset + magnifierOffsetY,
-  }
+  };
 
-  const borderRadius = square ? "0" : "50%"
+  const borderRadius = square ? '0' : '50%';
 
   return (
     <React.Fragment>
       <Image
         style={{
-          width: "100%",
-          display: "block",
-          boxSizing: "border-box",
-          cursor: legalSize ? cursorStyle : "default",
+          width: '100%',
+          display: 'block',
+          boxSizing: 'border-box',
+          cursor: legalSize ? cursorStyle : 'default',
         }}
         src={imageSrc}
         alt={imageAlt}
@@ -71,13 +71,13 @@ const GlassRenderer = props => {
             magnifierSizeNum,
             true
           ),
-          visibility: !isActive ? "hidden" : "visible",
+          visibility: !isActive ? 'hidden' : 'visible',
           borderRadius,
-          zIndex: "1",
+          zIndex: '1',
           border: `${magnifierBorderSize}px solid ${magnifierBorderColor}`,
           transform: `translate(${divPosition.x}px, ${divPosition.y}px)`,
           backgroundColor: magnifierBackgroundColor,
-          backgroundClip: "padding-box",
+          backgroundClip: 'padding-box',
         }}
       >
         <Image
@@ -91,7 +91,7 @@ const GlassRenderer = props => {
       </div>
       {renderOverlay ? renderOverlay(active) : null}
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default GlassRenderer
+export default GlassRenderer;

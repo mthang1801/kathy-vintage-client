@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const ContentContainer = styled.div`
   width: 100%;
@@ -17,32 +17,32 @@ export const ContentContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 3fr;
   }
-`
+`;
 
 export const Sidebar = styled.div`
   display: none;
   @media screen and (min-width: 768px) {
     display: block;
   }
-  background-color: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  background-color: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   padding: 0.75rem 1rem;
   border: 1px solid var(--blue-1);
   border-radius: 0.5rem;
-  box-shadow: ${({ theme }) => (theme ? theme.boxShadow : "var(--boxShadow)")};
+  box-shadow: ${({ theme }) => (theme ? theme.boxShadow : 'var(--boxShadow)')};
   & a,
   & span,
   & p {
     font-size: 0.9rem;
   }
-`
+`;
 export const MainContent = styled.div`
-  background: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  background: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   border-radius: 0.5rem;
   margin-top: 3rem;
   @media screen and (min-width: 768px) {
     margin-top: 0;
   }
-`
+`;
 
 export const ProductsList = styled.section`
   width: 100%;
@@ -60,7 +60,7 @@ export const ProductsList = styled.section`
   @media screen and (min-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
   }
-`
+`;
 
 export const ProductCount = styled.p`
   font-size: 1rem;
@@ -73,7 +73,7 @@ export const ProductCount = styled.p`
   & svg {
     font-size: 1.1rem;
   }
-`
+`;
 export const ButtonFilter = styled.button`
   position: fixed;
   top: 65px;
@@ -96,11 +96,11 @@ export const ButtonFilter = styled.button`
   @media screen and (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 export const FilterList = styled.span`
   flex: 1;
   & > span:not(:first-child) {
     margin-left: 1rem;
   }
-`
+`;

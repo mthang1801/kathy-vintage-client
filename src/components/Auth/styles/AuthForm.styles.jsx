@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { Link } from "gatsby"
+import styled from 'styled-components';
+import { Link } from 'gatsby';
 export const AuthFormContainer = styled.form`
   width: 90%;
   max-width: 500px;
@@ -16,10 +16,10 @@ export const AuthFormContainer = styled.form`
   @media screen and (max-width: 500px) {
     padding: 1.5rem 2rem;
   } ;
-`
+`;
 export const FormHeader = styled.div`
   margin-bottom: 0.8rem;
-`
+`;
 
 export const FormGroups = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ export const FormGroups = styled.div`
     max-width: 600px;
     margin-bottom: 1rem;
   }
-`
+`;
 
 export const FormActions = styled.div`
   display: flex;
@@ -41,27 +41,27 @@ export const FormActions = styled.div`
   justify-content: center;
   align-items: center;
   margin: 1.5rem 0;
-`
+`;
 
 export const Title = styled.h2`
   text-transform: uppercase;
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
-`
+`;
 
 export const SubTitle = styled.span`
   color: #505050;
   font-size: 0.95em;
   opacity: 0.85;
-`
+`;
 
 export const StyledLink = styled(Link)`
   color: blue;
-`
+`;
 
 export const Option = styled.span`
   font-size: 0.95em;
-`
+`;
 
 export const SocialLoginButtons = styled.div`
   width: 100%;
@@ -80,18 +80,18 @@ export const SocialLoginButtons = styled.div`
       margin: 0;
     }
   }
-`
+`;
 
 export const ErrorMessage = styled.div`
   color: red;
   margin-bottom: 0.75rem;
   font-weight: 600;
-`
+`;
 export const SuccessMessage = styled.div`
   color: green;
   margin-bottom: 0.75rem;
   font-weight: 600;
-`
+`;
 
 export const ButtonSubmit = styled.button`
   outline: none;
@@ -133,4 +133,4 @@ export const ButtonSubmit = styled.button`
   &:disabled {
     opacity: 0.4;
   }
-`
+`;

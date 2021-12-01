@@ -1,12 +1,12 @@
-import React from "react"
-import PropTypes from "prop-types"
-import utils from "./utils"
+import React from 'react';
+import PropTypes from 'prop-types';
+import utils from './utils';
 import ReactInputPosition, {
   MOUSE_ACTIVATION,
   TOUCH_ACTIVATION,
-} from "react-input-position"
-import MagnifierPreviewRenderer from "./MagnifierPreviewRenderer"
-import { MagnifierContext } from "./MagnifierContainer"
+} from 'react-input-position';
+import MagnifierPreviewRenderer from './MagnifierPreviewRenderer';
+import { MagnifierContext } from './MagnifierContainer';
 
 function MagnifierPreview(props) {
   const {
@@ -30,7 +30,7 @@ function MagnifierPreview(props) {
     onZoomEnd,
     mouseActivation,
     touchActivation,
-  } = props
+  } = props;
 
   const {
     stateOverride,
@@ -40,7 +40,7 @@ function MagnifierPreview(props) {
     smallImageSize,
     position,
     inPlace,
-  } = React.useContext(MagnifierContext)
+  } = React.useContext(MagnifierContext);
 
   return (
     <ReactInputPosition
@@ -77,7 +77,7 @@ function MagnifierPreview(props) {
         position={position}
       />
     </ReactInputPosition>
-  )
+  );
 }
 
 MagnifierPreview.propTypes = {
@@ -105,23 +105,23 @@ MagnifierPreview.propTypes = {
   transitionSpeed: PropTypes.number,
   mouseActivation: PropTypes.string,
   touchActivation: PropTypes.string,
-}
+};
 
 MagnifierPreview.defaultProps = {
-  cursorStyle: "crosshair",
-  imageSrc: "",
-  imageAlt: "",
+  cursorStyle: 'crosshair',
+  imageSrc: '',
+  imageAlt: '',
   overlayOpacity: 0.5,
   overlayBoxOpacity: 0.8,
-  overlayBackgroundColor: "#000",
-  overlayBoxColor: "#fff",
-  overlayBoxImage: "",
-  overlayBoxImageSize: "",
+  overlayBackgroundColor: '#000',
+  overlayBoxColor: '#fff',
+  overlayBoxImage: '',
+  overlayBoxImageSize: '',
   transitionSpeed: 0.4,
   onImageLoad: utils.noop,
   onLargeImageLoad: utils.noop,
   mouseActivation: MOUSE_ACTIVATION.HOVER,
   touchActivation: TOUCH_ACTIVATION.TOUCH,
-}
+};
 
-export default MagnifierPreview
+export default MagnifierPreview;

@@ -1,6 +1,6 @@
-import React from "react"
-import { useLanguage } from "../../locales"
-import { Title, List, ContactLink } from "./styles/Footer.styles"
+import React from 'react';
+import { useLanguage } from '../../locales';
+import { Title, List, ContactLink } from './styles/Footer.styles';
 
 const AddressContact = () => {
   const {
@@ -9,13 +9,13 @@ const AddressContact = () => {
         contact: { title, listContacts },
       },
     },
-  } = useLanguage()
+  } = useLanguage();
 
   return (
     <section>
       <Title>{title}</Title>
       <List>
-        {listContacts.map(contact => (
+        {listContacts.map((contact) => (
           <ContactLink
             key={contact.name}
             href={contact.path}
@@ -27,7 +27,7 @@ const AddressContact = () => {
         ))}
       </List>
     </section>
-  )
-}
+  );
+};
 
-export default AddressContact
+export default AddressContact;

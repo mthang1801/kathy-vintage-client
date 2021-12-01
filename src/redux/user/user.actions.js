@@ -1,204 +1,208 @@
-import userActionTypes from "./user.types"
-import * as userDB from "../../database/user"
+import userActionTypes from './user.types';
+import * as userDB from '../../database/user';
 const signUpStart = () => ({
   type: userActionTypes.SIGN_UP_START,
-})
+});
 
-const signUpSuccess = userInfo => ({
+const signUpSuccess = (userInfo) => ({
   type: userActionTypes.SIGN_IN_SUCCESS,
   payload: userInfo,
-})
+});
 
-const signUpFail = error => ({
+const signUpFail = (error) => ({
   type: userActionTypes.SIGN_UP_FAIL,
   payload: error,
-})
+});
 
-export const signUpUser = (name, gender, email, password) => async dispatch => {
+export const signUpUser = (name, gender, email, password) => async (
+  dispatch
+) => {
   try {
-    dispatch(signUpStart())
+    dispatch(signUpStart());
     const user = await userDB.createUserWithEmailAndPassword(
       name,
       gender,
       email,
       password
-    )
-    const userResult = { ...user }
-    delete userResult.password
-    dispatch(signUpSuccess(userResult))
+    );
+    const userResult = { ...user };
+    delete userResult.password;
+    dispatch(signUpSuccess(userResult));
   } catch (error) {
-    dispatch(signUpFail(error.message))
+    dispatch(signUpFail(error.message));
   }
-}
+};
 
 const getCurrentUserStart = () => ({
   type: userActionTypes.GET_CURRENT_USER_START,
-})
+});
 
-const getCurrentUserSuccess = user => ({
+const getCurrentUserSuccess = (user) => ({
   type: userActionTypes.GET_CURRENT_USER_SUCCESS,
   payload: user,
-})
+});
 
-const getCurrentUserFail = error => ({
+const getCurrentUserFail = (error) => ({
   type: userActionTypes.GET_CURRENT_USER_FAIL,
   payload: error,
-})
+});
 
-export const checkUserSession = () => async dispatch => {
+export const checkUserSession = () => async (dispatch) => {
   try {
-    dispatch(getCurrentUserStart())
-    const user = await userDB.getCurrentUser()
-    dispatch(getCurrentUserSuccess(user))
+    dispatch(getCurrentUserStart());
+    const user = await userDB.getCurrentUser();
+    dispatch(getCurrentUserSuccess(user));
   } catch (error) {
-    dispatch(getCurrentUserFail(error.message))
+    dispatch(getCurrentUserFail(error.message));
   }
-}
+};
 
 const signOutUserStart = () => ({
   type: userActionTypes.SIGN_OUT_USER_START,
-})
+});
 
 const signOutUserSuccess = () => ({
   type: userActionTypes.SIGN_IN_SUCCESS,
-})
+});
 
-const signOutUserFail = error => ({
+const signOutUserFail = (error) => ({
   type: userActionTypes.SIGN_OUT_USER_FAIL,
   payload: error,
-})
+});
 
-export const signOutUser = () => async dispatch => {
+export const signOutUser = () => async (dispatch) => {
   try {
-    dispatch(signOutUserStart())
-    await userDB.signOutUser()
-    dispatch(signOutUserSuccess())
+    dispatch(signOutUserStart());
+    await userDB.signOutUser();
+    dispatch(signOutUserSuccess());
   } catch (error) {
-    dispatch(signOutUserFail(error.message))
+    dispatch(signOutUserFail(error.message));
   }
-}
+};
 
 const signInStart = () => ({
   type: userActionTypes.SIGN_IN_START,
-})
+});
 
-const signInSuccess = user => ({
+const signInSuccess = (user) => ({
   type: userActionTypes.SIGN_IN_SUCCESS,
   payload: user,
-})
+});
 
-const signInFail = error => ({
+const signInFail = (error) => ({
   type: userActionTypes.SIGN_IN_FAIL,
   payload: error,
-})
+});
 
-export const signIn = (email, password) => async dispatch => {
+export const signIn = (email, password) => async (dispatch) => {
   try {
-    dispatch(signInStart())
-    const user = await userDB.signInUser(email, password)
-    dispatch(signInSuccess(user))
+    dispatch(signInStart());
+    const user = await userDB.signInUser(email, password);
+    dispatch(signInSuccess(user));
   } catch (error) {
-    dispatch(signInFail(error.message))
+    dispatch(signInFail(error.message));
   }
-}
+};
 
 const signInWithSocialNetworkStart = () => ({
   type: userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_START,
-})
-const signInWithSocialNetworkSuccess = user => ({
+});
+const signInWithSocialNetworkSuccess = (user) => ({
   type: userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_SUCCESS,
   payload: user,
-})
-const signInWithSocialNetworkFail = error => ({
+});
+const signInWithSocialNetworkFail = (error) => ({
   type: userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_FAIL,
   payload: error,
-})
+});
 
-export const signInWithGoogle = () => async dispatch => {
+export const signInWithGoogle = () => async (dispatch) => {
   try {
-    dispatch(signInWithSocialNetworkStart())
-    const user = await userDB.signInWithGoogle()
-    dispatch(signInWithSocialNetworkSuccess(user))
+    dispatch(signInWithSocialNetworkStart());
+    const user = await userDB.signInWithGoogle();
+    dispatch(signInWithSocialNetworkSuccess(user));
   } catch (error) {
-    dispatch(signInWithSocialNetworkFail(error.message))
+    dispatch(signInWithSocialNetworkFail(error.message));
   }
-}
+};
 
-export const signInWithFacebook = () => async dispatch => {
+export const signInWithFacebook = () => async (dispatch) => {
   try {
-    dispatch(signInWithSocialNetworkStart())
-    const user = await userDB.signInWithFacebook()
-    dispatch(signInWithSocialNetworkSuccess(user))
+    dispatch(signInWithSocialNetworkStart());
+    const user = await userDB.signInWithFacebook();
+    dispatch(signInWithSocialNetworkSuccess(user));
   } catch (error) {
-    dispatch(signInWithSocialNetworkFail(error.message))
+    dispatch(signInWithSocialNetworkFail(error.message));
   }
-}
+};
 
 export const clearUserError = () => ({
   type: userActionTypes.CLEAR_USER_ERROR,
-})
+});
 
-export const restoreAccount = email => {
+export const restoreAccount = (email) => {
   return new Promise(async (resolve, reject) => {
     try {
-      await userDB.restoreAccount(email)
-      resolve(true)
+      await userDB.restoreAccount(email);
+      resolve(true);
     } catch (error) {
-      reject(error.message)
+      reject(error.message);
     }
-  })
-}
+  });
+};
 
 const updateUserInformationStart = () => ({
   type: userActionTypes.UPDATE_USER_INFORMATION_START,
-})
+});
 
-const updateUserInformationSuccess = updatedUser => ({
+const updateUserInformationSuccess = (updatedUser) => ({
   type: userActionTypes.UPDATE_USER_INFORMATION_SUCCESS,
   payload: updatedUser,
-})
+});
 
-const updateUserInformationFail = error => ({
+const updateUserInformationFail = (error) => ({
   type: userActionTypes.UPDATE_USER_INFORMATION_FAIL,
   payload: error,
-})
+});
 
-export const updateUserInformation = information => dispatch => {
+export const updateUserInformation = (information) => (dispatch) => {
   return new Promise(async (resolve, reject) => {
     try {
-      dispatch(updateUserInformationStart())
-      const updatedUser = await userDB.updateUserInformation(information)
-      dispatch(updateUserInformationSuccess(updatedUser))
-      resolve(true)
+      dispatch(updateUserInformationStart());
+      const updatedUser = await userDB.updateUserInformation(information);
+      dispatch(updateUserInformationSuccess(updatedUser));
+      resolve(true);
     } catch (error) {
-      dispatch(updateUserInformationFail(error.message))
-      reject(error.message)
+      dispatch(updateUserInformationFail(error.message));
+      reject(error.message);
     }
-  })
-}
+  });
+};
 
-const updateUserPaymentAndShippingTypeSuccess = paymentMethod => ({
+const updateUserPaymentAndShippingTypeSuccess = (paymentMethod) => ({
   type: userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_SUCCESS,
   payload: { paymentMethod },
-})
-const updateUserPaymentAndShippingTypeFail = error => ({
+});
+const updateUserPaymentAndShippingTypeFail = (error) => ({
   type: userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_FAIL,
   payload: error,
-})
+});
 
-export const updateUserPaymentAndShippingType = paymentMethod => dispatch => {
+export const updateUserPaymentAndShippingType = (paymentMethod) => (
+  dispatch
+) => {
   return new Promise(async (resolve, reject) => {
     try {
-      await userDB.updateUserPaymentAndShippingMethod(paymentMethod)
-      dispatch(updateUserPaymentAndShippingTypeSuccess(paymentMethod))
-      resolve(true)
+      await userDB.updateUserPaymentAndShippingMethod(paymentMethod);
+      dispatch(updateUserPaymentAndShippingTypeSuccess(paymentMethod));
+      resolve(true);
     } catch (error) {
-      dispatch(updateUserPaymentAndShippingTypeFail(error.message))
-      reject(false)
+      dispatch(updateUserPaymentAndShippingTypeFail(error.message));
+      reject(false);
     }
-  })
-}
+  });
+};
 
 export const userClearError = () => ({
   type: userActionTypes.CLEAR_ERROR,
-})
+});

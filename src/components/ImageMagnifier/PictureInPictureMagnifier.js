@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import utils from "./utils"
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import utils from './utils';
 import ReactInputPosition, {
   TOUCH_ACTIVATION,
   MOUSE_ACTIVATION,
-} from "react-input-position"
-import PictureInPictureRenderer from "./PictureInPictureRenderer"
+} from 'react-input-position';
+import PictureInPictureRenderer from './PictureInPictureRenderer';
 
 class PictureInPictureMagnifier extends Component {
-  containerRef = React.createRef()
+  containerRef = React.createRef();
 
   static propTypes = {
     imageSrc: PropTypes.oneOfType([
@@ -21,8 +21,8 @@ class PictureInPictureMagnifier extends Component {
     ]),
     imageAlt: PropTypes.string,
     previewSizePercentage: PropTypes.number,
-    previewHorizontalPos: PropTypes.oneOf(["left", "right"]),
-    previewVerticalPos: PropTypes.oneOf(["top", "bottom"]),
+    previewHorizontalPos: PropTypes.oneOf(['left', 'right']),
+    previewVerticalPos: PropTypes.oneOf(['top', 'bottom']),
     previewOpacity: PropTypes.number,
     previewOverlayOpacity: PropTypes.number,
     previewOverlayBoxOpacity: PropTypes.number,
@@ -41,28 +41,28 @@ class PictureInPictureMagnifier extends Component {
     onLargeImageLoad: PropTypes.func,
     onZoomStart: PropTypes.func,
     onZoomEnd: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
-    imageSrc: "",
-    largeImageSrc: "",
-    imageAlt: "",
+    imageSrc: '',
+    largeImageSrc: '',
+    imageAlt: '',
     previewSizePercentage: 35,
-    previewHorizontalPos: "left",
-    previewVerticalPos: "bottom",
+    previewHorizontalPos: 'left',
+    previewVerticalPos: 'bottom',
     previewOpacity: 0.8,
     previewOverlayOpacity: 0.4,
     previewOverlayBoxOpacity: 0.8,
-    previewOverlayBackgroundColor: "#000",
-    previewOverlayBoxColor: "#fff",
-    previewOverlayBoxImage: "",
-    previewOverlayBoxImageSize: "",
-    cursorStyle: "crosshair",
-    cursorStyleActive: "",
-    shadowColor: "rgba(0,0,0,.4)",
+    previewOverlayBackgroundColor: '#000',
+    previewOverlayBoxColor: '#fff',
+    previewOverlayBoxImage: '',
+    previewOverlayBoxImageSize: '',
+    cursorStyle: 'crosshair',
+    cursorStyleActive: '',
+    shadowColor: 'rgba(0,0,0,.4)',
     onImageLoad: utils.noop,
     onLargeImageLoad: utils.noop,
-  }
+  };
 
   render() {
     const {
@@ -90,7 +90,7 @@ class PictureInPictureMagnifier extends Component {
       onLargeImageLoad,
       onZoomStart,
       onZoomEnd,
-    } = this.props
+    } = this.props;
 
     return (
       <div
@@ -98,16 +98,16 @@ class PictureInPictureMagnifier extends Component {
         style={{
           ...style,
           textAlign: previewHorizontalPos,
-          overflow: "hidden",
-          fontSize: "0",
+          overflow: 'hidden',
+          fontSize: '0',
         }}
         className={className}
       >
         <ReactInputPosition
           style={{
             width: `${previewSizePercentage}%`,
-            display: "inline-block",
-            boxShadow: shadow ? `1px -1px 1px ${shadowColor}` : "none",
+            display: 'inline-block',
+            boxShadow: shadow ? `1px -1px 1px ${shadowColor}` : 'none',
           }}
           touchActivationMethod={TOUCH_ACTIVATION.TOUCH}
           mouseActivationMethod={MOUSE_ACTIVATION.MOUSE_DOWN}
@@ -143,8 +143,8 @@ class PictureInPictureMagnifier extends Component {
           />
         </ReactInputPosition>
       </div>
-    )
+    );
   }
 }
 
-export default PictureInPictureMagnifier
+export default PictureInPictureMagnifier;

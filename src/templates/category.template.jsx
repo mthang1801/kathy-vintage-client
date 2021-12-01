@@ -1,11 +1,11 @@
-import React from "react"
-import Layout from "../containers/Layout"
-import { graphql } from "gatsby"
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
-import LayoutTemplate from "./layout.template"
-import Seo from "../components/Seo/Seo"
-const CategoryTemplate = props => {
-  const { portfolio, category } = props.data
+import React from 'react';
+import Layout from '../containers/Layout';
+import { graphql } from 'gatsby';
+import BreadcrumbNavigation from '../components/BreadcrumbNavigation/BreadcrumbNavigation';
+import LayoutTemplate from './layout.template';
+import Seo from '../components/Seo/Seo';
+const CategoryTemplate = (props) => {
+  const { portfolio, category } = props.data;
   return (
     <>
       <Seo
@@ -17,8 +17,8 @@ const CategoryTemplate = props => {
         <LayoutTemplate data={props.data} pageLocation="category" />
       </Layout>
     </>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query($categoryId: String!) {
@@ -102,6 +102,6 @@ export const query = graphql`
       distinct(field: manufactor)
     }
   }
-`
+`;
 
-export default CategoryTemplate
+export default CategoryTemplate;

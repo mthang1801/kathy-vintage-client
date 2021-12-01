@@ -1,20 +1,20 @@
-import orderActionTypes from "./orders.types"
-import * as orderDB from "../../database/order"
-import POLICY from "../../constants/policy"
-const { tax } = POLICY
+import orderActionTypes from './orders.types';
+import * as orderDB from '../../database/order';
+import POLICY from '../../constants/policy';
+const { tax } = POLICY;
 const addNewOrderStart = () => ({
   type: orderActionTypes.ADD_NEW_ORDER_START,
-})
+});
 
-const addNewOrderSuccess = order => ({
+const addNewOrderSuccess = (order) => ({
   type: orderActionTypes.ADD_NEW_ORDER_SUCCESS,
   payload: order,
-})
+});
 
-const addNewOrderFail = err => ({
+const addNewOrderFail = (err) => ({
   type: orderActionTypes.ADD_NEW_ORDER_FAIL,
   payload: err,
-})
+});
 
 export const addNewOrder = (
   user,
@@ -24,14 +24,14 @@ export const addNewOrder = (
   payment_method,
   shipping_method,
   tokenId
-) => dispatch => {
+) => (dispatch) => {
   return new Promise(async (resolve, reject) => {
     try {
-      dispatch(addNewOrderStart())
+      dispatch(addNewOrderStart());
       const newOrderItem = {
         userId: user.uid,
         userInformation: user.information,
-        products_line: products.map(product => ({
+        products_line: products.map((product) => ({
           id: product.contentful_id,
           name_en: product.name_en,
           name_vi: product.name_vi,
@@ -59,79 +59,78 @@ export const addNewOrder = (
           shipping: null,
           complete: null,
         }, //["sent", "received", "shipping", "complete"]
-        order_status: "sent", //["canceled", "sent", "received", "shipping", "complete"]
+        order_status: 'sent', //["canceled", "sent", "received", "shipping", "complete"]
         createdAt: new Date(),
-      }
+      };
       if (tokenId) {
-        newOrderItem.tokenId = tokenId
+        newOrderItem.tokenId = tokenId;
       }
-      const newOrderResult = await orderDB.addNewOrder(newOrderItem)
-      dispatch(addNewOrderSuccess(newOrderResult))
-      resolve(true)
+      const newOrderResult = await orderDB.addNewOrder(newOrderItem);
+      dispatch(addNewOrderSuccess(newOrderResult));
+      resolve(true);
     } catch (error) {
-      dispatch(addNewOrderFail(error.message))
-      reject(false)
+      dispatch(addNewOrderFail(error.message));
+      reject(false);
     }
-  })
-}
+  });
+};
 
 export const ordersClearError = () => ({
   type: orderActionTypes.CLEAR_ERROR,
-})
+});
 
 const fetchOrdersStart = () => ({
   type: orderActionTypes.FETCH_ORDERS_START,
-})
+});
 
 const fetchOrdersSuccess = (orders, lastVisibleOrder, hasMoreOrders) => ({
   type: orderActionTypes.FETCH_ORDERS_SUCCESS,
   payload: { lastVisibleOrder, orders, hasMoreOrders },
-})
+});
 
-const fetchOrdersFail = error => ({
+const fetchOrdersFail = (error) => ({
   type: orderActionTypes.FETCH_ORDERS_FAIL,
   payload: error,
-})
+});
 
-export const fetchOrders = (
-  userId,
-  lastVisibleOrder = {}
-) => async dispatch => {
+export const fetchOrders = (userId, lastVisibleOrder = {}) => async (
+  dispatch
+) => {
   try {
-    dispatch(fetchOrdersStart())
+    dispatch(fetchOrdersStart());
     const { orders, lastOrder, hasMoreOrders } = await orderDB.fetchOrders(
       userId,
       lastVisibleOrder
-    )
-    dispatch(fetchOrdersSuccess(orders, lastOrder, hasMoreOrders))
+    );
+    dispatch(fetchOrdersSuccess(orders, lastOrder, hasMoreOrders));
   } catch (error) {
-    dispatch(fetchOrdersFail(error.message))
+    dispatch(fetchOrdersFail(error.message));
   }
-}
+};
 
-export const setHasMoreOrders = boolValue => ({
+export const setHasMoreOrders = (boolValue) => ({
   type: orderActionTypes.SET_HAS_MORE_ORDERS,
   payload: boolValue,
-})
+});
 
 const cancelOrderStart = () => ({
   type: orderActionTypes.CANCEL_ORDER_START,
-})
-const cancelOrderSuccess = orderId => ({
+});
+const cancelOrderSuccess = (orderId) => ({
   type: orderActionTypes.CANCEL_ORDER_SUCCESS,
   payload: orderId,
-})
-const cancelOrderFail = error => ({
+});
+const cancelOrderFail = (error) => ({
   type: orderActionTypes.CANCEL_ORDER_FAIL,
   payload: error,
-})
+});
 
-export const cancelOrder = orderId => async dispatch => {
+export const cancelOrder = (orderId) => async (dispatch) => {
   try {
-    dispatch(cancelOrderStart())
-    await orderDB.cancelOrder(orderId)
-    dispatch(cancelOrderSuccess(orderId))
+    dispatch(cancelOrderStart());
+    await orderDB.cancelOrder(orderId);
+    dispatch(cancelOrderSuccess(orderId));
   } catch (error) {
-    dispatch(cancelOrderFail(error.message))
+    dispatch(cancelOrderFail(error.message));
   }
-}
+};

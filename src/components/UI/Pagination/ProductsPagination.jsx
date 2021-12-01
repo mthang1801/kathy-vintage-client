@@ -1,28 +1,28 @@
-import React from "react"
-import ReactPaginate from "react-paginate"
-import { Wrapper } from "./styles/ProductsPagination.styles"
-import { useTheme } from "../../../theme"
+import React from 'react';
+import ReactPaginate from 'react-paginate';
+import { Wrapper } from './styles/ProductsPagination.styles';
+import { useTheme } from '../../../theme';
 const ProductsPagination = ({ numPages, currentPage, handlePageClick }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <Wrapper theme={theme}>
       <ReactPaginate
-        previousLabel={"<"}
-        nextLabel={">"}
-        breakLabel={"..."}
-        breakClassName={"break-me"}
+        previousLabel={'<'}
+        nextLabel={'>'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
         forcePage={currentPage - 1}
         initialPage={currentPage - 1}
         pageCount={numPages}
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        subContainerClassName={"pages pagination"}
-        activeClassName={"active"}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
       />
     </Wrapper>
-  )
-}
+  );
+};
 
-export default ProductsPagination
+export default ProductsPagination;

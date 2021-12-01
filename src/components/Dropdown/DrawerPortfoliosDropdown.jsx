@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
 import {
   MobileWrapper,
   TabletWrapper,
@@ -10,50 +10,50 @@ import {
   ViewPort,
   CategoriesList,
   ListItemContainer,
-} from "./styles/DrawerPortfoliosDropdown.styles"
-import Image from "gatsby-image"
-import { useStaticQuery, graphql } from "gatsby"
-import { useLanguage } from "../../locales"
-import ChevronRight from "@material-ui/icons/ChevronRight"
-import ChevronLeft from "@material-ui/icons/ChevronLeft"
-import Accordion from "@material-ui/core/Accordion"
-import AccordionDetails from "@material-ui/core/AccordionDetails"
-import AccordionSummary from "@material-ui/core/AccordionSummary"
-import DrawerCategoriesDropdown from "./DrawerCategoriesDropdown"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import { navigate } from "gatsby"
+} from './styles/DrawerPortfoliosDropdown.styles';
+import Image from 'gatsby-image';
+import { useStaticQuery, graphql } from 'gatsby';
+import { useLanguage } from '../../locales';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import DrawerCategoriesDropdown from './DrawerCategoriesDropdown';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { navigate } from 'gatsby';
 
 const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
-  const query = useStaticQuery(QUERY_PORTFOLIOS)
-  const classes = useStyles()
-  const initialSelectedPortfolio = { id: null, x: 0, y: 0 }
-  const [expanded, setExpanded] = useState(false)
+  const query = useStaticQuery(QUERY_PORTFOLIOS);
+  const classes = useStyles();
+  const initialSelectedPortfolio = { id: null, x: 0, y: 0 };
+  const [expanded, setExpanded] = useState(false);
   const [selectedPortfolio, setSelectedPortfolio] = useState(
     initialSelectedPortfolio
-  )
-  const portfolios = query.allContentfulPortfolio.edges
-  const { lang } = useLanguage()
+  );
+  const portfolios = query.allContentfulPortfolio.edges;
+  const { lang } = useLanguage();
 
-  const handleChange = contentful_id => (e, newExpanded) => {
-    setExpanded(newExpanded ? contentful_id : false)
-  }
+  const handleChange = (contentful_id) => (e, newExpanded) => {
+    setExpanded(newExpanded ? contentful_id : false);
+  };
   const onSelectedPortfolio = (e, id) => {
     if (selectedPortfolio.id === id) {
-      return setSelectedPortfolio(initialSelectedPortfolio)
+      return setSelectedPortfolio(initialSelectedPortfolio);
     }
     setSelectedPortfolio({
       id,
       x: e.clientX,
       y: e.clientY,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     if (!open) {
-      setExpanded(false)
-      setSelectedPortfolio(initialSelectedPortfolio)
+      setExpanded(false);
+      setSelectedPortfolio(initialSelectedPortfolio);
     }
-  }, [open])
+  }, [open]);
 
   return (
     <>
@@ -71,7 +71,7 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                     <ListItem>
                       <ListItemContainer
                         onClick={() => {
-                          onNavigate(`/${portfolio.slug}`)
+                          onNavigate(`/${portfolio.slug}`);
                         }}
                       >
                         <ListItemImage>
@@ -90,11 +90,11 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
 
                   <AccordionDetails className={classes.accordionDetails}>
                     {portfolio?.categories?.length
-                      ? portfolio.categories.map(category => (
+                      ? portfolio.categories.map((category) => (
                           <ListItem
                             key={category.contentful_id}
                             onClick={() => {
-                              onNavigate(`/${portfolio.slug}/${category.slug}`)
+                              onNavigate(`/${portfolio.slug}/${category.slug}`);
                             }}
                           >
                             <ListItemImage>
@@ -122,7 +122,7 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                 <ListItem>
                   <ListItemContainer
                     onClick={() => {
-                      onNavigate(`/${portfolio.slug}`)
+                      onNavigate(`/${portfolio.slug}`);
                     }}
                   >
                     <ListItemImage>
@@ -134,8 +134,8 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
                     <ListItemText>{portfolio[`name_${lang}`]}</ListItemText>
                   </ListItemContainer>
                   <ListItemIcon
-                    onClick={e => {
-                      onSelectedPortfolio(e, portfolio.contentful_id)
+                    onClick={(e) => {
+                      onSelectedPortfolio(e, portfolio.contentful_id);
                     }}
                   >
                     {selectedPortfolio.id === portfolio.contentful_id ? (
@@ -163,8 +163,8 @@ const PorfoliosDropdown = ({ open, handleDrawerClose, onNavigate }) => {
           : null}
       </TabletWrapper>
     </>
-  )
-}
+  );
+};
 
 const QUERY_PORTFOLIOS = graphql`
   query FetchPortfolios {
@@ -196,6 +196,6 @@ const QUERY_PORTFOLIOS = graphql`
       }
     }
   }
-`
+`;
 
-export default PorfoliosDropdown
+export default PorfoliosDropdown;

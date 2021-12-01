@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import {
   Wrapper,
   Title,
@@ -10,19 +10,19 @@ import {
   CustomButton,
   ProductColorItem,
   ButtonGroup,
-} from "./styles/ProductContent.styles"
-import Button from "@material-ui/core/Button"
-import { useLanguage } from "../../locales"
-import QuantityControl from "../Controls/QuantityControl"
-import { useTheme } from "../../theme"
+} from './styles/ProductContent.styles';
+import Button from '@material-ui/core/Button';
+import { useLanguage } from '../../locales';
+import QuantityControl from '../Controls/QuantityControl';
+import { useTheme } from '../../theme';
 import {
   addProductItemToCart,
   removeAlertCart,
-} from "../../redux/cart/cart.actions"
-import { connect } from "react-redux"
-import { selectCartItems } from "../../redux/cart/cart.selectors"
-import { createStructuredSelector } from "reselect"
-import { navigate } from "gatsby"
+} from '../../redux/cart/cart.actions';
+import { connect } from 'react-redux';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { createStructuredSelector } from 'reselect';
+import { navigate } from 'gatsby';
 const ProductContent = ({
   product,
   addProductItemToCart,
@@ -39,53 +39,53 @@ const ProductContent = ({
     isDiscount,
     discountPercentage,
     colors,
-  } = product
-  const { theme } = useTheme()
+  } = product;
+  const { theme } = useTheme();
   const {
     translation: {
       product: { productPage },
     },
     lang,
-  } = useLanguage()
+  } = useLanguage();
   const [selectedSize, setSelectedSize] = useState(
     sizes?.length ? sizes[0] : null
-  )
+  );
   const [selectedColor, setSelectedColor] = useState(
     colors?.length ? colors[0].color : null
-  )
+  );
   const [productQuantity, setProductQuantity] = useState(
-    cartItems.find(item => item.contentful_id === product.contentful_id)
+    cartItems.find((item) => item.contentful_id === product.contentful_id)
       ?.quantity || 1
-  )
+  );
   const productPrice =
     isDiscount && discountPercentage
       ? (unitPrice * (100 - parseFloat(discountPercentage))) / 100
-      : unitPrice
-  const onChangeColor = color => {
-    setSelectedColor(color)
-  }
+      : unitPrice;
+  const onChangeColor = (color) => {
+    setSelectedColor(color);
+  };
 
   const onAddProductItemToCart = () => {
-    const cloneProduct = { ...product }
+    const cloneProduct = { ...product };
     if (selectedColor) {
-      cloneProduct.selectedColor = selectedColor
+      cloneProduct.selectedColor = selectedColor;
     }
     if (selectedSize) {
-      cloneProduct.selectedSize = selectedSize
+      cloneProduct.selectedSize = selectedSize;
     }
-    cloneProduct.quantity = Math.max(1, productQuantity)
-    addProductItemToCart(cloneProduct)
-  }
+    cloneProduct.quantity = Math.max(1, productQuantity);
+    addProductItemToCart(cloneProduct);
+  };
 
   const onClickPurchase = () => {
-    onAddProductItemToCart()
-    removeAlertCart()
-    navigate("/checkout")
-  }
+    onAddProductItemToCart();
+    removeAlertCart();
+    navigate('/checkout');
+  };
 
   return (
     <Wrapper theme={theme}>
-      <Title>{lang === "en" ? name_en : name_vi}</Title>
+      <Title>{lang === 'en' ? name_en : name_vi}</Title>
       <div>
         {manufactor && (
           <span>
@@ -93,25 +93,25 @@ const ProductContent = ({
           </span>
         )}
         {origin && (
-          <span style={{ marginLeft: "2rem" }}>
+          <span style={{ marginLeft: '2rem' }}>
             {productPage.origin} : <strong>{origin}</strong>
           </span>
         )}
       </div>
       {/* Price component */}
-      <Flex spacing={0.5} theme={theme} style={{ padding: "1rem" }}>
+      <Flex spacing={0.5} theme={theme} style={{ padding: '1rem' }}>
         <OfficialPrice>
-          {productPrice.toLocaleString("de-DE", {
-            style: "currency",
-            currency: "VND",
+          {productPrice.toLocaleString('de-DE', {
+            style: 'currency',
+            currency: 'VND',
           })}
         </OfficialPrice>
         {isDiscount && discountPercentage && (
           <>
             <InitialPrice>
-              {unitPrice.toLocaleString("de-DE", {
-                style: "currency",
-                currency: "VND",
+              {unitPrice.toLocaleString('de-DE', {
+                style: 'currency',
+                currency: 'VND',
               })}
             </InitialPrice>
             <DiscountPercentage>{-discountPercentage}%</DiscountPercentage>
@@ -146,10 +146,10 @@ const ProductContent = ({
         </span>
       </Flex>
       <Grid>
-        {sizes.map(size => (
+        {sizes.map((size) => (
           <Button
             color="primary"
-            variant={selectedSize === size ? "contained" : "outlined"}
+            variant={selectedSize === size ? 'contained' : 'outlined'}
             onClick={() => setSelectedSize(size)}
             size="small"
           >
@@ -186,16 +186,16 @@ const ProductContent = ({
         </CustomButton>
       </ButtonGroup>
     </Wrapper>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
-  addProductItemToCart: product => dispatch(addProductItemToCart(product)),
+const mapDispatchToProps = (dispatch) => ({
+  addProductItemToCart: (product) => dispatch(addProductItemToCart(product)),
   removeAlertCart: () => dispatch(removeAlertCart()),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductContent)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductContent);

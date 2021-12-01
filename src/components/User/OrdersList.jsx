@@ -1,9 +1,9 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from 'react';
 import {
   selectCurrentUser,
   selectUserFetched,
   selectUserLoading,
-} from "../../redux/user/user.selectors"
+} from '../../redux/user/user.selectors';
 import {
   selectOrders,
   selectHasMoreOrders,
@@ -11,21 +11,21 @@ import {
   selectOrdersError,
   selectLastVisibleOrder,
   selectOrdersFetched,
-} from "../../redux/orders/orders.selectors"
-import { fetchOrders } from "../../redux/orders/orders.actions"
-import { connect } from "react-redux"
-import { createStructuredSelector } from "reselect"
+} from '../../redux/orders/orders.selectors';
+import { fetchOrders } from '../../redux/orders/orders.actions';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import {
   ContentContainer,
   ReadMoreContainer,
   ReadMoreText,
-} from "./styles/OrdersList.styles"
-import { useLanguage } from "../../locales"
-import OrderItem from "../Order/OrderItem"
-import EmptyOrder from "../Order/EmptyOrder"
-import OrderPageSkeleton from "../UI/Lab/Skeleton/OrderPage"
-import { navigate } from "gatsby-link"
-import { useLocation } from "@reach/router"
+} from './styles/OrdersList.styles';
+import { useLanguage } from '../../locales';
+import OrderItem from '../Order/OrderItem';
+import EmptyOrder from '../Order/EmptyOrder';
+import OrderPageSkeleton from '../UI/Lab/Skeleton/OrderPage';
+import { navigate } from 'gatsby-link';
+import { useLocation } from '@reach/router';
 const Orders = ({
   title,
   user,
@@ -41,20 +41,20 @@ const Orders = ({
 }) => {
   const {
     translation: { orders: ordersTranslation },
-  } = useLanguage()
-  const { pathname } = useLocation()
+  } = useLanguage();
+  const { pathname } = useLocation();
   useEffect(() => {
     if (user && !ordersFetched) {
-      fetchOrders(user.uid)
+      fetchOrders(user.uid);
     }
     if (!user && !userLoading && userIsFetched) {
-      navigate("/auth", { state: { from: pathname } })
+      navigate('/auth', { state: { from: pathname } });
     }
-  }, [user, userLoading, userIsFetched, ordersFetched])
+  }, [user, userLoading, userIsFetched, ordersFetched]);
 
   const onFetchMoreOrders = () => {
-    fetchOrders(user.uid, lastVisibleOrder)
-  }
+    fetchOrders(user.uid, lastVisibleOrder);
+  };
   return (
     <ContentContainer>
       {loading && !orders.length ? (
@@ -63,7 +63,7 @@ const Orders = ({
         <>
           {orders.length ? (
             <div>
-              {orders.map(order => (
+              {orders.map((order) => (
                 <OrderItem
                   key={order.id}
                   order={order}
@@ -86,8 +86,8 @@ const Orders = ({
         </>
       )}
     </ContentContainer>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
@@ -99,11 +99,11 @@ const mapStateToProps = createStructuredSelector({
   userLoading: selectUserLoading,
   userIsFetched: selectUserFetched,
   ordersFetched: selectOrdersFetched,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchOrders: (userId, lastVisibleOrder) =>
     dispatch(fetchOrders(userId, lastVisibleOrder)),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders)
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
 import {
   Wrapper,
   DashBoardContainer,
@@ -8,29 +8,29 @@ import {
   MobileToolbar,
   AvatarContainer,
   ButtonHomePage,
-} from "../styles/user.index.styles"
-import { useLanguage } from "../locales"
-import Divider from "@material-ui/core/Divider"
-import DashBoard from "../components/User/Dashboard"
-import GeneralInformation from "../components/User/GeneralInformation"
-import ChangePassword from "../components/User/ChangePassword"
-import OrdersList from "../components/User/OrdersList"
-import { connect } from "react-redux"
-import Skeleton from "@material-ui/lab/Skeleton"
+} from '../styles/user.index.styles';
+import { useLanguage } from '../locales';
+import Divider from '@material-ui/core/Divider';
+import DashBoard from '../components/User/Dashboard';
+import GeneralInformation from '../components/User/GeneralInformation';
+import ChangePassword from '../components/User/ChangePassword';
+import OrdersList from '../components/User/OrdersList';
+import { connect } from 'react-redux';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {
   selectCurrentUser,
   selectUserFetched,
   selectUserLoading,
-} from "../redux/user/user.selectors"
-import { createStructuredSelector } from "reselect"
-import { navigate } from "gatsby"
-import { useTheme } from "../theme"
-import GeneralInformationSkeleton from "../components/UI/Lab/Skeleton/GeneralInformation"
-import UserDashboardSkeleton from "../components/UI/Lab/Skeleton/UserDashboard"
-import UserDashBoardDialog from "../components/User/UserDashBoardDialog"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { AiOutlineHome } from "react-icons/ai"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+} from '../redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+import { navigate } from 'gatsby';
+import { useTheme } from '../theme';
+import GeneralInformationSkeleton from '../components/UI/Lab/Skeleton/GeneralInformation';
+import UserDashboardSkeleton from '../components/UI/Lab/Skeleton/UserDashboard';
+import UserDashBoardDialog from '../components/User/UserDashBoardDialog';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { AiOutlineHome } from 'react-icons/ai';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 const UserPage = ({ user, loading, isFetched }) => {
   const {
@@ -42,28 +42,28 @@ const UserPage = ({ user, loading, isFetched }) => {
       },
     },
     lang,
-  } = useLanguage()
-  const { theme } = useTheme()
+  } = useLanguage();
+  const { theme } = useTheme();
 
-  const [selectedOption, setSelectedOption] = useState(options[0].key)
-  const [openDashboardDialog, setOpenDashboardDialog] = useState(false)
-  let title
+  const [selectedOption, setSelectedOption] = useState(options[0].key);
+  const [openDashboardDialog, setOpenDashboardDialog] = useState(false);
+  let title;
   switch (selectedOption) {
     case options[1].key:
-      title = options[1].name
-      break
+      title = options[1].name;
+      break;
     case options[2].key:
-      title = options[2].name
-      break
+      title = options[2].name;
+      break;
     default:
-      title = options[0].name
+      title = options[0].name;
   }
 
   useEffect(() => {
     if (!loading && isFetched && !user) {
-      navigate("/", { replace: true })
+      navigate('/', { replace: true });
     }
-  }, [user, loading, isFetched])
+  }, [user, loading, isFetched]);
   return (
     <Wrapper>
       <UserDashBoardDialog
@@ -89,11 +89,11 @@ const UserPage = ({ user, loading, isFetched }) => {
               rounded
               onClick={() => {
                 trackCustomEvent({
-                  action: "Click",
-                  category: "navigate",
-                  label: "Go Home page",
-                })
-                navigate("/")
+                  action: 'Click',
+                  category: 'navigate',
+                  label: 'Go Home page',
+                });
+                navigate('/');
               }}
             >
               <AiOutlineHome />
@@ -160,12 +160,12 @@ const UserPage = ({ user, loading, isFetched }) => {
         )}
       </MainContent>
     </Wrapper>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
   loading: selectUserLoading,
   isFetched: selectUserFetched,
-})
-export default connect(mapStateToProps)(UserPage)
+});
+export default connect(mapStateToProps)(UserPage);

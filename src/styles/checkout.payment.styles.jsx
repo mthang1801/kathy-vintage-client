@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const ContentContainer = styled.div`
   width: 95vw;
@@ -20,18 +20,18 @@ export const ContentContainer = styled.div`
     display: grid;
     grid-template-columns: 3fr 1.25fr;
   }
-`
+`;
 export const Wrapper = styled.div`
   padding: 0.75rem;
-  border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
+  border: 1px solid ${({ theme }) => (theme ? theme.border : 'var(--border)')};
   border-radius: 0.5rem;
-  background: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  background: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   & > *:not(:last-child) {
     margin-bottom: 1rem;
   }
-`
+`;
 export const Title = styled.h3`
   margin: 0;
   font-size: 1.25rem;
   margin-bottom: 1rem;
-`
+`;

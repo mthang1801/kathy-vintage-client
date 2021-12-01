@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components"
-import { Link } from "gatsby"
+import styled, { keyframes } from 'styled-components';
+import { Link } from 'gatsby';
 const CartAlertAnimation = keyframes`
   0%{
     opacity : 0 ;
@@ -9,18 +9,18 @@ const CartAlertAnimation = keyframes`
     opacity : 1;
     visibility : visible;
   }
-`
+`;
 
 export const Wrapper = styled.div`
   width: 18rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: 2px solid var(--blue-1);
-  box-shadow: ${({ theme }) => (theme ? theme?.boxShadow : "var(--boxShadow)")};
-  background-color: ${({ theme }) => (theme ? theme?.card : "var(--card)")};
+  box-shadow: ${({ theme }) => (theme ? theme?.boxShadow : 'var(--boxShadow)')};
+  background-color: ${({ theme }) => (theme ? theme?.card : 'var(--card)')};
   animation: ${CartAlertAnimation} 0.5s;
   font-size: 0.9rem;
-`
+`;
 
 export const ButtonCheckout = styled(Link)`
   display: block;
@@ -39,4 +39,4 @@ export const ButtonCheckout = styled(Link)`
   &:hover {
     background: var(--red-3);
   }
-`
+`;

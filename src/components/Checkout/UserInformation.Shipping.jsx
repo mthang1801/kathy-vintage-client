@@ -1,35 +1,35 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   UserName,
   UserInfomationControls,
-} from "./styles/UserInformation.Shipping.styles"
-import { useLanguage } from "../../locales"
-import { useTheme } from "../../theme"
-import Button from "@material-ui/core/Button"
-import { navigate } from "gatsby"
+} from './styles/UserInformation.Shipping.styles';
+import { useLanguage } from '../../locales';
+import { useTheme } from '../../theme';
+import Button from '@material-ui/core/Button';
+import { navigate } from 'gatsby';
 const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
   const {
     translation: {
       checkout: { userInformation },
     },
     lang,
-  } = useLanguage()
-  const { theme } = useTheme()
+  } = useLanguage();
+  const { theme } = useTheme();
   const userAddress =
-    lang === "en"
+    lang === 'en'
       ? `${user.information?.address}  
   ${user.information?.ward} Ward, ${user.information?.district} Dist
   ${user.information?.city} City`
       : `${user.information?.address}  
   Phường ${user.information?.ward}, Quận ${user.information?.district}, Thành phố
-  ${user.information?.city}`
+  ${user.information?.city}`;
   const navigateToPayment = () => {
-    navigate("/checkout/payment")
-  }
+    navigate('/checkout/payment');
+  };
   const onUpdateInfo = () => {
-    setUpdateInfo(true)
-  }
+    setUpdateInfo(true);
+  };
   return (
     <Wrapper theme={theme}>
       <UserName>{user.information?.fullname}</UserName>
@@ -55,7 +55,7 @@ const UserInformationShipping = ({ user, setUpdateInfo, openUpdateForm }) => {
         )}
       </UserInfomationControls>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default UserInformationShipping
+export default UserInformationShipping;

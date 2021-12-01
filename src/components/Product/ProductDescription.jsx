@@ -1,18 +1,18 @@
-import React, { useState } from "react"
-import { Title } from "./styles/ProductDescription.styles"
-import { validateYouTubeUrl, checkImageUrl } from "../../utils/checkUrl"
-import ReactPlayer from "react-player"
-import { useTheme } from "../../theme"
-import { useLanguage } from "../../locales"
-import Markdown from "markdown-to-jsx"
-import PostImageItem from "./PostImageItem"
+import React, { useState } from 'react';
+import { Title } from './styles/ProductDescription.styles';
+import { validateYouTubeUrl, checkImageUrl } from '../../utils/checkUrl';
+import ReactPlayer from 'react-player';
+import { useTheme } from '../../theme';
+import { useLanguage } from '../../locales';
+import Markdown from 'markdown-to-jsx';
+import PostImageItem from './PostImageItem';
 import {
   MarkdownContainer,
   BlurSection,
   ReadMore,
   ReadMoreLink,
-} from "./styles/ProductDescription.styles"
-import { getDeviceType } from "../../utils/getDeviceType"
+} from './styles/ProductDescription.styles';
+import { getDeviceType } from '../../utils/getDeviceType';
 
 const ProductDescription = ({ product }) => {
   const {
@@ -20,34 +20,34 @@ const ProductDescription = ({ product }) => {
       product: { productPage },
     },
     lang,
-  } = useLanguage()
-  const { theme } = useTheme()
+  } = useLanguage();
+  const { theme } = useTheme();
   const description =
-    lang === "en"
+    lang === 'en'
       ? product.description_en.description_en
-      : product.description_vi.description_vi
-  const [isReadMore, setIsReadMore] = useState(false)
+      : product.description_vi.description_vi;
+  const [isReadMore, setIsReadMore] = useState(false);
   const HeadingsMainOfPost = ({ children, ...props }) => {
-    return <h2 {...props}>{children}</h2>
-  }
+    return <h2 {...props}>{children}</h2>;
+  };
   const HeadingsSubsetOfPost = ({ children, ...props }) => {
-    return <h3 {...props}>{children}</h3>
-  }
+    return <h3 {...props}>{children}</h3>;
+  };
 
   const AnchorOfPost = ({ children, ...props }) => {
-    const { href: uri } = props
+    const { href: uri } = props;
     if (validateYouTubeUrl(uri)) {
       return (
         <ReactPlayer
           url={uri}
           controls
-          width={getDeviceType() === "mobile" ? "100%" : "650px"}
-          height={getDeviceType() === "mobile" ? "300px" : "450px"}
+          width={getDeviceType() === 'mobile' ? '100%' : '650px'}
+          height={getDeviceType() === 'mobile' ? '300px' : '450px'}
         />
-      )
+      );
     }
     if (checkImageUrl(uri)) {
-      return <PostImageItem src={uri} title={uri} />
+      return <PostImageItem src={uri} title={uri} />;
     }
     return (
       <a
@@ -55,19 +55,19 @@ const ProductDescription = ({ product }) => {
         target="_blank"
         rel="noreferrer"
         className="post-link"
-        style={{ wordBreak: "break-word" }}
+        style={{ wordBreak: 'break-word' }}
       >
         {children}
       </a>
-    )
-  }
+    );
+  };
   const ImageOfPost = ({ children, ...props }) => {
-    const staticVideoPattern = /(watch|videos|video)+/
+    const staticVideoPattern = /(watch|videos|video)+/;
     if (staticVideoPattern.test(props.src)) {
-      return <ReactPlayer src={`https:${props.src}`} />
+      return <ReactPlayer src={`https:${props.src}`} />;
     }
-    return <PostImageItem src={props.src} title={props.title} />
-  }
+    return <PostImageItem src={props.src} title={props.title} />;
+  };
   const options = {
     overrides: {
       h2: {
@@ -83,7 +83,7 @@ const ProductDescription = ({ product }) => {
         component: ImageOfPost,
       },
     },
-  }
+  };
 
   return (
     <>
@@ -96,7 +96,7 @@ const ProductDescription = ({ product }) => {
           </MarkdownContainer>
           <ReadMore>
             <ReadMoreLink
-              onClick={() => setIsReadMore(prevState => !prevState)}
+              onClick={() => setIsReadMore((prevState) => !prevState)}
               theme={theme}
             >
               {isReadMore ? productPage.shortenText : productPage.readMore}
@@ -105,7 +105,7 @@ const ProductDescription = ({ product }) => {
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ProductDescription
+export default ProductDescription;

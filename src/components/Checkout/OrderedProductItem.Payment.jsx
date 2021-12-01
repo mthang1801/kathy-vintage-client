@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   ImageContainer,
@@ -8,12 +8,12 @@ import {
   ProductShippingInformation,
   ProductShippingOverview,
   ShippingTime,
-} from "./styles/CheckoutOrderedProductItem.Payment.styles"
-import { useLanguage } from "../../locales"
-import { useTheme } from "../../theme"
-import Moment from "react-moment"
-import "moment/locale/vi"
-import "moment/locale/es-us"
+} from './styles/CheckoutOrderedProductItem.Payment.styles';
+import { useLanguage } from '../../locales';
+import { useTheme } from '../../theme';
+import Moment from 'react-moment';
+import 'moment/locale/vi';
+import 'moment/locale/es-us';
 
 const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
   const {
@@ -21,15 +21,15 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
       checkout: { payment },
     },
     lang,
-  } = useLanguage()
-  const { theme } = useTheme()
+  } = useLanguage();
+  const { theme } = useTheme();
   const productPrice =
     product.isDiscount && product.discountPercentage
       ? (product.quantity *
           product.unitPrice *
           (100 - +product.discountPercentage)) /
         100
-      : product.quantity * product.unitPrice
+      : product.quantity * product.unitPrice;
   return (
     <Wrapper theme={theme}>
       <ImageContainer>
@@ -44,7 +44,7 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
             {product[`name_${lang}`]}
             {product.selectedColor && (
               <p>
-                <strong>{payment.product.color}:</strong>{" "}
+                <strong>{payment.product.color}:</strong>{' '}
                 {product.selectedColor}
               </p>
             )}
@@ -59,8 +59,8 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
               {payment.quantity} : <strong>{product.quantity}</strong>
             </span>
             <span>
-              {payment.price} :{" "}
-              <strong>{productPrice.toLocaleString("de-DE")}</strong>
+              {payment.price} :{' '}
+              <strong>{productPrice.toLocaleString('de-DE')}</strong>
             </span>
           </ProductPriceAndQuantity>
         </ProductInformationOverview>
@@ -69,11 +69,11 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
             {payment.shipping} {shippingMethod.value}
           </p>
           <ShippingTime theme={theme}>
-            <span style={{ color: "" }}>Dự kiến: </span>
-            {shippingMethod.key === "fast" ? (
+            <span style={{ color: '' }}>Dự kiến: </span>
+            {shippingMethod.key === 'fast' ? (
               <Moment
                 add={{ hours: 2 }}
-                locale={lang === "vi" ? "vi" : "es-us"}
+                locale={lang === 'vi' ? 'vi' : 'es-us'}
                 format="dddd DD MMM - hh:mm"
               >
                 {new Date()}
@@ -81,7 +81,7 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
             ) : (
               <Moment
                 add={{ days: 3 }}
-                locale={lang === "vi" ? "vi" : "es-us"}
+                locale={lang === 'vi' ? 'vi' : 'es-us'}
                 format="dddd DD MMM"
               >
                 {new Date()}
@@ -91,7 +91,7 @@ const CheckoutPaymentOrderedProductItem = ({ product, shippingMethod }) => {
         </ProductShippingOverview>
       </ProductShippingInformation>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default CheckoutPaymentOrderedProductItem
+export default CheckoutPaymentOrderedProductItem;

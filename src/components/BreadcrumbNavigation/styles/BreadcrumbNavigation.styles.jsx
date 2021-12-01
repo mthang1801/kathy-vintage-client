@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { Link } from "gatsby"
+import styled from 'styled-components';
+import { Link } from 'gatsby';
 export const Wrapper = styled.section`
   width: 100%;
   height: 2.5rem;
@@ -10,7 +10,7 @@ export const Wrapper = styled.section`
   @media screen and (min-width: 768px) {
     display: flex;
   }
-`
+`;
 
 export const BreadcrumbItemLink = styled(Link)`
   text-decoration: none;
@@ -26,10 +26,10 @@ export const BreadcrumbItemLink = styled(Link)`
   overflow: hidden;
   position: relative;
   color: ${({ theme }) =>
-    theme ? theme?.breadcrumb?.link?.color : "var(--breadcrumb-link-color)"};
+    theme ? theme?.breadcrumb?.link?.color : 'var(--breadcrumb-link-color)'};
   &:not(:last-child):after {
     position: absolute;
-    content: "";
+    content: '';
     width: 2.5rem;
     height: 2.5rem;
     border: 2px solid;
@@ -37,10 +37,10 @@ export const BreadcrumbItemLink = styled(Link)`
     border-color: ${({ theme }) =>
       theme
         ? `${theme?.navigation?.background} ${theme?.navigation?.background} transparent transparent`
-        : "var(--naivgation-background) var(--naivgation-background) transparent transparent"};
+        : 'var(--naivgation-background) var(--naivgation-background) transparent transparent'};
     right: 0.75rem;
   }
   &:last-child {
     color: inherit;
   }
-`
+`;

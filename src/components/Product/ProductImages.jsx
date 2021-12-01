@@ -1,20 +1,20 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import {
   Wrapper,
   PresentImage,
   CarouselImages,
   ImageContainer,
-} from "./styles/ProductImages.styles"
-import ProductImageMagnifier from "./ProductImageMagnifier"
-import ProductImagesCarousel from "../Carousel/ProductImages"
-import { getDeviceType } from "../../utils/getDeviceType"
-import { LazyLoadImage } from "react-lazy-load-image-component"
+} from './styles/ProductImages.styles';
+import ProductImageMagnifier from './ProductImageMagnifier';
+import ProductImagesCarousel from '../Carousel/ProductImages';
+import { getDeviceType } from '../../utils/getDeviceType';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 const ProductImages = ({ images }) => {
-  const [activeImage, setActiveImage] = useState(0)
+  const [activeImage, setActiveImage] = useState(0);
   return (
     <Wrapper>
       <PresentImage>
-        {getDeviceType() === "desktop" ? (
+        {getDeviceType() === 'desktop' ? (
           <ProductImageMagnifier
             image={`https:${images[activeImage].file.url}`}
             width={images[activeImage].file.details.image.width}
@@ -39,7 +39,7 @@ const ProductImages = ({ images }) => {
         ) : null}
       </CarouselImages>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default ProductImages
+export default ProductImages;

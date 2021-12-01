@@ -1,13 +1,13 @@
-import React from "react"
-import PropTypes from "prop-types"
-import utils from "./utils"
+import React from 'react';
+import PropTypes from 'prop-types';
+import utils from './utils';
 import ReactInputPosition, {
   TOUCH_ACTIVATION,
   MOUSE_ACTIVATION,
-} from "react-input-position"
-import GlassRenderer from "./GlassRenderer"
+} from 'react-input-position';
+import GlassRenderer from './GlassRenderer';
 
-const GlassMagnifier = props => {
+const GlassMagnifier = (props) => {
   const {
     imageSrc,
     largeImageSrc,
@@ -28,14 +28,14 @@ const GlassMagnifier = props => {
     onLargeImageLoad,
     onZoomStart,
     onZoomEnd,
-  } = props
+  } = props;
 
   return (
     <ReactInputPosition
       style={{
         ...style,
-        position: "relative",
-        overflow: allowOverflow ? "visible" : "hidden",
+        position: 'relative',
+        overflow: allowOverflow ? 'visible' : 'hidden',
       }}
       className={className}
       touchActivationMethod={TOUCH_ACTIVATION.TOUCH}
@@ -63,8 +63,8 @@ const GlassMagnifier = props => {
         onLargeImageLoad={onLargeImageLoad}
       />
     </ReactInputPosition>
-  )
-}
+  );
+};
 
 GlassMagnifier.propTypes = {
   imageSrc: PropTypes.oneOfType([
@@ -90,23 +90,23 @@ GlassMagnifier.propTypes = {
   style: PropTypes.object,
   onImageLoad: PropTypes.func,
   onLargeImageLoad: PropTypes.func,
-}
+};
 
 GlassMagnifier.defaultProps = {
-  imageSrc: "",
-  largeImageSrc: "",
-  imageAlt: "",
+  imageSrc: '',
+  largeImageSrc: '',
+  imageAlt: '',
   allowOverflow: false,
   magnifierBorderSize: 3,
-  magnifierBorderColor: "rgba(255,255,255,.5)",
-  magnifierBackgroundColor: "rgba(225,225,225,.5)",
-  magnifierSize: "25%",
+  magnifierBorderColor: 'rgba(255,255,255,.5)',
+  magnifierBackgroundColor: 'rgba(225,225,225,.5)',
+  magnifierSize: '25%',
   magnifierOffsetX: 0,
   magnifierOffsetY: 0,
   square: false,
-  cursorStyle: "none",
+  cursorStyle: 'none',
   onImageLoad: utils.noop,
   onLargeImageLoad: utils.noop,
-}
+};
 
-export default GlassMagnifier
+export default GlassMagnifier;

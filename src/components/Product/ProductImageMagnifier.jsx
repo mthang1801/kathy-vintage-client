@@ -1,17 +1,17 @@
-import React from "react"
-import { SideBySideMagnifier } from "react-image-magnifiers"
-import { Wrapper } from "./styles/ProductImageMagnifier.styles"
-import { getDeviceType } from "../../utils/getDeviceType"
+import React from 'react';
+import { SideBySideMagnifier } from 'react-image-magnifiers';
+import { Wrapper } from './styles/ProductImageMagnifier.styles';
+import { getDeviceType } from '../../utils/getDeviceType';
 const ProductImageMagnifier = ({ image, width }) => {
   return (
     <Wrapper>
       <div
         style={{
-          display: "flex",
+          display: 'flex',
           justifyContent:
-            width < 800 || getDeviceType() !== "desktop"
-              ? "center"
-              : "space-between",
+            width < 800 || getDeviceType() !== 'desktop'
+              ? 'center'
+              : 'space-between',
         }}
       >
         <SideBySideMagnifier
@@ -35,7 +35,7 @@ const ProductImageMagnifier = ({ image, width }) => {
         />
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default ProductImageMagnifier
+export default ProductImageMagnifier;

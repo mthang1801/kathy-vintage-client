@@ -1,21 +1,21 @@
-import React, { useEffect } from "react"
-import Toolbar from "../components/Toolbar/Toolbar"
-import NavigationBar from "../components/Navigation/NavigationBar"
-import Footer from "../components/Footer/Footer"
+import React, { useEffect } from 'react';
+import Toolbar from '../components/Toolbar/Toolbar';
+import NavigationBar from '../components/Navigation/NavigationBar';
+import Footer from '../components/Footer/Footer';
 import {
   Container,
   MainContent,
   Header,
   StepperContainer,
-} from "./styles/Layout.styles"
-import { useTheme } from "../theme"
-import { useLocation } from "@reach/router"
-import Stepper from "../components/Checkout/Stepper"
-import ContactSpeedDial from "../components/UI/Lab/SpeedDial/ContactSpeedDial"
+} from './styles/Layout.styles';
+import { useTheme } from '../theme';
+import { useLocation } from '@reach/router';
+import Stepper from '../components/Checkout/Stepper';
+import ContactSpeedDial from '../components/UI/Lab/SpeedDial/ContactSpeedDial';
 const Layout = ({ children }) => {
-  const { theme } = useTheme()
-  const { pathname } = useLocation()
-  const stepperMatchPattern = /^\/checkout/
+  const { theme } = useTheme();
+  const { pathname } = useLocation();
+  const stepperMatchPattern = /^\/checkout/;
 
   return (
     <div>
@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
         <Footer />
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

@@ -1,12 +1,12 @@
-import React from "react"
-import { useLanguage } from "../../locales"
-import { Title } from "./styles/Footer.styles"
+import React from 'react';
+import { useLanguage } from '../../locales';
+import { Title } from './styles/Footer.styles';
 const AddressContact = () => {
   const {
     translation: {
       footer: { about },
     },
-  } = useLanguage()
+  } = useLanguage();
   return (
     <section>
       <Title>{about.title}</Title>
@@ -25,10 +25,10 @@ const AddressContact = () => {
         </div>
       )}
       {about?.otherBrands?.length
-        ? about.otherBrands.map(brand => <p key={brand}>{brand}</p>)
+        ? about.otherBrands.map((brand) => <p key={brand}>{brand}</p>)
         : null}
     </section>
-  )
-}
+  );
+};
 
-export default AddressContact
+export default AddressContact;

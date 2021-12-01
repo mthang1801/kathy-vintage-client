@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   Title,
@@ -7,12 +7,12 @@ import {
   ReadMoreLink,
   Body,
   Footer,
-} from "./styles/ProductsList.styles"
-import { useTheme } from "../../theme"
-import { useLanguage } from "../../locales"
-import ProductItem from "./ProductItem"
-import { v4 as uuidv4 } from "uuid"
-import { getDeviceType } from "../../utils/getDeviceType"
+} from './styles/ProductsList.styles';
+import { useTheme } from '../../theme';
+import { useLanguage } from '../../locales';
+import ProductItem from './ProductItem';
+import { v4 as uuidv4 } from 'uuid';
+import { getDeviceType } from '../../utils/getDeviceType';
 const ProductsList = ({
   header,
   products,
@@ -20,16 +20,16 @@ const ProductsList = ({
   currentPage,
   numPage,
 }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const {
     translation: {
       others: { seeAll },
     },
-  } = useLanguage()
+  } = useLanguage();
   products =
-    getDeviceType() === "mobile"
-      ? products.filter((_, idx) => idx < 10).map(product => product)
-      : products
+    getDeviceType() === 'mobile'
+      ? products.filter((_, idx) => idx < 10).map((product) => product)
+      : products;
 
   return (
     <Wrapper theme={theme}>
@@ -38,7 +38,7 @@ const ProductsList = ({
           <Title>
             {header.styledTitle && (
               <StyledTitle>{header.styledTitle}</StyledTitle>
-            )}{" "}
+            )}{' '}
             {header.title}
           </Title>
           {!isAllProducts && (
@@ -50,14 +50,14 @@ const ProductsList = ({
       )}
       {products?.length ? (
         <Body>
-          {" "}
-          {products.map(product => (
+          {' '}
+          {products.map((product) => (
             <ProductItem key={`${uuidv4()}`} product={product} />
           ))}
         </Body>
       ) : null}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default ProductsList
+export default ProductsList;

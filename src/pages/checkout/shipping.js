@@ -1,35 +1,35 @@
-import React, { useEffect, useState, useRef } from "react"
-import Layout from "../../containers/Layout"
-import { connect } from "react-redux"
+import React, { useEffect, useState, useRef } from 'react';
+import Layout from '../../containers/Layout';
+import { connect } from 'react-redux';
 import {
   selectCurrentUser,
   selectUserFetched,
-} from "../../redux/user/user.selectors"
-import { createStructuredSelector } from "reselect"
-import UserInformationForm from "../../components/Checkout/UserInformationForm"
-import { navigate } from "gatsby"
-import { useLocation, useMatch } from "@reach/router"
+} from '../../redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+import UserInformationForm from '../../components/Checkout/UserInformationForm';
+import { navigate } from 'gatsby';
+import { useLocation, useMatch } from '@reach/router';
 import {
   ContentContainer,
   FormContainer,
-} from "../../styles/checkout.shipping.styles"
-import { useTheme } from "../../theme"
-import { updateUserInformation } from "../../redux/user/user.actions"
-import UserInformationShipping from "../../components/Checkout/UserInformation.Shipping"
+} from '../../styles/checkout.shipping.styles';
+import { useTheme } from '../../theme';
+import { updateUserInformation } from '../../redux/user/user.actions';
+import UserInformationShipping from '../../components/Checkout/UserInformation.Shipping';
 const Shipping = ({ user, updateUserInformation, userFetched }) => {
-  const { pathname, state } = useLocation()
+  const { pathname, state } = useLocation();
 
   const [updateInfo, setUpdateInfo] = useState(
-    state?.from === "/checkout/payment"
-  )
-  const { theme } = useTheme()
+    state?.from === '/checkout/payment'
+  );
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (!user && userFetched) {
-      navigate("/auth", { state: { from: pathname } })
+      navigate('/auth', { state: { from: pathname } });
     }
-  }, [user, userFetched])
-  const userInfoRef = useRef(null)
+  }, [user, userFetched]);
+  const userInfoRef = useRef(null);
   return (
     <Layout>
       {user && (
@@ -64,17 +64,17 @@ const Shipping = ({ user, updateUserInformation, userFetched }) => {
         </ContentContainer>
       )}
     </Layout>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
   userFetched: selectUserFetched,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
-  updateUserInformation: information =>
+const mapDispatchToProps = (dispatch) => ({
+  updateUserInformation: (information) =>
     dispatch(updateUserInformation(information)),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Shipping)
+export default connect(mapStateToProps, mapDispatchToProps)(Shipping);

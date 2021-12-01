@@ -1,8 +1,8 @@
-import React from "react"
-import Image from "./Image"
-import styles from "./styles"
+import React from 'react';
+import Image from './Image';
+import styles from './styles';
 
-const MagnifierRenderer = props => {
+const MagnifierRenderer = (props) => {
   const {
     itemPosition,
     active,
@@ -18,23 +18,23 @@ const MagnifierRenderer = props => {
     onImageLoad,
     onLargeImageLoad,
     onLoadRefresh,
-  } = props
+  } = props;
 
-  const legalSize = itemDimensions.width > elementDimensions.width
-  const isActive = legalSize && active
+  const legalSize = itemDimensions.width > elementDimensions.width;
+  const isActive = legalSize && active;
   const finalCursorStyle = !legalSize
-    ? "default"
+    ? 'default'
     : active
     ? cursorStyleActive
-    : cursorStyle
+    : cursorStyle;
 
   return (
-    <div style={{ position: "relative", cursor: finalCursorStyle }}>
+    <div style={{ position: 'relative', cursor: finalCursorStyle }}>
       <Image
         style={{
-          display: "block",
-          visibility: isActive ? "hidden" : "visible",
-          width: "100%",
+          display: 'block',
+          visibility: isActive ? 'hidden' : 'visible',
+          width: '100%',
         }}
         src={imageSrc}
         alt={imageAlt}
@@ -63,7 +63,7 @@ const MagnifierRenderer = props => {
       </div>
       {renderOverlay ? renderOverlay(active) : null}
     </div>
-  )
-}
+  );
+};
 
-export default MagnifierRenderer
+export default MagnifierRenderer;

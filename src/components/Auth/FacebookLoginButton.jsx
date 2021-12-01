@@ -1,15 +1,15 @@
-import React from "react"
+import React from 'react';
 import {
   FacebookLoginButtonWrapper,
   ButtonIcon,
   ButtonText,
-} from "./styles/LoginButton.styles"
-import { useLanguage } from "../../locales"
-import { RiFacebookFill } from "react-icons/ri"
-const FacebookLoginButtonComponent = props => {
+} from './styles/LoginButton.styles';
+import { useLanguage } from '../../locales';
+import { RiFacebookFill } from 'react-icons/ri';
+const FacebookLoginButtonComponent = (props) => {
   const {
     translation: { auth },
-  } = useLanguage()
+  } = useLanguage();
 
   return (
     <FacebookLoginButtonWrapper {...props}>
@@ -18,7 +18,7 @@ const FacebookLoginButtonComponent = props => {
       </ButtonIcon>
       <ButtonText>{auth.signInFacebook}</ButtonText>
     </FacebookLoginButtonWrapper>
-  )
-}
+  );
+};
 
-export default FacebookLoginButtonComponent
+export default FacebookLoginButtonComponent;

@@ -1,12 +1,12 @@
-const path = require("path")
+const path = require('path');
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  if (stage === "build-html" || stage === "develop-html") {
+  if (stage === 'build-html' || stage === 'develop-html') {
     actions.setWebpackConfig({
-      externals: ["react-helmet"],
+      externals: ['react-helmet'],
       module: {
         rules: [
-           {
+          {
             test: /offending-module/,
             use: loaders.null(),
           },
@@ -20,12 +20,12 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
           },
         ],
       },
-    })
+    });
   }
-}
+};
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
   const { data } = await graphql(`
     {
       pages: allContentfulPortfolio {
@@ -73,42 +73,42 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `);
 
   //create portfolio page
   data.pages.edges.forEach(({ node: portfolio }) => {
     createPage({
       path: `/${portfolio.slug}`,
-      component: path.resolve("./src/templates/portfolio.template.jsx"),
+      component: path.resolve('./src/templates/portfolio.template.jsx'),
       context: {
         portfolio,
         portfolioId: portfolio.contentful_id,
       },
-    })
+    });
     //create category page
-    portfolio.categories.forEach(category => {
+    portfolio.categories.forEach((category) => {
       createPage({
         path: `/${portfolio.slug}/${category.slug}`,
-        component: path.resolve("./src/templates/category.template.jsx"),
+        component: path.resolve('./src/templates/category.template.jsx'),
         context: {
           categoryId: category.contentful_id,
         },
-      })
+      });
       //create product Groups page
-      category.productGroups.forEach(productGroup => {
+      category.productGroups.forEach((productGroup) => {
         createPage({
           path: `/${portfolio.slug}/${category.slug}/${productGroup.slug}`,
-          component: path.resolve("./src/templates/productGroup.template.jsx"),
+          component: path.resolve('./src/templates/productGroup.template.jsx'),
           context: {
             portfolio,
             category,
             productGroup,
             productGroupId: productGroup.contentful_id,
           },
-        })
-      })
-    })
-  })
+        });
+      });
+    });
+  });
 
   /**
    * @desc create products page
@@ -119,13 +119,13 @@ exports.createPages = async ({ graphql, actions }) => {
   data.products.edges.forEach(({ node: product }) => {
     createPage({
       path: `/products/${product.slug}`,
-      component: path.resolve("./src/templates/product.template.jsx"),
+      component: path.resolve('./src/templates/product.template.jsx'),
       context: {
         contentful_id: product.contentful_id,
         category_contentful_id: product.category.contentful_id,
         productGroup_contentful_id: product.productGroup.contentful_id,
       },
-    })
+    });
     if (
       product.portfolio.slug &&
       product.category.slug &&
@@ -133,13 +133,13 @@ exports.createPages = async ({ graphql, actions }) => {
     ) {
       createPage({
         path: `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`,
-        component: path.resolve("./src/templates/product.template.jsx"),
+        component: path.resolve('./src/templates/product.template.jsx'),
         context: {
           contentful_id: product.contentful_id,
           category_contentful_id: product.category.contentful_id,
           productGroup_contentful_id: product.productGroup.contentful_id,
         },
-      })
+      });
     }
-  })
-}
+  });
+};

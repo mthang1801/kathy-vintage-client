@@ -1,8 +1,8 @@
-import React from "react"
-import Slider from "react-slick"
-import Image from "gatsby-image"
-import { Wrapper, ImageContainer } from "./styles/ProductImages.styles"
-import { v4 as uuidv4 } from "uuid"
+import React from 'react';
+import Slider from 'react-slick';
+import Image from 'gatsby-image';
+import { Wrapper, ImageContainer } from './styles/ProductImages.styles';
+import { v4 as uuidv4 } from 'uuid';
 const ProductImages = ({ images, setActiveImage, activeImage }) => {
   const settings = {
     dots: false,
@@ -13,18 +13,18 @@ const ProductImages = ({ images, setActiveImage, activeImage }) => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 2000,
-    cssEase: "linear",
-  }
-  const onSetActiveImage = idx => {
-    if (typeof window !== "undefined") {
+    cssEase: 'linear',
+  };
+  const onSetActiveImage = (idx) => {
+    if (typeof window !== 'undefined') {
       window.scroll({
         top: 60,
-        behavior: "auto",
-      })
+        behavior: 'auto',
+      });
     }
 
-    setActiveImage(idx)
-  }
+    setActiveImage(idx);
+  };
   return (
     <Wrapper>
       <Slider {...settings}>
@@ -38,7 +38,7 @@ const ProductImages = ({ images, setActiveImage, activeImage }) => {
         ))}
       </Slider>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default ProductImages
+export default ProductImages;

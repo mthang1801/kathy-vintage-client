@@ -1,11 +1,11 @@
-import React from "react"
-import Layout from "../containers/Layout"
-import { graphql } from "gatsby"
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
-import LayoutTemplate from "./layout.template"
-import Seo from "../components/Seo/Seo"
-const ProductGroupTemplate = props => {
-  const { productGroup } = props.data
+import React from 'react';
+import Layout from '../containers/Layout';
+import { graphql } from 'gatsby';
+import BreadcrumbNavigation from '../components/BreadcrumbNavigation/BreadcrumbNavigation';
+import LayoutTemplate from './layout.template';
+import Seo from '../components/Seo/Seo';
+const ProductGroupTemplate = (props) => {
+  const { productGroup } = props.data;
 
   return (
     <>
@@ -24,8 +24,8 @@ const ProductGroupTemplate = props => {
         <LayoutTemplate data={props.data} pageLocation="productGroup" />
       </Layout>
     </>
-  )
-}
+  );
+};
 export const query = graphql`
   query($productGroupId: String!) {
     productGroup: contentfulProductGroup(
@@ -100,6 +100,6 @@ export const query = graphql`
       distinct(field: manufactor)
     }
   }
-`
+`;
 
-export default ProductGroupTemplate
+export default ProductGroupTemplate;

@@ -1,11 +1,11 @@
-import styled from "styled-components"
-import { Link } from "gatsby"
+import styled from 'styled-components';
+import { Link } from 'gatsby';
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0.5rem 0;
-`
+`;
 
 export const ManageAccount = styled.div`
   padding: 0.75rem 2rem;
@@ -14,7 +14,7 @@ export const ManageAccount = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const UserAvatar = styled(Link)`
   width: 3.5rem;
@@ -26,20 +26,20 @@ export const UserAvatar = styled(Link)`
   }
   margin-bottom: 1rem;
   cursor: pointer;
-`
+`;
 
 export const UserName = styled.h3`
   font-weight: 600;
   margin: 0.5rem 0;
-`
+`;
 
 export const UserEmail = styled.div`
   opacity: 0.6;
-`
+`;
 
 export const SettingButton = styled.button`
   border-radius: 2rem;
-  border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
+  border: 1px solid ${({ theme }) => (theme ? theme.border : 'var(--border)')};
   padding: 0.6rem 2rem;
   margin: 1rem auto;
   cursor: pointer;
@@ -50,11 +50,11 @@ export const SettingButton = styled.button`
   background: transparent;
   &:hover {
     background-color: ${({ theme }) =>
-      theme ? theme.border : "var(--border)"};
+      theme ? theme.border : 'var(--border)'};
   }
   text-decoration: none;
   color: inherit;
-`
+`;
 
 export const Divider = styled.div`
   width: 100%;
@@ -62,7 +62,7 @@ export const Divider = styled.div`
   opacity: 0.8;
   margin: 0.25rem 0;
   background-color: var(--light-gray-2);
-`
+`;
 
 export const SettingItem = styled.div`
   display: flex;
@@ -73,10 +73,10 @@ export const SettingItem = styled.div`
   color: inherit;
   &:hover {
     background-color: ${({ theme }) =>
-      theme ? theme?.hover?.background : "var(--hover-background)"};
+      theme ? theme?.hover?.background : 'var(--hover-background)'};
   }
   overflow: hidden;
-`
+`;
 export const SettingItemLink = styled.span`
   display: flex;
   padding: 0.5rem 2rem;
@@ -88,16 +88,16 @@ export const SettingItemLink = styled.span`
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) =>
-      theme ? theme?.hover?.background : "var(--hover-background)"};
+      theme ? theme?.hover?.background : 'var(--hover-background)'};
   }
   overflow: hidden;
-`
+`;
 
 export const SettingItemIcon = styled.div`
   display: flex;
   font-size: 1.5rem;
-`
+`;
 
 export const SettingItemText = styled.div`
   margin-left: 1rem;
-`
+`;

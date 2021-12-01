@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { Link } from "gatsby"
+import styled from 'styled-components';
+import { Link } from 'gatsby';
 export const Wrapper = styled.footer`
   width: 100%;
   display: flex;
@@ -21,21 +21,21 @@ export const Wrapper = styled.footer`
     grid-template-columns: repeat(4, auto);
     grid-gap: 1.25rem;
   }
-`
+`;
 
 export const Grid = styled.div`
-  display: ${({ brand }) => (brand ? "none" : "block")};
+  display: ${({ brand }) => (brand ? 'none' : 'block')};
   @media screen and (min-width: 1200px) {
     display: block;
   }
-`
+`;
 
 export const Title = styled.h4`
   text-transform: uppercase;
-`
+`;
 
 export const ImageContainer = styled.h3`
-  font-family: "Cookie", cursive;
+  font-family: 'Cookie', cursive;
   font-size: 4rem;
   color: white;
   padding: 0;
@@ -49,7 +49,7 @@ export const ImageContainer = styled.h3`
       margin-left: auto;
     }
   }
-`
+`;
 
 export const Policies = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ export const Policies = styled.div`
     margin: 0.5rem 0;
     text-transform: capitalize;
   }
-`
+`;
 
 export const List = styled.div`
   display: flex;
@@ -68,7 +68,7 @@ export const List = styled.div`
   & > *:not(first-child) {
     margin-left: 0.75rem;
   }
-`
+`;
 
 export const ContactLink = styled.a`
   border: 1px solid white;
@@ -83,15 +83,15 @@ export const ContactLink = styled.a`
   color: var(--gray-2);
   &:hover {
     background: ${({ icon }) =>
-      icon === "facebook"
-        ? "#4267B2"
-        : icon === "twitter"
-        ? "#1DA1F2"
-        : icon === "instagram"
-        ? "linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)"
-        : ""};
+      icon === 'facebook'
+        ? '#4267B2'
+        : icon === 'twitter'
+        ? '#1DA1F2'
+        : icon === 'instagram'
+        ? 'linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)'
+        : ''};
     color: white;
   }
-`
+`;
 
-export const ListItemIcon = styled.div``
+export const ListItemIcon = styled.div``;

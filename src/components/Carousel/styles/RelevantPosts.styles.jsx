@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   .slick-track {
@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     }
     height: 18rem;
   }
-`
+`;
 
 export const ProductContainer = styled.div`
   position: relative;
@@ -16,4 +16,4 @@ export const ProductContainer = styled.div`
     position: unset;
     border: none;
   }
-`
+`;

@@ -1,3 +1,3 @@
-import { wrapRootElement as wrapper } from "./gatsby-root-wrapper"
+import { wrapRootElement as wrapper } from './gatsby-root-wrapper';
 
-export const wrapRootElement = wrapper
+export const wrapRootElement = wrapper;

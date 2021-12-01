@@ -1,10 +1,10 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Title = styled.h3`
   font-size: 1.25rem;
   margin: 0.5rem 0 1.25rem 0;
   text-transform: uppercase;
-`
+`;
 
 export const Table = styled.div`
   width: 100%;
@@ -14,20 +14,20 @@ export const Table = styled.div`
   & * {
     overflow: hidden;
   }
-`
+`;
 
 export const TableRow = styled.div`
   display: flex;
   &:nth-of-type(2n) {
     background-color: ${({ theme }) =>
-      theme ? theme.background : "var(--background)"};
+      theme ? theme.background : 'var(--background)'};
   }
-`
+`;
 
 export const TableCell = styled.div`
   padding: 0.75rem;
   background-color: ${({ theme }) =>
-    theme ? theme.background : "var(--background)"};
+    theme ? theme.background : 'var(--background)'};
   &:first-child {
     width: 40%;
   }
@@ -53,4 +53,4 @@ export const TableCell = styled.div`
   & p {
     margin: 0 0 0.5rem 0;
   }
-`
+`;

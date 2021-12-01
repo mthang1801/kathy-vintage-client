@@ -1,6 +1,6 @@
-import React from "react"
-import { Wrapper } from "./styles/GeneralInformation.styles"
-import Skeleton from "@material-ui/lab/Skeleton"
+import React from 'react';
+import { Wrapper } from './styles/GeneralInformation.styles';
+import Skeleton from '@material-ui/lab/Skeleton';
 const UserDashBoard = ({ fullScreen }) => {
   return (
     <Wrapper fullScreen>
@@ -8,7 +8,7 @@ const UserDashBoard = ({ fullScreen }) => {
         <Skeleton variant="text" animation="wave" />
       ))}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default UserDashBoard
+export default UserDashBoard;

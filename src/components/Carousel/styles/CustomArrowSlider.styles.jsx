@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const CustomPortfoliosArrowPrevContainer = styled.div`
   width: 1.5rem;
@@ -19,7 +19,7 @@ export const CustomPortfoliosArrowPrevContainer = styled.div`
     }
   }
   &:before {
-    content: "❮";
+    content: '❮';
     font-size: 0.9rem;
     color: white;
     position: absolute;
@@ -27,7 +27,7 @@ export const CustomPortfoliosArrowPrevContainer = styled.div`
     top: 40%;
     transform: translate(-55%, -50%);
   }
-`
+`;
 
 export const CustomPortfoliosArrowNextContainer = styled.div`
   width: 1.5rem;
@@ -48,7 +48,7 @@ export const CustomPortfoliosArrowNextContainer = styled.div`
     }
   }
   &:after {
-    content: "❯";
+    content: '❯';
     font-size: 0.9rem;
     color: white;
     position: absolute;
@@ -56,4 +56,4 @@ export const CustomPortfoliosArrowNextContainer = styled.div`
     top: 45%;
     transform: translate(-45%, -50%);
   }
-`
+`;

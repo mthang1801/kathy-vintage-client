@@ -1,32 +1,32 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   BreadcrumbItemLink,
-} from "./styles/BreadcrumbNavigation.styles"
-import { useTheme } from "../../theme"
-import { useLanguage } from "../../locales"
+} from './styles/BreadcrumbNavigation.styles';
+import { useTheme } from '../../theme';
+import { useLanguage } from '../../locales';
 const BreadcrumbNavigation = ({ contenfulData, staticData }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const {
     translation: { breadcrumbs },
     lang,
-  } = useLanguage()
+  } = useLanguage();
 
-  const accumulativePath = index => {
-    let path = ""
+  const accumulativePath = (index) => {
+    let path = '';
     if (contenfulData?.length) {
       for (let i = 0; i <= index; i++) {
-        path += `/${contenfulData[i].slug}`
+        path += `/${contenfulData[i].slug}`;
       }
     }
-    return path
-  }
-  const formatBreadcrumbLinkName = dataItem => {
-    const fullName = dataItem[`name_${lang}`]
+    return path;
+  };
+  const formatBreadcrumbLinkName = (dataItem) => {
+    const fullName = dataItem[`name_${lang}`];
     const shortName =
-      fullName.length > 60 ? fullName.slice(0, 60) + "..." : fullName
-    return { fullName, shortName }
-  }
+      fullName.length > 60 ? fullName.slice(0, 60) + '...' : fullName;
+    return { fullName, shortName };
+  };
   return (
     <Wrapper theme={theme}>
       <BreadcrumbItemLink to={breadcrumbs.home.path} theme={theme}>
@@ -40,11 +40,11 @@ const BreadcrumbNavigation = ({ contenfulData, staticData }) => {
             theme={theme}
             title={formatBreadcrumbLinkName(dataItem).fullName}
           >
-            {formatBreadcrumbLinkName(dataItem).shortName}{" "}
+            {formatBreadcrumbLinkName(dataItem).shortName}{' '}
           </BreadcrumbItemLink>
         ))}
       {staticData &&
-        staticData.map(dataItem => (
+        staticData.map((dataItem) => (
           <BreadcrumbItemLink
             key={dataItem.id}
             to={`${dataItem.path}`}
@@ -54,7 +54,7 @@ const BreadcrumbNavigation = ({ contenfulData, staticData }) => {
           </BreadcrumbItemLink>
         ))}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default BreadcrumbNavigation
+export default BreadcrumbNavigation;

@@ -1,26 +1,29 @@
-import React, { useEffect } from "react"
-import Layout from "../containers/Layout"
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
-import { ProductOverviewContainer, Box } from "./styles/product.template.styles"
-import { graphql } from "gatsby"
-import { useTheme } from "../theme"
-import ProductImages from "../components/Product/ProductImages"
-import ProductContent from "../components/Product/ProductContent"
-import ProductInformation from "../components/Product/ProductInformation"
-import ProductDescription from "../components/Product/ProductDescription"
-import RelevantProducts from "../components/Product/RelevantProducts"
-import Seo from "../components/Seo/Seo"
-import { Disqus } from "gatsby-plugin-disqus"
-import { increaseProductViews } from "../database/product"
-const ProductProduct = props => {
+import React, { useEffect } from 'react';
+import Layout from '../containers/Layout';
+import BreadcrumbNavigation from '../components/BreadcrumbNavigation/BreadcrumbNavigation';
+import {
+  ProductOverviewContainer,
+  Box,
+} from './styles/product.template.styles';
+import { graphql } from 'gatsby';
+import { useTheme } from '../theme';
+import ProductImages from '../components/Product/ProductImages';
+import ProductContent from '../components/Product/ProductContent';
+import ProductInformation from '../components/Product/ProductInformation';
+import ProductDescription from '../components/Product/ProductDescription';
+import RelevantProducts from '../components/Product/RelevantProducts';
+import Seo from '../components/Seo/Seo';
+import { Disqus } from 'gatsby-plugin-disqus';
+import { increaseProductViews } from '../database/product';
+const ProductProduct = (props) => {
   const {
     product,
     productsByCategory,
     productsByProductGroup,
     site,
-  } = props.data
-  const { theme } = useTheme()
-  const { portfolio, category, productGroup, images } = product
+  } = props.data;
+  const { theme } = useTheme();
+  const { portfolio, category, productGroup, images } = product;
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,
     config: {
@@ -28,15 +31,15 @@ const ProductProduct = props => {
       identifier: product.contentful_id,
       title: product.name_vi,
     },
-  }
+  };
 
   useEffect(() => {
-    let timer
+    let timer;
     timer = setTimeout(() => {
-      increaseProductViews(product)
-    }, 6000)
-    return () => clearTimeout(timer)
-  }, [])
+      increaseProductViews(product);
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -73,8 +76,8 @@ const ProductProduct = props => {
         </Box>
       </Layout>
     </>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query(
@@ -230,6 +233,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default ProductProduct
+export default ProductProduct;

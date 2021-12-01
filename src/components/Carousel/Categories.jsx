@@ -1,22 +1,22 @@
-import React, { useState, useRef, useEffect, useContext } from "react"
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import {
   CategoriesSliderContainer,
   Title,
   CategoryItem,
   ImageContainer,
   CategoryItemText,
-} from "./styles/Categories.styles"
-import Slider from "react-slick"
-import { useLanguage } from "../../locales"
+} from './styles/Categories.styles';
+import Slider from 'react-slick';
+import { useLanguage } from '../../locales';
 import {
   CustomPortfoliosArrowNext,
   CustomPortfoliosArrowPrev,
-} from "./CustomArrowSlider"
-import { useStaticQuery, graphql, navigate } from "gatsby"
-import Image from "gatsby-image"
-import { useTheme } from "../../theme"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
-let dragging = false
+} from './CustomArrowSlider';
+import { useStaticQuery, graphql, navigate } from 'gatsby';
+import Image from 'gatsby-image';
+import { useTheme } from '../../theme';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+let dragging = false;
 const CategoriesSlider = () => {
   const {
     translation: {
@@ -25,12 +25,12 @@ const CategoriesSlider = () => {
       },
     },
     lang,
-  } = useLanguage()
+  } = useLanguage();
 
-  const { fetchAllCategories } = useStaticQuery(CATEGORIES_QUERY)
+  const { fetchAllCategories } = useStaticQuery(CATEGORIES_QUERY);
   // const { theme, colorMode } = useThemeUI()
-  const categories = fetchAllCategories.edges.map(({ node }) => node)
-  const { theme } = useTheme()
+  const categories = fetchAllCategories.edges.map(({ node }) => node);
+  const { theme } = useTheme();
 
   const settings = {
     infinite: true,
@@ -62,17 +62,17 @@ const CategoriesSlider = () => {
     ],
     beforeChange: () => (dragging = true),
     afterChange: () => (dragging = false),
-  }
-  const onClickCategoryItem = category => {
+  };
+  const onClickCategoryItem = (category) => {
     trackCustomEvent({
-      action: "Click",
-      category: "category",
-      label: "Click Category item",
-    })
+      action: 'Click',
+      category: 'category',
+      label: 'Click Category item',
+    });
     if (!dragging) {
-      navigate(`/${category.portfolio.slug}/${category.slug}`)
+      navigate(`/${category.portfolio.slug}/${category.slug}`);
     }
-  }
+  };
   return (
     <CategoriesSliderContainer theme={theme}>
       <Title>{categoryCarouselTitle}</Title>
@@ -93,8 +93,8 @@ const CategoriesSlider = () => {
         ))}
       </Slider>
     </CategoriesSliderContainer>
-  )
-}
+  );
+};
 
 const CATEGORIES_QUERY = graphql`
   query {
@@ -119,6 +119,6 @@ const CATEGORIES_QUERY = graphql`
       }
     }
   }
-`
+`;
 
-export default CategoriesSlider
+export default CategoriesSlider;

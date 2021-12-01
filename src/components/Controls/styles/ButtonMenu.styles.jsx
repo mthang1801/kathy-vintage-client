@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -16,12 +16,12 @@ export const Wrapper = styled.div`
     display: inline-block;
     width: 1.5rem;
     height: 2px;
-    background-color: ${({ theme }) => (theme ? theme.text : "var(--text)")};
+    background-color: ${({ theme }) => (theme ? theme.text : 'var(--text)')};
   }
   &:hover {
     border: 1px solid var(--gray-1);
     border-radius: 0.2rem;
     background-color: ${({ theme }) =>
-      theme ? theme?.header?.background : "var(--header-background)"};
+      theme ? theme?.header?.background : 'var(--header-background)'};
   }
-`
+`;

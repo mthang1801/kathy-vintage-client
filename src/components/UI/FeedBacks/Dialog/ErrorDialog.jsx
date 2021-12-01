@@ -1,17 +1,17 @@
-import React from "react"
-import Button from "@material-ui/core/Button"
-import Dialog from "@material-ui/core/Dialog"
-import DialogContent from "@material-ui/core/DialogContent"
-import DialogContentText from "@material-ui/core/DialogContentText"
-import WarningIcon from "@material-ui/icons/Warning"
-import { useLanguage } from "../../../../locales"
-import { ContentContainer } from "./styles/ErrorDialog.styles"
-import DialogActions from "@material-ui/core/DialogActions"
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import WarningIcon from '@material-ui/icons/Warning';
+import { useLanguage } from '../../../../locales';
+import { ContentContainer } from './styles/ErrorDialog.styles';
+import DialogActions from '@material-ui/core/DialogActions';
 
 export default function ErrorDialog({ content, onClickCloseError }) {
   const {
     translation: { dialog },
-  } = useLanguage()
+  } = useLanguage();
   return (
     <>
       <Dialog
@@ -39,5 +39,5 @@ export default function ErrorDialog({ content, onClickCloseError }) {
         </DialogActions>
       </Dialog>
     </>
-  )
+  );
 }

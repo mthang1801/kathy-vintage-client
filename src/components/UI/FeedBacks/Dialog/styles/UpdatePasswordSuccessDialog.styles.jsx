@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const ContentContainer = styled.div`
   color: var(--green-1);
@@ -12,4 +12,4 @@ export const ContentContainer = styled.div`
   & svg {
     font-size: 3rem;
   }
-`
+`;

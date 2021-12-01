@@ -1,69 +1,69 @@
-import React from "react"
-import { useLanguage } from "../../locales"
-import { SampleMode, TextMode } from "./styles/SettingColorMode.styles"
-import Button from "@material-ui/core/Button"
-import ClickAwayListener from "@material-ui/core/ClickAwayListener"
-import Grow from "@material-ui/core/Grow"
-import Paper from "@material-ui/core/Paper"
-import Popper from "@material-ui/core/Popper"
-import MenuItem from "@material-ui/core/MenuItem"
-import MenuList from "@material-ui/core/MenuList"
-import { useStyles } from "../Setting/styles/SettingLanguages.styles"
-import { useTheme } from "../../theme"
+import React from 'react';
+import { useLanguage } from '../../locales';
+import { SampleMode, TextMode } from './styles/SettingColorMode.styles';
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { useStyles } from '../Setting/styles/SettingLanguages.styles';
+import { useTheme } from '../../theme';
 const SettingLanguages = () => {
-  const classes = useStyles()
-  const [open, setOpen] = React.useState(false)
-  const anchorRef = React.useRef(null)
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
   const {
     translation: { colorMode: colorModeTranslation },
-  } = useLanguage()
-  const { setColorMode, theme, colorMode, themes } = useTheme()
-  const modes = Object.keys(themes).map(mode => mode)
+  } = useLanguage();
+  const { setColorMode, theme, colorMode, themes } = useTheme();
+  const modes = Object.keys(themes).map((mode) => mode);
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen)
-  }
+    setOpen((prevOpen) => !prevOpen);
+  };
 
-  const handleClose = event => {
+  const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return
+      return;
     }
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
-  const onChangeColorMode = selectedMode => {
+  const onChangeColorMode = (selectedMode) => {
     if (
-      typeof selectedMode === "string" &&
+      typeof selectedMode === 'string' &&
       selectedMode &&
       modes.includes(selectedMode) &&
       selectedMode !== colorMode
     ) {
-      setColorMode(selectedMode)
+      setColorMode(selectedMode);
     }
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault()
-      setOpen(false)
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
     }
   }
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open)
+  const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus()
+      anchorRef.current.focus();
     }
 
-    prevOpen.current = open
-  }, [open])
+    prevOpen.current = open;
+  }, [open]);
 
   return (
     <div className={classes.root}>
       <Button
         ref={anchorRef}
-        aria-controls={open ? "menu-list-grow" : undefined}
+        aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
       >
@@ -82,7 +82,7 @@ const SettingLanguages = () => {
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom",
+                placement === 'bottom' ? 'center top' : 'center bottom',
             }}
           >
             <Paper>
@@ -92,7 +92,7 @@ const SettingLanguages = () => {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  {modes.map(mode => (
+                  {modes.map((mode) => (
                     <MenuItem
                       key={mode}
                       onClick={() => onChangeColorMode(mode)}
@@ -108,7 +108,7 @@ const SettingLanguages = () => {
         )}
       </Popper>
     </div>
-  )
-}
+  );
+};
 
-export default SettingLanguages
+export default SettingLanguages;

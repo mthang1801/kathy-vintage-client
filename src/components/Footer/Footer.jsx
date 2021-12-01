@@ -1,9 +1,9 @@
-import React from "react"
-import { Wrapper, Grid } from "./styles/Footer.styles"
-import Brand from "./Brand"
-import About from "./About"
-import LiscencePolicy from "./LiscencePolicy"
-import Contact from "./Contact"
+import React from 'react';
+import { Wrapper, Grid } from './styles/Footer.styles';
+import Brand from './Brand';
+import About from './About';
+import LiscencePolicy from './LiscencePolicy';
+import Contact from './Contact';
 const Footer = () => {
   return (
     <Wrapper>
@@ -20,7 +20,7 @@ const Footer = () => {
         <Contact />
       </Grid>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

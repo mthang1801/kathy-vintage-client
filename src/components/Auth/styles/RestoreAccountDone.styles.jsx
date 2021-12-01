@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components"
-import CustomButton from "../../UI/custom-button/custom-button.component"
+import styled, { keyframes } from 'styled-components';
+import CustomButton from '../../UI/custom-button/custom-button.component';
 
 export const ForgotDoneContainer = styled.form`
   display: flex;
@@ -17,7 +17,7 @@ export const ForgotDoneContainer = styled.form`
     width: 90%;
     padding: 1rem 1.5rem;
   }
-`
+`;
 
 const checkAnimation = keyframes`
   0%{
@@ -26,14 +26,14 @@ const checkAnimation = keyframes`
   100%{
     opacity : 1;
   }
-`
+`;
 export const CheckIconContainer = styled.div`
   font-size: 3em;
   color: green;
   animation-name: ${checkAnimation};
   animation-duration: 0.7s;
   animation-timing-function: linear;
-`
+`;
 
 const textAnimation = keyframes`
   0% {
@@ -43,7 +43,7 @@ const textAnimation = keyframes`
   100% {
     opacity: 1;
   }
-`
+`;
 
 export const TextContent = styled.div`
   font-weight: 600;
@@ -54,7 +54,7 @@ export const TextContent = styled.div`
   animation-delay: 0.7s;
   animation-fill-mode: backwards;
   animation-timing-function: linear;
-`
+`;
 
 const btnAnimation = keyframes`
   0% {
@@ -64,7 +64,7 @@ const btnAnimation = keyframes`
   100% {
     opacity: 1;
   }
-`
+`;
 
 export const ButtonDone = styled(CustomButton)`
   background-color: green;
@@ -83,4 +83,4 @@ export const ButtonDone = styled(CustomButton)`
   animation-delay: 1.5s;
   animation-fill-mode: backwards;
   animation-timing-function: linear;
-`
+`;

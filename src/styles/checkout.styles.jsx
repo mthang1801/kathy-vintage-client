@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const CheckoutContainer = styled.div`
   width: 95vw;
@@ -14,10 +14,10 @@ export const CheckoutContainer = styled.div`
     display: grid;
     grid-template-columns: 3fr 1.25fr;
   }
-`
+`;
 export const CartItems = styled.div`
   width: 100%;
-`
+`;
 export const TemporaryInvoiceSide = styled.div`
   width: 100%;
-`
+`;

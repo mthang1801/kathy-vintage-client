@@ -1,18 +1,18 @@
-import React from "react"
-import Layout from "../containers/Layout"
-import { graphql, useStaticQuery } from "gatsby"
-import ProductsList from "../components/Product/ProductsList"
-import { useLanguage } from "../locales"
-import { ProductsWrapper } from "../styles/new-products.styles"
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation/BreadcrumbNavigation"
+import React from 'react';
+import Layout from '../containers/Layout';
+import { graphql, useStaticQuery } from 'gatsby';
+import ProductsList from '../components/Product/ProductsList';
+import { useLanguage } from '../locales';
+import { ProductsWrapper } from '../styles/new-products.styles';
+import BreadcrumbNavigation from '../components/BreadcrumbNavigation/BreadcrumbNavigation';
 function NewProductsPage() {
-  let { newProducts } = useStaticQuery(query)
+  let { newProducts } = useStaticQuery(query);
   const {
     translation: { product },
-  } = useLanguage()
+  } = useLanguage();
   //format static data
-  const newProductsEdges = newProducts?.edges?.map(({ node }) => node)
-  const newProductsTotalCount = newProducts?.totalCount
+  const newProductsEdges = newProducts?.edges?.map(({ node }) => node);
+  const newProductsTotalCount = newProducts?.totalCount;
   return (
     <Layout>
       <BreadcrumbNavigation staticData={[product.newProducts]} />
@@ -26,7 +26,7 @@ function NewProductsPage() {
         ) : null}
       </ProductsWrapper>
     </Layout>
-  )
+  );
 }
 
 const query = graphql`
@@ -68,6 +68,6 @@ const query = graphql`
       totalCount
     }
   }
-`
+`;
 
-export default NewProductsPage
+export default NewProductsPage;

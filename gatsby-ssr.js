@@ -1,6 +1,6 @@
-import React from "react"
-import { wrapRootElement as wrapper } from "./gatsby-root-wrapper"
-import { Helmet } from "react-helmet"
+import React from 'react';
+import { wrapRootElement as wrapper } from './gatsby-root-wrapper';
+import { Helmet } from 'react-helmet';
 export const onRenderBody = ({
   setPreBodyComponents,
   setPostBodyComponents,
@@ -8,24 +8,24 @@ export const onRenderBody = ({
   setHtmlAttributes,
   setBodyAttributes,
 }) => {
-  const helmet = Helmet.renderStatic()
+  const helmet = Helmet.renderStatic();
   setPreBodyComponents([
     <div id="preloader">
       <img
         src="/images/logo.jpg"
         alt="logo"
-        style={{ width: "5rem", height: "5rem", borderRadius: "50%" }}
+        style={{ width: '5rem', height: '5rem', borderRadius: '50%' }}
       />
       <div className="preloader_animation"></div>
     </div>,
     <div id="fb-root" />,
     <div id="fb-customer-chat" className="fb-customerchat" />,
-  ])
-  setHtmlAttributes(helmet.htmlAttributes.toComponent())
-  setBodyAttributes(helmet.bodyAttributes.toComponent())
+  ]);
+  setHtmlAttributes(helmet.htmlAttributes.toComponent());
+  setBodyAttributes(helmet.bodyAttributes.toComponent());
   setBodyAttributes({
-    className: "preloader_active",
-  })
+    className: 'preloader_active',
+  });
   setHeadComponents([
     helmet.title.toComponent(),
     helmet.base.toComponent(),
@@ -38,27 +38,36 @@ export const onRenderBody = ({
     <noscript>
       <link rel="stylesheet" href="/styles/noscript.css" />
     </noscript>,
-  ])
+  ]);
   setPostBodyComponents([
     <script src="/scripts/preloader.js" />,
     <script src="/scripts/facebook-messenger.js" />,
-  ])
-}
+  ]);
+};
 
 export const onPreRenderHTML = ({
   getHeadComponents,
   replaceHeadComponents,
 }) => {
-  const headComponents = getHeadComponents()
-  const order = ["title", "base", "meta", "link", "noscript", "script", "style"]
+  const headComponents = getHeadComponents();
+  const order = [
+    'title',
+    'base',
+    'meta',
+    'link',
+    'noscript',
+    'script',
+    'style',
+  ];
 
   const sortedHeadComponents = headComponents
     .slice(0)
     .flat()
     .sort((x, y) => {
-      return order.indexOf(x.type) - order.indexOf(y.type)
-    })
-  replaceHeadComponents(sortedHeadComponents)
-}
+      return order.indexOf(x.type) - order.indexOf(y.type);
+    });
+  console.log(sortedHeadComponents);
+  replaceHeadComponents(sortedHeadComponents);
+};
 
-export const wrapRootElement = wrapper
+export const wrapRootElement = wrapper;

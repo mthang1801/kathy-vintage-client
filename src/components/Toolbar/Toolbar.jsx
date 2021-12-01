@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react"
+import React, { useState, useCallback } from 'react';
 import {
   Wrapper,
   SearchContainer,
@@ -6,44 +6,44 @@ import {
   Responsive,
   Flex,
   MobileResponsive,
-} from "./styles/Toolbar.styles"
-import Logo from "../../images/logo-text-icon.png"
-import { useLocation } from "@reach/router"
-import { Link } from "gatsby"
+} from './styles/Toolbar.styles';
+import Logo from '../../images/logo-text-icon.png';
+import { useLocation } from '@reach/router';
+import { Link } from 'gatsby';
 import {
   selectCurrentUser,
   selectUserFetched,
   selectUserLoading,
-} from "../../redux/user/user.selectors"
-import { createStructuredSelector } from "reselect"
-import { connect } from "react-redux"
-import Search from "../Search/Search"
-import { useTheme } from "../../theme"
-import { Button } from "@material-ui/core"
-import { useLanguage } from "../../locales"
-import ButtonMenu from "../Controls/ButtonMenu"
-import Cart from "../Cart/Cart"
-import Drawer from "../Navigation/Drawer/Drawer"
-import { navigate } from "gatsby"
-import UserSettings from "./UserSettings"
-import { signInPattern, signUpPattern } from "../../utils/auth"
+} from '../../redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import Search from '../Search/Search';
+import { useTheme } from '../../theme';
+import { Button } from '@material-ui/core';
+import { useLanguage } from '../../locales';
+import ButtonMenu from '../Controls/ButtonMenu';
+import Cart from '../Cart/Cart';
+import Drawer from '../Navigation/Drawer/Drawer';
+import { navigate } from 'gatsby';
+import UserSettings from './UserSettings';
+import { signInPattern, signUpPattern } from '../../utils/auth';
 const Header = ({ userLoading, userFetched, user }) => {
-  const [openDrawer, setOpenDrawer] = useState(false)
+  const [openDrawer, setOpenDrawer] = useState(false);
   const {
     translation: { auth },
-  } = useLanguage()
-  const { theme } = useTheme()
-  const { pathname } = useLocation()
+  } = useLanguage();
+  const { theme } = useTheme();
+  const { pathname } = useLocation();
   const onOpenMenu = useCallback(() => {
-    setOpenDrawer(true)
-  }, [])
+    setOpenDrawer(true);
+  }, []);
 
   const RenderUserSettings = () => (
     <Responsive>
       <UserSettings user={user} />
     </Responsive>
-  )
-  const patternHideCart = /^\/checkout/
+  );
+  const patternHideCart = /^\/checkout/;
   const RenderUserAuth = () => (
     <>
       {(!userLoading || userFetched) && (
@@ -52,7 +52,7 @@ const Header = ({ userLoading, userFetched, user }) => {
             <Button
               color="primary"
               onClick={() => {
-                navigate("/auth", { state: { from: pathname } })
+                navigate('/auth', { state: { from: pathname } });
               }}
             >
               {auth.login}
@@ -62,7 +62,7 @@ const Header = ({ userLoading, userFetched, user }) => {
             <Button
               color="secondary"
               onClick={() => {
-                navigate("/auth/signup", { state: { from: pathname } })
+                navigate('/auth/signup', { state: { from: pathname } });
               }}
             >
               {auth.register}
@@ -71,7 +71,7 @@ const Header = ({ userLoading, userFetched, user }) => {
         </Responsive>
       )}
     </>
-  )
+  );
   return (
     <>
       <Wrapper theme={theme}>
@@ -101,13 +101,13 @@ const Header = ({ userLoading, userFetched, user }) => {
         user={user}
       />
     </>
-  )
-}
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   userLoading: selectUserLoading,
   userFetched: selectUserFetched,
   user: selectCurrentUser,
-})
+});
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps)(Header);

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const ButtonIcon = styled.span`
   display: flex;
@@ -14,7 +14,7 @@ export const ButtonIcon = styled.span`
     font-size: 1.25rem;
     transition: all 0.5s linear;
   }
-`
+`;
 
 export const GoogleLoginButtonWrapper = styled.button`
   display: flex;
@@ -40,7 +40,7 @@ export const GoogleLoginButtonWrapper = styled.button`
   color: #fff;
   border-radius: 3px;
   overflow: hidden;
-`
+`;
 
 export const FacebookLoginButtonWrapper = styled.button`
   display: flex;
@@ -65,10 +65,10 @@ export const FacebookLoginButtonWrapper = styled.button`
   color: #fff;
   border-radius: 3px;
   overflow: hidden;
-`
+`;
 
 export const ButtonText = styled.span`
   text-align: left;
   margin-left: 0.5rem;
   font-size: 0.9rem;
-`
+`;

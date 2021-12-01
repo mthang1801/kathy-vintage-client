@@ -1,18 +1,18 @@
-import React from "react"
-import { Wrapper, Title } from "./styles/Sidebar.styles"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Checkbox from "@material-ui/core/Checkbox"
+import React from 'react';
+import { Wrapper, Title } from './styles/Sidebar.styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import {
   useLayoutTempateActions,
   useLayoutTemplateStates,
-} from "../../hooks/useLayoutTemplate"
+} from '../../hooks/useLayoutTemplate';
 const SidebarSorting = ({ templateTranslation }) => {
-  const { sortingIndex } = useLayoutTemplateStates()
-  const { setSortingIndex } = useLayoutTempateActions()
-  const { fields, title } = templateTranslation?.sidebar?.sort
-  const handleChangeSortingIndex = e => {
-    setSortingIndex(+e.target.value)
-  }
+  const { sortingIndex } = useLayoutTemplateStates();
+  const { setSortingIndex } = useLayoutTempateActions();
+  const { fields, title } = templateTranslation?.sidebar?.sort;
+  const handleChangeSortingIndex = (e) => {
+    setSortingIndex(+e.target.value);
+  };
   return (
     <Wrapper>
       <Title>{title}</Title>
@@ -32,7 +32,7 @@ const SidebarSorting = ({ templateTranslation }) => {
         />
       ))}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default SidebarSorting
+export default SidebarSorting;

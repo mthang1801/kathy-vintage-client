@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const BannerContainer = styled.div`
   width: 95vw;
@@ -8,7 +8,7 @@ export const BannerContainer = styled.div`
     width: 75vw;
     height: 600px;
   }
-`
+`;
 
 export const CarouselSide = styled.div`
   width: 100%;
@@ -26,7 +26,7 @@ export const CarouselSide = styled.div`
     height: 100%;
     margin: 0 auto;
   }
-`
+`;
 
 export const SingleImageSide = styled.div`
   width: 100%;
@@ -43,4 +43,4 @@ export const SingleImageSide = styled.div`
     height: 100%;
     margin: 0;
   }
-`
+`;

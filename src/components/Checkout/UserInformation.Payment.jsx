@@ -1,33 +1,33 @@
-import React from "react"
-import { Wrapper, Link } from "./styles/UserInformation.Payment.styles"
-import { useTheme } from "../../theme"
-import { useLanguage } from "../../locales"
-import { navigate } from "gatsby"
+import React from 'react';
+import { Wrapper, Link } from './styles/UserInformation.Payment.styles';
+import { useTheme } from '../../theme';
+import { useLanguage } from '../../locales';
+import { navigate } from 'gatsby';
 const UserInformation = ({ user }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const {
     translation: {
       checkout: { userInformation },
     },
-  } = useLanguage()
+  } = useLanguage();
   const onGoBackShipping = () => {
-    navigate("/checkout/shipping", {
-      state: { from: "/checkout/payment" },
-    })
-  }
-  if (!user.information) return null
+    navigate('/checkout/shipping', {
+      state: { from: '/checkout/payment' },
+    });
+  };
+  if (!user.information) return null;
   return (
     <Wrapper theme={theme}>
       <p>
-        {userInformation.fullname}:{" "}
+        {userInformation.fullname}:{' '}
         <strong>{user.information?.fullname}</strong>
       </p>
       <p>
-        {userInformation.address}:{" "}
+        {userInformation.address}:{' '}
         <strong>
-          {user.information?.address}, {userInformation.ward}{" "}
-          {user.information?.ward}, {userInformation.district}{" "}
-          {user.information.district}, {userInformation.city}{" "}
+          {user.information?.address}, {userInformation.ward}{' '}
+          {user.information?.ward}, {userInformation.district}{' '}
+          {user.information.district}, {userInformation.city}{' '}
           {user.information.city}
         </strong>
       </p>
@@ -37,7 +37,7 @@ const UserInformation = ({ user }) => {
         </Link>
       </p>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default UserInformation
+export default UserInformation;

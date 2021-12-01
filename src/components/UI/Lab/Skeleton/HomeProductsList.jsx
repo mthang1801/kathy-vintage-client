@@ -1,22 +1,22 @@
-import React from "react"
-import Skeleton from "@material-ui/lab/Skeleton"
+import React from 'react';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {
   Wrapper,
   Header,
   Body,
-} from "../../../Product/styles/ProductsList.styles"
+} from '../../../Product/styles/ProductsList.styles';
 import {
   Wrapper as Card,
   ImageContainer,
   ProductText,
   ProductName,
   ProductPrice,
-} from "../../../Product/styles/ProductItem.styles"
+} from '../../../Product/styles/ProductItem.styles';
 // import {Card} from "./styles/HomeProductsList.styles"
-import { useTheme } from "../../../../theme"
-import { v4 as uuidv4 } from "uuid"
+import { useTheme } from '../../../../theme';
+import { v4 as uuidv4 } from 'uuid';
 const ProductsList = () => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <Wrapper theme={theme}>
       <Header>
@@ -45,7 +45,7 @@ const ProductsList = () => {
         ))}
       </Body>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default ProductsList
+export default ProductsList;

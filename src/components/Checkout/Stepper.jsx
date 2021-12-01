@@ -1,25 +1,25 @@
-import React from "react"
-import PropTypes from "prop-types"
-import clsx from "clsx"
-import Stepper from "@material-ui/core/Stepper"
-import Step from "@material-ui/core/Step"
-import StepLabel from "@material-ui/core/StepLabel"
-import Check from "@material-ui/icons/Check"
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd"
-import PaymentIcon from "@material-ui/icons/Payment"
-import CheckIcon from "@material-ui/icons/Check"
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
-import { useLocation } from "@reach/router"
+import React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Check from '@material-ui/icons/Check';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import PaymentIcon from '@material-ui/icons/Payment';
+import CheckIcon from '@material-ui/icons/Check';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { useLocation } from '@reach/router';
 import {
   useQontoStepIconStyles,
   ColorlibConnector,
   useColorlibStepIconStyles,
   useStyles,
-} from "./styles/Stepper.styles"
+} from './styles/Stepper.styles';
 
 function QontoStepIcon(props) {
-  const classes = useQontoStepIconStyles()
-  const { active, completed } = props
+  const classes = useQontoStepIconStyles();
+  const { active, completed } = props;
 
   return (
     <div
@@ -33,7 +33,7 @@ function QontoStepIcon(props) {
         <div className={classes.circle} />
       )}
     </div>
-  )
+  );
 }
 
 QontoStepIcon.propTypes = {
@@ -45,18 +45,18 @@ QontoStepIcon.propTypes = {
    * Mark the step as completed. Is passed to child components.
    */
   completed: PropTypes.bool,
-}
+};
 
 function ColorlibStepIcon(props) {
-  const classes = useColorlibStepIconStyles()
-  const { active, completed } = props
+  const classes = useColorlibStepIconStyles();
+  const { active, completed } = props;
 
   const icons = {
     1: <ShoppingCartIcon />,
     2: <AssignmentIndIcon />,
     3: <PaymentIcon />,
     4: <CheckIcon />,
-  }
+  };
 
   return (
     <div
@@ -67,26 +67,26 @@ function ColorlibStepIcon(props) {
     >
       {icons[String(props.icon)]}
     </div>
-  )
+  );
 }
 function getSteps() {
-  return ["Kiểm tra giỏ hàng", "Thông tin giao hàng", "Thanh toán", "Hoàn tất"]
+  return ['Kiểm tra giỏ hàng', 'Thông tin giao hàng', 'Thanh toán', 'Hoàn tất'];
 }
 
 function CheckoutStepper() {
-  const classes = useStyles()
-  const steps = getSteps()
+  const classes = useStyles();
+  const steps = getSteps();
   const activeList = {
-    "/checkout": 0,
-    "/checkout/": 0,
-    "/checkout/shipping": 1,
-    "/checkout/shipping/": 1,
-    "/checkout/payment": 2,
-    "/checkout/payment/": 2,
-    "/checkout/complete": 3,
-    "/checkout/complete/": 3,
-  }
-  const { pathname } = useLocation()
+    '/checkout': 0,
+    '/checkout/': 0,
+    '/checkout/shipping': 1,
+    '/checkout/shipping/': 1,
+    '/checkout/payment': 2,
+    '/checkout/payment/': 2,
+    '/checkout/complete': 3,
+    '/checkout/complete/': 3,
+  };
+  const { pathname } = useLocation();
 
   return (
     <div className={classes.root}>
@@ -95,14 +95,14 @@ function CheckoutStepper() {
         activeStep={activeList[pathname]}
         connector={<ColorlibConnector />}
       >
-        {steps.map(label => (
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
     </div>
-  )
+  );
 }
 
 ColorlibStepIcon.propTypes = {
@@ -118,6 +118,6 @@ ColorlibStepIcon.propTypes = {
    * The label displayed in the step icon.
    */
   icon: PropTypes.node,
-}
+};
 
-export default CheckoutStepper
+export default CheckoutStepper;

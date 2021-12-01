@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 import {
   TabletWrapper,
   ListitemIcon,
@@ -8,20 +8,20 @@ import {
   useStyles,
   ViewPort,
   CategoriesList,
-} from "./styles/DrawerPortfoliosDropdown.styles"
-import Image from "gatsby-image"
-import { useTheme } from "../../theme"
-import { useLanguage } from "../../locales"
+} from './styles/DrawerPortfoliosDropdown.styles';
+import Image from 'gatsby-image';
+import { useTheme } from '../../theme';
+import { useLanguage } from '../../locales';
 const DrawerCategoriesDropdown = ({ portfolio, categories, onNavigate }) => {
-  const { theme } = useTheme()
-  const { lang } = useLanguage()
+  const { theme } = useTheme();
+  const { lang } = useLanguage();
   const onNavigateToCategory = (portfolio, category) => {
-    onNavigate(`/${portfolio.slug}/${category.slug}`)
-  }
+    onNavigate(`/${portfolio.slug}/${category.slug}`);
+  };
   return (
     <TabletWrapper open={categories?.length} theme={theme}>
       {categories?.length &&
-        categories.map(category => (
+        categories.map((category) => (
           <ViewPort key={category.contentful_id}>
             <ListItem onClick={() => onNavigateToCategory(portfolio, category)}>
               <ListItemImage>
@@ -35,7 +35,7 @@ const DrawerCategoriesDropdown = ({ portfolio, categories, onNavigate }) => {
           </ViewPort>
         ))}
     </TabletWrapper>
-  )
-}
+  );
+};
 
-export default DrawerCategoriesDropdown
+export default DrawerCategoriesDropdown;

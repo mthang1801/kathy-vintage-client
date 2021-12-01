@@ -1,11 +1,11 @@
-import userActionTypes from "./user.types"
+import userActionTypes from './user.types';
 
 const INITIAL_STATE = {
   user: null,
   fetched: false,
   loading: true,
   error: undefined,
-}
+};
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -16,15 +16,15 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_START:
     case userActionTypes.UPDATE_USER_INFORMATION_START:
     case userActionTypes.RESTORE_ACCOUNT_START:
-      return { ...state, loading: true, error: undefined }
+      return { ...state, loading: true, error: undefined };
     case userActionTypes.SIGN_IN_SUCCESS:
     case userActionTypes.SIGN_IN_WITH_SOCIAL_NETWORK_SUCCESS:
     case userActionTypes.GET_CURRENT_USER_SUCCESS:
-      return { ...state, user: action.payload, fetched: true, loading: false }
+      return { ...state, user: action.payload, fetched: true, loading: false };
     case userActionTypes.SIGN_OUT_USER_SUCCESS:
-      return { ...state, user: null, loading: false }
+      return { ...state, user: null, loading: false };
     case userActionTypes.CLEAR_USER_ERROR:
-      return { ...state, error: undefined }
+      return { ...state, error: undefined };
     case userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_SUCCESS:
       return {
         ...state,
@@ -33,11 +33,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
           ...state.user,
           information: { ...state.user.information, ...action.payload },
         },
-      }
+      };
     case userActionTypes.UPDATE_USER_INFORMATION_SUCCESS:
-      return { ...state, user: action.payload, loading: false }
+      return { ...state, user: action.payload, loading: false };
     case userActionTypes.CLEAR_ERROR:
-      return { ...state, error: undefined }
+      return { ...state, error: undefined };
     case userActionTypes.SIGN_UP_FAIL:
     case userActionTypes.GET_CURRENT_USER_FAIL:
     case userActionTypes.SIGN_OUT_USER_FAIL:
@@ -46,10 +46,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case userActionTypes.UPDATE_USER_INFORMATION_FAIL:
     case userActionTypes.UPDATE_USER_PAYMENT_AND_SHIPPING_TYPE_FAIL:
     case userActionTypes.RESTORE_ACCOUNT_FAIL:
-      return { ...state, user: null, loading: false, error: action.payload }
+      return { ...state, user: null, loading: false, error: action.payload };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default userReducer
+export default userReducer;

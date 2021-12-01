@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 90vw;
@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  background: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   text-align: center;
   & > *:not(:last-child) {
     margin-bottom: 1.5rem;
@@ -16,12 +16,12 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 992px) {
     height: 600px;
   }
-`
+`;
 export const Icon = styled.div`
   svg {
     font-size: 10rem;
   }
-`
+`;
 
 export const ImageContainer = styled.div`
   img {
@@ -37,14 +37,14 @@ export const ImageContainer = styled.div`
       width: 240px;
     }
   }
-`
+`;
 
 export const Title = styled.h2`
   font-size: 1rem;
   @media screen and (min-width: 992px) {
     font-size: 1.25rem;
   }
-`
+`;
 
 export const Button = styled.button`
   outline: none;
@@ -62,4 +62,4 @@ export const Button = styled.button`
     transform: translateY(-3px);
     background-color: #1a237e;
   }
-`
+`;

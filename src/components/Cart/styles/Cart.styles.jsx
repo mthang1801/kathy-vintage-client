@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.button`
   position: relative;
@@ -7,12 +7,12 @@ export const Wrapper = styled.button`
   outline: none;
   border: none;
   background: transparent;
-`
+`;
 
 export const CartIcon = styled.div`
   font-size: 1.75rem;
   display: flex;
-`
+`;
 
 export const CartNumber = styled.div`
   position: absolute;
@@ -26,11 +26,11 @@ export const CartNumber = styled.div`
   border-radius: 50%;
   background-color: #ffff00;
   color: #000;
-`
+`;
 
 export const Dropdown = styled.div`
   position: absolute;
   right: -2rem;
   top: 115%;
   z-index: 10;
-`
+`;

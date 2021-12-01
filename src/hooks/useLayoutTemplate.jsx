@@ -1,11 +1,11 @@
-import React, { useContext } from "react"
-import { LayoutTemplateContext } from "../templates/layout.template"
+import React, { useContext } from 'react';
+import { LayoutTemplateContext } from '../templates/layout.template';
 export const useLayoutTemplateStates = () => {
-  const { states } = useContext(LayoutTemplateContext)
-  return states
-}
+  const { states } = useContext(LayoutTemplateContext);
+  return states;
+};
 
 export const useLayoutTempateActions = () => {
-  const { actions } = useContext(LayoutTemplateContext)
-  return actions
-}
+  const { actions } = useContext(LayoutTemplateContext);
+  return actions;
+};

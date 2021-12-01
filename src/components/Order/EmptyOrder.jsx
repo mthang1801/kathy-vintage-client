@@ -1,22 +1,22 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   ImageContainer,
   Title,
   Button,
-} from "./styles/EmptyOrder.styles"
+} from './styles/EmptyOrder.styles';
 
-import { useLanguage } from "../../locales"
-import { ImFileEmpty } from "react-icons/im"
-import { useTheme } from "../../theme"
-import { navigate } from "gatsby"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+import { useLanguage } from '../../locales';
+import { ImFileEmpty } from 'react-icons/im';
+import { useTheme } from '../../theme';
+import { navigate } from 'gatsby';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 const EmptyOrder = () => {
   const {
     translation: { orders },
-  } = useLanguage()
+  } = useLanguage();
 
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <Wrapper theme={theme}>
       <ImageContainer>
@@ -27,17 +27,17 @@ const EmptyOrder = () => {
       <Button
         onClick={() => {
           trackCustomEvent({
-            action: "Click",
-            category: "navigate",
-            label: "To Back home",
-          })
-          navigate("/")
+            action: 'Click',
+            category: 'navigate',
+            label: 'To Back home',
+          });
+          navigate('/');
         }}
       >
         {orders.buttonBackHome}
       </Button>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default EmptyOrder
+export default EmptyOrder;

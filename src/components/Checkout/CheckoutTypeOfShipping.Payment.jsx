@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   TypeOfShipping,
-} from "./styles/CheckoutTypeOfShipping.Payment.styles"
-import Radio from "@material-ui/core/Radio"
-import RadioGroup from "@material-ui/core/RadioGroup"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import { useTheme } from "../../theme"
+} from './styles/CheckoutTypeOfShipping.Payment.styles';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useTheme } from '../../theme';
 const CheckoutPaymentTypeOfShipping = ({
   user,
   cartItems,
@@ -14,11 +14,11 @@ const CheckoutPaymentTypeOfShipping = ({
   shippingMethod,
   setShippingMethod,
 }) => {
-  const { theme } = useTheme()
-  const handleRadioChange = e => {
-    const { value, name } = e.target
-    setShippingMethod(types[name])
-  }
+  const { theme } = useTheme();
+  const handleRadioChange = (e) => {
+    const { value, name } = e.target;
+    setShippingMethod(types[name]);
+  };
   return (
     <TypeOfShipping theme={theme}>
       <RadioGroup
@@ -35,7 +35,7 @@ const CheckoutPaymentTypeOfShipping = ({
             label={types.standard.value}
           />
         )}
-        {user?.information?.city?.toLowerCase() === "hồ chí minh" &&
+        {user?.information?.city?.toLowerCase() === 'hồ chí minh' &&
           types.fast && (
             <FormControlLabel
               name={types.fast.key}
@@ -46,7 +46,7 @@ const CheckoutPaymentTypeOfShipping = ({
           )}
       </RadioGroup>
     </TypeOfShipping>
-  )
-}
+  );
+};
 
-export default CheckoutPaymentTypeOfShipping
+export default CheckoutPaymentTypeOfShipping;

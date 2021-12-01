@@ -1,35 +1,35 @@
-import React from "react"
+import React from 'react';
 import {
   Container,
   Wrapper,
   AvatarContainer,
   UserName,
-} from "./styles/UserOverview.styles"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { useTheme } from "../../../theme"
-import Accordion from "@material-ui/core/Accordion"
-import AccordionSummary from "@material-ui/core/AccordionSummary"
-import AccordionDetails from "@material-ui/core/AccordionDetails"
-import { useLanguage } from "../../../locales"
+} from './styles/UserOverview.styles';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useTheme } from '../../../theme';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { useLanguage } from '../../../locales';
 import {
   SettingItem,
   SettingItemIcon,
   SettingItemText,
   SettingButton,
   SettingItemLink,
-} from "../../Dropdown/styles/UserSettingsDropdown.styles"
-import { connect } from "react-redux"
-import { signOutUser } from "../../../redux/user/user.actions"
-import { navigate } from "gatsby"
+} from '../../Dropdown/styles/UserSettingsDropdown.styles';
+import { connect } from 'react-redux';
+import { signOutUser } from '../../../redux/user/user.actions';
+import { navigate } from 'gatsby';
 const UserOverview = ({ user, signOutUser }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const {
     translation: { user: userTranslation },
-  } = useLanguage()
+  } = useLanguage();
 
   const onNavigateToUserPage = (path, state) => {
-    navigate(path, { state: { from: state } })
-  }
+    navigate(path, { state: { from: state } });
+  };
   return (
     <Container theme={theme}>
       <Accordion>
@@ -88,9 +88,9 @@ const UserOverview = ({ user, signOutUser }) => {
         </AccordionDetails>
       </Accordion>
     </Container>
-  )
-}
-const mapDispatchToProps = dispatch => ({
+  );
+};
+const mapDispatchToProps = (dispatch) => ({
   signOutUser: () => dispatch(signOutUser()),
-})
-export default connect(null, mapDispatchToProps)(UserOverview)
+});
+export default connect(null, mapDispatchToProps)(UserOverview);

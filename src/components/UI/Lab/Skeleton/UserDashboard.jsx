@@ -1,12 +1,12 @@
-import React from "react"
-import { Wrapper, Header, Title } from "./styles/UserDashboard.styles"
-import Skeleton from "@material-ui/lab/Skeleton"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import { useTheme } from "../../../../theme"
-import Divider from "@material-ui/core/Divider"
+import React from 'react';
+import { Wrapper, Header, Title } from './styles/UserDashboard.styles';
+import Skeleton from '@material-ui/lab/Skeleton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import { useTheme } from '../../../../theme';
+import Divider from '@material-ui/core/Divider';
 const UserDashboard = () => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <Wrapper theme={theme}>
       <Header justify="space-between">
@@ -22,7 +22,7 @@ const UserDashboard = () => {
         ))}
       </List>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default UserDashboard
+export default UserDashboard;

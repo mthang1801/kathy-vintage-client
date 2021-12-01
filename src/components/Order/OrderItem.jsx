@@ -1,24 +1,24 @@
-import React from "react"
+import React from 'react';
 import {
   Wrapper,
   Title,
   OrderStatus,
   OrderLabel,
-} from "./styles/OrderItem.styles"
-import Accordion from "@material-ui/core/Accordion"
-import AccordionSummary from "@material-ui/core/AccordionSummary"
-import AccordionDetails from "@material-ui/core/AccordionDetails"
-import Divider from "@material-ui/core/Divider"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import { convertSecondsTimeToDate } from "../../utils/firebase.utils"
-import ProductItem from "./ProductItem"
-import OrderPriceItem from "./OrderPriceItem"
-import OrderStatusStepper from "./OrderStatusStepper"
-import OrderControl from "./OrderControl"
-import { useTheme } from "../../theme"
+} from './styles/OrderItem.styles';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Divider from '@material-ui/core/Divider';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { convertSecondsTimeToDate } from '../../utils/firebase.utils';
+import ProductItem from './ProductItem';
+import OrderPriceItem from './OrderPriceItem';
+import OrderStatusStepper from './OrderStatusStepper';
+import OrderControl from './OrderControl';
+import { useTheme } from '../../theme';
 
 const OrderItem = ({ order, ordersTranslation, userPage }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <Wrapper theme={theme} userPage={userPage}>
       <Accordion>
@@ -36,13 +36,13 @@ const OrderItem = ({ order, ordersTranslation, userPage }) => {
               <span>{ordersTranslation.status[order.order_status]?.label}</span>
             </OrderStatus>
           </OrderLabel>
-          <div style={{ color: "var(--red-3)" }}>
+          <div style={{ color: 'var(--red-3)' }}>
             <strong>{convertSecondsTimeToDate(order.createdAt.seconds)}</strong>
           </div>
         </AccordionSummary>
         <AccordionDetails>
           <Title>{ordersTranslation.product.productsList}</Title>
-          {order.products_line.map(product => (
+          {order.products_line.map((product) => (
             <ProductItem
               key={product.slug}
               product={product}
@@ -64,7 +64,7 @@ const OrderItem = ({ order, ordersTranslation, userPage }) => {
           <Title>{ordersTranslation.product.orderPrice}</Title>
           <OrderPriceItem order={order} ordersTranslation={ordersTranslation} />
 
-          {order.order_status === "sent" &&
+          {order.order_status === 'sent' &&
             !order.shipping_status.received &&
             !order.shipping_status.shipping &&
             !order.shipping_status.complete && (
@@ -79,7 +79,7 @@ const OrderItem = ({ order, ordersTranslation, userPage }) => {
         </AccordionDetails>
       </Accordion>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default OrderItem
+export default OrderItem;

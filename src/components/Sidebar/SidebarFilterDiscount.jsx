@@ -1,15 +1,15 @@
-import React from "react"
-import { Wrapper, Title } from "./styles/Sidebar.styles"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Checkbox from "@material-ui/core/Checkbox"
+import React from 'react';
+import { Wrapper, Title } from './styles/Sidebar.styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import {
   useLayoutTempateActions,
   useLayoutTemplateStates,
-} from "../../hooks/useLayoutTemplate"
+} from '../../hooks/useLayoutTemplate';
 const SidebarFilterDiscount = ({ templateTranslation }) => {
-  const { fields, title } = templateTranslation?.sidebar?.discount
-  const { setDiscountIndex } = useLayoutTempateActions()
-  const { discountIndex } = useLayoutTemplateStates()
+  const { fields, title } = templateTranslation?.sidebar?.discount;
+  const { setDiscountIndex } = useLayoutTempateActions();
+  const { discountIndex } = useLayoutTemplateStates();
 
   return (
     <Wrapper>
@@ -29,7 +29,7 @@ const SidebarFilterDiscount = ({ templateTranslation }) => {
         />
       ))}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default SidebarFilterDiscount
+export default SidebarFilterDiscount;

@@ -1,24 +1,24 @@
-import React, { useState } from "react"
-import Button from "@material-ui/core/Button"
-import AlertDialog from "../UI/FeedBacks/Dialog/AlertDialog"
-import { connect } from "react-redux"
-import { cancelOrder } from "../../redux/orders/orders.actions"
+import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import AlertDialog from '../UI/FeedBacks/Dialog/AlertDialog';
+import { connect } from 'react-redux';
+import { cancelOrder } from '../../redux/orders/orders.actions';
 const OrderControl = ({ order, ordersTranslation, cancelOrder }) => {
-  const [openDialog, setOpenDialog] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false);
 
   const onCancelOrder = () => {
-    setOpenDialog(true)
-  }
+    setOpenDialog(true);
+  };
   const onAgreeDialog = () => {
-    cancelOrder(order.id)
-  }
+    cancelOrder(order.id);
+  };
   return (
     <>
-      <div style={{ margin: "1rem 0", marginLeft: "auto" }}>
+      <div style={{ margin: '1rem 0', marginLeft: 'auto' }}>
         <Button
           color="secondary"
           variant="text"
-          style={{ textTransform: "capitalize" }}
+          style={{ textTransform: 'capitalize' }}
           onClick={onCancelOrder}
         >
           {ordersTranslation.cancelOrderButton}
@@ -32,11 +32,11 @@ const OrderControl = ({ order, ordersTranslation, cancelOrder }) => {
         onAgree={onAgreeDialog}
       />
     </>
-  )
-}
+  );
+};
 
-const mapDispatchToProps = dispatch => ({
-  cancelOrder: orderId => dispatch(cancelOrder(orderId)),
-})
+const mapDispatchToProps = (dispatch) => ({
+  cancelOrder: (orderId) => dispatch(cancelOrder(orderId)),
+});
 
-export default connect(null, mapDispatchToProps)(OrderControl)
+export default connect(null, mapDispatchToProps)(OrderControl);

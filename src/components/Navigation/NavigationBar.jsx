@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import {
   Wrapper,
   List,
@@ -7,42 +7,42 @@ import {
   ListItemText,
   Setting,
   CategoriesContainer,
-} from "./styles/NavigationBar.styles"
-import { useTheme } from "../../theme"
-import { useLanguage } from "../../locales"
-import { useStaticQuery, graphql } from "gatsby"
-import { useLocation } from "@reach/router"
-import SettingDialog from "../Setting/SettingDialog"
-import CategoriesDropdown from "../Dropdown/CategoriesDropdown"
+} from './styles/NavigationBar.styles';
+import { useTheme } from '../../theme';
+import { useLanguage } from '../../locales';
+import { useStaticQuery, graphql } from 'gatsby';
+import { useLocation } from '@reach/router';
+import SettingDialog from '../Setting/SettingDialog';
+import CategoriesDropdown from '../Dropdown/CategoriesDropdown';
 const NavigationBar = () => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const {
     translation: { navigations, portfolioIcons },
     lang,
-  } = useLanguage()
-  const [activeItem, setActiveItem] = useState(null)
-  const { pathname } = useLocation()
-  const portfolioPath = pathname.split("/")[1]
-  const { portfoliosList } = useStaticQuery(PORFOLIOS_LIST)
-  const [openSetting, setOpenSetting] = useState(false)
-  const initialPortfolio = { id: null, x: 0, y: 0 }
-  const [selectedPortfolio, setSelectedPortfolio] = useState(initialPortfolio)
-  const onMouseEnterPortfolioItem = id => {
-    setSelectedPortfolio(prevState => ({ ...prevState, id }))
-    setActiveItem(id)
-  }
+  } = useLanguage();
+  const [activeItem, setActiveItem] = useState(null);
+  const { pathname } = useLocation();
+  const portfolioPath = pathname.split('/')[1];
+  const { portfoliosList } = useStaticQuery(PORFOLIOS_LIST);
+  const [openSetting, setOpenSetting] = useState(false);
+  const initialPortfolio = { id: null, x: 0, y: 0 };
+  const [selectedPortfolio, setSelectedPortfolio] = useState(initialPortfolio);
+  const onMouseEnterPortfolioItem = (id) => {
+    setSelectedPortfolio((prevState) => ({ ...prevState, id }));
+    setActiveItem(id);
+  };
   const onMouseLeavePortfolioItem = () => {
-    setSelectedPortfolio(initialPortfolio)
-    setActiveItem(null)
-  }
+    setSelectedPortfolio(initialPortfolio);
+    setActiveItem(null);
+  };
 
-  const onMouseEnterStaticNavigation = path => {
-    setActiveItem(path)
-  }
+  const onMouseEnterStaticNavigation = (path) => {
+    setActiveItem(path);
+  };
 
   const onMouseLeaveStaticNavigation = () => {
-    setActiveItem(null)
-  }
+    setActiveItem(null);
+  };
   return (
     <Wrapper theme={theme}>
       <SettingDialog open={openSetting} setOpen={setOpenSetting} />
@@ -92,7 +92,7 @@ const NavigationBar = () => {
                 </CategoriesContainer>
               )}
             </ListItem>
-          )
+          );
         })}
         {/* Setting */}
         <Setting
@@ -113,8 +113,8 @@ const NavigationBar = () => {
         </Setting>
       </List>
     </Wrapper>
-  )
-}
+  );
+};
 
 const PORFOLIOS_LIST = graphql`
   query {
@@ -166,6 +166,6 @@ const PORFOLIOS_LIST = graphql`
       }
     }
   }
-`
+`;
 
-export default NavigationBar
+export default NavigationBar;

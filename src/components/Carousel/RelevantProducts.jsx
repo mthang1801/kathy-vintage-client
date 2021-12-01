@@ -1,8 +1,8 @@
-import React from "react"
-import Slider from "react-slick"
-import ProductItem from "../Product/ProductItem"
-import { Wrapper, ProductContainer } from "./styles/RelevantPosts.styles"
-let dragging = false
+import React from 'react';
+import Slider from 'react-slick';
+import ProductItem from '../Product/ProductItem';
+import { Wrapper, ProductContainer } from './styles/RelevantPosts.styles';
+let dragging = false;
 
 const RelevantProductsCarousel = ({ products }) => {
   const settings = {
@@ -13,7 +13,7 @@ const RelevantProductsCarousel = ({ products }) => {
     autoplay: false,
     speed: 2000,
     autoplaySpeed: 5000,
-    cssEase: "ease-out",
+    cssEase: 'ease-out',
     arrows: false,
     beforeChange: () => (dragging = true),
     afterChange: () => (dragging = false),
@@ -47,19 +47,19 @@ const RelevantProductsCarousel = ({ products }) => {
         },
       },
     ],
-  }
+  };
 
   return (
     <Wrapper>
       <Slider {...settings}>
-        {products.map(product => (
+        {products.map((product) => (
           <ProductContainer key={product.contentful_id}>
             <ProductItem product={product} />
           </ProductContainer>
         ))}
       </Slider>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default RelevantProductsCarousel
+export default RelevantProductsCarousel;

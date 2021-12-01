@@ -1,7 +1,7 @@
-import React from "react"
-import { InputGroup, Button, Input } from "./styles/QuantityControl.styles"
-import { IoMdAdd, IoMdRemove } from "react-icons/io"
-import { useTheme } from "../../theme"
+import React from 'react';
+import { InputGroup, Button, Input } from './styles/QuantityControl.styles';
+import { IoMdAdd, IoMdRemove } from 'react-icons/io';
+import { useTheme } from '../../theme';
 const QuantityControl = ({
   quantity,
   setQuantity,
@@ -9,28 +9,28 @@ const QuantityControl = ({
   increaseProductQuantity,
   decreaseProductQuantity,
 }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const onDecreaseQuantity = () => {
-    if (quantity <= 0) return
+    if (quantity <= 0) return;
     if (setQuantity) {
-      setQuantity(prevQuantity => prevQuantity - 1)
+      setQuantity((prevQuantity) => prevQuantity - 1);
     }
     if (product) {
-      decreaseProductQuantity(product)
+      decreaseProductQuantity(product);
     }
-  }
+  };
   const onIncreaseQuantity = () => {
     if (setQuantity) {
-      setQuantity(prevQuantity => prevQuantity + 1)
+      setQuantity((prevQuantity) => prevQuantity + 1);
     }
     if (product) {
-      increaseProductQuantity(product)
+      increaseProductQuantity(product);
     }
-  }
-  const onChangeQuantity = e => {
-    if (e.target.value < 0) return
-    setQuantity(e.target.value)
-  }
+  };
+  const onChangeQuantity = (e) => {
+    if (e.target.value < 0) return;
+    setQuantity(e.target.value);
+  };
   return (
     <InputGroup>
       <Button
@@ -51,7 +51,7 @@ const QuantityControl = ({
         <IoMdAdd />
       </Button>
     </InputGroup>
-  )
-}
+  );
+};
 
-export default QuantityControl
+export default QuantityControl;

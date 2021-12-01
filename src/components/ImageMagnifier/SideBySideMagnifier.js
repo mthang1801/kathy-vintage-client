@@ -1,13 +1,13 @@
-import React from "react"
-import PropTypes from "prop-types"
-import utils from "./utils"
+import React from 'react';
+import PropTypes from 'prop-types';
+import utils from './utils';
 import ReactInputPosition, {
   TOUCH_ACTIVATION,
   MOUSE_ACTIVATION,
-} from "react-input-position"
-import SideBySideRenderer from "./SideBySideRenderer"
+} from 'react-input-position';
+import SideBySideRenderer from './SideBySideRenderer';
 
-const SideBySideMagnifier = props => {
+const SideBySideMagnifier = (props) => {
   const {
     imageSrc,
     largeImageSrc,
@@ -41,7 +41,7 @@ const SideBySideMagnifier = props => {
     zoomContainerBoxShadow,
     mouseActivation,
     touchActivation,
-  } = props
+  } = props;
 
   return (
     <ReactInputPosition
@@ -83,8 +83,8 @@ const SideBySideMagnifier = props => {
         zoomContainerBoxShadow={zoomContainerBoxShadow}
       />
     </ReactInputPosition>
-  )
-}
+  );
+};
 
 SideBySideMagnifier.propTypes = {
   imageSrc: PropTypes.oneOfType([
@@ -122,19 +122,19 @@ SideBySideMagnifier.propTypes = {
   zoomContainerBoxShadow: PropTypes.string,
   mouseActivation: PropTypes.string,
   touchActivation: PropTypes.string,
-}
+};
 
 SideBySideMagnifier.defaultProps = {
-  imageSrc: "",
-  largeImageSrc: "",
-  imageAlt: "",
+  imageSrc: '',
+  largeImageSrc: '',
+  imageAlt: '',
   overlayOpacity: 0.5,
   overlayBoxOpacity: 0.8,
-  overlayBackgroundColor: "#000",
-  overlayBoxColor: "#fff",
-  overlayBoxImage: "",
-  overlayBoxImageSize: "",
-  cursorStyle: "crosshair",
+  overlayBackgroundColor: '#000',
+  overlayBoxColor: '#fff',
+  overlayBoxImage: '',
+  overlayBoxImageSize: '',
+  cursorStyle: 'crosshair',
   transitionSpeed: 0.4,
   transitionSpeedInPlace: 0.4,
   onImageLoad: utils.noop,
@@ -146,10 +146,10 @@ SideBySideMagnifier.defaultProps = {
   fillGapTop: 0,
   fillGapBottom: 0,
   inPlaceMinBreakpoint: 0,
-  zoomContainerBorder: "none",
-  zoomContainerBoxShadow: "none",
+  zoomContainerBorder: 'none',
+  zoomContainerBoxShadow: 'none',
   mouseActivation: MOUSE_ACTIVATION.HOVER,
   touchActivation: TOUCH_ACTIVATION.TOUCH,
-}
+};
 
-export default SideBySideMagnifier
+export default SideBySideMagnifier;

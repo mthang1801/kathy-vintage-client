@@ -1,27 +1,27 @@
-import styled from "styled-components"
-import { config } from "../../../config"
-import { Link } from "gatsby"
+import styled from 'styled-components';
+import { config } from '../../../config';
+import { Link } from 'gatsby';
 export const Wrapper = styled.nav`
   width: 100%;
   background: ${({ theme }) =>
-    theme ? theme?.navigation?.background : "var(--navigation-background)"};
+    theme ? theme?.navigation?.background : 'var(--navigation-background)'};
   padding: 0 5rem;
   display: none;
   @media screen and (min-width: 992px) {
     display: block;
   }
   z-index: 2;
-`
+`;
 
 export const List = styled.section`
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 50px;
-`
+`;
 export const ListItemText = styled.span`
   text-align: center;
-`
+`;
 
 export const Setting = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ export const Setting = styled.div`
   & img{
     filter: invert(49%) sepia(85%) saturate(1822%) hue-rotate(159deg) brightness(91%) contrast(103%);
   }`}
-`
+`;
 
 export const ListItemIcon = styled.div`
   width: 1.5rem;
@@ -57,7 +57,7 @@ export const ListItemIcon = styled.div`
     width: 100%;
     height: 100%;
   }
-`
+`;
 
 export const ListItem = styled(Link)`
   display: flex;
@@ -69,10 +69,10 @@ export const ListItem = styled(Link)`
   position: relative;
   padding: 0.4rem 1rem;
   z-index: 1;
-`
+`;
 
 export const CategoriesContainer = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
-`
+`;

@@ -1,15 +1,15 @@
-import React from "react"
+import React from 'react';
 import {
   GoogleLoginButtonWrapper,
   ButtonIcon,
   ButtonText,
-} from "./styles/LoginButton.styles"
-import { useLanguage } from "../../locales"
-import { FcGoogle } from "react-icons/fc"
-const GoogleLoginButtonComponent = props => {
+} from './styles/LoginButton.styles';
+import { useLanguage } from '../../locales';
+import { FcGoogle } from 'react-icons/fc';
+const GoogleLoginButtonComponent = (props) => {
   const {
     translation: { auth },
-  } = useLanguage()
+  } = useLanguage();
 
   return (
     <GoogleLoginButtonWrapper {...props}>
@@ -18,7 +18,7 @@ const GoogleLoginButtonComponent = props => {
       </ButtonIcon>
       <ButtonText>{auth.signInGoogle}</ButtonText>
     </GoogleLoginButtonWrapper>
-  )
-}
+  );
+};
 
-export default GoogleLoginButtonComponent
+export default GoogleLoginButtonComponent;

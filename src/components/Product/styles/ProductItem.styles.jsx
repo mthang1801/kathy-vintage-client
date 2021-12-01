@@ -1,8 +1,8 @@
-import styled from "styled-components"
-import { Link } from "gatsby"
+import styled from 'styled-components';
+import { Link } from 'gatsby';
 export const Wrapper = styled(Link)`
   position: relative;
-  border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
+  border: 1px solid ${({ theme }) => (theme ? theme.border : 'var(--border)')};
   border-radius: 5px;
   text-decoration: none;
   color: inherit;
@@ -10,9 +10,9 @@ export const Wrapper = styled(Link)`
   &:hover {
     transform: translateY(-3px);
     box-shadow: ${({ theme }) =>
-      theme ? theme.boxShadow : "var(--boxShadow)"};
+      theme ? theme.boxShadow : 'var(--boxShadow)'};
   }
-`
+`;
 
 export const ImageContainer = styled.div`
   position: relative;
@@ -27,16 +27,16 @@ export const ImageContainer = styled.div`
     background-size: 100% 100%;
   }
   transition: 0.4s all;
-`
+`;
 
 export const ImageMobileTablet = styled.div`
   img {
     width: 100%;
     max-height: 10rem;
-    min-height : 8rem;
+    min-height: 8rem;
     overflow: hidden;
   }
-`
+`;
 
 export const ProductText = styled.div`
   height: 6rem;
@@ -44,19 +44,19 @@ export const ProductText = styled.div`
   grid-template-rows: 3fr;
   grid-template-columns: 1fr;
   padding: 0.3rem;
-`
+`;
 
 export const ProductName = styled.div`
   grid-row: 1 / span 2;
   overflow: hidden;
   text-overflow: ellipsis;
-`
+`;
 
 export const ProductPrice = styled.div`
   grid-row: 3 / span 1;
   font-weight: 600;
   font-size: 1.2rem;
-`
+`;
 
 export const DiscountBrand = styled.span`
   z-index: 1;
@@ -67,4 +67,4 @@ export const DiscountBrand = styled.span`
   background-color: red;
   color: #ffea00;
   padding: 0.25rem 0.5rem;
-`
+`;

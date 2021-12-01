@@ -1,21 +1,21 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import {
   Wrapper,
   Button,
   Header,
   AvatarContainer,
-} from "./styles/DashBoard.styles"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import Divider from "@material-ui/core/Divider"
-import { navigate } from "gatsby"
-import { AiOutlineHome } from "react-icons/ai"
-import SettingDialog from "../Setting/SettingDialog"
-import { useTheme } from "../../theme"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { trackCustomEvent } from "gatsby-plugin-google-analytics"
+} from './styles/DashBoard.styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import { navigate } from 'gatsby';
+import { AiOutlineHome } from 'react-icons/ai';
+import SettingDialog from '../Setting/SettingDialog';
+import { useTheme } from '../../theme';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 const DashBoard = ({
   options,
   selectedOption,
@@ -24,17 +24,17 @@ const DashBoard = ({
   isDialog,
   setOpenDashboardDialog,
 }) => {
-  const { theme } = useTheme()
-  const [openDialog, setOpenDialog] = useState(false)
-  const onChangeOption = selectedOption => {
-    if (selectedOption.key === "setting-mode") {
-      return setOpenDialog(true)
+  const { theme } = useTheme();
+  const [openDialog, setOpenDialog] = useState(false);
+  const onChangeOption = (selectedOption) => {
+    if (selectedOption.key === 'setting-mode') {
+      return setOpenDialog(true);
     }
-    setSelectedOption(selectedOption.key)
+    setSelectedOption(selectedOption.key);
     if (setOpenDashboardDialog) {
-      setOpenDashboardDialog(false)
+      setOpenDashboardDialog(false);
     }
-  }
+  };
   return (
     <>
       <SettingDialog open={openDialog} setOpen={setOpenDialog} />
@@ -45,11 +45,11 @@ const DashBoard = ({
             rounded
             onClick={() => {
               trackCustomEvent({
-                action: "Click",
-                category: "navigate",
-                label: "Go to home",
-              })
-              navigate("/")
+                action: 'Click',
+                category: 'navigate',
+                label: 'Go to home',
+              });
+              navigate('/');
             }}
           >
             <AiOutlineHome />
@@ -64,7 +64,7 @@ const DashBoard = ({
         </Header>
         <Divider />
         <List component="nav">
-          {options.map(optionItem => (
+          {options.map((optionItem) => (
             <ListItem
               key={optionItem.key}
               button
@@ -78,7 +78,7 @@ const DashBoard = ({
         </List>
       </Wrapper>
     </>
-  )
-}
+  );
+};
 
-export default DashBoard
+export default DashBoard;

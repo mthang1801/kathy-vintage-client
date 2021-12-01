@@ -1,15 +1,15 @@
-import styled from "styled-components"
-import { makeStyles } from "@material-ui/core/styles"
-export const useStyles = makeStyles(theme => ({
+import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
+export const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    width: '100%',
     padding: 0,
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
-}))
+}));
 
 export const Container = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ export const Container = styled.div`
       width: 100%;
     }
   }
-`
+`;
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -44,7 +44,7 @@ export const Wrapper = styled.div`
   &:hover {
     background-color: var(--light-gray-1);
   }
-`
+`;
 
 export const AvatarContainer = styled.div`
   width: 2rem;
@@ -53,9 +53,9 @@ export const AvatarContainer = styled.div`
     width: 100%;
     border-radius: 50%;
   }
-`
+`;
 
 export const UserName = styled.h3`
   font-size: 1rem;
   margin-left: 1rem;
-`
+`;

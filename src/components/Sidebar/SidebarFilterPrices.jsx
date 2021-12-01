@@ -1,26 +1,26 @@
-import React, { useState } from "react"
-import { Wrapper, Title, InputGroup, Input } from "./styles/Sidebar.styles"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Checkbox from "@material-ui/core/Checkbox"
-import { useTheme } from "../../theme"
-import Button from "@material-ui/core/Button"
+import React, { useState } from 'react';
+import { Wrapper, Title, InputGroup, Input } from './styles/Sidebar.styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import { useTheme } from '../../theme';
+import Button from '@material-ui/core/Button';
 import {
   useLayoutTempateActions,
   useLayoutTemplateStates,
-} from "../../hooks/useLayoutTemplate"
+} from '../../hooks/useLayoutTemplate';
 const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
-  const [from, setFrom] = useState(null)
-  const [to, setTo] = useState(null)
-  const { setPriceIndex, setSelectedPriceScope } = useLayoutTempateActions()
-  const { priceIndex } = useLayoutTemplateStates()
-  const { theme } = useTheme()
+  const [from, setFrom] = useState(null);
+  const [to, setTo] = useState(null);
+  const { setPriceIndex, setSelectedPriceScope } = useLayoutTempateActions();
+  const { priceIndex } = useLayoutTemplateStates();
+  const { theme } = useTheme();
 
-  let pricesQuantiles = []
-  const priceDiff = maxPrice - minPrice
+  let pricesQuantiles = [];
+  const priceDiff = maxPrice - minPrice;
   if (priceDiff === 0) {
-    return null
+    return null;
   } else if (priceDiff < 1000000) {
-    pricesQuantiles = [minPrice, 0.5 * priceDiff + minPrice, maxPrice]
+    pricesQuantiles = [minPrice, 0.5 * priceDiff + minPrice, maxPrice];
   } else {
     pricesQuantiles = [
       minPrice,
@@ -28,32 +28,32 @@ const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
       0.5 * priceDiff + minPrice,
       0.75 * priceDiff + minPrice,
       maxPrice,
-    ]
+    ];
   }
 
-  const onHandleChangePrice = e => {
-    const index = +e.target.value
-    setPriceIndex(index)
-    setSelectedPriceScope([pricesQuantiles[index], pricesQuantiles[index + 1]])
-  }
+  const onHandleChangePrice = (e) => {
+    const index = +e.target.value;
+    setPriceIndex(index);
+    setSelectedPriceScope([pricesQuantiles[index], pricesQuantiles[index + 1]]);
+  };
   const onClickFilterPrice = () => {
     if (from && !to) {
-      setSelectedPriceScope([from, Infinity])
+      setSelectedPriceScope([from, Infinity]);
     } else if (!from && to) {
-      setSelectedPriceScope([-Infinity, to])
+      setSelectedPriceScope([-Infinity, to]);
     } else if (!from && !to) {
-      setSelectedPriceScope([-Infinity, Infinity])
+      setSelectedPriceScope([-Infinity, Infinity]);
     } else {
-      setSelectedPriceScope([from, to])
+      setSelectedPriceScope([from, to]);
     }
-    setPriceIndex(-1)
-  }
+    setPriceIndex(-1);
+  };
   const {
     title,
     from: fromTranslation,
     to: toTranslation,
     buttonFilter,
-  } = templateTranslation.sidebar.prices
+  } = templateTranslation.sidebar.prices;
   return (
     <Wrapper>
       <Title>{title}</Title>
@@ -79,19 +79,19 @@ const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
       ))}
       <InputGroup>
         <div>
-          <span>{fromTranslation}</span>{" "}
+          <span>{fromTranslation}</span>{' '}
           <Input
             type="number"
             theme={theme}
-            onChange={e => setFrom(e.target.value)}
+            onChange={(e) => setFrom(e.target.value)}
           />
         </div>
         <div>
-          <span>{toTranslation}</span>{" "}
+          <span>{toTranslation}</span>{' '}
           <Input
             type="number"
             theme={theme}
-            onChange={e => setTo(e.target.value)}
+            onChange={(e) => setTo(e.target.value)}
           />
         </div>
         <Button
@@ -104,7 +104,7 @@ const SidebarFilterPrices = ({ minPrice, maxPrice, templateTranslation }) => {
         </Button>
       </InputGroup>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default SidebarFilterPrices
+export default SidebarFilterPrices;

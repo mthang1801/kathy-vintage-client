@@ -1,7 +1,7 @@
-import React from "react"
-import styles from "./styles"
+import React from 'react';
+import styles from './styles';
 
-const ImagePreviewOverlay = props => {
+const ImagePreviewOverlay = (props) => {
   const {
     previewWidth,
     previewHeight,
@@ -19,10 +19,10 @@ const ImagePreviewOverlay = props => {
     overlayBoxColor,
     overlayBoxImage,
     overlayBoxImageSize,
-  } = props
+  } = props;
 
-  const opacity = active ? overlayOpacity : 0
-  const boxOpacity = active ? overlayBoxOpacity : 0
+  const opacity = active ? overlayOpacity : 0;
+  const boxOpacity = active ? overlayBoxOpacity : 0;
 
   return (
     <React.Fragment>
@@ -79,17 +79,17 @@ const ImagePreviewOverlay = props => {
         )}
       ></div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 ImagePreviewOverlay.defaultProps = {
   overlayOpacity: 0.5,
   overlayBoxOpacity: 0.8,
   transitionSpeed: 0.4,
-  overlayBackgroundColor: "#000",
-  overlayBoxColor: "#fff",
-  overlayBoxImage: "",
-  overlayBoxImageSize: "",
-}
+  overlayBackgroundColor: '#000',
+  overlayBoxColor: '#fff',
+  overlayBoxImage: '',
+  overlayBoxImageSize: '',
+};
 
-export default ImagePreviewOverlay
+export default ImagePreviewOverlay;

@@ -1,18 +1,18 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-`
+`;
 
 export const Title = styled.h4`
   font-size: 1.1rem;
   text-transform: uppercase;
   text-align: center;
   margin: 1rem auto 1rem auto;
-`
+`;
 
 export const List = styled.ul`
-  background: ${({ theme }) => (theme ? theme.card : "var(--card)")};
+  background: ${({ theme }) => (theme ? theme.card : 'var(--card)')};
   border-radius: 0.5rem;
   overflow: hidden;
   padding: 0;
@@ -20,13 +20,13 @@ export const List = styled.ul`
   font-size: 0.95rem;
   & > *:hover {
     background-color: ${({ theme }) =>
-      theme ? theme.hover : "var(--hover-background)"};
+      theme ? theme.hover : 'var(--hover-background)'};
   }
   & li:not(:last-child) {
     border-bottom: 1px solid
-      ${({ theme }) => (theme ? theme.border : "var(--border)")};
+      ${({ theme }) => (theme ? theme.border : 'var(--border)')};
   }
-`
+`;
 
 export const ListItem = styled.li`
   display: flex;
@@ -43,4 +43,4 @@ export const ListItem = styled.li`
       
     }
   `}
-`
+`;

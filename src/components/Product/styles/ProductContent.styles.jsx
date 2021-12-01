@@ -1,22 +1,22 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   padding: 0.25rem 0.75rem;
-`
+`;
 
 export const Title = styled.h3`
   font-size: 1.8rem;
   text-transform: capitalize;
   margin-top: 0;
   margin-bottom: 0.5rem;
-`
+`;
 
 export const Flex = styled.div`
   display: flex;
-  align-items: ${({ alignItems }) => alignItems || "center"};
+  align-items: ${({ alignItems }) => alignItems || 'center'};
   flex-wrap: wrap;
   background-color: ${({ theme }) =>
-    theme ? theme.background : "var(--background)"};
+    theme ? theme.background : 'var(--background)'};
   margin: 1rem 0;
   ${({ spacing }) =>
     spacing &&
@@ -25,7 +25,7 @@ export const Flex = styled.div`
       margin-left : ${spacing}rem;
     }
   `}
-`
+`;
 
 export const Grid = styled.div`
   display: grid;
@@ -37,26 +37,26 @@ export const Grid = styled.div`
   @media screen and (min-width: 992px) {
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   }
-`
+`;
 
 export const OfficialPrice = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--blue-2);
-`
+`;
 
 export const InitialPrice = styled.span`
   font-size: 0.9rem;
   margin-left: 1rem;
   opacity: 0.6;
   text-decoration: line-through;
-`
+`;
 
 export const DiscountPercentage = styled.span`
   margin-left: 0.75rem;
   font-size: 0.9rem;
   color: var(--red-2);
-`
+`;
 
 export const ButtonGroup = styled.div`
   display: flex;
@@ -77,7 +77,7 @@ export const ButtonGroup = styled.div`
       }
     }
   }
-`
+`;
 
 export const CustomButton = styled.button`
   width: 80%;
@@ -99,26 +99,26 @@ export const CustomButton = styled.button`
     display: flex;
   }
   background-color: ${({ color }) =>
-    color === "secondary" ? "var(--red-1)" : "var(--blue-1)"};
+    color === 'secondary' ? 'var(--red-1)' : 'var(--blue-1)'};
   &:hover,
   &:active {
     background-color: ${({ color }) =>
-      color === "secondary" ? "var(--red-3)" : "var(--blue-3)"};
+      color === 'secondary' ? 'var(--red-3)' : 'var(--blue-3)'};
   }
   color: var(--white);
   border-radius: 0.5rem;
   @media screen and (min-width: 768px) {
     width: 40%;
   }
-`
+`;
 
 export const ProductColorItem = styled.div`
   display: flex;
   align-items: center;
   max-width: 10rem;
-  border: 1px solid ${({ theme }) => (theme ? theme.border : "var(--border)")};
+  border: 1px solid ${({ theme }) => (theme ? theme.border : 'var(--border)')};
   background-color: ${({ theme }) =>
-    theme ? theme.background : "var(--background)"};
+    theme ? theme.background : 'var(--background)'};
   border-radius: 0.5rem;
   overflow: hidden;
   min-height: 40px;
@@ -137,4 +137,4 @@ export const ProductColorItem = styled.div`
       background-color : #42a5f5;      
       border:  1px solid transparent;
     `}
-`
+`;

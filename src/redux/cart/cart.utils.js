@@ -1,26 +1,26 @@
-import { v4 as uuidv4 } from "uuid"
-import _ from "lodash"
+import { v4 as uuidv4 } from 'uuid';
+import _ from 'lodash';
 export const addProductToCart = (cartItems, product) => {
-  const checkProductExistedInCart = cartItems.find(item => {
-    if (item.contentful_id !== product.contentful_id) return false
+  const checkProductExistedInCart = cartItems.find((item) => {
+    if (item.contentful_id !== product.contentful_id) return false;
     if (
       item.selectedColor &&
       product.selectedColor &&
       item.selectedColor !== product.selectedColor
     )
-      return false
+      return false;
     if (
       item.selectedSize &&
       product.selectedSize &&
       item.selectedSize !== product.selectedSize
     )
-      return false
-    return true
-  })
+      return false;
+    return true;
+  });
   if (!checkProductExistedInCart) {
-    return [...cartItems, { id: uuidv4(), ...product }]
+    return [...cartItems, { id: uuidv4(), ...product }];
   }
-  return cartItems.map(item => {
+  return cartItems.map((item) => {
     if (item.contentful_id === product.contentful_id) {
       if (
         item.selectedColor &&
@@ -30,7 +30,7 @@ export const addProductToCart = (cartItems, product) => {
         product.selectedSize &&
         product.selectedSize === item.selectedSize
       )
-        return { id: item.id, ...product }
+        return { id: item.id, ...product };
       if (
         item.selectedColor &&
         product.selectedColor &&
@@ -38,7 +38,7 @@ export const addProductToCart = (cartItems, product) => {
         !item.selectedSize &&
         !product.selectedSize
       )
-        return { id: item.id, ...product }
+        return { id: item.id, ...product };
       if (
         item.selectedSize &&
         product.selectedSize &&
@@ -46,19 +46,19 @@ export const addProductToCart = (cartItems, product) => {
         !item.selectedColor &&
         !product.selectedColor
       )
-        return { id: item.id, ...product }
+        return { id: item.id, ...product };
     }
-    return item
-  })
-}
+    return item;
+  });
+};
 
-export const mergeDuplicateProductsInCart = cartItems => {
-  let newCart = []
+export const mergeDuplicateProductsInCart = (cartItems) => {
+  let newCart = [];
   for (let item of cartItems) {
     let productIndex = newCart.findIndex(
-      product => product.contentful_id === item.contentful_id
-    )
-    let product = newCart[productIndex]
+      (product) => product.contentful_id === item.contentful_id
+    );
+    let product = newCart[productIndex];
     if (product) {
       if (
         product.selectedColor &&
@@ -71,8 +71,8 @@ export const mergeDuplicateProductsInCart = cartItems => {
         newCart[productIndex] = {
           ...product,
           quantity: product.quantity + item.quantity,
-        }
-        continue
+        };
+        continue;
       } else if (
         product.selectedColor &&
         item.selectedColor &&
@@ -83,8 +83,8 @@ export const mergeDuplicateProductsInCart = cartItems => {
         newCart[productIndex] = {
           ...product,
           quantity: product.quantity + item.quantity,
-        }
-        continue
+        };
+        continue;
       } else if (
         product.selectedSize &&
         item.selectedSize &&
@@ -95,53 +95,53 @@ export const mergeDuplicateProductsInCart = cartItems => {
         newCart[productIndex] = {
           ...product,
           quantity: product.quantity + item.quantity,
-        }
-        continue
+        };
+        continue;
       }
     }
-    newCart = [...newCart, { ...item }]
+    newCart = [...newCart, { ...item }];
   }
-  return newCart
-}
+  return newCart;
+};
 
 export const increaseProductQuantity = (cartItems, product) =>
-  cartItems.map(item => {
+  cartItems.map((item) => {
     if (item.id === product.id) {
-      return { ...item, quantity: Math.max(1, item.quantity + 1) }
+      return { ...item, quantity: Math.max(1, item.quantity + 1) };
     }
-    return item
-  })
+    return item;
+  });
 export const decreaseProductQuantity = (cartItems, product) =>
-  cartItems.map(item => {
+  cartItems.map((item) => {
     if (item.id === product.id) {
-      return { ...item, quantity: Math.max(1, item.quantity - 1) }
+      return { ...item, quantity: Math.max(1, item.quantity - 1) };
     }
-    return item
-  })
+    return item;
+  });
 
 export const removeProductFromCart = (cartItems, product) =>
-  cartItems.filter(item => item.id !== product.id)
+  cartItems.filter((item) => item.id !== product.id);
 
 export const changeProductInfo = (cartItems, product) => {
-  const checkProductExistedInCart = cartItems.find(item => {
-    if (item.id !== product.id) return false
+  const checkProductExistedInCart = cartItems.find((item) => {
+    if (item.id !== product.id) return false;
     if (
       item.selectedColor &&
       product.selectedColor &&
       item.selectedColor !== product.selectedColor
     )
-      return false
+      return false;
     if (
       item.selectedSize &&
       product.selectedSize &&
       item.selectedSize !== product.selectedSize
     )
-      return false
-    return true
-  })
-  if (checkProductExistedInCart) return cartItems
-  return cartItems.map(item => {
-    if (item.id === product.id) return { ...product }
-    return item
-  })
-}
+      return false;
+    return true;
+  });
+  if (checkProductExistedInCart) return cartItems;
+  return cartItems.map((item) => {
+    if (item.id === product.id) return { ...product };
+    return item;
+  });
+};

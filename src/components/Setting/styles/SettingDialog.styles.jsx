@@ -1,10 +1,10 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   .MuiDialog-paperScrollPaper {
     min-height: 50vh !important;
   }
-`
+`;
 
 export const SettingContents = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const SettingContents = styled.div`
   @media screen and (min-width: 768px) {
     font-size: 1rem;
   }
-`
+`;
 
 export const ContentItem = styled.div`
   display: grid;
@@ -31,4 +31,4 @@ export const ContentItem = styled.div`
       margin-right: 2rem;
     }
   }
-`
+`;
