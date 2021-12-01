@@ -90,8 +90,11 @@ const query = graphql`
           isDiscount
           discountPercentage
           images {
-            fluid {
-              ...GatsbyContentfulFluid
+            fixed(width: 360, height: 360) {
+              width
+              height
+              src
+              srcSet
             }
           }
           portfolio {
@@ -128,8 +131,11 @@ const query = graphql`
           isDiscount
           discountPercentage
           images {
-            fluid {
+            fixed(width: 360, height: 360) {
+              width
+              height
               src
+              srcSet
             }
           }
           portfolio {

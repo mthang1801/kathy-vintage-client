@@ -10,6 +10,7 @@ export const getDeviceType = () => {
       )
     )
       return 'mobile';
+    return 'desktop';
   }
   return 'mobile';
 };

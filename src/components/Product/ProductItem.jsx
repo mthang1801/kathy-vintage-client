@@ -35,7 +35,7 @@ const ProductItem = ({ product }) => {
     product?.productGroup?.slug
       ? `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`
       : `/products/${product.slug}`;
-  console.log(product.images);
+  console.log(getDeviceType());
   return (
     <Wrapper theme={theme} to={path}>
       {product.isDiscount && product.discountPercentage && (
@@ -44,20 +44,20 @@ const ProductItem = ({ product }) => {
       {getDeviceType() === 'desktop' ? (
         <ImageContainer
           imageHover={`https:${
-            product?.images[0]?.fluid?.src || product?.images[0]?.file?.url
+            product?.images[0]?.fixed?.src || product?.images[0]?.file?.url
           }`}
           imageMouseout={`https:${
-            product?.images[1]?.fluid?.src || product?.images[1]?.file?.url
+            product?.images[1]?.fixed?.src || product?.images[1]?.file?.url
           }`}
         />
       ) : (
         <ImageMobileTablet>
           <LazyLoadImage
             src={`https:${
-              product?.images[0]?.fluid?.src || product?.images[0]?.file?.url
+              product?.images[0]?.fixed?.src || product?.images[0]?.file?.url
             }`}
             effect="blur"
-          />{' '}
+          />
         </ImageMobileTablet>
       )}
 
