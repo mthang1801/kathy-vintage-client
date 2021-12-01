@@ -66,7 +66,6 @@ export const onPreRenderHTML = ({
     .sort((x, y) => {
       return order.indexOf(x.type) - order.indexOf(y.type);
     });
-  console.log(sortedHeadComponents);
   replaceHeadComponents(sortedHeadComponents);
 };
 

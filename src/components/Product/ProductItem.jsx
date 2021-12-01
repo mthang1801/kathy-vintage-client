@@ -35,7 +35,6 @@ const ProductItem = ({ product }) => {
     product?.productGroup?.slug
       ? `/${product.portfolio.slug}/${product.category.slug}/${product.productGroup.slug}/${product.slug}`
       : `/products/${product.slug}`;
-  console.log(getDeviceType());
   return (
     <Wrapper theme={theme} to={path}>
       {product.isDiscount && product.discountPercentage && (
