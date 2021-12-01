@@ -49,6 +49,7 @@ const ProductProduct = (props) => {
           0,
           150
         )} ...`}
+        image={`https://${images[0].file.url}`}
       />
       <Layout>
         <BreadcrumbNavigation
